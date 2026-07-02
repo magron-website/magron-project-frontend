@@ -4,7 +4,7 @@
 
 .home-footer {
   position: absolute;
-  top: calc(5890px + var(--header-height, 80px));
+  top: calc(5890px + var(--header-height, 80px) + var(--product-scroll-height, 400vh) - 1011px);
   left: 0;
   width: 1920px;
   height: 144px;

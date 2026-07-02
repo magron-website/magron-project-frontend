@@ -4,10 +4,12 @@
 
 .home {
   --header-height: 80px;
+  --product-scroll-height: 400vh;
+  --product-section-offset: calc(690px + var(--header-height));
 
   position: relative;
   width: 1920px;
-  min-height: calc(6040px + var(--header-height));
+  min-height: calc(6040px + var(--header-height) + var(--product-scroll-height) - 1011px);
   margin: 0 auto;
   background: #fff;
 }
@@ -16,426 +18,10 @@
   position: relative;
   padding-top: var(--header-height);
   width: 1920px;
-  min-height: calc(5781px + var(--header-height));
-}
+  min-height: calc(5781px + var(--header-height) + var(--product-scroll-height) - 1011px);
 
-/* --------------------------------------------------------------------------
-   Products
-   -------------------------------------------------------------------------- */
+/* Products section → product-vertical-carousel.css */
 
-.home-products {
-  position: absolute;
-  top: calc(690px + var(--header-height));
-  left: 0;
-  width: 1920px;
-  height: 1011px;
-}
-
-.home-products__title {
-  position: absolute;
-  left: 379px;
-  top: 37px;
-  width: 508px;
-  height: 48px;
-  color: #000;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 42px;
-  font-weight: 400;
-  line-height: 63px;
-  letter-spacing: -0.05em;
-}
-
-.home-products__cta {
-  position: absolute;
-  left: 379px;
-  top: 109px;
-  width: 384px;
-  height: 64px;
-  background: #000;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-.home-products__cta-text {
-  position: absolute;
-  left: 402px;
-  top: 125px;
-  width: 320px;
-  height: 36px;
-  text-align: center;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  line-height: 36px;
-}
-
-/* Ferrofluid card – blue */
-.home-products__card {
-  position: absolute;
-  border-radius: 10px;
-}
-
-.home-products__card--ferrofluid {
-  left: 370px;
-  top: 192px;
-  width: 580px;
-  height: 384px;
-  background: #1e40af;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-.home-products__card-text {
-  position: absolute;
-  left: 392px;
-  top: 223px;
-  width: 511px;
-  height: 112px;
-}
-
-.home-products__card-line1 {
-  position: absolute;
-  left: 0;
-  top: 18px;
-  width: 288px;
-  height: 28px;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  line-height: 40px;
-}
-
-.home-products__card-highlight {
-  position: absolute;
-  left: 287px;
-  top: -6px;
-  width: 208px;
-  height: 56px;
-  color: #ffb000;
-  font-family: 'Inter', sans-serif;
-  font-size: 48px;
-  font-weight: 700;
-  letter-spacing: 2.5px;
-  line-height: 40px;
-}
-
-.home-products__card-paren-open {
-  position: absolute;
-  left: 0;
-  top: 69px;
-  width: 10px;
-  height: 28px;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  line-height: 40px;
-}
-
-.home-products__card-ferrofluid {
-  position: absolute;
-  left: 10px;
-  top: 55px;
-  width: 192px;
-  height: 44px;
-  color: #ffb000;
-  font-family: 'Inter', sans-serif;
-  font-size: 36px;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  line-height: 40px;
-}
-
-.home-products__card-paren-close {
-  position: absolute;
-  left: 197px;
-  top: 69px;
-  width: 224px;
-  height: 28px;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  line-height: 40px;
-}
-
-.home-products__img-circle {
-  position: absolute;
-  background: #fff;
-  overflow: hidden;
-  box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
-}
-
-.home-products__img-circle--sm {
-  left: 462px;
-  top: 357px;
-  width: 145px;
-  height: 145px;
-  border-radius: 72.5px;
-}
-
-.home-products__img-circle--lg {
-  left: 698px;
-  top: 395px;
-  width: 176px;
-  height: 176px;
-  border-radius: 87.5px;
-}
-
-.home-products__img-circle img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Feedthrough card – pink */
-.home-products__card--feedthrough {
-  left: 961px;
-  top: 192px;
-  width: 320px;
-  height: 384px;
-  background: #db2777;
-}
-
-.home-products__card--feedthrough .home-products__card-label,
-.home-products__label--feedthrough {
-  position: absolute;
-  left: 979px;
-  top: 228px;
-  width: 144px;
-  height: 28px;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 24px;
-  font-weight: 700;
-  line-height: 36px;
-}
-
-.home-products__img-circle--feedthrough {
-  left: 1033px;
-  top: 353px;
-  width: 192px;
-  height: 208px;
-  border-radius: 98.5px;
-}
-
-/* Waterproof card – purple */
-.home-products__card--waterproof {
-  left: 1303px;
-  top: 192px;
-  width: 256px;
-  height: 384px;
-  background: #7e22ce;
-}
-
-.home-products__card--waterproof .home-products__card-label-group,
-.home-products__label-group--waterproof {
-  position: absolute;
-  left: 1337px;
-  top: 226px;
-  width: 176px;
-  height: 56px;
-}
-
-.home-products__card--waterproof .home-products__card-label,
-.home-products__label-group--waterproof .home-products__card-label {
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 28px;
-}
-
-.home-products__card--waterproof .home-products__card-label:nth-child(2),
-.home-products__label-group--waterproof .home-products__card-label:nth-child(2) {
-  position: absolute;
-  top: 29px;
-}
-
-.home-products__img--waterproof {
-  position: absolute;
-  left: 1347px;
-  top: 376px;
-  width: 160px;
-  height: 160px;
-  border-radius: 10px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.53);
-  overflow: hidden;
-}
-
-.home-products__img--waterproof img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* Magnet card – pink bottom left */
-.home-products__card--magnet {
-  left: 370px;
-  top: 596px;
-  width: 580px;
-  height: 320px;
-  background: #db2777;
-}
-
-.home-products__card--magnet .home-products__card-label-group,
-.home-products__label-group--magnet {
-  position: absolute;
-  left: 392px;
-  top: 622px;
-  width: 384px;
-  height: 64px;
-}
-
-.home-products__card--magnet .home-products__card-label,
-.home-products__label-group--magnet .home-products__card-label {
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 36px;
-  letter-spacing: 0.025em;
-}
-
-.home-products__card--magnet .home-products__card-label:nth-child(2),
-.home-products__label-group--magnet .home-products__card-label:nth-child(2) {
-  position: absolute;
-  top: 37px;
-}
-
-.home-products__img--magnet {
-  position: absolute;
-  left: 562px;
-  top: 714px;
-  width: 355px;
-  height: 135px;
-  border-radius: 10px;
-  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.53);
-  overflow: hidden;
-}
-
-.home-products__img--magnet img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 10px;
-}
-
-/* Education kit card – black */
-.home-products__card--education {
-  left: 963px;
-  top: 596px;
-  width: 320px;
-  height: 320px;
-  background: #000;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
-  overflow: hidden;
-}
-
-.home-products__card--education .home-products__card-bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 320px;
-  height: 320px;
-}
-
-.home-products__card--education .home-products__card-bg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.home-products__card--education .home-products__card-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 320px;
-  height: 320px;
-  background: rgba(0, 0, 0, 0.25);
-}
-
-.home-products__card--education .home-products__card-label,
-.home-products__label--education {
-  position: absolute;
-  left: 978px;
-  top: 609px;
-  width: 192px;
-  height: 24px;
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 28px;
-}
-
-.home-products__img-circle--education-sm {
-  left: 1219px;
-  top: 850px;
-  width: 58px;
-  height: 58px;
-  border-radius: 29px;
-}
-
-/* Display card – lime */
-.home-products__card--display {
-  left: 1302px;
-  top: 597px;
-  width: 256px;
-  height: 384px;
-  background: #3f6212;
-}
-
-.home-products__card--display .home-products__card-label-group,
-.home-products__label-group--display {
-  position: absolute;
-  left: 1325px;
-  top: 628px;
-  width: 200px;
-  height: 56px;
-}
-
-.home-products__card--display .home-products__card-label,
-.home-products__label-group--display .home-products__card-label {
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 20px;
-  font-weight: 700;
-  line-height: 28px;
-}
-
-.home-products__card--display .home-products__card-label:nth-child(2),
-.home-products__label-group--display .home-products__card-label:nth-child(2) {
-  position: absolute;
-  top: 29px;
-}
-
-.home-products__card--display .home-products__card-label:nth-child(3),
-.home-products__label-group--display .home-products__card-label:nth-child(3) {
-  position: absolute;
-  top: 58px;
-}
-
-.home-products__img-circle--display-lg {
-  left: 1336px;
-  top: 781px;
-  width: 120px;
-  height: 120px;
-  border-radius: 60px;
-}
-
-.home-products__img-circle--display-sm {
-  left: 1459px;
-  top: 881px;
-  width: 74px;
-  height: 74px;
-  border-radius: 39px;
 }
 
 /* --------------------------------------------------------------------------
@@ -444,7 +30,7 @@
 
 .home-about {
   position: absolute;
-  top: calc(1701px + var(--header-height));
+  top: calc(var(--product-section-offset) + var(--product-scroll-height));
   left: 0;
   width: 1920px;
   height: 987px;
@@ -578,7 +164,7 @@
 
 .home-catalog {
   position: absolute;
-  top: calc(2688px + var(--header-height));
+  top: calc(2688px + var(--header-height) + var(--product-scroll-height) - 1011px);
   left: 0;
   width: 1920px;
   height: 1432px;
@@ -821,7 +407,7 @@
 
 .home-contact {
   position: absolute;
-  top: calc(4120px + var(--header-height));
+  top: calc(4120px + var(--header-height) + var(--product-scroll-height) - 1011px);
   left: 0;
   width: 1920px;
   height: 498px;
@@ -1019,7 +605,7 @@
 
 .home-quote {
   position: absolute;
-  top: calc(4618px + var(--header-height));
+  top: calc(4618px + var(--header-height) + var(--product-scroll-height) - 1011px);
   left: 0;
   width: 1920px;
   height: 1163px;

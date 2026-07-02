@@ -1,79 +1,13 @@
 import { homeImages } from '@/assets/images/homeImages'
 import HeroCarousel from '@/components/HeroCarousel'
+import ProductVerticalCarousel from '@/components/ProductVerticalCarousel'
 
 function HomeHero() {
   return <HeroCarousel />
 }
 
 function HomeProducts() {
-  return (
-    <section className="home-products">
-      <div className="home-products__title">원하시는 제품을 Click 하세요</div>
-      <div className="home-products__cta" />
-      <div className="home-products__cta-text">자성유체 - Ferrofluid</div>
-
-      <div className="home-products__card home-products__card--ferrofluid" />
-      <div className="home-products__card-text">
-        <span className="home-products__card-line1">유해가스 & 분진 차단용 </span>
-        <span className="home-products__card-highlight">자성유체</span>
-        <span className="home-products__card-paren-open">(</span>
-        <span className="home-products__card-ferrofluid">Ferrofluid</span>
-        <span className="home-products__card-paren-close"> For Feedthrough)</span>
-      </div>
-      <div className="home-products__img-circle home-products__img-circle--sm">
-        <img src={homeImages.ferrofluidSm} alt="" />
-      </div>
-      <div className="home-products__img-circle home-products__img-circle--lg">
-        <img src={homeImages.ferrofluidLg} alt="" />
-      </div>
-
-      <div className="home-products__card home-products__card--feedthrough" />
-      <span className="home-products__card-label home-products__label--feedthrough">Feedthrough</span>
-      <div className="home-products__img-circle home-products__img-circle--feedthrough">
-        <img src={homeImages.feedthrough} alt="" />
-      </div>
-
-      <div className="home-products__card home-products__card--waterproof" />
-      <div className="home-products__card-label-group home-products__label-group--waterproof">
-        <span className="home-products__card-label">방수용 자성유체</span>
-        <span className="home-products__card-label">(낚시 Reel Mag oil)</span>
-      </div>
-      <div className="home-products__img--waterproof">
-        <img src={homeImages.waterproof} alt="" />
-      </div>
-
-      <div className="home-products__card home-products__card--magnet" />
-      <div className="home-products__card-label-group home-products__label-group--magnet">
-        <span className="home-products__card-label">자석 Magnet</span>
-        <span className="home-products__card-label">Nd, AlNiCo, Ferrite, SmCo, FeCrCo, etc</span>
-      </div>
-      <div className="home-products__img--magnet">
-        <img src={homeImages.magnet} alt="" />
-      </div>
-
-      <div className="home-products__card home-products__card--education">
-        <div className="home-products__card-bg">
-          <img src={homeImages.educationKit} alt="" />
-        </div>
-        <div className="home-products__card-overlay" />
-      </div>
-      <span className="home-products__card-label home-products__label--education">교육용 자성유체 키트</span>
-      <div className="home-products__img-circle home-products__img-circle--education-sm">
-        <img src={homeImages.educationKit} alt="" />
-      </div>
-
-      <div className="home-products__card home-products__card--display" />
-      <div className="home-products__card-label-group home-products__label-group--display">
-        <span className="home-products__card-label">대형 자성유체 디스플레이</span>
-      </div>
-      <div className="home-products__img-circle home-products__img-circle--display-lg">
-        <img src={homeImages.displayLg} alt="" />
-      </div>
-      <div className="home-products__img-circle home-products__img-circle--display-sm">
-        <img src={homeImages.displaySm} alt="" />
-      </div>
-    </section>
-  )
+  return <ProductVerticalCarousel />
 }
 
 function HomeAbout() {
