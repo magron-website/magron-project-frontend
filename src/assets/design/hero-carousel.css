@@ -1,0 +1,235 @@
+/* ==========================================================================
+   Hero Carousel – reference #visual structure
+   ========================================================================== */
+
+.home-visual {
+  --hero-autoplay-duration: 4s;
+
+  position: absolute;
+  top: var(--header-height, 80px);
+  left: 0;
+  width: 1920px;
+  height: 690px;
+  overflow: hidden;
+}
+
+.visual_in {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.visual_container {
+  display: flex;
+  height: 100%;
+}
+
+.roll {
+  position: relative;
+  flex: 0 0 100%;
+  min-width: 0;
+  height: 100%;
+}
+
+.v_txt {
+  position: absolute;
+  top: 31px;
+  right: 266px;
+  z-index: 2;
+  width: 320px;
+  text-align: right;
+  pointer-events: none;
+}
+
+.v_txt h2 {
+  margin: 0;
+  color: #224eca;
+  font-family: Impact, 'Anton', sans-serif;
+  font-size: 81px;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  line-height: 96px;
+}
+
+.v_txt p {
+  margin: 5px 0 0;
+  color: #205694;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+.v_bg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.v_bg .bg {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.visual-info {
+  position: absolute;
+  left: 50%;
+  bottom: 32px;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.progress-round__wrap {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  flex-shrink: 0;
+}
+
+.progress-round__wrap .progress {
+  width: 64px;
+  height: 64px;
+  transform: rotate(-90deg);
+}
+
+.progress-round__wrap .progress__track {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 2;
+}
+
+.progress-round__wrap .progress__bar {
+  fill: none;
+  stroke: #fff;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+}
+
+.progress-round__wrap .progress__bar--active {
+  animation: hero-progress var(--hero-autoplay-duration) linear forwards;
+}
+
+@keyframes hero-progress {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.progress-round__wrap .btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.progress-round__wrap .btn--pause::before,
+.progress-round__wrap .btn--pause::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 3px;
+  height: 12px;
+  background: #fff;
+  transform: translateY(-50%);
+}
+
+.progress-round__wrap .btn--pause::before {
+  left: calc(50% - 5px);
+}
+
+.progress-round__wrap .btn--pause::after {
+  left: calc(50% + 2px);
+}
+
+.progress-round__wrap .btn--play::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 7px 0 7px 11px;
+  border-color: transparent transparent transparent #fff;
+}
+
+.info-in {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.info-in .arrow {
+  border: none;
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.info-in .arrow--prev::before,
+.info-in .arrow--next::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+}
+
+.info-in .arrow--prev::before {
+  transform: translate(-30%, -50%) rotate(-135deg);
+}
+
+.info-in .arrow--next::before {
+  transform: translate(-70%, -50%) rotate(45deg);
+}
+
+.slick-page {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.slick-page li {
+  color: #fff;
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.slick-page .cur {
+  min-width: 12px;
+  text-align: right;
+}
+
+.slick-page .tot {
+  min-width: 12px;
+  text-align: left;
+}

@@ -3,68 +3,20 @@
    ========================================================================== */
 
 .home {
+  --header-height: 80px;
+
   position: relative;
   width: 1920px;
-  min-height: 6040px;
+  min-height: calc(6040px + var(--header-height));
   margin: 0 auto;
   background: #fff;
 }
 
 .home__content {
   position: relative;
-  padding-top: 109px;
+  padding-top: var(--header-height);
   width: 1920px;
-  min-height: 5781px;
-}
-
-/* --------------------------------------------------------------------------
-   Hero
-   -------------------------------------------------------------------------- */
-
-.home-hero {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1920px;
-  height: 690px;
-}
-
-.home-hero__bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 1920px;
-  height: 690px;
-  object-fit: cover;
-}
-
-.home-hero__title {
-  position: absolute;
-  left: 1334px;
-  top: 31px;
-  width: 320px;
-  height: 96px;
-  text-align: right;
-  color: #224eca;
-  font-family: Impact, 'Anton', sans-serif;
-  font-size: 81px;
-  font-weight: 400;
-  letter-spacing: 0.1em;
-  line-height: 96px;
-}
-
-.home-hero__subtitle {
-  position: absolute;
-  left: 1338px;
-  top: 132px;
-  width: 320px;
-  height: 36px;
-  text-align: right;
-  color: #205694;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 36px;
+  min-height: calc(5781px + var(--header-height));
 }
 
 /* --------------------------------------------------------------------------
@@ -73,7 +25,7 @@
 
 .home-products {
   position: absolute;
-  top: 690px;
+  top: calc(690px + var(--header-height));
   left: 0;
   width: 1920px;
   height: 1011px;
@@ -492,7 +444,7 @@
 
 .home-about {
   position: absolute;
-  top: 1701px;
+  top: calc(1701px + var(--header-height));
   left: 0;
   width: 1920px;
   height: 987px;
@@ -626,7 +578,7 @@
 
 .home-catalog {
   position: absolute;
-  top: 2688px;
+  top: calc(2688px + var(--header-height));
   left: 0;
   width: 1920px;
   height: 1432px;
@@ -869,7 +821,7 @@
 
 .home-contact {
   position: absolute;
-  top: 4120px;
+  top: calc(4120px + var(--header-height));
   left: 0;
   width: 1920px;
   height: 498px;
@@ -1067,7 +1019,7 @@
 
 .home-quote {
   position: absolute;
-  top: 4618px;
+  top: calc(4618px + var(--header-height));
   left: 0;
   width: 1920px;
   height: 1163px;

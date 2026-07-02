@@ -11,6 +11,13 @@ export const homeImages = {
     `${WIX}/8d6a0e_2cd605ebd86e489ba10c7d72dee3b09b~mv2.png/v1/fill/w_20,h_15,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image.png`,
   heroBg:
     `${WIX}/8d6a0e_49128b5d88994669adeac0300bf12b26~mv2.jpg/v1/fill/w_1920,h_690,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/8d6a0e_49128b5d88994669adeac0300bf12b26~mv2.jpg`,
+  /** 히어로 캐러셀 슬라이드 – 이미지 URL만 교체하면 됩니다 */
+  heroSlides: [
+    `${WIX}/8d6a0e_49128b5d88994669adeac0300bf12b26~mv2.jpg/v1/fill/w_1920,h_690,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/8d6a0e_49128b5d88994669adeac0300bf12b26~mv2.jpg`,
+    `${WIX}/11062b_c567795db2214629b5de847016de542f~mv2.jpeg/v1/fill/w_1920,h_690,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_c567795db2214629b5de847016de542f~mv2.jpeg`,
+    `${WIX}/11062b_4318e84fec3b4a5689b86e1121f151f9~mv2.jpeg/v1/fill/w_1920,h_690,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_4318e84fec3b4a5689b86e1121f151f9~mv2.jpeg`,
+    `${WIX}/8d6a0e_81ffa0616b4a49c7b42146f73d123199~mv2.png/v1/fill/w_1920,h_690,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8d6a0e_81ffa0616b4a49c7b42146f73d123199~mv2.png`,
+  ],
   ferrofluidSm:
     `${WIX}/8d6a0e_34c9ab2d6a584aed80529a87fe895bd6~mv2.jpg/v1/fill/w_141,h_141,al_c,q_80,usm_0.66_1.00_0.01,enc_avif,quality_auto/%EC%A0%9C%EB%AA%A9%EC%9D%84-%EC%9E%85%EB%A0%A5%ED%95%B4%EC%A3%BC%EC%84%B8%EC%9A%94_-001%20(2).jpg`,
   ferrofluidLg:

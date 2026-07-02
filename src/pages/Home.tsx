@@ -1,17 +1,8 @@
 import { homeImages } from '@/assets/images/homeImages'
+import HeroCarousel from '@/components/HeroCarousel'
 
 function HomeHero() {
-  return (
-    <section className="home-hero">
-      <img
-        className="home-hero__bg"
-        src={homeImages.heroBg}
-        alt=""
-      />
-      <div className="home-hero__title">MAGRON</div>
-      <div className="home-hero__subtitle">Ferrofluid&Feedthrough</div>
-    </section>
-  )
+  return <HeroCarousel />
 }
 
 function HomeProducts() {

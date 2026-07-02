@@ -4,7 +4,7 @@
 
 .home-footer {
   position: absolute;
-  top: 5890px;
+  top: calc(5890px + var(--header-height, 80px));
   left: 0;
   width: 1920px;
   height: 144px;
