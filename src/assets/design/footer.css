@@ -1,0 +1,126 @@
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.home-footer {
+  position: absolute;
+  top: 5890px;
+  left: 0;
+  width: 1920px;
+  height: 144px;
+  background: #1c1917;
+}
+
+.home-footer__inner {
+  position: absolute;
+  left: 470px;
+  top: 0;
+  width: 980px;
+  height: 144px;
+  background: #1c1917;
+}
+
+.home-footer__company {
+  position: absolute;
+  left: 80px;
+  top: 15px;
+  width: 384px;
+  height: 64px;
+  color: #a1a1aa;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.4;
+}
+
+.home-footer__company-name {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.home-footer__company-detail {
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.home-footer__contact {
+  position: absolute;
+  left: 1139px;
+  top: 15px;
+  width: 192px;
+  height: 44px;
+  color: #fff;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.home-footer__divider {
+  position: absolute;
+  left: 1133px;
+  top: 23px;
+  width: 20px;
+  height: 0;
+  transform: rotate(90deg);
+  transform-origin: top left;
+}
+
+.home-footer__divider-bar {
+  width: 20px;
+  height: 20px;
+  background: #a1a1aa;
+}
+
+.home-footer__email-wrap {
+  position: absolute;
+  left: 1409px;
+  top: 30px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.home-footer__email-icon {
+  width: 14px;
+  height: 14px;
+  position: relative;
+}
+
+.home-footer__email-icon-bar1 {
+  position: absolute;
+  top: 3px;
+  left: 0;
+  width: 14px;
+  height: 6px;
+  background: #a1a1aa;
+}
+
+.home-footer__email-icon-bar2 {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 14px;
+  height: 8px;
+  background: #a1a1aa;
+}
+
+.home-footer__email {
+  color: #fff;
+  font-family: 'Nanum Gothic', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.home-footer__social {
+  position: absolute;
+  left: 1652px;
+  top: 20px;
+  display: flex;
+  gap: 7px;
+}
+
+.home-footer__social-icon {
+  width: 37px;
+  height: 37px;
+  object-fit: contain;
+}

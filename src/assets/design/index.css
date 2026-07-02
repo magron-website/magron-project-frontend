@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;700&family=Nanum+Gothic&family=Raleway:wght@400;700&family=Roboto:wght@100;700&display=swap');
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Helvetica, Arial, 'Nanum Gothic', sans-serif;
+  background: #fff;
+  overflow-x: auto;
+}
+
+#root {
+  min-width: 1920px;
+}

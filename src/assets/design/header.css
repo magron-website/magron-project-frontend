@@ -1,0 +1,233 @@
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.home-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 112px;
+  z-index: 100;
+}
+
+.home-header__border {
+  position: absolute;
+  top: 0;
+  left: -10px;
+  width: 1920px;
+  height: 3px;
+  border-top: 3px solid #0ea5e9;
+}
+
+.home-header__bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 1920px;
+  height: 112px;
+  background: #f4f4f5;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.7);
+}
+
+.home-header__inner {
+  position: absolute;
+  top: 0;
+  left: 470px;
+  width: 980px;
+  height: 112px;
+  background: #fff;
+}
+
+.home-header__logo {
+  position: absolute;
+  left: 270px;
+  top: 11px;
+  display: flex;
+  align-items: center;
+}
+
+.home-header__logo-img {
+  width: 45px;
+  height: 45px;
+  object-fit: contain;
+}
+
+.home-header__brand {
+  position: absolute;
+  left: 322px;
+  top: 15px;
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+}
+
+.home-header__brand-name {
+  width: 96px;
+  height: 32px;
+  text-align: center;
+  color: #da176b;
+  font-family: Impact, 'Anton', sans-serif;
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 32px;
+}
+
+.home-header__brand-tagline {
+  position: absolute;
+  left: 422px;
+  top: 24px;
+  width: 80px;
+  height: 24px;
+  text-align: right;
+  color: #205694;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.home-header__nav {
+  position: absolute;
+  left: 536px;
+  top: 17px;
+  width: 859px;
+  height: 44px;
+}
+
+.home-header__nav-item {
+  position: absolute;
+  top: 0;
+  height: 44px;
+  text-align: center;
+  color: #404040;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 40px;
+  cursor: default;
+}
+
+.home-header__nav-item:nth-child(1) {
+  left: 78px;
+  width: 64px;
+}
+
+.home-header__nav-item:nth-child(2) {
+  left: 293px;
+  width: 64px;
+}
+
+.home-header__nav-item:nth-child(3) {
+  left: 508px;
+  width: 64px;
+}
+
+.home-header__nav-item--contact {
+  left: 645px;
+  width: 208px;
+  background: #e7e5e4;
+}
+
+.home-header__nav-item--contact span {
+  position: absolute;
+  left: 71px;
+  top: 0;
+  width: 80px;
+  height: 44px;
+  font-size: 14px;
+  line-height: 40px;
+}
+
+.home-header__lang {
+  position: absolute;
+  top: 23px;
+  right: 235px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.home-header__lang-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.home-header__lang-flag {
+  width: 30px;
+  height: 15px;
+  object-fit: cover;
+}
+
+.home-header__lang-flag--chn {
+  width: 20px;
+}
+
+.home-header__lang-label {
+  background: #f4f4f5;
+  color: #000;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 20px;
+  padding: 0 2px;
+}
+
+.home-header__lang-label--chn {
+  font-size: 14px;
+}
+
+.home-header__shop {
+  position: absolute;
+  left: 1471px;
+  top: 63px;
+  width: 80px;
+  height: 40px;
+  background: #fff;
+  border-radius: 50px;
+  box-shadow: 0 0 6px rgba(95, 91, 205, 0.7);
+  overflow: hidden;
+}
+
+.home-header__shop-text {
+  position: absolute;
+  left: 21px;
+  top: 12px;
+  width: 44px;
+  height: 16px;
+  text-align: center;
+  color: #4f46e5;
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+/* Position lang items individually per Figma */
+.home-header__lang {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.home-header__lang-group:nth-child(1) {
+  position: absolute;
+  left: 1472px;
+  top: 23px;
+}
+
+.home-header__lang-group:nth-child(2) {
+  position: absolute;
+  left: 1564px;
+  top: 23px;
+}
+
+.home-header__lang-group:nth-child(3) {
+  position: absolute;
+  left: 1659px;
+  top: 24px;
+}
