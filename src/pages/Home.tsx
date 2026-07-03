@@ -1,66 +1,18 @@
 import { homeImages } from '@/assets/images/homeImages'
 import HeroCarousel from '@/components/HeroCarousel'
-import ProductVerticalCarousel from '@/components/ProductVerticalCarousel'
+import ProductSection from '@/components/ProductSection'
 
 function HomeHero() {
   return <HeroCarousel />
 }
 
 function HomeProducts() {
-  return <ProductVerticalCarousel />
-}
-
-function HomeAbout() {
-  return (
-    <section className="home-about">
-      <div className="home-about__bg-wrap">
-        <img
-          className="home-about__bg"
-          src={homeImages.aboutBg}
-          alt=""
-        />
-        <div className="home-about__title">회사소개</div>
-        <div className="home-about__title-line" />
-        <div className="home-about__box" />
-        <div className="home-about__corner home-about__corner--tl-1" />
-        <div className="home-about__corner home-about__corner--tl-2" />
-        <div className="home-about__content">
-          <p className="home-about__paragraph">
-            2004년에 설립된 Magron은 자성유체와 관련 부품등을 전문적으로 제작, 공급합니다.
-          </p>
-          <p className="home-about__paragraph">
-            주로 활성&비활성 가스와 분진을 차폐하는 용도와 센서용으로 사용되고 있습니다.
-          </p>
-          <p className="home-about__paragraph">
-            당사의 제품은 반도체, 태양전지, 디스플레이 장비,전자제품, 자동차 등에 사용됩니다.
-          </p>
-          <p className="home-about__paragraph">
-            CVD, PVD, 스퍼터링, 이온 주입기, 박막, 로봇, 단결정 성장 제조 장비, 항공우주, 원자력, 핵융합 등 다양한 분야에 활용 되고 있습니다.
-          </p>
-          <p className="home-about__paragraph">
-            우리의 신속한 업무처리, 고 품질, 경쟁력 있는 가격은 당신을 만족 시킬 것 입니다.
-          </p>
-          <p className="home-about__paragraph">
-            언제든지 문의 바랍니다. 전 세계 어디서든 화상 회의를 신청하십시오. 항상 준비되어 있습니다.
-          </p>
-          <p className="home-about__section-title">Main Product</p>
-          <p className="home-about__list-item">- Ferrofluid</p>
-          <p className="home-about__list-item">- Ferrofluid sealed vaccum feedthrough</p>
-          <p className="home-about__list-item">
-            - Ferrofluid sealed vacuum OLED deposition robot, etc.
-          </p>
-        </div>
-        <div className="home-about__corner home-about__corner--br-1" />
-        <div className="home-about__corner home-about__corner--br-2" />
-      </div>
-      <div className="home-about__divider" />
-    </section>
-  )
+  return <ProductSection />
 }
 
 function HomeCatalog() {
   return (
-    <section className="home-catalog">
+    <section id="products" className="home-catalog">
       <div className="home-catalog__inner">
         <div className="home-catalog__title">카탈로그</div>
         <div className="home-catalog__title-line" />
@@ -145,7 +97,7 @@ function HomeCatalog() {
 
 function HomeContact() {
   return (
-    <section className="home-contact">
+    <section id="contact" className="home-contact">
       <div className="home-contact__bg-wrap">
         <img
           className="home-contact__bg"
@@ -293,7 +245,6 @@ export default function Home() {
     <>
       <HomeHero />
       <HomeProducts />
-      <HomeAbout />
       <HomeCatalog />
       <HomeContact />
       <HomeQuote />

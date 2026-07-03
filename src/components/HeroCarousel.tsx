@@ -1,12 +1,42 @@
 import { useCallback, useEffect, useState } from 'react'
 import useEmblaCarousel from 'embla-carousel-react'
-import { homeImages } from '@/assets/images/homeImages'
+import { ClipLoader } from 'react-spinners'
+import { resolveHeroButtonLink, useHeroSlides } from '@/hooks/useHeroSlides'
+import type { HeroSlide } from '@/types/heroSlide'
 import '@/assets/design/hero-carousel.css'
 
 const AUTOPLAY_DELAY_MS = 4000
-const SLIDES = homeImages.heroSlides
 
-export default function HeroCarousel() {
+function usesNaturalImage(slide: HeroSlide) {
+  return slide.sortOrder === 2 || slide.sortOrder === 3
+}
+
+function HeroVisualShell({
+  variant,
+  message,
+}: {
+  variant: 'loading' | 'empty'
+  message?: string | null
+}) {
+  return (
+    <section
+      id="visual"
+      className={`home-visual home-visual--${variant}`}
+      aria-busy={variant === 'loading'}
+      aria-live="polite"
+    >
+      {variant === 'loading' ? (
+        <ClipLoader color="#ffffff" size={52} aria-label="로딩 중" />
+      ) : (
+        <p className="home-visual__message">
+          {message ?? '캐러셀을 불러올 수 없습니다.'}
+        </p>
+      )}
+    </section>
+  )
+}
+
+function HeroCarouselContent({ slides }: { slides: HeroSlide[] }) {
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 35 })
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
@@ -24,6 +54,13 @@ export default function HeroCarousel() {
     setIsPlaying((prev) => !prev)
     setProgressKey((key) => key + 1)
   }, [])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    emblaApi.reInit()
+    setSelectedIndex(0)
+    setProgressKey((key) => key + 1)
+  }, [emblaApi, slides])
 
   useEffect(() => {
     if (!emblaApi) return
@@ -55,19 +92,65 @@ export default function HeroCarousel() {
     <section id="visual" className="home-visual">
       <div className="visual_in" ref={emblaRef}>
         <div className="visual_container">
-          {SLIDES.map((src, index) => (
-            <div className="roll" key={src}>
-              <div className="v_txt basic_in">
-                <h2>MAGRON</h2>
-                <p>Ferrofluid&amp;Feedthrough</p>
-              </div>
-              <div className="v_bg">
-                <div
-                  className="bg pc"
-                  style={{ backgroundImage: `url(${src})` }}
-                  role="img"
-                  aria-label={`히어로 슬라이드 ${index + 1}`}
-                />
+          {slides.map((slide, index) => (
+            <div className="roll" key={slide.id}>
+              <div className="roll__inner">
+                <div className="roll__content">
+                  <div className="roll__ornament roll__ornament--top" aria-hidden="true">
+                    <span className="roll__ornament-line" />
+                    <span className="roll__ornament-dot" />
+                    <span className="roll__ornament-dot" />
+                  </div>
+
+                  <h2 className="roll__title">{slide.title}</h2>
+
+                  {slide.subtitle ? (
+                    <p className="roll__subtitle">{slide.subtitle}</p>
+                  ) : null}
+
+                  {slide.description ? (
+                    <p className="roll__description">{slide.description}</p>
+                  ) : null}
+
+                  {slide.buttonText && slide.buttonLink ? (
+                    <a
+                      className="roll__button"
+                      href={resolveHeroButtonLink(slide.buttonLink)}
+                    >
+                      {slide.buttonText}
+                    </a>
+                  ) : null}
+
+                  <div className="roll__ornament roll__ornament--bottom" aria-hidden="true">
+                    <span className="roll__ornament-line roll__ornament-line--short" />
+                  </div>
+                </div>
+
+                <div className="roll__media">
+                  <div
+                    className={`roll__media-frame${
+                      usesNaturalImage(slide) ? ' roll__media-frame--natural' : ''
+                    }`}
+                  >
+                    {usesNaturalImage(slide) ? (
+                      <img
+                        className="roll__image roll__image--natural"
+                        src={slide.imageUrl}
+                        alt=""
+                        loading={index === 0 ? 'eager' : 'lazy'}
+                      />
+                    ) : (
+                      <div className="roll__media-crop">
+                        <img
+                          className="roll__image"
+                          src={slide.imageUrl}
+                          alt=""
+                          loading={index === 0 ? 'eager' : 'lazy'}
+                        />
+                      </div>
+                    )}
+                  </div>
+                </div>
               </div>
             </div>
           ))}
@@ -106,7 +189,7 @@ export default function HeroCarousel() {
           <ul className="slick-page">
             <li className="cur">{selectedIndex + 1}</li>
             <li className="and"> / </li>
-            <li className="tot">{SLIDES.length}</li>
+            <li className="tot">{slides.length}</li>
           </ul>
           <button
             type="button"
@@ -120,4 +203,18 @@ export default function HeroCarousel() {
       </div>
     </section>
   )
+}
+
+export default function HeroCarousel() {
+  const { slides, isLoading, error } = useHeroSlides()
+
+  if (isLoading) {
+    return <HeroVisualShell variant="loading" />
+  }
+
+  if (slides.length === 0) {
+    return <HeroVisualShell variant="empty" message={error} />
+  }
+
+  return <HeroCarouselContent slides={slides} />
 }

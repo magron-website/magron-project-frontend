@@ -1,0 +1,205 @@
+@import './font.css';
+
+/* ==========================================================================
+   Product Section – 3×2 brand grid
+   ========================================================================== */
+
+.product-scroll {
+  position: relative;
+  margin-top: 690px;
+  width: 100%;
+  height: var(--product-scroll-height, 1500px);
+  background: #fff;
+}
+
+.product-scroll__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+}
+
+.product-scroll__heading {
+  flex-shrink: 0;
+  margin: 0;
+  padding: 72px 0 48px;
+  color: #111;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.product-scroll__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.product-scroll__status {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 280px;
+}
+
+.product-scroll__message {
+  margin: 0;
+  padding: 16px 24px;
+  color: #71717a;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-size: 15px;
+  text-align: center;
+}
+
+.product-scroll__tile {
+  position: relative;
+  overflow: hidden;
+  min-height: 280px;
+}
+
+/* --------------------------------------------------------------------------
+   Image tile
+   -------------------------------------------------------------------------- */
+
+.product-scroll__tile--image {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-scroll__tile-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.product-scroll__tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.product-scroll__tile-content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.product-scroll__tile-label {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.product-scroll__tile-title {
+  margin: 0;
+  color: #fff;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 36px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.product-scroll__tile-brand {
+  position: absolute;
+  bottom: 36px;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.28em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   Text tile (center)
+   -------------------------------------------------------------------------- */
+
+.product-scroll__tile--text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+}
+
+.product-scroll__tile-text-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  max-width: 420px;
+  padding: 0 48px;
+  text-align: center;
+}
+
+.product-scroll__tile-text-title {
+  margin: 0;
+  color: #111;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 32px;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.product-scroll__tile-text-sub {
+  margin: 0;
+  color: #555;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+.product-scroll__tile-text-body {
+  margin: 8px 0 0;
+  color: #888;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+.product-scroll__tile-detail {
+  margin-top: 12px;
+  color: #333;
+  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+  border-bottom: 1px solid #333;
+  padding-bottom: 2px;
+}
+
+.product-scroll__tile-detail:hover {
+  color: #000;
+  border-bottom-color: #000;
+}
