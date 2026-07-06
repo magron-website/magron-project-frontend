@@ -1,18 +1,18 @@
-export type ProductExplanationRow = {
+export type BookRow = {
   id: string
   title: string
   subtitle: string | null
   image_url: string
-  category: string | null
+  pdf_url: string
   sort_order: number
   is_active: boolean
 }
 
-export type ProductExplanation = {
+export type Book = {
   id: string
   title: string
   subtitle: string
   imageUrl: string
-  category: string
+  pdfUrl: string
   sortOrder: number
 }

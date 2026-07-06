@@ -4,10 +4,10 @@
 
 .home-footer {
   position: absolute;
-  top: calc(4903px + var(--header-height, 80px) + var(--product-scroll-height, 1500px) - 1011px);
+  top: calc(var(--content-end) + var(--header-height));
   left: 50%;
   width: 100vw;
-  min-height: 144px;
+  min-height: var(--footer-height);
   margin: 0;
   padding: 0;
   background: #1c1917;
@@ -130,6 +130,34 @@
   width: 37px;
   height: 37px;
   object-fit: contain;
+}
+
+.home-footer__social-icon--instagram,
+.home-footer__social-icon--youtube {
+  display: block;
+  background-color: #a1a1aa;
+  mask-size: contain;
+  mask-repeat: no-repeat;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  transition: background 0.25s ease, background-color 0.25s ease;
+}
+
+.home-footer__social-link--instagram:hover .home-footer__social-icon--instagram {
+  background: linear-gradient(
+    45deg,
+    #f09433 0%,
+    #e6683c 25%,
+    #dc2743 50%,
+    #cc2366 75%,
+    #bc1888 100%
+  );
+}
+
+.home-footer__social-link--youtube:hover .home-footer__social-icon--youtube {
+  background-color: #ff0000;
 }
 
 @media (max-width: 1200px) {

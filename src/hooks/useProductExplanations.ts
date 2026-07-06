@@ -14,7 +14,6 @@ function mapRow(row: ProductExplanationRow): ProductExplanation {
     id: row.id,
     title: row.title,
     subtitle: row.subtitle ?? '',
-    description: row.description ?? '',
     imageUrl: row.image_url,
     category: row.category ?? 'product',
     sortOrder: row.sort_order,
@@ -37,7 +36,7 @@ export function useProductExplanations() {
         const { data, error: fetchError } = await supabase
           .from('product_explanations')
           .select(
-            'id, title, subtitle, description, image_url, category, sort_order, is_active',
+            'id, title, subtitle, image_url, category, sort_order, is_active',
           )
           .eq('is_active', true)
           .order('sort_order', { ascending: true })

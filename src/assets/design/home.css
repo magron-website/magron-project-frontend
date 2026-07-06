@@ -2,14 +2,21 @@
    Magron Homepage – 1920px fixed layout
    ========================================================================== */
 
+@import './font.css';
+
 .home {
   --header-height: 80px;
   --product-scroll-height: 1500px;
   --product-section-offset: calc(690px + var(--header-height));
+  --contact-offset: 3133px;
+  --contact-height: 560px;
+  --footer-height: 144px;
+  --layout-base: calc(var(--header-height) + var(--product-scroll-height) - 1011px);
+  --content-end: calc(var(--contact-offset) + var(--contact-height) + var(--layout-base));
 
   position: relative;
   width: 100%;
-  min-height: calc(5053px + var(--header-height) + var(--product-scroll-height) - 1011px);
+  min-height: calc(var(--content-end) + var(--header-height) + var(--footer-height));
   margin: 0 auto;
   background: #fff;
   overflow-x: clip;
@@ -22,7 +29,7 @@
   margin-left: auto;
   margin-right: auto;
   padding-top: var(--header-height);
-  min-height: calc(4794px + var(--header-height) + var(--product-scroll-height) - 1011px);
+  min-height: var(--content-end);
 
 /* Products section → product-section.css */
 
@@ -41,54 +48,133 @@
 }
 
 .home-catalog__inner {
-  position: absolute;
-  left: 470px;
-  top: 5px;
-  width: 980px;
-  height: 1015px;
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 5px 20px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.home-catalog__header {
+  margin: 0;
+  padding: 72px 0 48px;
+  text-align: center;
 }
 
 .home-catalog__title {
-  position: absolute;
-  left: 434px;
-  top: 82px;
-  width: 112px;
-  height: 36px;
-  text-align: center;
-  color: #205694;
-  font-family: Helvetica, Arial, sans-serif;
-  font-size: 30px;
+  margin: 0;
+  color: #111;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 42px;
   font-weight: 400;
-  line-height: 36px;
-  text-decoration: underline;
-  letter-spacing: -0.1em;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  text-align: center;
 }
 
-.home-catalog__title-line {
-  position: absolute;
-  left: 435px;
-  top: 131px;
-  width: 112px;
-  height: 3px;
-  border-top: 3px solid #205694;
+.home-catalog__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 72px 32px;
+  width: 100%;
+}
+
+.home-catalog__book-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.home-catalog__book-button:disabled {
+  cursor: default;
+}
+
+.home-catalog__book-button:disabled .home-catalog__book-hint {
+  display: none;
+}
+
+.home-catalog__book-hint {
+  margin: 10px 0 0;
+  padding: 0;
+  color: #52525b;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.home-catalog__book-button:hover:not(:disabled) .home-catalog__book-hint,
+.home-catalog__book-button:focus-visible:not(:disabled) .home-catalog__book-hint {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.home-catalog__book {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 330px;
+  padding: 8px 24px;
+  overflow: visible;
+}
+
+.home-catalog__book-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.home-catalog__book-img--placeholder {
+  background: #f4f4f5;
+  border: 1px dashed #d4d4d8;
 }
 
 .home-catalog__item {
-  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
   text-align: center;
 }
 
 .home-catalog__item-title {
   color: #27272a;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 20px;
   font-weight: 700;
   line-height: 24px;
   text-align: center;
+  white-space: nowrap;
+  width: max-content;
+  max-width: none;
+  margin: 0 auto;
 }
 
-.home-catalog__item-img {
-  object-fit: cover;
+.home-catalog__message {
+  margin: 0 0 24px;
+  text-align: center;
+  color: #71717a;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
 }
 
 .home-catalog__download {
@@ -98,174 +184,37 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.home-catalog__download--disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
 }
 
 .home-catalog__download-text {
   color: #fff;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;
 }
 
-/* Row 1 */
-.home-catalog__item:nth-child(3) {
-  left: -108px;
-  top: 262px;
-  width: 320px;
-}
-
-.home-catalog__item:nth-child(3) .home-catalog__item-title {
-  width: 320px;
-}
-
-.home-catalog__item:nth-child(3) .home-catalog__item-img {
-  position: absolute;
-  left: 36px;
-  top: 97px;
-  width: 230px;
-  height: 330px;
-}
-
-.home-catalog__item:nth-child(3) .home-catalog__download {
-  position: absolute;
-  left: 75px;
-  top: 455px;
-}
-
-.home-catalog__item:nth-child(4) {
-  left: 416px;
-  top: 262px;
-  width: 230px;
-}
-
-.home-catalog__item:nth-child(4) .home-catalog__item-img {
-  position: absolute;
-  left: -41px;
-  top: 97px;
-  width: 230px;
-  height: 330px;
-}
-
-.home-catalog__item:nth-child(4) .home-catalog__download {
-  position: absolute;
-  left: 10px;
-  top: 455px;
-}
-
-.home-catalog__item:nth-child(5) {
-  left: 891px;
-  top: 262px;
-  width: 96px;
-}
-
-.home-catalog__item:nth-child(5) .home-catalog__item-img {
-  position: absolute;
-  left: -67px;
-  top: 97px;
-  width: 230px;
-  height: 330px;
-}
-
-.home-catalog__item:nth-child(5) .home-catalog__download {
-  position: absolute;
-  left: -22px;
-  top: 455px;
-}
-
-/* Row 2 – positioned relative to catalog section */
-.home-catalog__row2 {
-  position: absolute;
-  top: 866px;
-  left: 0;
-  width: 100%;
-  height: 420px;
-}
-
-.home-catalog__item--row2 {
-  position: absolute;
-  top: 0;
-}
-
-.home-catalog__item--row2:nth-child(1) {
-  left: 398px;
-}
-
-.home-catalog__item--row2:nth-child(1) .home-catalog__item-img {
-  width: 230px;
-  height: 330px;
-}
-
-.home-catalog__item--row2:nth-child(1) .home-catalog__download {
-  position: absolute;
-  left: 39px;
-  top: 376px;
-}
-
-.home-catalog__item--row2:nth-child(2) {
-  left: 837px;
-}
-
-.home-catalog__item--row2:nth-child(2) .home-catalog__item-img {
-  width: 245px;
-  height: 330px;
-}
-
-.home-catalog__item--row2:nth-child(2) .home-catalog__download {
-  position: absolute;
-  left: 52px;
-  top: 376px;
-}
-
-.home-catalog__item--row2:nth-child(3) {
-  left: 1279px;
-}
-
-.home-catalog__item--row2:nth-child(3) .home-catalog__item-img {
-  width: 245px;
-  height: 330px;
-}
-
-.home-catalog__item--row2:nth-child(3) .home-catalog__download {
-  position: absolute;
-  left: 60px;
-  top: 376px;
-}
-
-.home-catalog__item--row2 .home-catalog__item-title {
-  position: absolute;
-  top: 376px;
-  width: 100%;
-  text-align: center;
-}
-
-.home-catalog__item--row2:nth-child(1) .home-catalog__item-title {
-  top: -604px;
-  left: -37px;
-  width: 160px;
-}
-
-.home-catalog__item--row2:nth-child(2) .home-catalog__item-title {
-  top: -604px;
-  left: -46px;
-  width: 192px;
-}
-
-.home-catalog__item--row2:nth-child(3) .home-catalog__item-title {
-  top: -604px;
-  left: -37px;
-  width: 96px;
-}
-
 .home-catalog__keywords {
   position: absolute;
-  left: 222px;
+  left: 0;
+  right: 0;
   top: 1363px;
-  width: 1420px;
-  height: 48px;
+  width: 100%;
+  max-width: 1420px;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
   text-align: center;
   color: #fff;
-  font-family: 'Inter', sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 28px;
@@ -277,422 +226,153 @@
 
 .home-contact {
   position: absolute;
-  top: calc(3133px + var(--header-height) + var(--product-scroll-height) - 1011px);
+  top: calc(var(--contact-offset) + var(--layout-base));
   left: 0;
   width: 100%;
-  height: 498px;
+  height: var(--contact-height);
 }
 
 .home-contact__bg-wrap {
-  position: absolute;
-  top: 0;
-  left: 0;
+  position: relative;
   width: 100%;
-  height: 498px;
+  height: var(--contact-height);
   overflow: hidden;
 }
 
 .home-contact__bg {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   width: 100%;
-  height: 498px;
+  height: 100%;
   object-fit: cover;
 }
 
+.home-contact__inner {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 24px 20px 28px;
+}
+
+.home-contact__header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
 .home-contact__title-line {
-  position: absolute;
-  left: 926px;
-  top: 25px;
   width: 64px;
   height: 3px;
+  margin-bottom: 12px;
   border-top: 1px solid #fff;
 }
 
 .home-contact__title {
-  position: absolute;
-  left: 885px;
-  top: 46px;
-  width: 144px;
-  height: 36px;
-  text-align: center;
+  margin: 0;
   color: #fff;
-  font-family: 'Inter', sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 30px;
   font-weight: 700;
   line-height: 36px;
+  text-align: center;
 }
 
-.home-contact__box {
-  position: absolute;
-  left: 470px;
-  top: 109px;
-  width: 975px;
-  height: 320px;
+.home-contact__card {
+  width: 100%;
+  padding: 32px 48px 36px;
   background: rgba(255, 255, 255, 0.9);
 }
 
 .home-contact__address {
-  position: absolute;
-  left: 609px;
-  top: 150px;
-  width: 596px;
-  height: 20px;
+  margin: 0 0 28px;
   color: #27272a;
-  font-family: 'Inter', sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
+  text-align: center;
+}
+
+.home-contact__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px 80px;
+}
+
+.home-contact__col {
+  display: flex;
+  flex-direction: column;
+  gap: 36px;
+}
+
+.home-contact__block {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
 .home-contact__label {
-  position: absolute;
-  left: 609px;
   color: #000;
-  font-family: 'Inter', sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 20px;
 }
 
-.home-contact__label--tel {
-  top: 195px;
-  width: 32px;
-}
-
-.home-contact__tel {
-  position: absolute;
-  left: 609px;
-  top: 240px;
-  width: 192px;
-  height: 40px;
+.home-contact__text {
+  margin: 0;
   color: #000;
-  font-family: 'Inter', sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
 }
 
-.home-contact__label--mail {
-  top: 360px;
-  width: 32px;
-  color: #27272a;
-  font-size: 16px;
+.home-contact__web-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
-.home-contact__mail {
-  position: absolute;
-  left: 609px;
-  top: 403px;
-  width: 176px;
-  height: 20px;
-  color: #000;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-}
-
-.home-contact__label--web {
-  left: 1005px;
-  top: 198px;
-  width: 36px;
-  font-size: 16px;
-}
-
-.home-contact__label--web .home-contact__label-muted {
-  color: #27272a;
-}
-
-.home-contact__web {
-  position: absolute;
-  left: 1005px;
-  width: 384px;
-  color: #000;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 32px;
-}
-
-.home-contact__web:nth-of-type(1) {
-  top: 226px;
-}
-
-.home-contact__web:nth-of-type(2) {
-  top: 259px;
-}
-
-.home-contact__web:nth-of-type(3) {
-  top: 291px;
+.home-contact__web-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .home-contact__web-icon {
-  position: absolute;
-  left: 980px;
+  flex-shrink: 0;
   width: 20px;
   height: 15px;
   object-fit: cover;
 }
 
-.home-contact__web-icon:nth-of-type(1) {
-  top: 233px;
-}
-
-.home-contact__web-icon:nth-of-type(2) {
-  top: 262px;
-}
-
-.home-contact__web-icon:nth-of-type(3) {
-  top: 293px;
-}
-
-.home-contact__label--fax {
-  left: 1005px;
-  top: 362px;
-  width: 32px;
-  color: #27272a;
-  font-size: 16px;
-}
-
-.home-contact__fax {
-  position: absolute;
-  left: 1005px;
-  top: 404px;
-  width: 128px;
-  height: 20px;
-  color: #27272a;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 20px;
-}
-
-/* --------------------------------------------------------------------------
-   Quote (견적서 요청)
-   -------------------------------------------------------------------------- */
-
-.home-quote {
-  position: absolute;
-  top: calc(3631px + var(--header-height) + var(--product-scroll-height) - 1011px);
-  left: 0;
-  width: 100%;
-  height: 1163px;
-}
-
-.home-quote__bg {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 1163px;
-  object-fit: cover;
-}
-
-.home-quote__form-wrap {
-  position: absolute;
-  left: 690px;
-  top: 122px;
-  width: 540px;
-  height: 987px;
-  background: #fff;
-}
-
-.home-quote__form {
-  position: absolute;
-  left: 24px;
-  top: 24px;
-  width: 492px;
-  height: 939px;
-}
-
-.home-quote__title {
-  color: #000;
-  font-family: 'Inter', sans-serif;
+.home-contact__quote-btn {
+  margin-top: 20px;
+  min-width: 180px;
+  height: 40px;
+  padding: 0 28px;
+  border: 0;
+  border-radius: 100px;
+  background: #082f49;
+  color: #fff;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 16px;
   font-weight: 700;
-  line-height: 24px;
-}
-
-.home-quote__field-group {
-  position: relative;
-  margin-top: 23px;
-}
-
-.home-quote__field-group--row {
-  display: flex;
-  gap: 18px;
-  margin-top: 23px;
-}
-
-.home-quote__field {
-  flex: 1;
-}
-
-.home-quote__label {
-  color: #000;
-  font-family: 'Inter', sans-serif;
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 16px;
-}
-
-.home-quote__label-required {
-  color: #000;
-  font-size: 14px;
-}
-
-.home-quote__input {
-  margin-top: 9px;
-  width: 100%;
-  height: 36px;
-  background: #fff;
-  border-bottom: 2px solid #000;
-}
-
-.home-quote__input--half {
-  width: 240px;
-}
-
-.home-quote__input--full {
-  width: 492px;
-}
-
-.home-quote__input--textarea {
-  height: 96px;
-  border-bottom: 2px solid #000;
-}
-
-.home-quote__checkboxes {
-  margin-top: 9px;
-  width: 492px;
-}
-
-.home-quote__checkbox-row {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  margin-bottom: 12px;
-  min-height: 24px;
-}
-
-.home-quote__checkbox {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  margin-top: 3px;
-  border: 2px solid #000;
-}
-
-.home-quote__checkbox-label {
-  color: #000;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-.home-quote__checkbox-label--sm {
-  font-size: 14px;
-}
-
-.home-quote__privacy {
-  margin-top: 13px;
-  width: 486px;
-  color: #000;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-}
-
-.home-quote__submit {
-  margin-top: 21px;
-  width: 492px;
-  height: 40px;
-  background: #000;
-  border-radius: 100px;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.home-quote__submit-text {
-  color: #fff;
-  font-family: 'Inter', sans-serif;
-  font-size: 16px;
-  font-weight: 400;
   line-height: 20px;
-  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(8, 47, 73, 0.28);
 }
 
-/* Position form fields per Figma absolute layout */
-.home-quote__form .home-quote__title {
-  position: absolute;
-  left: 0;
-  top: 1px;
-}
-
-.home-quote__form .home-quote__field-group--name {
-  position: absolute;
-  left: 0;
-  top: 48px;
-  width: 240px;
-}
-
-.home-quote__form .home-quote__field-group--surname {
-  position: absolute;
-  left: 258px;
-  top: 48px;
-  width: 240px;
-}
-
-.home-quote__form .home-quote__field-group--company {
-  position: absolute;
-  left: 0;
-  top: 135px;
-  width: 492px;
-}
-
-.home-quote__form .home-quote__field-group--location {
-  position: absolute;
-  left: 0;
-  top: 222px;
-  width: 492px;
-}
-
-.home-quote__form .home-quote__field-group--email {
-  position: absolute;
-  left: 0;
-  top: 309px;
-  width: 492px;
-}
-
-.home-quote__form .home-quote__field-group--items {
-  position: absolute;
-  left: 0;
-  top: 396px;
-  width: 492px;
-}
-
-.home-quote__form .home-quote__field-group--other {
-  position: absolute;
-  left: 0;
-  top: 685px;
-  width: 492px;
-}
-
-.home-quote__form .home-quote__privacy {
-  position: absolute;
-  left: 0;
-  top: 827px;
-}
-
-.home-quote__form .home-quote__submit {
-  position: absolute;
-  left: 0;
-  top: 898px;
-  margin-top: 0;
+.home-contact__quote-btn:hover {
+  background: #0c4a6e;
 }

@@ -1,0 +1,115 @@
+.book-flip-viewer {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.book-flip-viewer__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(15, 23, 42, 0.72);
+  cursor: pointer;
+}
+
+.book-flip-viewer__panel {
+  position: relative;
+  z-index: 1;
+  width: var(--book-viewer-panel-width, min(98vw, 1500px));
+  height: var(--book-viewer-panel-height, 920px);
+  display: flex;
+  flex-direction: column;
+  background: #f8fafc;
+  border-radius: 12px;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.28);
+  overflow: hidden;
+}
+
+.book-flip-viewer__header {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 60px;
+  padding: 0 20px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fff;
+}
+
+.book-flip-viewer__title {
+  margin: 0;
+  color: #205694;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.book-flip-viewer__close {
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 14px;
+  background: #082f49;
+  color: #fff;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.book-flip-viewer__close:hover {
+  background: #0c4a6e;
+}
+
+.book-flip-viewer__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  height: var(--book-viewer-content-height, 860px);
+  padding: 28px 32px 36px;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.book-flip-viewer__status,
+.book-flip-viewer__message {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.book-flip-viewer__message {
+  margin: 0;
+  padding: 0 16px;
+  color: #71717a;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
+  text-align: center;
+}
+
+.book-flip-viewer__flipbook {
+  margin: 0 auto;
+  flex-shrink: 0;
+}
+
+.book-flip-viewer__page {
+  background: #fff;
+  overflow: hidden;
+}
+
+.book-flip-viewer__page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  pointer-events: none;
+}

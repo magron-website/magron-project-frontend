@@ -1,0 +1,97 @@
+.chatbot-floater {
+  position: fixed;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.chatbot-floater--hidden {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.chatbot-floater--top {
+  top: var(--chatbot-floater-top, 96px);
+  right: 0;
+  bottom: auto !important;
+}
+
+.chatbot-floater__panel {
+  width: 72px;
+  padding: 20px 10px 18px;
+  background: #1f1f1f;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+}
+
+.chatbot-floater__text {
+  margin: 0;
+  color: #fff;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.55;
+  letter-spacing: -0.02em;
+  text-align: center;
+  word-break: keep-all;
+}
+
+.chatbot-floater__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  margin-top: -10px;
+  padding: 0;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 50%;
+  background: #fff;
+  color: #1a4fd6;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.14);
+  cursor: pointer;
+  pointer-events: auto;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.chatbot-floater__button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.18);
+}
+
+.chatbot-floater__button:focus-visible {
+  outline: 2px solid #1a4fd6;
+  outline-offset: 2px;
+}
+
+.chatbot-floater__icon {
+  display: block;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+@media (max-width: 900px) {
+  .chatbot-floater--top {
+    --chatbot-floater-top: 88px;
+  }
+
+  .chatbot-floater__panel {
+    width: 64px;
+    padding: 16px 8px 14px;
+  }
+
+  .chatbot-floater__text {
+    font-size: 12px;
+  }
+
+  .chatbot-floater__button {
+    width: 50px;
+    height: 50px;
+  }
+}

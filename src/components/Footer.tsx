@@ -50,11 +50,31 @@ function EmailIcon() {
   )
 }
 
-const SOCIAL_LINKS = [
+const INSTAGRAM_URL = 'https://www.instagram.com/ferrofluidmagron/'
+const YOUTUBE_URL = 'https://www.youtube.com/@magronkorea7396'
+
+type SocialLink = {
+  href: string
+  label: string
+  image: string
+  brand?: 'instagram' | 'youtube'
+}
+
+const SOCIAL_LINKS: SocialLink[] = [
   { href: '#', label: 'LinkedIn', image: homeImages.socialLinkedIn },
-  { href: '#', label: 'Instagram', image: homeImages.socialInstagram },
-  { href: '#', label: 'YouTube', image: homeImages.socialYoutube },
-] as const
+  {
+    href: INSTAGRAM_URL,
+    label: 'Instagram',
+    image: homeImages.socialInstagram,
+    brand: 'instagram',
+  },
+  {
+    href: YOUTUBE_URL,
+    label: 'YouTube',
+    image: homeImages.socialYoutube,
+    brand: 'youtube',
+  },
+]
 
 export default function Footer() {
   return (
@@ -97,15 +117,28 @@ export default function Footer() {
               {SOCIAL_LINKS.map((item) => (
                 <a
                   key={item.label}
-                  className="home-footer__social-link"
+                  className={
+                    item.brand
+                      ? `home-footer__social-link home-footer__social-link--${item.brand}`
+                      : 'home-footer__social-link'
+                  }
                   href={item.href}
                   aria-label={item.label}
+                  {...(item.brand
+                    ? { target: '_blank', rel: 'noopener noreferrer' }
+                    : {})}
                 >
-                  <img
-                    className="home-footer__social-icon"
-                    src={item.image}
-                    alt=""
-                  />
+                  {item.brand ? (
+                    <span
+                      className={`home-footer__social-icon home-footer__social-icon--${item.brand}`}
+                      style={{
+                        WebkitMaskImage: `url(${item.image})`,
+                        maskImage: `url(${item.image})`,
+                      }}
+                    />
+                  ) : (
+                    <img className="home-footer__social-icon" src={item.image} alt="" />
+                  )}
                 </a>
               ))}
             </div>

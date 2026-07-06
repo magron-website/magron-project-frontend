@@ -56,7 +56,7 @@
   margin: 0;
   padding: 16px 24px;
   color: #71717a;
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 15px;
   text-align: center;
 }
@@ -106,7 +106,7 @@
 .product-scroll__tile-label {
   margin: 0;
   color: rgba(255, 255, 255, 0.9);
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 13px;
   font-weight: 400;
   letter-spacing: 0.06em;
@@ -130,76 +130,10 @@
   z-index: 1;
   margin: 0;
   color: rgba(255, 255, 255, 0.92);
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
+  font-family: 'ChosunIlboMyungjo', serif;
   font-size: 11px;
   font-weight: 400;
   letter-spacing: 0.28em;
   text-align: center;
   text-transform: uppercase;
-}
-
-/* --------------------------------------------------------------------------
-   Text tile (center)
-   -------------------------------------------------------------------------- */
-
-.product-scroll__tile--text {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #fff;
-}
-
-.product-scroll__tile-text-inner {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  max-width: 420px;
-  padding: 0 48px;
-  text-align: center;
-}
-
-.product-scroll__tile-text-title {
-  margin: 0;
-  color: #111;
-  font-family: 'ChosunIlboMyungjo', serif;
-  font-size: 32px;
-  font-weight: 400;
-  line-height: 1.4;
-  letter-spacing: -0.02em;
-}
-
-.product-scroll__tile-text-sub {
-  margin: 0;
-  color: #555;
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  letter-spacing: 0.02em;
-}
-
-.product-scroll__tile-text-body {
-  margin: 8px 0 0;
-  color: #888;
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 1.75;
-}
-
-.product-scroll__tile-detail {
-  margin-top: 12px;
-  color: #333;
-  font-family: 'Inter', Helvetica, Arial, sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  letter-spacing: 0.04em;
-  text-decoration: none;
-  border-bottom: 1px solid #333;
-  padding-bottom: 2px;
-}
-
-.product-scroll__tile-detail:hover {
-  color: #000;
-  border-bottom-color: #000;
 }

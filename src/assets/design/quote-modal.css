@@ -1,0 +1,186 @@
+.quote-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.quote-modal__backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(15, 23, 42, 0.72);
+  cursor: pointer;
+}
+
+.quote-modal__panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 540px);
+  max-height: min(92vh, 987px);
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 24px 64px rgba(15, 23, 42, 0.28);
+  overflow: hidden;
+}
+
+.quote-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px 0;
+}
+
+.quote-modal__title {
+  margin: 0;
+  color: #000;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+.quote-modal__close {
+  border: 0;
+  border-radius: 6px;
+  padding: 8px 14px;
+  background: #082f49;
+  color: #fff;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quote-modal__close:hover {
+  background: #0c4a6e;
+}
+
+.quote-modal__form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 24px 24px;
+  overflow-y: auto;
+}
+
+.quote-modal__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.quote-modal__field,
+.quote-modal__fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.quote-modal__label,
+.quote-modal__fieldset legend {
+  display: block;
+  color: #000;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.quote-modal__required {
+  color: #000;
+}
+
+.quote-modal__input,
+.quote-modal__textarea {
+  width: 100%;
+  margin-top: 9px;
+  padding: 8px 0;
+  border: 0;
+  border-bottom: 2px solid #000;
+  border-radius: 0;
+  background: #fff;
+  color: #000;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
+  line-height: 20px;
+  outline: none;
+}
+
+.quote-modal__textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.quote-modal__checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 9px;
+}
+
+.quote-modal__checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.quote-modal__checkbox {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
+  accent-color: #000;
+}
+
+.quote-modal__checkbox-label {
+  color: #000;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.quote-modal__checkbox-label--sm {
+  font-size: 14px;
+}
+
+.quote-modal__privacy {
+  margin: 0;
+  color: #000;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.quote-modal__submit {
+  width: 100%;
+  height: 40px;
+  border: 0;
+  border-radius: 100px;
+  background: #000;
+  color: #fff;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  cursor: pointer;
+}
+
+.quote-modal__submit:hover {
+  background: #27272a;
+}
+
+@media (max-width: 560px) {
+  .quote-modal__row {
+    grid-template-columns: 1fr;
+  }
+}

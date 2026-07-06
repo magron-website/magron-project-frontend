@@ -157,7 +157,7 @@ function HeroCarouselContent({ slides }: { slides: HeroSlide[] }) {
         </div>
       </div>
 
-      <div className="visual-info basic_in">
+      <div className="visual-info">
         <div className="progress-round__wrap">
           <button
             type="button"
