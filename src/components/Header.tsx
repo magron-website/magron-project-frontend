@@ -2,7 +2,7 @@ import { useState } from 'react'
 import '@/assets/design/header.css'
 import { homeImages } from '@/assets/images/homeImages'
 
-const NAV_ITEMS = ['회사소개', '제품정보', '매거진', '고객서비스', 'ESG경영'] as const
+const NAV_ITEMS = ['회사소개', '제품정보', '고객서비스', 'ESG경영'] as const
 const COMPANY_SUB_ITEMS = ['회사정보', '대표소개'] as const
 
 export default function Header() {
