@@ -35,6 +35,23 @@
 
 }
 
+.home--page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.home--page .home__content {
+  flex: 1;
+  min-height: auto;
+}
+
+.home--page .home-footer {
+  position: static;
+  transform: none;
+  margin-top: auto;
+}
+
 /* --------------------------------------------------------------------------
    Catalog (카탈로그)
    -------------------------------------------------------------------------- */

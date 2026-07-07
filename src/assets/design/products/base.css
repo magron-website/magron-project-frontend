@@ -1,0 +1,160 @@
+@import '../font.css';
+
+/* ==========================================================================
+   Shared product page layout (per-page templates extend this)
+   ========================================================================== */
+
+.ferrofluid-page,
+.feedthrough-page,
+.magoil-page,
+.magnet-page,
+.education-page,
+.display-page {
+  width: 100%;
+  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  background: #fff;
+}
+
+.ferrofluid-page__hero,
+.feedthrough-page__hero,
+.magoil-page__hero,
+.magnet-page__hero,
+.education-page__hero,
+.display-page__hero {
+  position: relative;
+  width: 100%;
+  height: 520px;
+  overflow: hidden;
+}
+
+.ferrofluid-page__hero-img,
+.feedthrough-page__hero-img,
+.magoil-page__hero-img,
+.magnet-page__hero-img,
+.education-page__hero-img,
+.display-page__hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ferrofluid-page__hero-overlay,
+.feedthrough-page__hero-overlay,
+.magoil-page__hero-overlay,
+.magnet-page__hero-overlay,
+.education-page__hero-overlay,
+.display-page__hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+}
+
+.ferrofluid-page__hero-content,
+.feedthrough-page__hero-content,
+.magoil-page__hero-content,
+.magnet-page__hero-content,
+.education-page__hero-content,
+.display-page__hero-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 0 40px;
+  text-align: center;
+}
+
+.ferrofluid-page__label,
+.feedthrough-page__label,
+.magoil-page__label,
+.magnet-page__label,
+.education-page__label,
+.display-page__label {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+}
+
+.ferrofluid-page__title,
+.feedthrough-page__title,
+.magoil-page__title,
+.magnet-page__title,
+.education-page__title,
+.display-page__title {
+  margin: 0;
+  color: #fff;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+}
+
+.ferrofluid-page__body,
+.feedthrough-page__body,
+.magoil-page__body,
+.magnet-page__body,
+.education-page__body,
+.display-page__body {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 40px 80px;
+}
+
+.ferrofluid-page__back,
+.feedthrough-page__back,
+.magoil-page__back,
+.magnet-page__back,
+.education-page__back,
+.display-page__back {
+  display: inline-block;
+  margin-bottom: 40px;
+  color: #52525b;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.ferrofluid-page__back:hover,
+.feedthrough-page__back:hover,
+.magoil-page__back:hover,
+.magnet-page__back:hover,
+.education-page__back:hover,
+.display-page__back:hover {
+  color: #111;
+}
+
+.ferrofluid-page__heading,
+.feedthrough-page__heading,
+.magoil-page__heading,
+.magnet-page__heading,
+.education-page__heading,
+.display-page__heading {
+  margin: 0 0 20px;
+  color: #111;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 28px;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.ferrofluid-page__text,
+.feedthrough-page__text,
+.magoil-page__text,
+.magnet-page__text,
+.education-page__text,
+.display-page__text {
+  margin: 0;
+  color: #3f3f46;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 17px;
+  line-height: 1.8;
+  letter-spacing: -0.01em;
+}

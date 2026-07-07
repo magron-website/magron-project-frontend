@@ -41,6 +41,7 @@
   width: 100%;
   flex: 1;
   min-height: 0;
+  isolation: isolate;
 }
 
 .product-scroll__status {
@@ -63,8 +64,34 @@
 
 .product-scroll__tile {
   position: relative;
+  z-index: 1;
   overflow: hidden;
   min-height: 280px;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-scroll__tile:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+.product-scroll__tile:hover,
+.product-scroll__tile:focus-visible {
+  z-index: 5;
+  transform: scale(1.02);
+}
+
+.product-scroll__tile--active {
+  z-index: 10;
+  transform: scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28);
+}
+
+.product-scroll__tile:active:not(.product-scroll__tile--active) {
+  transform: scale(0.98);
 }
 
 /* --------------------------------------------------------------------------
@@ -84,12 +111,30 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 0.45s ease;
 }
 
 .product-scroll__tile-overlay {
   position: absolute;
   inset: 0;
   background: rgba(0, 0, 0, 0.35);
+  transition: background 0.3s ease;
+}
+
+.product-scroll__tile:hover .product-scroll__tile-bg,
+.product-scroll__tile:focus-visible .product-scroll__tile-bg,
+.product-scroll__tile--active .product-scroll__tile-bg {
+  transform: scale(1.06);
+}
+
+.product-scroll__tile:hover .product-scroll__tile-overlay,
+.product-scroll__tile:focus-visible .product-scroll__tile-overlay,
+.product-scroll__tile--active .product-scroll__tile-overlay {
+  background: rgba(0, 0, 0, 0.22);
+}
+
+.product-scroll__tile:active:not(.product-scroll__tile--active) .product-scroll__tile-overlay {
+  background: rgba(0, 0, 0, 0.45);
 }
 
 .product-scroll__tile-content {

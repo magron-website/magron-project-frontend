@@ -5,7 +5,7 @@ import BookFlipViewer from '@/components/BookFlipViewer'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
 import HeroCarousel from '@/components/HeroCarousel'
 import ChatbotFloater from '@/components/ChatbotFloater'
-import ProductSection from '@/components/ProductSection'
+import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
 import type { Book } from '@/types/book'
 

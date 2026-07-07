@@ -81,6 +81,68 @@ export function useProductExplanations() {
   return { products, isLoading, error }
 }
 
+export function useProductBySortOrder(sortOrder: number) {
+  const [product, setProduct] = useState<ProductExplanation | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  useEffect(() => {
+    let cancelled = false
+
+    async function fetchProduct() {
+      setIsLoading(true)
+      setError(null)
+
+      try {
+        const { data, error: fetchError } = await supabase
+          .from('product_explanations')
+          .select(
+            'id, title, subtitle, image_url, category, sort_order, is_active',
+          )
+          .eq('sort_order', sortOrder)
+          .eq('is_active', true)
+          .maybeSingle()
+
+        if (cancelled) return
+
+        if (fetchError) {
+          console.error('Failed to load product explanation:', fetchError.message)
+          setError(fetchError.message)
+          setProduct(null)
+          return
+        }
+
+        if (!data) {
+          setError('제품을 찾을 수 없습니다.')
+          setProduct(null)
+          return
+        }
+
+        setProduct(mapRow(data as ProductExplanationRow))
+      } catch (err) {
+        if (cancelled) return
+        const message =
+          err instanceof Error ? err.message : '제품 정보를 불러오지 못했습니다.'
+        console.error('Failed to load product explanation:', message)
+        setError(message)
+        setProduct(null)
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false)
+        }
+      }
+    }
+
+    void fetchProduct()
+
+    return () => {
+      cancelled = true
+    }
+  }, [sortOrder])
+
+  return { product, isLoading, error }
+}
+
 export function getProductTileLabel(product: ProductExplanation): string {
   return formatLabel(product.category, product.title)
 }

@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import '@/assets/design/header.css'
 import { homeImages } from '@/assets/images/homeImages'
 
@@ -13,7 +14,7 @@ export default function Header() {
       <div className="home-header__border" />
       <div className="home-header__bg" />
       <div className="home-header__inner">
-        <div className="home-header__left">
+        <Link to="/" className="home-header__left" aria-label="홈으로 이동">
           <img
             className="home-header__logo-img"
             src={homeImages.logo}
@@ -23,7 +24,7 @@ export default function Header() {
             <span className="home-header__brand-name">MAGRON</span>
             <span className="home-header__brand-tagline">Ferrofluid</span>
           </div>
-        </div>
+        </Link>
 
         <nav className="home-header__nav" aria-label="주요 메뉴">
           {NAV_ITEMS.map((item) =>

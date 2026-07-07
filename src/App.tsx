@@ -1,11 +1,30 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Layout from '@/components/Layout'
 import Home from '@/pages/Home'
+import {
+  Display,
+  Education,
+  Feedthrough,
+  Ferrofluid,
+  Magoil,
+  Magnet,
+} from '@/pages/products'
 
 function App() {
   return (
-    <Layout>
-      <Home />
-    </Layout>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/ferrofluid" element={<Ferrofluid />} />
+          <Route path="/feedthrough" element={<Feedthrough />} />
+          <Route path="/magoil" element={<Magoil />} />
+          <Route path="/magnet" element={<Magnet />} />
+          <Route path="/education" element={<Education />} />
+          <Route path="/display" element={<Display />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   )
 }
 

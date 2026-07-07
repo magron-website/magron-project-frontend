@@ -1,17 +1,23 @@
-import type { ReactNode } from 'react'
+import { useEffect } from 'react'
+import { Outlet, useLocation } from 'react-router-dom'
 import '@/assets/design/home.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 
-type LayoutProps = {
-  children: ReactNode
-}
+export default function Layout() {
+  const { pathname } = useLocation()
+  const isHome = pathname === '/'
 
-export default function Layout({ children }: LayoutProps) {
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0 })
+  }, [pathname])
+
   return (
-    <div className="home">
+    <div className={`home${isHome ? '' : ' home--page'}`}>
       <Header />
-      <div className="home__content">{children}</div>
+      <div className="home__content">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   )

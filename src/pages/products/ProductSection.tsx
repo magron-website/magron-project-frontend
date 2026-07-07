@@ -1,3 +1,5 @@
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { ClipLoader } from 'react-spinners'
 import {
   getProductTileLabel,
@@ -5,14 +7,27 @@ import {
   useProductExplanations,
 } from '@/hooks/useProductExplanations'
 import type { ProductExplanation } from '@/types/productExplanation'
+import { getProductPathBySortOrder } from '@/pages/products/productRoutes'
 import '@/assets/design/product-section.css'
 
-function ProductTileCard({ product }: { product: ProductExplanation }) {
+type ProductTileCardProps = {
+  product: ProductExplanation
+  isActive: boolean
+  onActivate: (id: string) => void
+}
+
+function ProductTileCard({ product, isActive, onActivate }: ProductTileCardProps) {
   const label = getProductTileLabel(product)
   const title = getProductTileTitle(product)
 
   return (
-    <article className="product-scroll__tile product-scroll__tile--image">
+    <Link
+      to={getProductPathBySortOrder(product.sortOrder)}
+      className={`product-scroll__tile product-scroll__tile--image${isActive ? ' product-scroll__tile--active' : ''}`}
+      aria-label={`${title} 상세 보기`}
+      aria-current={isActive ? 'true' : undefined}
+      onClick={() => onActivate(product.id)}
+    >
       <img className="product-scroll__tile-bg" src={product.imageUrl} alt="" />
       <div className="product-scroll__tile-overlay" aria-hidden="true" />
       <div className="product-scroll__tile-content">
@@ -20,12 +35,13 @@ function ProductTileCard({ product }: { product: ProductExplanation }) {
         <h3 className="product-scroll__tile-title">{title}</h3>
       </div>
       <p className="product-scroll__tile-brand">MAGRON</p>
-    </article>
+    </Link>
   )
 }
 
 export default function ProductSection() {
   const { products, isLoading, error } = useProductExplanations()
+  const [activeTileId, setActiveTileId] = useState<string | null>(null)
 
   return (
     <section className="product-scroll" aria-label="제품 소개">
@@ -45,7 +61,12 @@ export default function ProductSection() {
         ) : (
           <div className="product-scroll__grid">
             {products.map((product) => (
-              <ProductTileCard key={product.id} product={product} />
+              <ProductTileCard
+                key={product.id}
+                product={product}
+                isActive={activeTileId === product.id}
+                onActivate={setActiveTileId}
+              />
             ))}
           </div>
         )}
