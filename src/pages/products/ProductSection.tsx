@@ -6,6 +6,7 @@ import {
   getProductTileTitle,
   useProductExplanations,
 } from '@/hooks/useProductExplanations'
+import { useInView } from '@/hooks/useInView'
 import type { ProductExplanation } from '@/types/productExplanation'
 import { getProductPathBySortOrder } from '@/pages/products/productRoutes'
 import '@/assets/design/product-section.css'
@@ -42,9 +43,15 @@ function ProductTileCard({ product, isActive, onActivate }: ProductTileCardProps
 export default function ProductSection() {
   const { products, isLoading, error } = useProductExplanations()
   const [activeTileId, setActiveTileId] = useState<string | null>(null)
+  const { ref, inView } = useInView<HTMLElement>({ threshold: 0.06, once: false })
 
   return (
-    <section className="product-scroll" aria-label="제품 소개">
+    <section
+      id="product-info"
+      ref={ref}
+      className={`product-scroll${inView ? ' is-revealed' : ''}`}
+      aria-label="제품 소개"
+    >
       <div className="product-scroll__inner">
         <h2 className="product-scroll__heading">제품 정보</h2>
 

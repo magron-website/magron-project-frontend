@@ -5,9 +5,11 @@ import BookFlipViewer from '@/components/BookFlipViewer'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
 import HeroCarousel from '@/components/HeroCarousel'
 import ChatbotFloater from '@/components/ChatbotFloater'
+import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
 import type { Book } from '@/types/book'
+import '@/assets/design/animation.css'
 
 const catalogItems = [
   { sortOrder: 1, title: 'Ferrofluid For Gas&Dust Sealing' },
@@ -41,6 +43,7 @@ function HomeProducts() {
 function HomeCatalog() {
   const { books, isLoading, error } = useBooks()
   const [viewerBook, setViewerBook] = useState<Book | null>(null)
+  const { ref, inView } = useInView<HTMLElement>({ threshold: 0.08, once: false })
 
   const booksBySortOrder = useMemo(
     () => Object.fromEntries(books.map((book) => [book.sortOrder, book])),
@@ -48,7 +51,11 @@ function HomeCatalog() {
   )
 
   return (
-    <section id="products" className="home-catalog">
+    <section
+      id="products"
+      ref={ref}
+      className={`home-catalog${inView ? ' is-revealed' : ''}`}
+    >
       <BookFlipViewer
         isOpen={viewerBook !== null}
         title={viewerBook?.subtitle || viewerBook?.title || ''}
@@ -130,6 +137,7 @@ function HomeCatalog() {
 
 function HomeContact() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
+  const { ref, inView } = useInView<HTMLElement>({ threshold: 0.15, once: false })
 
   const webLinks = [
     {
@@ -147,7 +155,11 @@ function HomeContact() {
   ]
 
   return (
-    <section id="contact" className="home-contact">
+    <section
+      id="contact"
+      ref={ref}
+      className={`home-contact${inView ? ' is-revealed' : ''}`}
+    >
       <QuoteRequestModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
       <div className="home-contact__bg-wrap">
         <img className="home-contact__bg" src={homeImages.contactBg} alt="" />

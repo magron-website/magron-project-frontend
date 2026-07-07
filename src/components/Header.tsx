@@ -1,13 +1,44 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import '@/assets/design/header.css'
 import { homeImages } from '@/assets/images/homeImages'
+import { PRODUCT_PAGE_PATHS } from '@/pages/products/productRoutes'
 
-const NAV_ITEMS = ['회사소개', '제품정보', '고객서비스', 'ESG경영'] as const
+const NAV_ITEMS = ['회사소개', '제품정보', '카탈로그', '기술정보'] as const
 const COMPANY_SUB_ITEMS = ['회사정보', '대표소개'] as const
+const PRODUCT_SUB_ITEMS = [
+  { label: 'Ferrofluid', to: PRODUCT_PAGE_PATHS.ferrofluid },
+  { label: 'Feedthrough', to: PRODUCT_PAGE_PATHS.feedthrough },
+  { label: 'Reel Mag oil', to: PRODUCT_PAGE_PATHS.magoil },
+  { label: 'Magnet', to: PRODUCT_PAGE_PATHS.magnet },
+  { label: 'Education kit', to: PRODUCT_PAGE_PATHS.education },
+  { label: 'Large Ferrofluid Display', to: PRODUCT_PAGE_PATHS.display },
+] as const
 
 export default function Header() {
+  const navigate = useNavigate()
+  const { pathname } = useLocation()
   const [companyOpen, setCompanyOpen] = useState(false)
+  const [productsOpen, setProductsOpen] = useState(false)
+
+  const goToTop = () => {
+    setCompanyOpen(false)
+    if (pathname === '/') {
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+    navigate('/')
+  }
+
+  const goToSection = (sectionId: string) => {
+    setProductsOpen(false)
+    navigate(`/#${sectionId}`)
+    if (pathname === '/') {
+      requestAnimationFrame(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+      })
+    }
+  }
 
   return (
     <header className="home-header">
@@ -35,13 +66,15 @@ export default function Header() {
                 onMouseEnter={() => setCompanyOpen(true)}
                 onMouseLeave={() => setCompanyOpen(false)}
               >
-                <span
+                <button
+                  type="button"
                   className={`home-header__nav-item home-header__nav-item--trigger${companyOpen ? ' home-header__nav-item--active' : ''}`}
                   aria-expanded={companyOpen}
                   aria-haspopup="true"
+                  onClick={goToTop}
                 >
                   {item}
-                </span>
+                </button>
                 {companyOpen && (
                   <div className="home-header__dropdown">
                     <ul className="home-header__dropdown-list">
@@ -56,6 +89,49 @@ export default function Header() {
                   </div>
                 )}
               </div>
+            ) : item === '제품정보' ? (
+              <div
+                key={item}
+                className="home-header__nav-dropdown"
+                onMouseEnter={() => setProductsOpen(true)}
+                onMouseLeave={() => setProductsOpen(false)}
+              >
+                <button
+                  type="button"
+                  className={`home-header__nav-item home-header__nav-item--trigger${productsOpen ? ' home-header__nav-item--active' : ''}`}
+                  aria-expanded={productsOpen}
+                  aria-haspopup="true"
+                  onClick={() => goToSection('product-info')}
+                >
+                  {item}
+                </button>
+                {productsOpen && (
+                  <div className="home-header__dropdown">
+                    <ul className="home-header__dropdown-list home-header__dropdown-list--wide">
+                      {PRODUCT_SUB_ITEMS.map((subItem) => (
+                        <li key={subItem.label}>
+                          <Link
+                            to={subItem.to}
+                            className="home-header__dropdown-item"
+                            onClick={() => setProductsOpen(false)}
+                          >
+                            {subItem.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
+              </div>
+            ) : item === '카탈로그' ? (
+              <button
+                key={item}
+                type="button"
+                className="home-header__nav-item home-header__nav-item--link"
+                onClick={() => goToSection('products')}
+              >
+                {item}
+              </button>
             ) : (
               <span key={item} className="home-header__nav-item">
                 {item}
