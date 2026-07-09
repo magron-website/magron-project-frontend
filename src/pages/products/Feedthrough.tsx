@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
 import {
   APPLICATION_CARDS,
@@ -68,18 +67,6 @@ export default function Feedthrough() {
                 </article>
               ))}
             </div>
-            <div className="ft-cta-group">
-              <button
-                type="button"
-                className="ft-btn ft-btn--primary"
-                onClick={() => setIsQuoteOpen(true)}
-              >
-                제품 문의하기
-              </button>
-              <a className="ft-btn ft-btn--secondary" href="/#products">
-                카탈로그 다운로드
-              </a>
-            </div>
           </div>
           <div className="ft-hero__visual">
             <ImagePlaceholder
@@ -94,10 +81,6 @@ export default function Feedthrough() {
       </header>
 
       <div className="ft-page__body">
-        <Link className="ft-back" to="/">
-          ← 제품 목록으로
-        </Link>
-
         {/* 2. Feedthrough란? */}
         <Section title="Feedthrough">
           <div className="ft-split">

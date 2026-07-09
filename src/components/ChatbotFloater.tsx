@@ -1,6 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
 import chatbotImage from '@/assets/images/chatbot.png'
+import ChatbotPanel from '@/components/ChatbotPanel'
 import '@/assets/design/chatbot-floater.css'
 
 const HERO_MARGIN = 24
@@ -13,6 +14,7 @@ export default function ChatbotFloater() {
   const [mode, setMode] = useState<FloaterMode>('hero')
   const [heroCoords, setHeroCoords] = useState({ top: 0, right: HERO_MARGIN })
   const [isVisible, setIsVisible] = useState(false)
+  const [isChatOpen, setIsChatOpen] = useState(false)
 
   useLayoutEffect(() => {
     const updatePosition = () => {
@@ -67,24 +69,32 @@ export default function ChatbotFloater() {
   }, [])
 
   return createPortal(
-    <div
-      ref={floaterRef}
-      className={`chatbot-floater chatbot-floater--${mode}${isVisible ? '' : ' chatbot-floater--hidden'}`}
-      style={mode === 'hero' ? { top: heroCoords.top, right: heroCoords.right } : undefined}
-    >
-      <div className="chatbot-floater__panel">
-        <p className="chatbot-floater__text">
-          궁금한건
-          <br />
-          챗봇에게
-          <br />
-          물어보세요!
-        </p>
+    <>
+      <div
+        ref={floaterRef}
+        className={`chatbot-floater chatbot-floater--${mode}${isVisible && !isChatOpen ? '' : ' chatbot-floater--hidden'}`}
+        style={mode === 'hero' ? { top: heroCoords.top, right: heroCoords.right } : undefined}
+      >
+        <div className="chatbot-floater__panel">
+          <p className="chatbot-floater__text">
+            궁금한건
+            <br />
+            챗봇에게
+            <br />
+            물어보세요!
+          </p>
+        </div>
+        <button
+          type="button"
+          className="chatbot-floater__button"
+          aria-label="챗봇 열기"
+          onClick={() => setIsChatOpen(true)}
+        >
+          <img className="chatbot-floater__icon" src={chatbotImage} alt="" />
+        </button>
       </div>
-      <button type="button" className="chatbot-floater__button" aria-label="챗봇 열기">
-        <img className="chatbot-floater__icon" src={chatbotImage} alt="" />
-      </button>
-    </div>,
+      <ChatbotPanel isOpen={isChatOpen} onClose={() => setIsChatOpen(false)} />
+    </>,
     document.body,
   )
 }

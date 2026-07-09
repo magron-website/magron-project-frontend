@@ -6,6 +6,9 @@ type ImagePlaceholderProps = {
   src?: string
   aspectRatio?: string
   className?: string
+  hideCaption?: boolean
+  alt?: string
+  fit?: 'cover' | 'contain'
 }
 
 export function ImagePlaceholder({
@@ -14,26 +17,46 @@ export function ImagePlaceholder({
   src,
   aspectRatio = '16 / 9',
   className = '',
+  hideCaption = false,
+  alt = '',
+  fit = 'contain',
 }: ImagePlaceholderProps) {
+  const hasImage = Boolean(src)
+  // When a real image is present we let the box hug the image (natural fit) so
+  // nothing gets cropped or letter-boxed. The fixed aspect ratio is only used
+  // for the empty placeholder state and for cover-style banners (hero).
+  const isNatural = hasImage && fit === 'contain'
+
+  const figureClassName = [
+    'ff-placeholder',
+    hasImage ? 'ff-placeholder--filled' : '',
+    isNatural ? 'ff-placeholder--natural' : '',
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ')
+
   return (
     <figure
-      className={`ff-placeholder ${className}`.trim()}
-      style={{ aspectRatio }}
+      className={figureClassName}
+      style={isNatural ? undefined : { aspectRatio }}
     >
       {src ? (
         <img
           className="ff-placeholder__img"
           src={src}
-          alt=""
+          alt={alt}
           onError={(event) => {
             event.currentTarget.style.display = 'none'
           }}
         />
       ) : null}
-      <figcaption className="ff-placeholder__caption">
-        <span className="ff-placeholder__id">{id}</span>
-        <p className="ff-placeholder__desc">{description}</p>
-      </figcaption>
+      {hideCaption ? null : (
+        <figcaption className="ff-placeholder__caption">
+          <span className="ff-placeholder__id">{id}</span>
+          <p className="ff-placeholder__desc">{description}</p>
+        </figcaption>
+      )}
     </figure>
   )
 }

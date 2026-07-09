@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
 import {
   COMPONENT_CARDS,
@@ -58,23 +57,9 @@ export default function Education() {
               ))}
             </div>
             <div className="ed-cta-group">
-              <button
-                type="button"
-                className="ed-btn ed-btn--primary"
-                onClick={() => setIsQuoteOpen(true)}
-              >
-                제품 문의
-              </button>
               <a className="ed-btn ed-btn--secondary" href="#kit-videos">
                 자성유체 키트 소개영상 보기
               </a>
-              <button
-                type="button"
-                className="ed-btn ed-btn--outline"
-                onClick={() => setIsQuoteOpen(true)}
-              >
-                제품문의
-              </button>
             </div>
           </div>
           <div className="ed-hero__visual">
@@ -90,10 +75,6 @@ export default function Education() {
       </header>
 
       <div className="ed-page__body">
-        <Link className="ed-back" to="/">
-          ← 제품 목록으로
-        </Link>
-
         {/* 2. 제품 소개 */}
         <Section title="제품 소개">
           <div className="ed-prose">

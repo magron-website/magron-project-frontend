@@ -30,19 +30,6 @@
   padding: 32px 24px 96px;
 }
 
-.ff-back {
-  display: inline-block;
-  margin-bottom: 40px;
-  color: var(--ff-muted);
-  font-size: 14px;
-  text-decoration: none;
-  transition: color 0.2s ease;
-}
-
-.ff-back:hover {
-  color: var(--ff-navy);
-}
-
 /* Hero ------------------------------------------------------------------ */
 
 .ff-hero {
@@ -52,7 +39,7 @@
 
 .ff-hero__inner {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
   gap: 40px;
   align-items: center;
   width: 100%;
@@ -72,10 +59,11 @@
 
 .ff-hero__title {
   margin: 0;
-  font-size: clamp(32px, 4vw, 48px);
+  font-size: clamp(28px, 3.2vw, 42px);
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
+  white-space: nowrap;
 }
 
 .ff-hero__title-en {
@@ -145,6 +133,12 @@
   background: rgba(255, 255, 255, 0.04);
 }
 
+.ff-hero__placeholder .ff-placeholder__img {
+  object-fit: cover;
+  object-position: center 62%;
+  background: #fff;
+}
+
 /* Sections -------------------------------------------------------------- */
 
 .ff-section {
@@ -183,10 +177,6 @@
 
 .ff-section--data {
   padding-top: 72px;
-}
-
-.ff-section__support-image {
-  margin-top: 24px;
 }
 
 .ff-subheading {
@@ -263,6 +253,31 @@
   grid-template-columns: 1.1fr 0.9fr;
   gap: 32px;
   align-items: start;
+}
+
+.ff-split--overview {
+  grid-template-columns: 1fr 1fr;
+}
+
+.ff-placeholder--overview {
+  width: 100%;
+  max-width: 100%;
+  align-self: start;
+}
+
+.ff-placeholder--overview .ff-placeholder__img {
+  object-fit: contain;
+  background: #fff;
+}
+
+.ff-placeholder--inset {
+  background: #fff;
+}
+
+.ff-placeholder--inset .ff-placeholder__img {
+  object-fit: contain;
+  object-position: center;
+  background: #fff;
 }
 
 .ff-compare-grid {
@@ -544,6 +559,27 @@
   object-fit: cover;
 }
 
+/* When a real image is loaded, swap the dashed placeholder frame for a clean
+   thin frame so the image reads as a framed product photo. */
+.ff-placeholder--filled {
+  border: 1px solid var(--ff-border);
+  background: #fff;
+}
+
+/* Natural fit: the box hugs the image at its own aspect ratio — no cropping,
+   no empty letter-box gaps. */
+.ff-placeholder--natural {
+  display: block;
+}
+
+.ff-placeholder--natural .ff-placeholder__img {
+  position: static;
+  inset: auto;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+}
+
 .ff-placeholder__caption {
   position: relative;
   z-index: 1;
@@ -697,6 +733,11 @@
 
   .ff-hero__inner {
     padding: 40px 16px 48px;
+  }
+
+  .ff-hero__title {
+    white-space: normal;
+    font-size: clamp(26px, 6.5vw, 34px);
   }
 
   .ff-hero__cards,

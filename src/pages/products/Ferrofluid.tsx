@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
+import { useFerrofluidInfo } from '@/hooks/useFerrofluidInfo'
 import {
   CompareCard,
   CompanyTable,
@@ -32,6 +32,16 @@ import '@/assets/design/products/ferrofluid.css'
 
 export default function Ferrofluid() {
   const [isQuoteOpen, setIsQuoteOpen] = useState(false)
+  const { images } = useFerrofluidInfo()
+  const imageByOrder = new Map(images.map((image) => [image.sortOrder, image]))
+
+  const heroImage = imageByOrder.get(2)
+  const sealStructureImage = imageByOrder.get(4)
+  const productOverviewImage = imageByOrder.get(1)
+  const leakTestImage = imageByOrder.get(5)
+  const ferrofluidSealImage = imageByOrder.get(6)
+  const applicationsImage1 = imageByOrder.get(9)
+  const applicationsImage2 = imageByOrder.get(10)
 
   return (
     <article className="ff-page">
@@ -70,35 +80,23 @@ export default function Ferrofluid() {
                 </article>
               ))}
             </div>
-            <div className="ff-cta-group">
-              <button
-                type="button"
-                className="ff-btn ff-btn--primary"
-                onClick={() => setIsQuoteOpen(true)}
-              >
-                제품 문의하기
-              </button>
-              <a className="ff-btn ff-btn--secondary" href="/#products">
-                카탈로그 다운로드
-              </a>
-            </div>
           </div>
           <div className="ff-hero__visual">
             <ImagePlaceholder
               id="IMAGE_PLACEHOLDER_HERO_PRODUCTS"
-              description="첫 번째 이미지에 있는 좌측 소형 Ferrofluid Seal 제품 렌더링, 우측 대형 원통형 Seal 제품 렌더링, 원형 Ferrofluid 입자 이미지를 Hero 영역에 배치한다."
-              src="/images/ferrofluid/hero-products.png"
-              aspectRatio="4 / 3"
+              description="TGA/DTA 그래프 3개를 Hero 영역에 배치한다."
+              src={heroImage?.imageUrl}
+              aspectRatio="16 / 9"
               className="ff-hero__placeholder"
+              hideCaption={Boolean(heroImage?.imageUrl)}
+              alt={heroImage?.title ?? 'Ferrofluid hero image'}
+              fit="cover"
             />
           </div>
         </div>
       </header>
 
       <div className="ff-page__body">
-        <Link className="ff-back" to="/">
-          ← 제품 목록으로
-        </Link>
 
         {/* 2. Why needed */}
         <Section title="왜 자성유체 Seal이 필요한가?">
@@ -120,8 +118,11 @@ export default function Ferrofluid() {
             <ImagePlaceholder
               id="IMAGE_PLACEHOLDER_SEAL_STRUCTURE"
               description="네 번째 이미지의 Ferrofluid Seal 구조도 또는 Feedthrough H25 단면 이미지를 배치한다. Shaft, Magnet, Pole Piece, Ferrofluid 위치가 보이는 단면도가 적합하다."
-              src="/images/ferrofluid/seal-structure.png"
-              aspectRatio="4 / 3"
+              src={sealStructureImage?.imageUrl}
+              aspectRatio="16 / 9"
+              className="ff-placeholder--inset"
+              hideCaption={Boolean(sealStructureImage?.imageUrl)}
+              alt={sealStructureImage?.title ?? 'Ferrofluid Info 3'}
             />
           </div>
           <div className="ff-compare-grid">
@@ -140,7 +141,7 @@ export default function Ferrofluid() {
 
         {/* 3. Product overview */}
         <Section title="제품 개요">
-          <div className="ff-split">
+          <div className="ff-split ff-split--overview">
             <div className="ff-prose">
               <p>
                 본 제품은 유해가스 및 분진 차단용 자성유체입니다. 특히 부식성 가스
@@ -152,8 +153,11 @@ export default function Ferrofluid() {
             <ImagePlaceholder
               id="IMAGE_PLACEHOLDER_PRODUCT_OVERVIEW"
               description="첫 번째 이미지의 제품 렌더링 2종을 제품 개요 영역에 배치한다."
-              src="/images/ferrofluid/hero-products.png"
-              aspectRatio="3 / 4"
+              src={productOverviewImage?.imageUrl}
+              aspectRatio="4 / 3"
+              className="ff-placeholder--overview"
+              hideCaption={Boolean(productOverviewImage?.imageUrl)}
+              alt={productOverviewImage?.title ?? 'Ferrofluid information image 3'}
             />
           </div>
         </Section>
@@ -180,13 +184,6 @@ export default function Ferrofluid() {
             ※ 모델별 최적 적용 조건은 장비 구조, 회전축 직경, 회전 속도, 가스 종류, 온도
             조건에 따라 달라질 수 있습니다. 적용 전 기술 상담을 권장합니다.
           </p>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_CORROSIVE_SPEC"
-            description="첫 번째 이미지 하단의 magenta header 스펙 표 이미지를 보조 이미지로 넣는다."
-            src="/images/ferrofluid/corrosive-spec-table.png"
-            aspectRatio="16 / 7"
-            className="ff-section__support-image"
-          />
         </Section>
 
         {/* 5. Leak test */}
@@ -217,8 +214,10 @@ export default function Ferrofluid() {
           <ImagePlaceholder
             id="IMAGE_PLACEHOLDER_LEAK_TEST"
             description="두 번째 이미지 상단의 MFF-M4251 Leak Test Data 그래프와 MFF-M5070 Leak Test Data 그래프를 좌우 2컬럼으로 배치한다."
-            src="/images/ferrofluid/leak-test.png"
+            src={leakTestImage?.imageUrl}
             aspectRatio="16 / 6"
+            hideCaption={Boolean(leakTestImage?.imageUrl)}
+            alt={leakTestImage?.title ?? 'Ferrofluid information image 4'}
           />
         </Section>
 
@@ -241,13 +240,6 @@ export default function Ferrofluid() {
             ※ 위 Non-Corrosive Gas용 표는 제공 이미지에서 읽히는 범위대로 정리한 값입니다.
             원본 자료와 대조 후 최종 수치를 확정해야 합니다.
           </p>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_NON_CORROSIVE_SPEC"
-            description="두 번째 이미지 중앙의 Non-Corrosive Gas용 Ferrofluid 표를 넣는다."
-            src="/images/ferrofluid/non-corrosive-spec-table.png"
-            aspectRatio="16 / 8"
-            className="ff-section__support-image"
-          />
         </Section>
 
         {/* 7. MFS series */}
@@ -275,13 +267,6 @@ export default function Ferrofluid() {
             MFS-Grease 표는 원본 이미지에서 매우 작게 보여 일부 컬럼과 값이 정확하지 않다.
             `?` 값은 흐릿하게 보이는 값이다.
           </p>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_MFS_GREASE"
-            description="두 번째 이미지 하단의 MFS-Series / MFS-Grease 설명 영역과 Grease Type 표를 배치한다."
-            src="/images/ferrofluid/mfs-grease.png"
-            aspectRatio="16 / 7"
-            className="ff-section__support-image"
-          />
         </Section>
 
         {/* 8. TGA / DTA */}
@@ -318,12 +303,6 @@ export default function Ferrofluid() {
               </article>
             ))}
           </div>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_TGA_DTA"
-            description="세 번째 이미지의 파란 배경 TGA/DTA 측정 자료와 그래프 3개를 배치한다. 그래프는 세로 카드형 또는 3개 카드 그리드로 구성한다."
-            src="/images/ferrofluid/tga-dta.png"
-            aspectRatio="16 / 9"
-          />
         </Section>
 
         {/* 9. Seal structure */}
@@ -361,8 +340,10 @@ export default function Ferrofluid() {
             <ImagePlaceholder
               id="IMAGE_PLACEHOLDER_FERROFLUID_SEAL_STRUCTURE"
               description="네 번째 이미지 상단의 Ferrofluid Seal 설명 영역과 Feedthrough H25 단면 구조 이미지를 넣는다."
-              src="/images/ferrofluid/feedthrough-h25.png"
+              src={ferrofluidSealImage?.imageUrl}
               aspectRatio="3 / 4"
+              hideCaption={Boolean(ferrofluidSealImage?.imageUrl)}
+              alt={ferrofluidSealImage?.title ?? 'Ferrofluid information image 6'}
             />
           </div>
         </Section>
@@ -388,14 +369,18 @@ export default function Ferrofluid() {
             <ImagePlaceholder
               id="IMAGE_PLACEHOLDER_APPLICATION_GRID_1"
               description="네 번째 이미지 하단의 적용 분야 이미지 그리드를 넣는다."
-              src="/images/ferrofluid/applications-1.png"
+              src={applicationsImage1?.imageUrl}
               aspectRatio="16 / 6"
+              hideCaption={Boolean(applicationsImage1?.imageUrl)}
+              alt={applicationsImage1?.title ?? 'Ferrofluid information image 7'}
             />
             <ImagePlaceholder
               id="IMAGE_PLACEHOLDER_APPLICATION_GRID_2"
               description="다섯 번째 이미지 상단의 Room energy battery, Bio, Rechargeable battery, Aerospace/Defense 관련 이미지 그리드를 넣는다."
-              src="/images/ferrofluid/applications-2.png"
+              src={applicationsImage2?.imageUrl}
               aspectRatio="16 / 6"
+              hideCaption={Boolean(applicationsImage2?.imageUrl)}
+              alt={applicationsImage2?.title ?? 'Ferrofluid information image 8'}
             />
           </div>
         </Section>
@@ -437,13 +422,6 @@ export default function Ferrofluid() {
             회사 정보 표는 원본 이미지에서 글자가 작아 일부 값이 불명확하다. `?`가 있는
             항목은 추후 수정 가능하게 표시한다.
           </p>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_COMPANY_INFO"
-            description="다섯 번째 이미지 하단의 회사 건물 이미지와 Company Information 표를 배치한다."
-            src="/images/ferrofluid/company-info.png"
-            aspectRatio="16 / 7"
-            className="ff-section__support-image"
-          />
         </Section>
 
         {/* 13. Bottom CTA */}

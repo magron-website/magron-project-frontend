@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
 import {
   CHECKLIST_ITEMS,
@@ -52,18 +51,6 @@ export default function Magoil() {
                 </article>
               ))}
             </div>
-            <div className="mg-cta-group">
-              <button
-                type="button"
-                className="mg-btn mg-btn--primary"
-                onClick={() => setIsQuoteOpen(true)}
-              >
-                제품 문의하기
-              </button>
-              <a className="mg-btn mg-btn--secondary" href="/#products">
-                카탈로그 다운로드
-              </a>
-            </div>
           </div>
           <div className="mg-hero__visual">
             <ImagePlaceholder
@@ -78,10 +65,6 @@ export default function Magoil() {
       </header>
 
       <div className="mg-page__body">
-        <Link className="mg-back" to="/">
-          ← 제품 목록으로
-        </Link>
-
         {/* 2. 제품 개요 */}
         <Section title="제품 개요">
           <div className="mg-prose">

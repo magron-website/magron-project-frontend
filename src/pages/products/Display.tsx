@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
 import {
   APPLICATION_CARDS,
@@ -33,13 +32,6 @@ export default function Display() {
             콘텐츠입니다. 자기장에 반응하는 유체의 움직임을 영상으로 확인해보세요.
           </p>
           <div className="dp-cta-group">
-            <button
-              type="button"
-              className="dp-btn dp-btn--primary"
-              onClick={() => setIsQuoteOpen(true)}
-            >
-              제품 문의하기
-            </button>
             <a className="dp-btn dp-btn--secondary" href="#portfolio">
               포트폴리오 보기
             </a>
@@ -60,10 +52,6 @@ export default function Display() {
       </div>
 
       <div className="dp-page__body">
-        <Link className="dp-back" to="/">
-          ← 제품 목록으로
-        </Link>
-
         {/* 2. Portfolio */}
         <Section id="portfolio" title="PORTFOLIO" titleVariant="portfolio">
           <p className="dp-section__lead">

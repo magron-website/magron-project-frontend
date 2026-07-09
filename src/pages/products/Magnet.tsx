@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
 import {
   APPLICATION_CARDS,
@@ -58,18 +57,6 @@ export default function Magnet() {
                 </article>
               ))}
             </div>
-            <div className="mn-cta-group">
-              <button
-                type="button"
-                className="mn-btn mn-btn--primary"
-                onClick={() => setIsQuoteOpen(true)}
-              >
-                제품 문의하기
-              </button>
-              <a className="mn-btn mn-btn--secondary" href="/#products">
-                카탈로그 다운로드
-              </a>
-            </div>
           </div>
           <div className="mn-hero__visual">
             <ImagePlaceholder
@@ -84,10 +71,6 @@ export default function Magnet() {
       </header>
 
       <div className="mn-page__body">
-        <Link className="mn-back" to="/">
-          ← 제품 목록으로
-        </Link>
-
         {/* 2. 제품 개요 */}
         <Section title="Permanent Magnet 제품군">
           <div className="mn-prose">

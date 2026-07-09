@@ -15,11 +15,14 @@ const PRODUCT_SUB_ITEMS = [
   { label: 'Large Ferrofluid Display', to: PRODUCT_PAGE_PATHS.display },
 ] as const
 
+const PRODUCT_PAGE_PATH_LIST = Object.values(PRODUCT_PAGE_PATHS)
+
 export default function Header() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
   const [companyOpen, setCompanyOpen] = useState(false)
   const [productsOpen, setProductsOpen] = useState(false)
+  const isProductPage = PRODUCT_PAGE_PATH_LIST.includes(pathname)
 
   const goToTop = () => {
     setCompanyOpen(false)
@@ -58,6 +61,13 @@ export default function Header() {
         </Link>
 
         <nav className="home-header__nav" aria-label="주요 메뉴">
+          <button
+            type="button"
+            className={`home-header__nav-item home-header__nav-item--link${pathname === '/' ? ' home-header__nav-item--active' : ''}`}
+            onClick={goToTop}
+          >
+            Home
+          </button>
           {NAV_ITEMS.map((item) =>
             item === '회사소개' ? (
               <div
@@ -98,7 +108,7 @@ export default function Header() {
               >
                 <button
                   type="button"
-                  className={`home-header__nav-item home-header__nav-item--trigger${productsOpen ? ' home-header__nav-item--active' : ''}`}
+                  className={`home-header__nav-item home-header__nav-item--trigger${productsOpen || isProductPage ? ' home-header__nav-item--active' : ''}`}
                   aria-expanded={productsOpen}
                   aria-haspopup="true"
                   onClick={() => goToSection('product-info')}
@@ -167,9 +177,14 @@ export default function Header() {
               <span className="home-header__lang-label home-header__lang-label--chn">CHN</span>
             </div>
           </div>
-          <div className="home-header__shop">
+          <a
+            className="home-header__shop"
+            href="https://www.ferrofluidshop.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <span className="home-header__shop-text">쇼핑몰</span>
-          </div>
+          </a>
         </div>
       </div>
     </header>
