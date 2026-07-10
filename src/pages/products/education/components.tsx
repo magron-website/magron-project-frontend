@@ -1,80 +1,5 @@
 import type { ReactNode } from 'react'
-import type { KitItemSection } from '@/pages/products/education/content'
-
-type ImagePlaceholderProps = {
-  id: string
-  description: string
-  src?: string
-  aspectRatio?: string
-  className?: string
-}
-
-export function ImagePlaceholder({
-  id,
-  description,
-  src,
-  aspectRatio = '16 / 9',
-  className = '',
-}: ImagePlaceholderProps) {
-  return (
-    <figure
-      className={`ed-placeholder ${className}`.trim()}
-      style={{ aspectRatio }}
-    >
-      {src ? (
-        <img
-          className="ed-placeholder__img"
-          src={src}
-          alt=""
-          onError={(event) => {
-            event.currentTarget.style.display = 'none'
-          }}
-        />
-      ) : null}
-      <figcaption className="ed-placeholder__caption">
-        <span className="ed-placeholder__id">{id}</span>
-        <p className="ed-placeholder__desc">{description}</p>
-      </figcaption>
-    </figure>
-  )
-}
-
-type YouTubePlaceholderProps = {
-  id: string
-  description: string
-  thumbnailSrc?: string
-  caption?: string
-}
-
-export function YouTubePlaceholder({
-  id,
-  description,
-  thumbnailSrc = '/images/ferrofluid-kit/youtube-thumbnail.png',
-  caption,
-}: YouTubePlaceholderProps) {
-  return (
-    <div className="ed-youtube">
-      <figure className="ed-youtube__frame">
-        <img
-          className="ed-youtube__thumb"
-          src={thumbnailSrc}
-          alt=""
-          onError={(event) => {
-            event.currentTarget.style.display = 'none'
-          }}
-        />
-        <div className="ed-youtube__overlay" aria-hidden="true">
-          <span className="ed-youtube__play" />
-        </div>
-        <figcaption className="ed-youtube__caption">
-          <span className="ed-placeholder__id">{id}</span>
-          <p className="ed-placeholder__desc">{description}</p>
-        </figcaption>
-      </figure>
-      {caption ? <p className="ed-youtube__note">{caption}</p> : null}
-    </div>
-  )
-}
+import type { ComponentDetail, KitComponent, KitVideo } from '@/pages/products/education/content'
 
 type SectionProps = {
   id?: string
@@ -98,91 +23,77 @@ export function Section({ id, title, subtitle, children, className = '' }: Secti
   )
 }
 
-type InfoCardProps = {
-  title: string
-  description?: string
-  subtitle?: string
-}
-
-export function InfoCard({ title, description, subtitle }: InfoCardProps) {
+/** 제품 구성 카드 — 병 사진 + 이름/용량 */
+export function ProductCard({ item }: { item: KitComponent }) {
   return (
-    <article className="ed-info-card">
-      <h3>{title}</h3>
-      {subtitle ? <p className="ed-info-card__subtitle">{subtitle}</p> : null}
-      {description ? <p>{description}</p> : null}
-    </article>
-  )
-}
-
-type ExperimentStepCardProps = {
-  step: string
-  description: string
-}
-
-export function ExperimentStepCard({ step, description }: ExperimentStepCardProps) {
-  return (
-    <article className="ed-step-card">
-      <span className="ed-step-card__num">{step}</span>
-      <p>{description}</p>
-    </article>
-  )
-}
-
-export function KitItemSectionView({ item }: { item: KitItemSection }) {
-  return (
-    <div className="ed-kit-item">
-      <h3 className="ed-kit-item__title">{item.title}</h3>
-      <div className="ed-kit-item__layout">
-        <div className="ed-kit-item__content">
-          <div className="ed-prose">
-            <p>{item.body}</p>
-          </div>
-          {item.bulletPoints ? (
-            <ul className="ed-bullet-list">
-              {item.bulletPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          ) : null}
-          {item.warning ? (
-            <div className="ed-warning-card" role="note">
-              <p>{item.warning}</p>
-            </div>
-          ) : null}
-          {item.caution ? (
-            <div className="ed-warning-card ed-warning-card--caution" role="note">
-              <p>{item.caution}</p>
-            </div>
-          ) : null}
-          {item.extraNote ? <p className="ed-note">{item.extraNote}</p> : null}
-        </div>
-        <ImagePlaceholder
-          id={item.image.id}
-          description={item.image.description}
-          src={item.image.src}
-          aspectRatio={item.image.aspectRatio ?? '4 / 5'}
-          className="ed-kit-item__image"
-        />
+    <article className="ed-product-card">
+      <div className="ed-product-card__media">
+        <img src={item.image} alt={`${item.nameKr} (${item.name})`} loading="lazy" />
       </div>
-      {item.experimentSteps ? (
-        <div className="ed-step-grid">
-          {item.experimentSteps.map((step) => (
-            <ExperimentStepCard key={step.step} step={step.step} description={step.description} />
+      <div className="ed-product-card__body">
+        <h3>{item.nameKr}</h3>
+        <p className="ed-product-card__en">{item.name}</p>
+        <span className="ed-product-card__vol">{item.volume}</span>
+      </div>
+    </article>
+  )
+}
+
+/** 영상 슬롯 — videoId가 있으면 유튜브 임베드, 없으면 "준비중" 자리표시자 */
+export function VideoSlot({ video }: { video: KitVideo }) {
+  return (
+    <figure className="ed-video-slot">
+      {video.videoId ? (
+        <div className="ed-video-slot__frame ed-video-slot__frame--embed">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${video.videoId}?rel=0`}
+            title={video.label}
+            loading="lazy"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+          />
+        </div>
+      ) : (
+        <div className="ed-video-slot__frame">
+          <span className="ed-video-slot__play" aria-hidden="true" />
+          <span className="ed-video-slot__badge">영상 준비중</span>
+        </div>
+      )}
+      <figcaption>{video.label}</figcaption>
+    </figure>
+  )
+}
+
+/** 구성품 상세 — 좌측 제품 이미지 + 우측 설명 + 하단 영상 슬롯 */
+export function ComponentDetailView({ detail }: { detail: ComponentDetail }) {
+  return (
+    <article id={detail.id} className="ed-detail">
+      <h3 className="ed-detail__title">
+        <span className="ed-detail__num">{detail.index}</span>
+        {detail.nameKr} <span className="ed-detail__en">({detail.name})</span>
+      </h3>
+      <div className="ed-detail__layout">
+        <figure className="ed-detail__media">
+          <img src={detail.image} alt={`${detail.nameKr} (${detail.name})`} loading="lazy" />
+        </figure>
+        <div className="ed-detail__content">
+          <p className="ed-detail__body">{detail.body}</p>
+          <ul className="ed-bullet-list">
+            {detail.bulletPoints.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+          {detail.note ? <p className="ed-detail__note">{detail.note}</p> : null}
+        </div>
+      </div>
+      {detail.videos.length > 0 ? (
+        <div className="ed-video-grid ed-video-grid--two">
+          {detail.videos.map((video) => (
+            <VideoSlot key={video.label} video={video} />
           ))}
         </div>
       ) : null}
-      {item.videos && item.videos.length > 0 ? (
-        <div className="ed-video-grid">
-          {item.videos.map((video) => (
-            <YouTubePlaceholder
-              key={video.id}
-              id={video.id}
-              description={video.description}
-            />
-          ))}
-        </div>
-      ) : null}
-      {item.videoNote ? <p className="ed-note ed-note--center">{item.videoNote}</p> : null}
-    </div>
+    </article>
   )
 }

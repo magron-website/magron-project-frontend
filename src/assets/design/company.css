@@ -1,0 +1,204 @@
+@import './font.css';
+
+/* ==========================================================================
+   Company Introduction (회사소개)
+   ========================================================================== */
+
+.cp-page {
+  --cp-blue: #2b4cff;
+  --cp-blue-soft: #4f6bff;
+  width: 100%;
+  font-family: 'ChosunIlboMyungjo', serif;
+}
+
+.cp-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(120% 90% at 15% 10%, #0a1740 0%, #050a1f 45%, #02030a 100%),
+    #02030a;
+  color: #fff;
+}
+
+/* Blue light streaks / glow */
+.cp-hero__glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+  opacity: 0.75;
+}
+
+.cp-hero__glow--one {
+  top: -20%;
+  left: -10%;
+  width: 65%;
+  height: 90%;
+  background: radial-gradient(circle, rgba(63, 94, 255, 0.55) 0%, rgba(63, 94, 255, 0) 68%);
+  transform: rotate(-18deg);
+}
+
+.cp-hero__glow--two {
+  bottom: -30%;
+  left: 20%;
+  width: 55%;
+  height: 80%;
+  background: radial-gradient(circle, rgba(37, 63, 200, 0.4) 0%, rgba(37, 63, 200, 0) 70%);
+}
+
+.cp-hero__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 72px 24px 96px;
+}
+
+/* Heading */
+.cp-heading {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.cp-heading__eyebrow {
+  margin: 0 0 10px;
+  color: #93b0ff;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.cp-heading__title {
+  margin: 0;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #cdd9ff;
+  text-shadow: 0 2px 24px rgba(59, 94, 255, 0.45);
+}
+
+.cp-heading__rule {
+  display: block;
+  width: 68px;
+  height: 2px;
+  margin: 18px auto 0;
+  background: linear-gradient(90deg, transparent, var(--cp-blue-soft), transparent);
+}
+
+/* Glass panel */
+.cp-panel {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px clamp(28px, 6vw, 88px);
+  border: 1px solid rgba(150, 180, 255, 0.16);
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(220, 230, 255, 0.14) 0%, rgba(180, 200, 255, 0.05) 100%);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+}
+
+/* Decorative corner squares */
+.cp-panel__corner {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  background: var(--cp-blue);
+  box-shadow: 0 0 18px rgba(43, 76, 255, 0.7);
+}
+
+.cp-panel__corner--tl {
+  top: 28px;
+  left: 28px;
+}
+
+.cp-panel__corner--br {
+  right: 34px;
+  bottom: 34px;
+}
+
+/* Body text */
+.cp-panel__body {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cp-panel__body p {
+  margin: 0;
+  color: rgba(233, 239, 255, 0.92);
+  font-size: clamp(15px, 1.5vw, 17px);
+  font-weight: 700;
+  line-height: 1.75;
+  letter-spacing: 0.01em;
+}
+
+.cp-panel__body strong {
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Main Product */
+.cp-product {
+  margin-top: 40px;
+  padding-top: 8px;
+}
+
+.cp-product__title {
+  margin: 0 0 14px;
+  color: #aec4ff;
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.cp-product__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cp-product__list li {
+  position: relative;
+  padding-left: 22px;
+  color: #e9efff;
+  font-size: clamp(15px, 1.5vw, 17px);
+  font-weight: 700;
+  line-height: 1.6;
+}
+
+.cp-product__list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 9px;
+  height: 9px;
+  background: var(--cp-blue-soft);
+  box-shadow: 0 0 10px rgba(79, 107, 255, 0.8);
+}
+
+@media (max-width: 640px) {
+  .cp-hero__inner {
+    padding: 48px 16px 64px;
+  }
+
+  .cp-panel {
+    padding: 40px 22px;
+  }
+
+  .cp-panel__corner--tl {
+    top: 16px;
+    left: 16px;
+  }
+
+  .cp-panel__corner--br {
+    right: 18px;
+    bottom: 18px;
+  }
+}

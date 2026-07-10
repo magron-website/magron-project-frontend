@@ -33,6 +33,12 @@ export default function Header() {
     navigate('/')
   }
 
+  const goToCompany = () => {
+    setCompanyOpen(false)
+    navigate('/company')
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   const goToSection = (sectionId: string) => {
     setProductsOpen(false)
     navigate(`/#${sectionId}`)
@@ -78,10 +84,10 @@ export default function Header() {
               >
                 <button
                   type="button"
-                  className={`home-header__nav-item home-header__nav-item--trigger${companyOpen ? ' home-header__nav-item--active' : ''}`}
+                  className={`home-header__nav-item home-header__nav-item--trigger${companyOpen || pathname === '/company' ? ' home-header__nav-item--active' : ''}`}
                   aria-expanded={companyOpen}
                   aria-haspopup="true"
-                  onClick={goToTop}
+                  onClick={goToCompany}
                 >
                   {item}
                 </button>
@@ -90,7 +96,11 @@ export default function Header() {
                     <ul className="home-header__dropdown-list">
                       {COMPANY_SUB_ITEMS.map((subItem) => (
                         <li key={subItem}>
-                          <button type="button" className="home-header__dropdown-item">
+                          <button
+                            type="button"
+                            className="home-header__dropdown-item"
+                            onClick={goToCompany}
+                          >
                             {subItem}
                           </button>
                         </li>

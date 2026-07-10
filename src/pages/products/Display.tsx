@@ -65,7 +65,7 @@ export default function Display() {
                 variant="portfolio"
                 placeholderId={video.placeholderId}
                 description={video.description}
-                youtubeUrl={video.youtubeUrl}
+                videoSrc={video.videoSrc}
                 thumbnailSrc={video.thumbnailSrc}
                 title={video.title}
                 subtitle={video.description}

@@ -97,6 +97,49 @@ export function Section({ id, title, subtitle, children, className = '' }: Secti
   )
 }
 
+type YouTubeEmbedProps = {
+  videoId: string
+  title: string
+  watchUrl?: string
+}
+
+export function YouTubeEmbed({ videoId, title, watchUrl }: YouTubeEmbedProps) {
+  const url = watchUrl ?? `https://youtu.be/${videoId}`
+  return (
+    <div className="mg-video">
+      <div className="mg-video__frame">
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0`}
+          title={title}
+          loading="lazy"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+        />
+      </div>
+      <a className="mg-video__link" href={url} target="_blank" rel="noopener noreferrer">
+        {url}
+      </a>
+      <p className="mg-video__note">링크를 클릭하시면 유튜브 채널로 이동합니다.</p>
+    </div>
+  )
+}
+
+type FigureProps = {
+  src: string
+  caption?: string
+  className?: string
+}
+
+export function Figure({ src, caption, className = '' }: FigureProps) {
+  return (
+    <figure className={`mg-figure ${className}`.trim()}>
+      <img src={src} alt="" loading="lazy" />
+      {caption ? <figcaption>{caption}</figcaption> : null}
+    </figure>
+  )
+}
+
 type InfoCardProps = {
   title: string
   description: string

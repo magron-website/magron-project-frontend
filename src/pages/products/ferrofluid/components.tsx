@@ -1,110 +1,5 @@
 import type { ReactNode } from 'react'
 
-type ImagePlaceholderProps = {
-  id: string
-  description: string
-  src?: string
-  aspectRatio?: string
-  className?: string
-  hideCaption?: boolean
-  alt?: string
-  fit?: 'cover' | 'contain'
-}
-
-export function ImagePlaceholder({
-  id,
-  description,
-  src,
-  aspectRatio = '16 / 9',
-  className = '',
-  hideCaption = false,
-  alt = '',
-  fit = 'contain',
-}: ImagePlaceholderProps) {
-  const hasImage = Boolean(src)
-  // When a real image is present we let the box hug the image (natural fit) so
-  // nothing gets cropped or letter-boxed. The fixed aspect ratio is only used
-  // for the empty placeholder state and for cover-style banners (hero).
-  const isNatural = hasImage && fit === 'contain'
-
-  const figureClassName = [
-    'ff-placeholder',
-    hasImage ? 'ff-placeholder--filled' : '',
-    isNatural ? 'ff-placeholder--natural' : '',
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ')
-
-  return (
-    <figure
-      className={figureClassName}
-      style={isNatural ? undefined : { aspectRatio }}
-    >
-      {src ? (
-        <img
-          className="ff-placeholder__img"
-          src={src}
-          alt={alt}
-          onError={(event) => {
-            event.currentTarget.style.display = 'none'
-          }}
-        />
-      ) : null}
-      {hideCaption ? null : (
-        <figcaption className="ff-placeholder__caption">
-          <span className="ff-placeholder__id">{id}</span>
-          <p className="ff-placeholder__desc">{description}</p>
-        </figcaption>
-      )}
-    </figure>
-  )
-}
-
-type SpecColumn = {
-  key: string
-  label: string
-  align?: 'left' | 'right'
-}
-
-type SpecTableProps = {
-  columns: SpecColumn[]
-  rows: Record<string, string>[]
-  variant?: 'default' | 'magenta' | 'company'
-}
-
-export function SpecTable({ columns, rows, variant = 'default' }: SpecTableProps) {
-  return (
-    <div className="ff-table-wrap">
-      <table className={`ff-table ff-table--${variant}`}>
-        <thead>
-          <tr>
-            {columns.map((column) => (
-              <th key={column.key} className={column.align === 'right' ? 'ff-table__num' : ''}>
-                {column.label}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row[columns[0].key]}>
-              {columns.map((column) => (
-                <td
-                  key={column.key}
-                  className={column.align === 'right' ? 'ff-table__num' : ''}
-                >
-                  {row[column.key]}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
 type SectionProps = {
   id?: string
   title: string
@@ -127,56 +22,53 @@ export function Section({ id, title, subtitle, children, className = '' }: Secti
   )
 }
 
-type CompareCardProps = {
-  title: string
-  items: readonly string[]
-  variant: 'negative' | 'positive'
+type FigureProps = {
+  src: string
+  alt: string
+  caption?: string
+  /** wide data image (table/chart) — keeps native size and scrolls on mobile */
+  scroll?: boolean
+  className?: string
 }
 
-export function CompareCard({ title, items, variant }: CompareCardProps) {
+export function Figure({ src, alt, caption, scroll = false, className = '' }: FigureProps) {
   return (
-    <article className={`ff-compare-card ff-compare-card--${variant}`}>
-      <h3 className="ff-compare-card__title">{title}</h3>
-      <ul className="ff-compare-card__list">
-        {items.map((item) => (
-          <li key={item}>{item}</li>
-        ))}
-      </ul>
-    </article>
-  )
-}
-
-type InfoListProps = {
-  items: readonly { label: string; value: string }[]
-}
-
-export function InfoList({ items }: InfoListProps) {
-  return (
-    <dl className="ff-info-list">
-      {items.map((item) => (
-        <div key={item.label} className="ff-info-list__row">
-          <dt>{item.label}</dt>
-          <dd>{item.value}</dd>
+    <figure className={`ff-figure ${className}`.trim()}>
+      {scroll ? (
+        <div className="ff-figure__scroll">
+          <img src={src} alt={alt} loading="lazy" />
         </div>
-      ))}
-    </dl>
+      ) : (
+        <img src={src} alt={alt} loading="lazy" />
+      )}
+      {caption ? <figcaption>{caption}</figcaption> : null}
+    </figure>
   )
 }
 
-type CompanyTableProps = {
-  rows: readonly { label: string; value: string }[]
+type Point = { label: string; value: string }
+
+export function PointList({ points }: { points: readonly Point[] }) {
+  return (
+    <ul className="ff-point-list">
+      {points.map((point) => (
+        <li key={point.label}>
+          <span className="ff-point-list__label">{point.label}</span>
+          <span className="ff-point-list__value">{point.value}</span>
+        </li>
+      ))}
+    </ul>
+  )
 }
 
-export function CompanyTable({ rows }: CompanyTableProps) {
+export function CompanyTable({
+  rows,
+}: {
+  rows: readonly { label: string; value: string }[]
+}) {
   return (
     <div className="ff-table-wrap">
-      <table className="ff-table ff-table--company">
-        <thead>
-          <tr>
-            <th>구분</th>
-            <th>내용</th>
-          </tr>
-        </thead>
+      <table className="ff-company-table">
         <tbody>
           {rows.map((row) => (
             <tr key={row.label}>

@@ -647,3 +647,240 @@
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Reorganized layout — hero image, material families, table images
+   ========================================================================== */
+
+.mn-hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+}
+
+/* Material quick-nav */
+.mn-matnav {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin: 40px 0 8px;
+}
+
+.mn-matnav__item {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 16px 18px;
+  border: 1px solid var(--mn-border);
+  border-radius: 10px;
+  background: var(--mn-bg);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.mn-matnav__item:hover {
+  border-color: var(--mn-blue);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(29, 78, 216, 0.12);
+}
+
+.mn-matnav__name {
+  color: var(--mn-navy);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.mn-matnav__kr {
+  color: var(--mn-muted);
+  font-size: 12px;
+}
+
+/* Glossary */
+.mn-glossary {
+  margin: 0;
+  border: 1px solid var(--mn-border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.mn-glossary__row {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 16px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--mn-border);
+}
+
+.mn-glossary__row:last-child {
+  border-bottom: none;
+}
+
+.mn-glossary__row:nth-child(odd) {
+  background: var(--mn-bg);
+}
+
+.mn-glossary dt {
+  color: var(--mn-navy);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.mn-glossary dd {
+  margin: 0;
+  color: var(--mn-text);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* Material tables */
+.mn-mat-tables {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 28px;
+}
+
+.mn-mat-table {
+  scroll-margin-top: 24px;
+}
+
+.mn-mat-table__title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 0 8px;
+  color: var(--mn-navy);
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.mn-mat-table__title::before {
+  content: '';
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--mn-blue);
+}
+
+.mn-mat-table__desc {
+  margin: 0 0 16px;
+  color: var(--mn-text);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.mn-mat-table__figure {
+  margin: 0;
+  border: 1px solid var(--mn-border);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.mn-mat-table__scroll {
+  width: 100%;
+  overflow-x: auto;
+  padding: 12px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.mn-mat-table__scroll img {
+  display: block;
+  margin: 0 auto;
+  height: auto;
+  /* Keep tables at native resolution; the wrapper scrolls on narrow screens
+     so the dense numeric data stays crisp instead of shrinking. */
+  max-width: none;
+}
+
+@media (min-width: 981px) {
+  /* On desktop the tables comfortably fit — cap so they don't look small. */
+  .mn-mat-table__scroll img {
+    max-width: 100%;
+  }
+}
+
+.mn-mat-table__figure figcaption {
+  padding: 10px 16px;
+  border-top: 1px solid var(--mn-border);
+  color: var(--mn-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* Bottom CTA */
+.mn-cta-banner {
+  margin-top: 80px;
+  padding: 48px 28px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--mn-navy-deep), var(--mn-navy));
+  color: #fff;
+}
+
+.mn-cta-banner__inner {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.mn-cta-banner h2 {
+  margin: 0;
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.mn-cta-banner p {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.mn-cta-banner .mn-cta-group {
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.mn-inquiry-list {
+  max-width: 560px;
+  margin: 28px auto 0;
+  text-align: left;
+}
+
+.mn-cta-banner__note {
+  margin: 0 0 8px !important;
+  color: #93c5fd !important;
+  font-size: 14px !important;
+  font-weight: 700;
+}
+
+.mn-check-list--light li {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.mn-check-list--light li::before {
+  color: #93c5fd;
+}
+
+@media (max-width: 1024px) {
+  .mn-matnav {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .mn-matnav {
+    grid-template-columns: 1fr;
+  }
+
+  .mn-glossary__row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

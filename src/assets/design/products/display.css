@@ -182,6 +182,17 @@
   display: block;
 }
 
+.dp-video-card__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+  object-fit: contain;
+  background: #000;
+}
+
 .dp-video-card__fallback {
   position: relative;
   width: 100%;

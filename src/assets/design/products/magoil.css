@@ -617,3 +617,235 @@
     width: 100%;
   }
 }
+
+/* ==========================================================================
+   Reorganized layout — real product images with separated descriptions
+   ========================================================================== */
+
+.mg-hero__visual {
+  min-width: 0;
+}
+
+.mg-hero__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+}
+
+/* Figures */
+.mg-figure {
+  margin: 0;
+  border: 1px solid var(--mg-border, #d7e6ea);
+  border-radius: 12px;
+  background: #fff;
+  overflow: hidden;
+}
+
+.mg-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.mg-figure figcaption {
+  padding: 10px 14px;
+  border-top: 1px solid var(--mg-border, #d7e6ea);
+  color: var(--mg-muted, #5b7078);
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+.mg-figure-grid {
+  display: grid;
+  gap: 20px;
+  margin-top: 24px;
+}
+
+.mg-figure-grid--2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.mg-figure-grid--principle {
+  grid-template-columns: 1.4fr 1fr;
+  align-items: start;
+}
+
+.mg-figure-grid--internal {
+  grid-template-columns: 0.8fr 1.2fr;
+  align-items: start;
+}
+
+/* On the ocean sections the figures sit on a translucent white card */
+.mg-section--ocean .mg-figure {
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.mg-section--ocean .mg-figure figcaption {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-top-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Capacity highlight */
+.mg-capacity {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 24px;
+  padding: 18px 22px;
+  border: 1px solid #bae6fd;
+  border-left: 5px solid var(--mg-ocean, #0891b2);
+  border-radius: 10px;
+  background: #f0f9ff;
+}
+
+.mg-capacity__badge {
+  flex-shrink: 0;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: var(--mg-ocean, #0891b2);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.mg-capacity__title {
+  margin: 0;
+  color: var(--mg-ocean-deep, #164e63);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.mg-capacity__detail {
+  margin: 4px 0 0;
+  color: #475d66;
+  font-size: 14px;
+}
+
+/* 3-step sealing sequence */
+.mg-step-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.mg-step {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.mg-step__text {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.mg-step__num {
+  flex-shrink: 0;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: center;
+  line-height: 22px;
+}
+
+/* YouTube embed */
+.mg-video {
+  margin-top: 24px;
+  text-align: center;
+}
+
+.mg-video__frame {
+  position: relative;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 12px 32px rgba(8, 47, 73, 0.18);
+}
+
+.mg-video__frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.mg-video__link {
+  display: inline-block;
+  margin-top: 16px;
+  color: var(--mg-cyan, #06b6d4);
+  font-size: 15px;
+  text-decoration: underline;
+  word-break: break-all;
+}
+
+.mg-video__note {
+  margin: 8px 0 0;
+  color: var(--mg-muted, #64748b);
+  font-size: 14px;
+}
+
+/* CTA extras */
+.mg-cta-banner__lead {
+  margin: 14px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.mg-inquiry-list {
+  max-width: 560px;
+  margin: 26px auto 0;
+  text-align: left;
+}
+
+.mg-check-list--light li {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.mg-check-list--light li::before {
+  color: #a5f3fc;
+}
+
+.mg-cta-banner .mg-cta-group {
+  margin-top: 28px;
+}
+
+@media (max-width: 1024px) {
+  .mg-figure-grid--principle,
+  .mg-figure-grid--internal {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .mg-figure-grid--2,
+  .mg-step-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mg-capacity {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

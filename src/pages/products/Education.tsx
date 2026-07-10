@@ -1,25 +1,22 @@
 import { useState } from 'react'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
+import CatalogDownloadButton from '@/components/CatalogDownloadButton'
 import {
-  COMPONENT_CARDS,
-  EXPERIMENT_USE_CARDS,
-  FERROFLUID_EXPLAIN_CARDS,
+  COMPONENT_DETAILS,
   HERO_CARDS,
   INQUIRY_ITEMS,
-  KIT_DEMO_VIDEOS,
-  KIT_ITEM_CATCHING_MAGNET,
-  KIT_ITEM_FERROFLUID,
-  KIT_ITEM_PULLING_MAGNET,
-  KIT_ITEM_STAR_MAGNET,
-  KIT_VIDEO_TOPICS,
-  SAFETY_ITEMS,
+  KIT_COMPONENTS,
+  MAKING_STEPS,
+  MAKING_VIDEO,
+  PACKAGING_VIDEOS,
+  PRINCIPLE_TEXT,
+  heroKit,
 } from '@/pages/products/education/content'
 import {
-  ImagePlaceholder,
-  InfoCard,
-  KitItemSectionView,
+  ComponentDetailView,
+  ProductCard,
   Section,
-  YouTubePlaceholder,
+  VideoSlot,
 } from '@/pages/products/education/components'
 import '@/assets/design/products/education.css'
 
@@ -39,13 +36,13 @@ export default function Education() {
             <p className="ed-hero__title-en">Ferrofluid Kit</p>
             <div className="ed-hero__lead">
               <p>
-                자성유체의 독특한 움직임과 자기장 반응을 직접 관찰할 수 있는 실험용
-                키트입니다. 강한 자석을 가까이 가져가면 액체가 뾰족한 스파이크 형태로
-                변하고, 자석의 위치와 움직임에 따라 살아 움직이는 듯한 패턴을 만들어냅니다.
+                자성유체의 독특한 움직임과 자기장 반응을 직접 관찰하고 다뤄볼 수 있는
+                실험용 키트입니다. 자성유체와 세척액·에칭제·코팅제로 구성되어 있어, 자성유체
+                실험과 표면 처리 과정을 함께 체험할 수 있습니다.
               </p>
               <p>
-                이 키트는 과학 교육, 학교 실험, 전시 체험, 콘텐츠 제작, 연구용 데모에
-                활용할 수 있습니다.
+                과학 교육, 학교 실험, 전시 체험, 콘텐츠 제작, 연구용 데모에 활용할 수
+                있습니다.
               </p>
             </div>
             <div className="ed-hero__cards">
@@ -56,163 +53,102 @@ export default function Education() {
                 </article>
               ))}
             </div>
-            <div className="ed-cta-group">
-              <a className="ed-btn ed-btn--secondary" href="#kit-videos">
-                자성유체 키트 소개영상 보기
+            <div className="ed-hero__nav">
+              <a className="ed-btn ed-btn--secondary" href="#composition">
+                제품 구성
+              </a>
+              <a className="ed-btn ed-btn--secondary" href="#principle">
+                동작 원리
+              </a>
+              <a className="ed-btn ed-btn--secondary" href="#making">
+                제작 방법
               </a>
             </div>
           </div>
           <div className="ed-hero__visual">
-            <ImagePlaceholder
-              id="IMAGE_PLACEHOLDER_HERO_KIT"
-              description="첫 번째 이미지 상단의 자성유체 키트 대표 이미지. 손으로 자석을 잡고 병 안의 자성유체가 반응하는 이미지와 우측 상단의 Ferrofluid 입자 이미지를 Hero 메인 비주얼로 배치한다."
-              src="/images/ferrofluid-kit/hero-kit.png"
-              aspectRatio="4 / 3"
-              className="ed-hero__placeholder"
-            />
+            <img className="ed-hero__image" src={heroKit} alt="자성유체 키트" />
           </div>
         </div>
       </header>
 
       <div className="ed-page__body">
-        {/* 2. 제품 소개 */}
-        <Section title="제품 소개">
+        {/* 2. 제품 구성 */}
+        <Section id="composition" title="제품 구성">
           <div className="ed-prose">
             <p>
-              자성유체 키트는 자성유체와 다양한 자석을 이용해 자기장에 따른 유체의 움직임을
-              관찰할 수 있는 실험 세트입니다. 자성유체는 자성을 띠는 미세 입자가 액체 안에
-              분산된 특수 유체로, 외부 자기장에 반응하여 독특한 형태와 움직임을 보여줍니다.
+              자성유체 키트는 자성유체와 세척액, 에칭제, 코팅제로 구성됩니다. 각 구성품은
+              자성유체 실험과 표면 처리 과정에서 각기 다른 역할을 합니다.
             </p>
           </div>
-          <div className="ed-component-grid">
-            {COMPONENT_CARDS.map((card) => (
-              <InfoCard
-                key={card.title}
-                title={card.title}
-                subtitle={card.subtitle}
-              />
-            ))}
-          </div>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_KIT_COMPONENTS"
-            description="첫 번째 이미지의 “제품 구성” 영역. 작은 병 형태의 자성유체와 Star Magnet, Pulling Magnet, Catching Magnet 제품 사진 4개를 카드형으로 배치한다."
-            src="/images/ferrofluid-kit/components.png"
-            aspectRatio="21 / 9"
-            className="ed-section__image"
-          />
-        </Section>
-
-        {/* 3. 자성유체란? */}
-        <Section title="자성유체란?">
-          <div className="ed-prose">
-            <p>
-              자성유체 Ferrofluid는 액체 안에 매우 작은 자성 입자가 분산되어 있는 기능성
-              유체입니다. 평소에는 액체처럼 흐르지만, 자석을 가까이 가져가면 자기장에
-              반응하여 뾰족한 스파이크 형태를 만들거나 자석 방향으로 움직이는 독특한 현상을
-              보여줍니다.
-            </p>
-            <p>
-              쉽게 말해, 자성유체는 “자석에 반응하는 액체”입니다. 이 특성 덕분에 과학
-              실험, 전시, 예술 콘텐츠, 교육용 교구, 공학 데모 등에 활용됩니다.
-            </p>
-          </div>
-          <div className="ed-explain-grid">
-            {FERROFLUID_EXPLAIN_CARDS.map((card) => (
-              <InfoCard key={card.title} title={card.title} description={card.description} />
-            ))}
-          </div>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_FERROFLUID_CLOSEUP"
-            description="자성유체가 자석에 반응해 검은색 스파이크 형태를 만드는 클로즈업 이미지를 넣는다. Hero 이미지 오른쪽 상단의 Ferrofluid 입자 이미지도 활용 가능하다."
-            src="/images/ferrofluid-kit/ferrofluid-bottle.png"
-            aspectRatio="16 / 9"
-            className="ed-section__image"
-          />
-        </Section>
-
-        {/* 4–7. 구성품별 설명 */}
-        <Section title="키트 구성품" className="ed-section--kit">
-          <KitItemSectionView item={KIT_ITEM_FERROFLUID} />
-          <KitItemSectionView item={KIT_ITEM_STAR_MAGNET} />
-          <KitItemSectionView item={KIT_ITEM_PULLING_MAGNET} />
-          <KitItemSectionView item={KIT_ITEM_CATCHING_MAGNET} />
-        </Section>
-
-        {/* 8. 제품 구성과 사용 영상 */}
-        <Section id="kit-videos" title="제품 구성과 사용 영상">
-          <div className="ed-prose">
-            <p>
-              자성유체 키트는 구성품별로 다양한 실험을 진행할 수 있습니다. 아래 영상
-              영역에는 각 구성품의 사용 예시와 자성유체 반응 영상을 연결할 예정입니다.
-            </p>
-          </div>
-          <ul className="ed-topic-list">
-            {KIT_VIDEO_TOPICS.map((topic) => (
-              <li key={topic}>{topic}</li>
-            ))}
-          </ul>
-          <div className="ed-video-grid ed-video-grid--three">
-            {KIT_DEMO_VIDEOS.map((video) => (
-              <YouTubePlaceholder
-                key={video.id}
-                id={video.id}
-                description={video.description}
-              />
-            ))}
-          </div>
-          <p className="ed-note ed-note--center">동영상 링크는 추후 직접 연결할 예정입니다.</p>
-          <div className="ed-cta-group ed-cta-group--center">
-            <button
-              type="button"
-              className="ed-btn ed-btn--primary ed-btn--on-light"
-              onClick={() => setIsQuoteOpen(true)}
-            >
-              제품 문의
-            </button>
-          </div>
-        </Section>
-
-        {/* 9. 실험 활용 예시 */}
-        <Section title="이런 실험에 활용할 수 있습니다">
-          <div className="ed-prose">
-            <p>
-              자성유체 키트는 단순한 관찰용 제품이 아니라 자기장, 자성, 유체, 나노입자
-              개념을 시각적으로 이해할 수 있는 교육용 실험 도구입니다.
-            </p>
-          </div>
-          <div className="ed-use-grid">
-            {EXPERIMENT_USE_CARDS.map((card) => (
-              <InfoCard key={card.title} title={card.title} description={card.description} />
+          <div className="ed-product-grid">
+            {KIT_COMPONENTS.map((item) => (
+              <ProductCard key={item.name} item={item} />
             ))}
           </div>
         </Section>
 
-        {/* 10. 사용 시 주의사항 */}
-        <Section title="사용 시 주의사항">
+        {/* 3. 구성품별 상세 */}
+        <Section title="구성품별 상세" className="ed-section--kit">
+          <div className="ed-detail-list">
+            {COMPONENT_DETAILS.map((detail) => (
+              <ComponentDetailView key={detail.id} detail={detail} />
+            ))}
+          </div>
+        </Section>
+
+        {/* 4. 제품 수량 및 패키징 */}
+        <Section title="제품 수량 및 패키징">
           <div className="ed-prose">
             <p>
-              자성유체와 자석은 안전하게 사용해야 합니다. 특히 자성유체는 검은색 액체로
-              옷이나 피부, 책상에 묻으면 닦기 어려울 수 있고, 자석은 전자기기나 카드에
-              영향을 줄 수 있습니다.
+              자성유체는 100㎖ 단위로, 세척액·에칭제·코팅제는 1,000㎖ 단위로 제공됩니다.
+              사용 목적과 수량에 맞춰 구성을 조정할 수 있습니다.
             </p>
           </div>
-          <div className="ed-warning-card ed-warning-card--large">
-            <ol className="ed-safety-list">
-              {SAFETY_ITEMS.map((item, index) => (
-                <li key={item}>
-                  <span className="ed-safety-list__num">{index + 1}</span>
-                  {item}
-                </li>
-              ))}
-            </ol>
+          <div className="ed-video-grid ed-video-grid--two">
+            {PACKAGING_VIDEOS.map((video) => (
+              <VideoSlot key={video.label} video={video} />
+            ))}
+          </div>
+        </Section>
+
+        {/* 5. 동작 원리 */}
+        <Section id="principle" title="동작 원리">
+          <div className="ed-prose">
+            {PRINCIPLE_TEXT.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
           </div>
           <p className="ed-highlight">
-            안전하게 사용하면 자성유체의 독특한 움직임과 자기장 반응을 매우 흥미롭게 관찰할
-            수 있습니다.
+            자성유체는 “자석에 반응하는 액체”로, 자기장에 따라 살아 움직이는 듯한 패턴을
+            만들어냅니다.
           </p>
         </Section>
 
-        {/* 11. 제품 선택 및 문의 안내 */}
+        {/* 6. 제작 방법 */}
+        <Section id="making" title="제작 방법">
+          <div className="ed-prose">
+            <p>
+              키트 구성품을 이용해 표면 처리부터 자성유체 적용까지의 과정을 순서대로 진행할
+              수 있습니다. 자세한 과정은 아래 영상과 카탈로그를 통해 확인하실 수 있습니다.
+            </p>
+          </div>
+          <ol className="ed-safety-list ed-making-list">
+            {MAKING_STEPS.map((step, index) => (
+              <li key={step}>
+                <span className="ed-safety-list__num">{index + 1}</span>
+                {step}
+              </li>
+            ))}
+          </ol>
+          <div className="ed-making-video">
+            <VideoSlot video={MAKING_VIDEO} />
+            <figure className="ed-making-video__image">
+              <img src={heroKit} alt="자성유체 키트 사용 예시" loading="lazy" />
+            </figure>
+          </div>
+        </Section>
+
+        {/* 7. 문의 안내 */}
         <Section title="자성유체 키트가 필요하신가요?">
           <div className="ed-prose">
             <p>
@@ -227,20 +163,13 @@ export default function Education() {
               <li key={item}>{item}</li>
             ))}
           </ul>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_BOTTOM_KIT"
-            description="두 번째 이미지 하단의 자성유체 키트 대표 이미지와 YouTube 썸네일을 함께 배치한다."
-            src="/images/ferrofluid-kit/bottom-kit.png"
-            aspectRatio="21 / 9"
-            className="ed-section__image"
-          />
         </Section>
 
-        {/* 12. Bottom CTA */}
+        {/* 8. Bottom CTA */}
         <section className="ed-cta-section">
           <div className="ed-cta-section__inner">
             <h2 className="ed-cta-section__title">
-              자성유체 키트로 직접 자기장 반응을 관찰해보세요
+              하단의 카탈로그를 다운로드하시면 더욱 자세한 내용을 확인하실 수 있습니다.
             </h2>
             <div className="ed-prose ed-prose--light">
               <p>
@@ -249,9 +178,9 @@ export default function Education() {
               </p>
             </div>
             <div className="ed-cta-group ed-cta-group--center">
-              <a className="ed-btn ed-btn--secondary" href="/#products">
+              <CatalogDownloadButton product="education" className="ed-btn ed-btn--secondary">
                 카탈로그 다운로드
-              </a>
+              </CatalogDownloadButton>
               <button
                 type="button"
                 className="ed-btn ed-btn--primary"
@@ -260,9 +189,6 @@ export default function Education() {
                 제품문의
               </button>
             </div>
-            <p className="ed-cta-section__footnote">
-              해당 키트는 교육, 전시, 실험, 콘텐츠 제작 목적에 맞춰 활용할 수 있습니다.
-            </p>
           </div>
         </section>
       </div>

@@ -28,7 +28,8 @@ function getYouTubeEmbedUrl(url: string): string | null {
 type VideoCardProps = {
   placeholderId: string
   description: string
-  youtubeUrl: string
+  youtubeUrl?: string
+  videoSrc?: string
   thumbnailSrc: string
   title?: string
   subtitle?: string
@@ -40,18 +41,27 @@ export function VideoCard({
   placeholderId,
   description,
   youtubeUrl,
+  videoSrc,
   thumbnailSrc,
   title,
   subtitle,
   variant = 'portfolio',
   className = '',
 }: VideoCardProps) {
-  const embedUrl = getYouTubeEmbedUrl(youtubeUrl)
+  const embedUrl = youtubeUrl ? getYouTubeEmbedUrl(youtubeUrl) : null
 
   return (
     <article className={`dp-video-card dp-video-card--${variant} ${className}`.trim()}>
       <div className="dp-video-card__media">
-        {embedUrl ? (
+        {videoSrc ? (
+          <video
+            className="dp-video-card__video"
+            src={videoSrc}
+            controls
+            playsInline
+            preload="metadata"
+          />
+        ) : embedUrl ? (
           <iframe
             className="dp-video-card__iframe"
             src={embedUrl}

@@ -1,10 +1,11 @@
+import portfolio1 from '@/assets/videos/display/display_1.mp4'
+import portfolio2 from '@/assets/videos/display/display_2.mp4'
+import portfolio3 from '@/assets/videos/display/display_3.mp4'
+import portfolio4 from '@/assets/videos/display/display_4.mp4'
+
 export const YOUTUBE_URL_PLACEHOLDER = 'YOUTUBE_URL_PLACEHOLDER'
 
-export const YOUTUBE_MAIN_INTRO_URL = YOUTUBE_URL_PLACEHOLDER
-export const YOUTUBE_PORTFOLIO_01_URL = YOUTUBE_URL_PLACEHOLDER
-export const YOUTUBE_PORTFOLIO_02_URL = YOUTUBE_URL_PLACEHOLDER
-export const YOUTUBE_PORTFOLIO_03_URL = YOUTUBE_URL_PLACEHOLDER
-export const YOUTUBE_PORTFOLIO_04_URL = YOUTUBE_URL_PLACEHOLDER
+export const YOUTUBE_MAIN_INTRO_URL = 'https://youtu.be/lqPjZRDO26E'
 
 export const MAIN_VIDEO = {
   placeholderId: 'VIDEO_PLACEHOLDER_MAIN_INTRO',
@@ -19,28 +20,28 @@ export const PORTFOLIO_VIDEOS = [
     title: 'Ferrofluid Display Motion 01',
     description: '대형 디스플레이 안에서 자성유체가 자기장에 반응하며 움직이는 영상입니다.',
     placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_01',
-    youtubeUrl: YOUTUBE_PORTFOLIO_01_URL,
+    videoSrc: portfolio1,
     thumbnailSrc: '/images/large-ferrofluid-display/portfolio-01.png',
   },
   {
     title: 'Interactive Ferrofluid Demo',
     description: '사용자 조작 또는 외부 자극에 따라 자성유체가 반응하는 전시형 데모 영상입니다.',
     placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_02',
-    youtubeUrl: YOUTUBE_PORTFOLIO_02_URL,
+    videoSrc: portfolio2,
     thumbnailSrc: '/images/large-ferrofluid-display/portfolio-02.png',
   },
   {
     title: 'Vertical Ferrofluid Display',
     description: '수직형 투명 디스플레이 구조에서 자성유체가 움직이는 모습을 보여주는 영상입니다.',
     placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_03',
-    youtubeUrl: YOUTUBE_PORTFOLIO_03_URL,
+    videoSrc: portfolio3,
     thumbnailSrc: '/images/large-ferrofluid-display/portfolio-03.png',
   },
   {
     title: 'Ferrofluid Spike Motion',
     description: '자성유체가 자기장에 의해 뾰족한 스파이크 형태를 만들며 움직이는 영상입니다.',
     placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_04',
-    youtubeUrl: YOUTUBE_PORTFOLIO_04_URL,
+    videoSrc: portfolio4,
     thumbnailSrc: '/images/large-ferrofluid-display/portfolio-04.png',
   },
 ] as const
