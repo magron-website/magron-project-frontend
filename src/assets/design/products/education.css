@@ -671,6 +671,59 @@
   line-height: 1.6;
 }
 
+.ed-cta-banner {
+  margin-top: 72px;
+  padding: 56px 32px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, var(--ed-navy-deep) 0%, #0e7490 100%);
+  color: #fff;
+}
+
+.ed-cta-banner__inner {
+  max-width: 720px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.ed-cta-banner h2 {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.ed-cta-banner p {
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.ed-cta-banner .ed-cta-group {
+  justify-content: center;
+  margin-top: 28px;
+}
+
+.ed-cta-banner__note {
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: rgba(255, 255, 255, 0.62) !important;
+}
+
+.ed-inquiry-list {
+  max-width: 560px;
+  margin: 26px auto 0;
+  text-align: left;
+}
+
+.ed-check-list--light li {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ed-check-list--light li::before {
+  color: #7dd3fc;
+}
+
 /* Responsive ------------------------------------------------------------ */
 
 /* ==========================================================================
@@ -684,13 +737,6 @@
   border-radius: 14px;
   background: #fff;
   box-shadow: 0 24px 48px rgba(0, 0, 0, 0.32);
-}
-
-.ed-hero__nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 28px;
 }
 
 /* 제품 구성 grid */

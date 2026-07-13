@@ -149,9 +149,6 @@ export default function Magoil() {
             title="다이와 MAGSEALED 릴 시리즈 맥오일 교체방법"
             watchUrl="https://youtu.be/iExN__XaRaQ"
           />
-          <p className="mg-highlight mg-highlight--red">
-            하단의 카탈로그를 다운로드하시면 더욱 자세한 내용을 확인하실 수 있습니다.
-          </p>
         </Section>
 
         {/* 6. 문의 CTA */}
@@ -162,14 +159,6 @@ export default function Magoil() {
               사용 중인 릴 모델과 MAGSEALED 적용 여부, 수리 목적을 알려주시면 적합한 자성유체
               사용 여부와 사용 방법을 안내해드립니다.
             </p>
-            <div className="mg-inquiry-list">
-              <p className="mg-cta-banner__note">문의 시 전달하면 좋은 정보</p>
-              <ul className="mg-check-list mg-check-list--light">
-                {INQUIRY_ITEMS.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
             <div className="mg-cta-group">
               <CatalogDownloadButton product="magoil" className="mg-btn mg-btn--primary">
                 카탈로그 다운로드
@@ -181,6 +170,14 @@ export default function Magoil() {
               >
                 제품문의
               </button>
+            </div>
+            <div className="mg-inquiry-list">
+              <p className="mg-cta-banner__note">문의 시 전달하면 좋은 정보</p>
+              <ul className="mg-check-list mg-check-list--light">
+                {INQUIRY_ITEMS.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>

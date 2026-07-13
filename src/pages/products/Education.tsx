@@ -53,17 +53,6 @@ export default function Education() {
                 </article>
               ))}
             </div>
-            <div className="ed-hero__nav">
-              <a className="ed-btn ed-btn--secondary" href="#composition">
-                제품 구성
-              </a>
-              <a className="ed-btn ed-btn--secondary" href="#principle">
-                동작 원리
-              </a>
-              <a className="ed-btn ed-btn--secondary" href="#making">
-                제작 방법
-              </a>
-            </div>
           </div>
           <div className="ed-hero__visual">
             <img className="ed-hero__image" src={heroKit} alt="자성유체 키트" />
@@ -73,7 +62,7 @@ export default function Education() {
 
       <div className="ed-page__body">
         {/* 2. 제품 구성 */}
-        <Section id="composition" title="제품 구성">
+        <Section title="제품 구성">
           <div className="ed-prose">
             <p>
               자성유체 키트는 자성유체와 세척액, 에칭제, 코팅제로 구성됩니다. 각 구성품은
@@ -112,7 +101,7 @@ export default function Education() {
         </Section>
 
         {/* 5. 동작 원리 */}
-        <Section id="principle" title="동작 원리">
+        <Section title="동작 원리">
           <div className="ed-prose">
             {PRINCIPLE_TEXT.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -125,7 +114,7 @@ export default function Education() {
         </Section>
 
         {/* 6. 제작 방법 */}
-        <Section id="making" title="제작 방법">
+        <Section title="제작 방법">
           <div className="ed-prose">
             <p>
               키트 구성품을 이용해 표면 처리부터 자성유체 적용까지의 과정을 순서대로 진행할
@@ -148,46 +137,34 @@ export default function Education() {
           </div>
         </Section>
 
-        {/* 7. 문의 안내 */}
-        <Section title="자성유체 키트가 필요하신가요?">
-          <div className="ed-prose">
+        {/* 7. Bottom CTA */}
+        <section className="ed-cta-banner">
+          <div className="ed-cta-banner__inner">
+            <h2>자성유체 키트가 필요하신가요?</h2>
             <p>
               교육용, 전시용, 체험용, 연구 데모용 등 사용 목적에 따라 필요한 구성과 수량이
               달라질 수 있습니다. 사용 목적을 알려주시면 적합한 자성유체 키트 구성을
               안내해드립니다.
             </p>
-          </div>
-          <h3 className="ed-subheading">문의 시 전달하면 좋은 정보</h3>
-          <ul className="ed-check-list">
-            {INQUIRY_ITEMS.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </Section>
-
-        {/* 8. Bottom CTA */}
-        <section className="ed-cta-section">
-          <div className="ed-cta-section__inner">
-            <h2 className="ed-cta-section__title">
-              하단의 카탈로그를 다운로드하시면 더욱 자세한 내용을 확인하실 수 있습니다.
-            </h2>
-            <div className="ed-prose ed-prose--light">
-              <p>
-                자성유체의 움직임은 사진보다 실제 실험에서 훨씬 더 직관적으로 이해됩니다.
-                제품 구성, 사용 방법, 대량 구매, 교육용 납품이 필요하다면 문의해주세요.
-              </p>
-            </div>
-            <div className="ed-cta-group ed-cta-group--center">
-              <CatalogDownloadButton product="education" className="ed-btn ed-btn--secondary">
+            <div className="ed-cta-group">
+              <CatalogDownloadButton product="education" className="ed-btn ed-btn--primary">
                 카탈로그 다운로드
               </CatalogDownloadButton>
               <button
                 type="button"
-                className="ed-btn ed-btn--primary"
+                className="ed-btn ed-btn--secondary"
                 onClick={() => setIsQuoteOpen(true)}
               >
                 제품문의
               </button>
+            </div>
+            <div className="ed-inquiry-list">
+              <p className="ed-cta-banner__note">문의 시 전달하면 좋은 정보</p>
+              <ul className="ed-check-list ed-check-list--light">
+                {INQUIRY_ITEMS.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </section>

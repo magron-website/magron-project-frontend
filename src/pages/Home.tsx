@@ -4,7 +4,6 @@ import { homeImages } from '@/assets/images/homeImages'
 import BookFlipViewer from '@/components/BookFlipViewer'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
 import HeroCarousel from '@/components/HeroCarousel'
-import ChatbotFloater from '@/components/ChatbotFloater'
 import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
@@ -227,7 +226,6 @@ export default function Home() {
   return (
     <div className="home-page">
       <HomeHero />
-      <ChatbotFloater />
       <HomeProducts />
       <HomeCatalog />
       <HomeContact />

@@ -5,7 +5,7 @@ import { homeImages } from '@/assets/images/homeImages'
 import { PRODUCT_PAGE_PATHS } from '@/pages/products/productRoutes'
 
 const NAV_ITEMS = ['회사소개', '제품정보', '카탈로그', '기술정보'] as const
-const COMPANY_SUB_ITEMS = ['회사정보', '대표소개'] as const
+const COMPANY_SUB_ITEMS = ['회사정보'] as const
 const PRODUCT_SUB_ITEMS = [
   { label: 'Ferrofluid', to: PRODUCT_PAGE_PATHS.ferrofluid },
   { label: 'Feedthrough', to: PRODUCT_PAGE_PATHS.feedthrough },

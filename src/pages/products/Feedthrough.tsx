@@ -79,7 +79,7 @@ export default function Feedthrough() {
         {/* Bottom CTA */}
         <section className="ft-cta-banner">
           <div className="ft-cta-banner__inner">
-            <h2>Download the catalog below for more information</h2>
+            <h2>고신뢰성 Vacuum Feedthrough가 필요하신가요?</h2>
             <p>
               제품 상세 사양, 도면, 적용 조건 검토가 필요하다면 카탈로그를 확인하거나 제품
               문의를 남겨주세요. 장비 구조와 공정 조건을 알려주시면 적합한 Feedthrough 및
@@ -87,18 +87,18 @@ export default function Feedthrough() {
             </p>
             <div className="ft-cta-group">
               <CatalogDownloadButton product="feedthrough" className="ft-btn ft-btn--primary">
-                Download Catalogue
+                카탈로그 다운로드
               </CatalogDownloadButton>
               <button
                 type="button"
                 className="ft-btn ft-btn--secondary"
                 onClick={() => setIsQuoteOpen(true)}
               >
-                Contact Us
+                제품문의
               </button>
             </div>
             <div className="ft-inquiry-list">
-              <p className="ft-cta-banner__note">문의 시 전달하면 좋은 정보:</p>
+              <p className="ft-cta-banner__note">문의 시 전달하면 좋은 정보</p>
               <ul className="ft-check-list ft-check-list--light">
                 {INQUIRY_ITEMS.map((item) => (
                   <li key={item}>{item}</li>

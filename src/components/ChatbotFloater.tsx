@@ -1,5 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { useLocation } from 'react-router-dom'
 import chatbotImage from '@/assets/images/chatbot.png'
 import ChatbotPanel from '@/components/ChatbotPanel'
 import '@/assets/design/chatbot-floater.css'
@@ -10,6 +11,7 @@ const HEADER_OFFSET = 96
 type FloaterMode = 'hero' | 'top'
 
 export default function ChatbotFloater() {
+  const { pathname } = useLocation()
   const floaterRef = useRef<HTMLDivElement>(null)
   const [mode, setMode] = useState<FloaterMode>('hero')
   const [heroCoords, setHeroCoords] = useState({ top: 0, right: HERO_MARGIN })
@@ -22,8 +24,15 @@ export default function ChatbotFloater() {
       const productSection = document.querySelector('.product-scroll')
       const floater = floaterRef.current
 
-      if (!hero || !floater) {
+      if (!floater) {
         setIsVisible(false)
+        return
+      }
+
+      // Pages without the home hero (e.g. product info pages): pin to top-right.
+      if (!hero) {
+        setMode('top')
+        setIsVisible(true)
         return
       }
 
@@ -66,7 +75,7 @@ export default function ChatbotFloater() {
       window.removeEventListener('resize', updatePosition)
       resizeObserver?.disconnect()
     }
-  }, [])
+  }, [pathname])
 
   return createPortal(
     <>

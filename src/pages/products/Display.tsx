@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import QuoteRequestModal from '@/components/QuoteRequestModal'
+import CatalogDownloadButton from '@/components/CatalogDownloadButton'
 import {
   APPLICATION_CARDS,
   INQUIRY_ITEMS,
@@ -8,7 +9,6 @@ import {
 } from '@/pages/products/display/content'
 import {
   ApplicationCard,
-  ImagePlaceholder,
   Section,
   VideoCard,
 } from '@/pages/products/display/components'
@@ -31,11 +31,6 @@ export default function Display() {
             자성유체의 움직임을 대형 디스플레이 형태로 구현한 전시·홍보·체험용
             콘텐츠입니다. 자기장에 반응하는 유체의 움직임을 영상으로 확인해보세요.
           </p>
-          <div className="dp-cta-group">
-            <a className="dp-btn dp-btn--secondary" href="#portfolio">
-              포트폴리오 보기
-            </a>
-          </div>
         </div>
       </header>
 
@@ -53,7 +48,7 @@ export default function Display() {
 
       <div className="dp-page__body">
         {/* 2. Portfolio */}
-        <Section id="portfolio" title="PORTFOLIO" titleVariant="portfolio">
+        <Section title="PORTFOLIO" titleVariant="portfolio">
           <p className="dp-section__lead">
             대형 자성유체 디스플레이의 실제 작동 모습과 전시 적용 사례를 영상으로 확인할 수
             있습니다.
@@ -100,55 +95,36 @@ export default function Display() {
               있습니다.
             </p>
           </div>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_CUSTOM_ORDER_BANNER"
-            description="원본 이미지 하단의 검은 배경 “귀사에서 원하는 규격으로 주문제작 가능합니다.” 배너 이미지를 배치한다."
-            src="/images/large-ferrofluid-display/custom-order-banner.png"
-            aspectRatio="21 / 6"
-            className="dp-banner__image"
-          />
         </section>
 
-        {/* 5. Company Information */}
-        <Section title="Company Information">
-          <p className="dp-section__lead">
-            제품 문의, 설치 상담, 주문 제작 검토가 필요하시면 아래 문의 버튼을 통해
-            연락해주세요.
-          </p>
-          <ImagePlaceholder
-            id="IMAGE_PLACEHOLDER_COMPANY_INFO"
-            description="원본 이미지 하단의 회사 건물 사진과 Company Information 표 영역을 배치한다."
-            src="/images/large-ferrofluid-display/company-info.png"
-            aspectRatio="21 / 9"
-          />
-        </Section>
-
         {/* 6. Bottom CTA */}
-        <section className="dp-cta-section">
-          <div className="dp-cta-section__inner">
-            <h2 className="dp-cta-section__title">대형 자성유체 디스플레이가 필요하신가요?</h2>
-            <p className="dp-cta-section__lead">
+        <section className="dp-cta-banner">
+          <div className="dp-cta-banner__inner">
+            <h2>대형 자성유체 디스플레이가 필요하신가요?</h2>
+            <p>
               전시 공간과 원하는 디스플레이 형태를 알려주시면 맞춤형 제작 가능 여부를
               검토해드립니다.
             </p>
-            <div className="dp-cta-group dp-cta-group--center">
+            <div className="dp-cta-group">
+              <CatalogDownloadButton product="display" className="dp-btn dp-btn--primary">
+                카탈로그 다운로드
+              </CatalogDownloadButton>
               <button
                 type="button"
-                className="dp-btn dp-btn--primary"
+                className="dp-btn dp-btn--secondary"
                 onClick={() => setIsQuoteOpen(true)}
               >
                 제품문의
               </button>
-              <a className="dp-btn dp-btn--secondary" href="#portfolio">
-                포트폴리오 영상 보기
-              </a>
             </div>
-            <h3 className="dp-cta-section__subtitle">문의 시 전달하면 좋은 정보</h3>
-            <ul className="dp-check-list">
-              {INQUIRY_ITEMS.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
+            <div className="dp-inquiry-list">
+              <p className="dp-cta-banner__note">문의 시 전달하면 좋은 정보</p>
+              <ul className="dp-check-list dp-check-list--light">
+                {INQUIRY_ITEMS.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </div>
           </div>
         </section>
       </div>

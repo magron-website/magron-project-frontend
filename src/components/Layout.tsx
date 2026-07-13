@@ -3,6 +3,7 @@ import { Outlet, useLocation } from 'react-router-dom'
 import '@/assets/design/home.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import ChatbotFloater from '@/components/ChatbotFloater'
 
 export default function Layout() {
   const { pathname, hash } = useLocation()
@@ -26,6 +27,7 @@ export default function Layout() {
       <div className="home__content">
         <Outlet />
       </div>
+      <ChatbotFloater />
       <Footer />
     </div>
   )

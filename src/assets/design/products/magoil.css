@@ -286,22 +286,6 @@
   line-height: 1.7;
 }
 
-.mg-highlight {
-  margin: 20px 0 0;
-  padding: 16px 20px;
-  border-left: 4px solid var(--mg-cyan);
-  background: var(--mg-sky);
-  color: var(--mg-ocean-deep);
-  font-size: 15px;
-  line-height: 1.7;
-}
-
-.mg-highlight--red {
-  border-left-color: #ef4444;
-  background: #fef2f2;
-  color: #991b1b;
-}
-
 /* Cards ----------------------------------------------------------------- */
 
 .mg-info-grid {
