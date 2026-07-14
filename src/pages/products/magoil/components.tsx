@@ -101,9 +101,10 @@ type YouTubeEmbedProps = {
   videoId: string
   title: string
   watchUrl?: string
+  note?: string
 }
 
-export function YouTubeEmbed({ videoId, title, watchUrl }: YouTubeEmbedProps) {
+export function YouTubeEmbed({ videoId, title, watchUrl, note }: YouTubeEmbedProps) {
   const url = watchUrl ?? `https://youtu.be/${videoId}`
   return (
     <div className="mg-video">
@@ -120,7 +121,7 @@ export function YouTubeEmbed({ videoId, title, watchUrl }: YouTubeEmbedProps) {
       <a className="mg-video__link" href={url} target="_blank" rel="noopener noreferrer">
         {url}
       </a>
-      <p className="mg-video__note">링크를 클릭하시면 유튜브 채널로 이동합니다.</p>
+      {note ? <p className="mg-video__note">{note}</p> : null}
     </div>
   )
 }

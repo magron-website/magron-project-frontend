@@ -202,6 +202,19 @@
   }
 }
 
+/* On the home page the footer is absolutely positioned by px offset; below
+   900px the home sections flow normally, so the footer must flow too. This
+   lives in footer.css (not home.css) so it wins the CSS source-order cascade. */
+@media (max-width: 900px) {
+  .home-footer {
+    position: static;
+    top: auto;
+    left: auto;
+    width: 100%;
+    transform: none;
+  }
+}
+
 @media (max-width: 640px) {
   .home-footer__inner {
     padding: 24px 20px;

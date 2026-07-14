@@ -846,18 +846,3 @@ export const CATEGORIES: Category[] = [
     products: [uhv, purgeMode, rotaryGasUnion],
   },
 ]
-
-// hero feature cards
-export const HERO_CARDS = [
-  { title: 'Vacuum Sealing', description: '진공 챔버 내부의 압력과 청정도를 안정적으로 유지합니다.' },
-  { title: 'Rotary Motion Transfer', description: '회전축을 통해 외부 동력을 장비 내부로 전달합니다.' },
-  { title: 'Low Particle Generation', description: '자성유체 씰링 구조로 파티클 발생을 줄입니다.' },
-  { title: 'Custom Specification', description: '축 직경, 회전 속도, 진공도 조건에 맞춘 사양 검토가 가능합니다.' },
-] as const
-
-export const INQUIRY_ITEMS = [
-  '장비 종류 및 공정 조건 (진공도, 온도, 가스 종류)',
-  '축 직경 / 회전 속도 / 토크 요구 사항',
-  '장착 방식 (관통형 · 플랜지 · 중공축 등)',
-  '필요 수량 및 납기',
-] as const

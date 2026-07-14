@@ -1,36 +1,29 @@
-import { useState } from 'react'
-import QuoteRequestModal from '@/components/QuoteRequestModal'
+import { useTranslation } from 'react-i18next'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
-import {
-  APPLICATION_CARDS,
-  INQUIRY_ITEMS,
-  MAIN_VIDEO,
-  PORTFOLIO_VIDEOS,
-} from '@/pages/products/display/content'
-import {
-  ApplicationCard,
-  Section,
-  VideoCard,
-} from '@/pages/products/display/components'
+import { MAIN_VIDEO, PORTFOLIO_VIDEOS } from '@/pages/products/display/content'
+import { ApplicationCard, Section, VideoCard } from '@/pages/products/display/components'
 import '@/assets/design/products/display.css'
 
+type Card = { title: string; description: string }
+
 export default function Display() {
-  const [isQuoteOpen, setIsQuoteOpen] = useState(false)
+  const { t } = useTranslation(['display', 'product'])
+  const opts = { returnObjects: true, ns: 'display' } as const
+  const portfolioDescriptions = t('portfolio.descriptions', opts) as unknown as string[]
+  const applicationCards = t('application.cards', opts) as unknown as Card[]
+  const inquiryItems = t('cta.items', opts) as unknown as string[]
 
   return (
     <article className="dp-page">
-      <QuoteRequestModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
-
       {/* 1. Hero */}
       <header className="dp-hero">
         <div className="dp-hero__inner">
-          <p className="dp-hero__label">Products</p>
-          <h1 className="dp-hero__title">대형 자성유체 디스플레이</h1>
-          <p className="dp-hero__title-en">Large Ferrofluid Display</p>
-          <p className="dp-hero__lead">
-            자성유체의 움직임을 대형 디스플레이 형태로 구현한 전시·홍보·체험용
-            콘텐츠입니다. 자기장에 반응하는 유체의 움직임을 영상으로 확인해보세요.
-          </p>
+          <p className="dp-hero__label">{t('hero.label', { ns: 'display' })}</p>
+          <h1 className="dp-hero__title">{t('hero.title', { ns: 'display' })}</h1>
+          {t('hero.titleEn', { ns: 'display' }) ? (
+            <p className="dp-hero__title-en">{t('hero.titleEn', { ns: 'display' })}</p>
+          ) : null}
+          <p className="dp-hero__lead">{t('hero.lead', { ns: 'display' })}</p>
         </div>
       </header>
 
@@ -39,7 +32,7 @@ export default function Display() {
           <VideoCard
             variant="hero"
             placeholderId={MAIN_VIDEO.placeholderId}
-            description={MAIN_VIDEO.description}
+            description={t('mainVideoDesc', { ns: 'display' })}
             youtubeUrl={MAIN_VIDEO.youtubeUrl}
             thumbnailSrc={MAIN_VIDEO.thumbnailSrc}
           />
@@ -48,40 +41,30 @@ export default function Display() {
 
       <div className="dp-page__body">
         {/* 2. Portfolio */}
-        <Section title="PORTFOLIO" titleVariant="portfolio">
-          <p className="dp-section__lead">
-            대형 자성유체 디스플레이의 실제 작동 모습과 전시 적용 사례를 영상으로 확인할 수
-            있습니다.
-          </p>
+        <Section title={t('portfolio.title', { ns: 'display' })} titleVariant="portfolio">
+          <p className="dp-section__lead">{t('portfolio.lead', { ns: 'display' })}</p>
           <div className="dp-portfolio-grid">
-            {PORTFOLIO_VIDEOS.map((video) => (
+            {PORTFOLIO_VIDEOS.map((video, i) => (
               <VideoCard
                 key={video.placeholderId}
                 variant="portfolio"
                 placeholderId={video.placeholderId}
-                description={video.description}
+                description={portfolioDescriptions[i]}
                 videoSrc={video.videoSrc}
                 thumbnailSrc={video.thumbnailSrc}
                 title={video.title}
-                subtitle={video.description}
+                subtitle={portfolioDescriptions[i]}
               />
             ))}
           </div>
         </Section>
 
         {/* 3. Application */}
-        <Section title="전시와 홍보에 활용 가능한 자성유체 콘텐츠">
-          <p className="dp-section__lead">
-            대형 자성유체 디스플레이는 관람객의 시선을 끄는 시각적 효과가 강해 전시, 홍보관,
-            과학관, 기업 쇼룸, 체험 부스에 활용할 수 있습니다.
-          </p>
+        <Section title={t('application.title', { ns: 'display' })}>
+          <p className="dp-section__lead">{t('application.lead', { ns: 'display' })}</p>
           <div className="dp-app-grid">
-            {APPLICATION_CARDS.map((card) => (
-              <ApplicationCard
-                key={card.title}
-                title={card.title}
-                description={card.description}
-              />
+            {applicationCards.map((card) => (
+              <ApplicationCard key={card.title} title={card.title} description={card.description} />
             ))}
           </div>
         </Section>
@@ -89,38 +72,26 @@ export default function Display() {
         {/* 4. Custom Order Banner */}
         <section className="dp-banner">
           <div className="dp-banner__content">
-            <h2 className="dp-banner__title">귀사에서 원하는 규격으로 주문제작 가능합니다.</h2>
-            <p className="dp-banner__desc">
-              전시 공간, 설치 방식, 디스플레이 크기, 제어 방식에 따라 맞춤형 제작을 검토할 수
-              있습니다.
-            </p>
+            <h2 className="dp-banner__title">{t('banner.title', { ns: 'display' })}</h2>
+            <p className="dp-banner__desc">{t('banner.desc', { ns: 'display' })}</p>
           </div>
         </section>
 
         {/* 6. Bottom CTA */}
         <section className="dp-cta-banner">
           <div className="dp-cta-banner__inner">
-            <h2>대형 자성유체 디스플레이가 필요하신가요?</h2>
-            <p>
-              전시 공간과 원하는 디스플레이 형태를 알려주시면 맞춤형 제작 가능 여부를
-              검토해드립니다.
-            </p>
+            <h2>{t('cta.title', { ns: 'display' })}</h2>
+            <p>{t('cta.desc', { ns: 'display' })}</p>
             <div className="dp-cta-group">
               <CatalogDownloadButton product="display" className="dp-btn dp-btn--primary">
-                카탈로그 다운로드
+                {t('product:catalogDownload')}
               </CatalogDownloadButton>
-              <button
-                type="button"
-                className="dp-btn dp-btn--secondary"
-                onClick={() => setIsQuoteOpen(true)}
-              >
-                제품문의
-              </button>
             </div>
+            <p className="product-cta-note">{t('product:contactNote')}</p>
             <div className="dp-inquiry-list">
-              <p className="dp-cta-banner__note">문의 시 전달하면 좋은 정보</p>
+              <p className="dp-cta-banner__note">{t('product:inquiryNote')}</p>
               <ul className="dp-check-list dp-check-list--light">
-                {INQUIRY_ITEMS.map((item) => (
+                {inquiryItems.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>

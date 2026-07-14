@@ -373,23 +373,149 @@
   object-fit: cover;
 }
 
-.home-contact__quote-btn {
-  margin-top: 20px;
-  min-width: 180px;
-  height: 40px;
-  padding: 0 28px;
-  border: 0;
+.home-contact__inquiry {
+  width: fit-content;
+  max-width: 100%;
+  margin: 24px auto 0;
+  padding: 12px 28px;
   border-radius: 100px;
-  background: #082f49;
-  color: #fff;
+  background: #fff;
+  color: #082f49;
   font-family: 'ChosunIlboMyungjo', serif;
   font-size: 16px;
   font-weight: 700;
-  line-height: 20px;
-  cursor: pointer;
-  box-shadow: 0 8px 24px rgba(8, 47, 73, 0.28);
+  line-height: 1.5;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
 }
 
-.home-contact__quote-btn:hover {
-  background: #0c4a6e;
+/* Shared contact note shown on product CTA banners (dark background). */
+.product-cta-note {
+  margin: 6px 0 0;
+  padding: 10px 22px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-align: center;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile / tablet — the desktop home is a 1920px fixed layout built with
+   absolute positioning + hardcoded px offsets. Below 900px we drop all of
+   that and let the sections (hero → products → catalog → contact) flow
+   normally in document order.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .home {
+    min-height: 0;
+    height: auto;
+    overflow-x: hidden;
+  }
+
+  .home__content {
+    min-height: 0;
+  }
+
+  /* Catalog: absolute → normal flow */
+  .home-catalog {
+    position: static;
+    height: auto;
+    margin-top: 0;
+  }
+
+  .home-catalog__inner {
+    padding: 8px 20px 0;
+  }
+
+  .home-catalog__header {
+    padding: 48px 0 32px;
+  }
+
+  .home-catalog__title {
+    font-size: 32px;
+  }
+
+  .home-catalog__grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px 20px;
+  }
+
+  .home-catalog__book {
+    min-height: auto;
+    padding: 0;
+  }
+
+  .home-catalog__item-title {
+    font-size: 16px;
+    line-height: 20px;
+    white-space: normal;
+  }
+
+  /* keywords: absolute → flow (and darker text on the white section) */
+  .home-catalog__keywords {
+    position: static;
+    top: auto;
+    max-width: 100%;
+    margin-top: 40px;
+    padding: 24px 20px 56px;
+    color: #71717a;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Contact: absolute → normal flow */
+  .home-contact {
+    position: static;
+    height: auto;
+    margin-top: 0;
+  }
+
+  .home-contact__bg-wrap {
+    height: auto;
+    min-height: 0;
+  }
+
+  .home-contact__inner {
+    padding: 40px 20px 44px;
+  }
+
+  .home-contact__card {
+    padding: 24px 20px 28px;
+  }
+
+  .home-contact__grid {
+    grid-template-columns: 1fr;
+    gap: 24px 0;
+  }
+
+  .home-contact__col {
+    gap: 24px;
+  }
+}
+
+@media (max-width: 560px) {
+  .home-catalog__grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .home-catalog__title,
+  .product-scroll__heading {
+    font-size: 26px;
+  }
+
+  .home-contact__title {
+    font-size: 24px;
+    line-height: 30px;
+  }
+
+  .home-contact__inquiry,
+  .product-cta-note {
+    font-size: 14px;
+    padding: 10px 20px;
+  }
 }

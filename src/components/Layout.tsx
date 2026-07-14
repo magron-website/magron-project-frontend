@@ -4,10 +4,13 @@ import '@/assets/design/home.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ChatbotFloater from '@/components/ChatbotFloater'
+import { useSeoMeta } from '@/seo/useSeoMeta'
 
 export default function Layout() {
   const { pathname, hash } = useLocation()
   const isHome = pathname === '/'
+
+  useSeoMeta(pathname)
 
   useEffect(() => {
     if (hash) {

@@ -115,3 +115,31 @@
   line-height: 1.8;
   letter-spacing: -0.01em;
 }
+
+@media (max-width: 768px) {
+  .product-detail__hero {
+    height: 340px;
+  }
+
+  .product-detail__hero-content {
+    padding: 0 24px;
+    gap: 14px;
+  }
+
+  .product-detail__title {
+    font-size: 32px;
+  }
+
+  .product-detail__body {
+    padding: 40px 20px 64px;
+  }
+
+  .product-detail__info-heading {
+    font-size: 24px;
+  }
+
+  .product-detail__info-text {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+}

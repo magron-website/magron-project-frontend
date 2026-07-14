@@ -182,3 +182,54 @@
   text-align: center;
   text-transform: uppercase;
 }
+
+/* --------------------------------------------------------------------------
+   Mobile / tablet — drop the fixed 1500px height and 3×2 grid.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .product-scroll {
+    margin-top: 0;
+    height: auto;
+  }
+
+  .product-scroll__inner {
+    height: auto;
+  }
+
+  .product-scroll__heading {
+    padding: 48px 0 32px;
+    font-size: 32px;
+  }
+
+  .product-scroll__grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: none;
+  }
+
+  .product-scroll__tile {
+    min-height: 240px;
+  }
+
+  .product-scroll__tile-title {
+    font-size: 26px;
+  }
+
+  .product-scroll__tile-brand {
+    bottom: 20px;
+  }
+}
+
+@media (max-width: 560px) {
+  .product-scroll__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-scroll__tile {
+    min-height: 200px;
+  }
+
+  .product-scroll__tile-content {
+    padding: 0 24px;
+  }
+}

@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ClipLoader } from 'react-spinners'
 import {
   getProductTileLabel,
@@ -18,6 +19,7 @@ type ProductTileCardProps = {
 }
 
 function ProductTileCard({ product, isActive, onActivate }: ProductTileCardProps) {
+  const { t } = useTranslation('product')
   const label = getProductTileLabel(product)
   const title = getProductTileTitle(product)
 
@@ -25,7 +27,7 @@ function ProductTileCard({ product, isActive, onActivate }: ProductTileCardProps
     <Link
       to={getProductPathBySortOrder(product.sortOrder)}
       className={`product-scroll__tile product-scroll__tile--image${isActive ? ' product-scroll__tile--active' : ''}`}
-      aria-label={`${title} 상세 보기`}
+      aria-label={t('tileDetailAria', { title })}
       aria-current={isActive ? 'true' : undefined}
       onClick={() => onActivate(product.id)}
     >
@@ -41,6 +43,7 @@ function ProductTileCard({ product, isActive, onActivate }: ProductTileCardProps
 }
 
 export default function ProductSection() {
+  const { t } = useTranslation(['product', 'common'])
   const { products, isLoading, error } = useProductExplanations()
   const [activeTileId, setActiveTileId] = useState<string | null>(null)
   const { ref, inView } = useInView<HTMLElement>({ threshold: 0.06, once: false })
@@ -50,19 +53,19 @@ export default function ProductSection() {
       id="product-info"
       ref={ref}
       className={`product-scroll${inView ? ' is-revealed' : ''}`}
-      aria-label="제품 소개"
+      aria-label={t('product:sectionAria')}
     >
       <div className="product-scroll__inner">
-        <h2 className="product-scroll__heading">제품 정보</h2>
+        <h2 className="product-scroll__heading">{t('product:heading')}</h2>
 
         {isLoading ? (
           <div className="product-scroll__status" aria-busy="true">
-            <ClipLoader color="#111111" size={48} aria-label="로딩 중" />
+            <ClipLoader color="#111111" size={48} aria-label={t('common:loading')} />
           </div>
         ) : products.length === 0 ? (
           <div className="product-scroll__status">
             <p className="product-scroll__message">
-              {error ?? '제품 정보를 불러올 수 없습니다.'}
+              {error ?? t('product:loadError')}
             </p>
           </div>
         ) : (

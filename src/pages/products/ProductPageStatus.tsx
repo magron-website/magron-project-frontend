@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import { ClipLoader } from 'react-spinners'
 import '@/assets/design/product-detail.css'
 
@@ -8,19 +9,21 @@ type ProductPageStatusProps = {
 }
 
 export default function ProductPageStatus({ loading, error }: ProductPageStatusProps) {
+  const { t } = useTranslation(['product', 'common'])
+
   if (loading) {
     return (
       <div className="product-detail product-detail--status" aria-busy="true">
-        <ClipLoader color="#111111" size={48} aria-label="로딩 중" />
+        <ClipLoader color="#111111" size={48} aria-label={t('common:loading')} />
       </div>
     )
   }
 
   return (
     <div className="product-detail product-detail--status">
-      <p className="product-detail__message">{error ?? '제품을 찾을 수 없습니다.'}</p>
+      <p className="product-detail__message">{error ?? t('product:statusNotFound')}</p>
       <Link className="product-detail__back" to="/">
-        홈으로 돌아가기
+        {t('product:statusBack')}
       </Link>
     </div>
   )

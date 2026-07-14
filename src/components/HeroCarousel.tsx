@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ClipLoader } from 'react-spinners'
 import { resolveHeroButtonLink, useHeroSlides } from '@/hooks/useHeroSlides'
@@ -18,6 +19,7 @@ function HeroVisualShell({
   variant: 'loading' | 'empty'
   message?: string | null
 }) {
+  const { t } = useTranslation(['hero', 'common'])
   return (
     <section
       id="visual"
@@ -26,10 +28,10 @@ function HeroVisualShell({
       aria-live="polite"
     >
       {variant === 'loading' ? (
-        <ClipLoader color="#ffffff" size={52} aria-label="로딩 중" />
+        <ClipLoader color="#ffffff" size={52} aria-label={t('common:loading')} />
       ) : (
         <p className="home-visual__message">
-          {message ?? '캐러셀을 불러올 수 없습니다.'}
+          {message ?? t('hero:carouselError')}
         </p>
       )}
     </section>
@@ -37,6 +39,7 @@ function HeroVisualShell({
 }
 
 function HeroCarouselContent({ slides }: { slides: HeroSlide[] }) {
+  const { t } = useTranslation('hero')
   const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, duration: 35 })
   const [selectedIndex, setSelectedIndex] = useState(0)
   const [isPlaying, setIsPlaying] = useState(true)
@@ -163,7 +166,7 @@ function HeroCarouselContent({ slides }: { slides: HeroSlide[] }) {
             type="button"
             className={`btn${isPlaying ? ' btn--pause' : ' btn--play'}`}
             onClick={togglePlay}
-            aria-label={isPlaying ? '슬라이드 일시정지' : '슬라이드 재생'}
+            aria-label={isPlaying ? t('pause') : t('play')}
           />
           <svg key={progressKey} className="progress" viewBox="0 0 64 64" aria-hidden="true">
             <circle className="progress__track" r="32" cx="32" cy="32" />
@@ -182,7 +185,7 @@ function HeroCarouselContent({ slides }: { slides: HeroSlide[] }) {
             type="button"
             className="arrow arrow--prev"
             onClick={scrollPrev}
-            aria-label="이전 슬라이드"
+            aria-label={t('prevSlide')}
           >
             prev
           </button>
@@ -195,7 +198,7 @@ function HeroCarouselContent({ slides }: { slides: HeroSlide[] }) {
             type="button"
             className="arrow arrow--next"
             onClick={scrollNext}
-            aria-label="다음 슬라이드"
+            aria-label={t('nextSlide')}
           >
             next
           </button>

@@ -1,12 +1,15 @@
 import { useCallback, useRef, useState } from 'react'
+import i18n from '@/i18n'
 import type { ChatMessage, ChatResponse } from '@/types/chat'
 
 const API_BASE = import.meta.env.VITE_CHAT_API_URL ?? 'http://127.0.0.1:8000'
 
-const WELCOME_MESSAGE: ChatMessage = {
-  id: 'welcome',
-  role: 'bot',
-  text: '안녕하세요! MAGRON 챗봇입니다. 제품이나 회사에 대해 궁금한 점을 물어보세요.',
+function createWelcomeMessage(): ChatMessage {
+  return {
+    id: 'welcome',
+    role: 'bot',
+    text: i18n.t('messages:chatWelcome'),
+  }
 }
 
 function createId() {
@@ -17,7 +20,7 @@ function createId() {
 }
 
 export function useChat() {
-  const [messages, setMessages] = useState<ChatMessage[]>([WELCOME_MESSAGE])
+  const [messages, setMessages] = useState<ChatMessage[]>(() => [createWelcomeMessage()])
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const sessionIdRef = useRef<string>(`chat-${createId()}`)
@@ -47,7 +50,7 @@ export function useChat() {
       })
 
       if (!response.ok) {
-        throw new Error(`서버 오류 (${response.status})`)
+        throw new Error(i18n.t('messages:chatServerError', { status: response.status }))
       }
 
       const data = (await response.json()) as ChatResponse
@@ -59,14 +62,14 @@ export function useChat() {
       const botMessage: ChatMessage = {
         id: createId(),
         role: 'bot',
-        text: data.reply ?? '답변을 가져오지 못했습니다.',
+        text: data.reply ?? i18n.t('messages:chatNoReply'),
         sources: data.sources,
       }
 
       setMessages((prev) => [...prev, botMessage])
     } catch (err) {
       const message =
-        err instanceof Error ? err.message : '메시지를 전송하지 못했습니다.'
+        err instanceof Error ? err.message : i18n.t('messages:chatSendFailed')
       console.error('Chat request failed:', message)
       setError(message)
       setMessages((prev) => [
@@ -74,7 +77,7 @@ export function useChat() {
         {
           id: createId(),
           role: 'bot',
-          text: '죄송합니다. 답변을 가져오는 중 문제가 발생했습니다. 잠시 후 다시 시도해 주세요.',
+          text: i18n.t('messages:chatBotError'),
         },
       ])
     } finally {

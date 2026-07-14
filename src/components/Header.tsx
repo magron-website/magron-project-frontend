@@ -1,31 +1,43 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 import '@/assets/design/header.css'
 import { homeImages } from '@/assets/images/homeImages'
 import { PRODUCT_PAGE_PATHS } from '@/pages/products/productRoutes'
+import { LANGUAGES, type Language } from '@/i18n'
 
-const NAV_ITEMS = ['회사소개', '제품정보', '카탈로그', '기술정보'] as const
-const COMPANY_SUB_ITEMS = ['회사정보'] as const
+const NAV_KEYS = ['company', 'products', 'catalog', 'tech'] as const
+
 const PRODUCT_SUB_ITEMS = [
-  { label: 'Ferrofluid', to: PRODUCT_PAGE_PATHS.ferrofluid },
-  { label: 'Feedthrough', to: PRODUCT_PAGE_PATHS.feedthrough },
-  { label: 'Reel Mag oil', to: PRODUCT_PAGE_PATHS.magoil },
-  { label: 'Magnet', to: PRODUCT_PAGE_PATHS.magnet },
-  { label: 'Education kit', to: PRODUCT_PAGE_PATHS.education },
-  { label: 'Large Ferrofluid Display', to: PRODUCT_PAGE_PATHS.display },
+  { key: 'ferrofluid', to: PRODUCT_PAGE_PATHS.ferrofluid },
+  { key: 'feedthrough', to: PRODUCT_PAGE_PATHS.feedthrough },
+  { key: 'magoil', to: PRODUCT_PAGE_PATHS.magoil },
+  { key: 'magnet', to: PRODUCT_PAGE_PATHS.magnet },
+  { key: 'education', to: PRODUCT_PAGE_PATHS.education },
+  { key: 'display', to: PRODUCT_PAGE_PATHS.display },
 ] as const
+
+const LANG_META: Record<Language, { flag: string; label: string; alt: string; chn?: boolean }> = {
+  ko: { flag: homeImages.flagKor, label: 'KOR', alt: '한국어' },
+  en: { flag: homeImages.flagEng, label: 'ENG', alt: 'English' },
+  zh: { flag: homeImages.flagChn, label: 'CHN', alt: '中文', chn: true },
+}
 
 const PRODUCT_PAGE_PATH_LIST = Object.values(PRODUCT_PAGE_PATHS)
 
 export default function Header() {
   const navigate = useNavigate()
   const { pathname } = useLocation()
+  const { t, i18n } = useTranslation('header')
   const [companyOpen, setCompanyOpen] = useState(false)
   const [productsOpen, setProductsOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const isProductPage = PRODUCT_PAGE_PATH_LIST.includes(pathname)
+  const currentLang = i18n.language as Language
 
   const goToTop = () => {
     setCompanyOpen(false)
+    setMobileOpen(false)
     if (pathname === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       return
@@ -35,12 +47,14 @@ export default function Header() {
 
   const goToCompany = () => {
     setCompanyOpen(false)
+    setMobileOpen(false)
     navigate('/company')
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const goToSection = (sectionId: string) => {
     setProductsOpen(false)
+    setMobileOpen(false)
     navigate(`/#${sectionId}`)
     if (pathname === '/') {
       requestAnimationFrame(() => {
@@ -49,35 +63,35 @@ export default function Header() {
     }
   }
 
+  const changeLanguage = (lang: Language) => {
+    void i18n.changeLanguage(lang)
+  }
+
   return (
     <header className="home-header">
       <div className="home-header__border" />
       <div className="home-header__bg" />
       <div className="home-header__inner">
-        <Link to="/" className="home-header__left" aria-label="홈으로 이동">
-          <img
-            className="home-header__logo-img"
-            src={homeImages.logo}
-            alt="MAGRON"
-          />
+        <Link to="/" className="home-header__left" aria-label={t('ariaHome')}>
+          <img className="home-header__logo-img" src={homeImages.logo} alt="MAGRON" />
           <div className="home-header__brand">
             <span className="home-header__brand-name">MAGRON</span>
-            <span className="home-header__brand-tagline">Ferrofluid</span>
+            <span className="home-header__brand-tagline">{t('brandTagline')}</span>
           </div>
         </Link>
 
-        <nav className="home-header__nav" aria-label="주요 메뉴">
+        <nav className="home-header__nav" aria-label={t('nav.products')}>
           <button
             type="button"
             className={`home-header__nav-item home-header__nav-item--link${pathname === '/' ? ' home-header__nav-item--active' : ''}`}
             onClick={goToTop}
           >
-            Home
+            {t('nav.home')}
           </button>
-          {NAV_ITEMS.map((item) =>
-            item === '회사소개' ? (
+          {NAV_KEYS.map((key) =>
+            key === 'company' ? (
               <div
-                key={item}
+                key={key}
                 className="home-header__nav-dropdown"
                 onMouseEnter={() => setCompanyOpen(true)}
                 onMouseLeave={() => setCompanyOpen(false)}
@@ -89,29 +103,27 @@ export default function Header() {
                   aria-haspopup="true"
                   onClick={goToCompany}
                 >
-                  {item}
+                  {t('nav.company')}
                 </button>
                 {companyOpen && (
                   <div className="home-header__dropdown">
                     <ul className="home-header__dropdown-list">
-                      {COMPANY_SUB_ITEMS.map((subItem) => (
-                        <li key={subItem}>
-                          <button
-                            type="button"
-                            className="home-header__dropdown-item"
-                            onClick={goToCompany}
-                          >
-                            {subItem}
-                          </button>
-                        </li>
-                      ))}
+                      <li>
+                        <button
+                          type="button"
+                          className="home-header__dropdown-item"
+                          onClick={goToCompany}
+                        >
+                          {t('companyMenu.info')}
+                        </button>
+                      </li>
                     </ul>
                   </div>
                 )}
               </div>
-            ) : item === '제품정보' ? (
+            ) : key === 'products' ? (
               <div
-                key={item}
+                key={key}
                 className="home-header__nav-dropdown"
                 onMouseEnter={() => setProductsOpen(true)}
                 onMouseLeave={() => setProductsOpen(false)}
@@ -123,19 +135,19 @@ export default function Header() {
                   aria-haspopup="true"
                   onClick={() => goToSection('product-info')}
                 >
-                  {item}
+                  {t('nav.products')}
                 </button>
                 {productsOpen && (
                   <div className="home-header__dropdown">
                     <ul className="home-header__dropdown-list home-header__dropdown-list--wide">
                       {PRODUCT_SUB_ITEMS.map((subItem) => (
-                        <li key={subItem.label}>
+                        <li key={subItem.key}>
                           <Link
                             to={subItem.to}
                             className="home-header__dropdown-item"
                             onClick={() => setProductsOpen(false)}
                           >
-                            {subItem.label}
+                            {t(`productMenu.${subItem.key}`)}
                           </Link>
                         </li>
                       ))}
@@ -143,18 +155,18 @@ export default function Header() {
                   </div>
                 )}
               </div>
-            ) : item === '카탈로그' ? (
+            ) : key === 'catalog' ? (
               <button
-                key={item}
+                key={key}
                 type="button"
                 className="home-header__nav-item home-header__nav-item--link"
                 onClick={() => goToSection('products')}
               >
-                {item}
+                {t('nav.catalog')}
               </button>
             ) : (
-              <span key={item} className="home-header__nav-item">
-                {item}
+              <span key={key} className="home-header__nav-item">
+                {t('nav.tech')}
               </span>
             ),
           )}
@@ -162,30 +174,29 @@ export default function Header() {
 
         <div className="home-header__right">
           <div className="home-header__lang">
-            <div className="home-header__lang-group">
-              <img
-                className="home-header__lang-flag"
-                src={homeImages.flagKor}
-                alt="한국어"
-              />
-              <span className="home-header__lang-label">KOR</span>
-            </div>
-            <div className="home-header__lang-group">
-              <img
-                className="home-header__lang-flag"
-                src={homeImages.flagEng}
-                alt="English"
-              />
-              <span className="home-header__lang-label">ENG</span>
-            </div>
-            <div className="home-header__lang-group">
-              <img
-                className="home-header__lang-flag home-header__lang-flag--chn"
-                src={homeImages.flagChn}
-                alt="中文"
-              />
-              <span className="home-header__lang-label home-header__lang-label--chn">CHN</span>
-            </div>
+            {LANGUAGES.map((lang) => {
+              const meta = LANG_META[lang]
+              return (
+                <button
+                  key={lang}
+                  type="button"
+                  className={`home-header__lang-group${currentLang === lang ? ' home-header__lang-group--active' : ''}`}
+                  onClick={() => changeLanguage(lang)}
+                  aria-pressed={currentLang === lang}
+                >
+                  <img
+                    className={`home-header__lang-flag${meta.chn ? ' home-header__lang-flag--chn' : ''}`}
+                    src={meta.flag}
+                    alt={meta.alt}
+                  />
+                  <span
+                    className={`home-header__lang-label${meta.chn ? ' home-header__lang-label--chn' : ''}`}
+                  >
+                    {meta.label}
+                  </span>
+                </button>
+              )
+            })}
           </div>
           <a
             className="home-header__shop"
@@ -193,10 +204,110 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <span className="home-header__shop-text">쇼핑몰</span>
+            <span className="home-header__shop-text">{t('shop')}</span>
           </a>
         </div>
+
+        {/* Mobile hamburger */}
+        <button
+          type="button"
+          className={`home-header__burger${mobileOpen ? ' home-header__burger--open' : ''}`}
+          aria-label={mobileOpen ? t('nav.home') : t('nav.products')}
+          aria-expanded={mobileOpen}
+          onClick={() => setMobileOpen((open) => !open)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
       </div>
+
+      {/* Mobile drawer */}
+      {mobileOpen && (
+        <>
+          <button
+            type="button"
+            className="home-header__mobile-overlay"
+            aria-label={t('nav.home')}
+            onClick={() => setMobileOpen(false)}
+          />
+          <nav className="home-header__mobile" aria-label={t('nav.products')}>
+            <button type="button" className="home-header__mobile-item" onClick={goToTop}>
+              {t('nav.home')}
+            </button>
+            <button type="button" className="home-header__mobile-item" onClick={goToCompany}>
+              {t('nav.company')}
+            </button>
+            <button
+              type="button"
+              className="home-header__mobile-item"
+              onClick={() => goToSection('product-info')}
+            >
+              {t('nav.products')}
+            </button>
+            <div className="home-header__mobile-sub">
+              {PRODUCT_SUB_ITEMS.map((subItem) => (
+                <Link
+                  key={subItem.key}
+                  to={subItem.to}
+                  className="home-header__mobile-subitem"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {t(`productMenu.${subItem.key}`)}
+                </Link>
+              ))}
+            </div>
+            <button
+              type="button"
+              className="home-header__mobile-item"
+              onClick={() => goToSection('products')}
+            >
+              {t('nav.catalog')}
+            </button>
+            <span className="home-header__mobile-item home-header__mobile-item--static">
+              {t('nav.tech')}
+            </span>
+
+            <div className="home-header__mobile-divider" />
+
+            <div className="home-header__mobile-lang">
+              {LANGUAGES.map((lang) => {
+                const meta = LANG_META[lang]
+                return (
+                  <button
+                    key={lang}
+                    type="button"
+                    className={`home-header__lang-group${currentLang === lang ? ' home-header__lang-group--active' : ''}`}
+                    onClick={() => changeLanguage(lang)}
+                    aria-pressed={currentLang === lang}
+                  >
+                    <img
+                      className={`home-header__lang-flag${meta.chn ? ' home-header__lang-flag--chn' : ''}`}
+                      src={meta.flag}
+                      alt={meta.alt}
+                    />
+                    <span
+                      className={`home-header__lang-label${meta.chn ? ' home-header__lang-label--chn' : ''}`}
+                    >
+                      {meta.label}
+                    </span>
+                  </button>
+                )
+              })}
+            </div>
+
+            <a
+              className="home-header__mobile-shop"
+              href="https://www.ferrofluidshop.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+            >
+              {t('shop')}
+            </a>
+          </nav>
+        </>
+      )}
     </header>
   )
 }

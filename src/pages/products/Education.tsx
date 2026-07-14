@@ -1,16 +1,14 @@
-import { useState } from 'react'
-import QuoteRequestModal from '@/components/QuoteRequestModal'
+import { useTranslation } from 'react-i18next'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
 import {
-  COMPONENT_DETAILS,
-  HERO_CARDS,
-  INQUIRY_ITEMS,
-  KIT_COMPONENTS,
-  MAKING_STEPS,
-  MAKING_VIDEO,
-  PACKAGING_VIDEOS,
-  PRINCIPLE_TEXT,
+  COMPONENT_DETAIL_MEDIA,
+  KIT_COMPONENT_MEDIA,
+  MAKING_VIDEO_ID,
+  PACKAGING_VIDEO_IDS,
   heroKit,
+  type ComponentDetail,
+  type KitComponent,
+  type KitVideo,
 } from '@/pages/products/education/content'
 import {
   ComponentDetailView,
@@ -20,33 +18,76 @@ import {
 } from '@/pages/products/education/components'
 import '@/assets/design/products/education.css'
 
+type Card = { title: string; description: string }
+type CompText = {
+  nameKr: string
+  body: string
+  bullets: string[]
+  note?: string
+  videoLabels: string[]
+}
+
 export default function Education() {
-  const [isQuoteOpen, setIsQuoteOpen] = useState(false)
+  const { t } = useTranslation(['education', 'product'])
+  const opts = { returnObjects: true, ns: 'education' } as const
+  const heroLead = t('hero.lead', opts) as unknown as string[]
+  const heroCards = t('heroCards', opts) as unknown as Card[]
+  const components = t('components', opts) as unknown as Record<string, CompText>
+  const principleText = t('principle.text', opts) as unknown as string[]
+  const makingSteps = t('making.steps', opts) as unknown as string[]
+  const packagingLabels = t('packaging.videoLabels', opts) as unknown as string[]
+  const inquiryItems = t('cta.items', opts) as unknown as string[]
+
+  const kitComponents: KitComponent[] = KIT_COMPONENT_MEDIA.map((m) => ({
+    name: m.name,
+    nameKr: components[m.id].nameKr,
+    volume: m.volume,
+    image: m.image,
+  }))
+
+  const componentDetails: ComponentDetail[] = COMPONENT_DETAIL_MEDIA.map((m) => {
+    const c = components[m.id]
+    return {
+      id: m.id,
+      index: m.index,
+      name: m.name,
+      nameKr: c.nameKr,
+      image: m.image,
+      body: c.body,
+      bulletPoints: c.bullets,
+      note: c.note,
+      videos: m.videoIds.map((videoId, i) => ({ label: c.videoLabels[i], videoId })),
+    }
+  })
+
+  const packagingVideos: KitVideo[] = PACKAGING_VIDEO_IDS.map((videoId, i) => ({
+    label: packagingLabels[i],
+    videoId,
+  }))
+
+  const makingVideo: KitVideo = {
+    label: t('making.videoLabel', { ns: 'education' }),
+    videoId: MAKING_VIDEO_ID,
+  }
 
   return (
     <article className="ed-page">
-      <QuoteRequestModal isOpen={isQuoteOpen} onClose={() => setIsQuoteOpen(false)} />
-
       {/* 1. Hero */}
       <header className="ed-hero">
         <div className="ed-hero__inner">
           <div className="ed-hero__content">
-            <p className="ed-hero__label">Products</p>
-            <h1 className="ed-hero__title">자성유체 키트</h1>
-            <p className="ed-hero__title-en">Ferrofluid Kit</p>
+            <p className="ed-hero__label">{t('hero.label', { ns: 'education' })}</p>
+            <h1 className="ed-hero__title">{t('hero.title', { ns: 'education' })}</h1>
+            {t('hero.titleEn', { ns: 'education' }) ? (
+              <p className="ed-hero__title-en">{t('hero.titleEn', { ns: 'education' })}</p>
+            ) : null}
             <div className="ed-hero__lead">
-              <p>
-                자성유체의 독특한 움직임과 자기장 반응을 직접 관찰하고 다뤄볼 수 있는
-                실험용 키트입니다. 자성유체와 세척액·에칭제·코팅제로 구성되어 있어, 자성유체
-                실험과 표면 처리 과정을 함께 체험할 수 있습니다.
-              </p>
-              <p>
-                과학 교육, 학교 실험, 전시 체험, 콘텐츠 제작, 연구용 데모에 활용할 수
-                있습니다.
-              </p>
+              {heroLead.map((para) => (
+                <p key={para}>{para}</p>
+              ))}
             </div>
             <div className="ed-hero__cards">
-              {HERO_CARDS.map((card) => (
+              {heroCards.map((card) => (
                 <article key={card.title} className="ed-point-card">
                   <h3>{card.title}</h3>
                   <p>{card.description}</p>
@@ -55,74 +96,66 @@ export default function Education() {
             </div>
           </div>
           <div className="ed-hero__visual">
-            <img className="ed-hero__image" src={heroKit} alt="자성유체 키트" />
+            <img
+              className="ed-hero__image"
+              src={heroKit}
+              alt={t('hero.heroAlt', { ns: 'education' })}
+            />
           </div>
         </div>
       </header>
 
       <div className="ed-page__body">
         {/* 2. 제품 구성 */}
-        <Section title="제품 구성">
+        <Section title={t('compose.title', { ns: 'education' })}>
           <div className="ed-prose">
-            <p>
-              자성유체 키트는 자성유체와 세척액, 에칭제, 코팅제로 구성됩니다. 각 구성품은
-              자성유체 실험과 표면 처리 과정에서 각기 다른 역할을 합니다.
-            </p>
+            <p>{t('compose.prose', { ns: 'education' })}</p>
           </div>
           <div className="ed-product-grid">
-            {KIT_COMPONENTS.map((item) => (
+            {kitComponents.map((item) => (
               <ProductCard key={item.name} item={item} />
             ))}
           </div>
         </Section>
 
         {/* 3. 구성품별 상세 */}
-        <Section title="구성품별 상세" className="ed-section--kit">
+        <Section title={t('detailTitle', { ns: 'education' })} className="ed-section--kit">
           <div className="ed-detail-list">
-            {COMPONENT_DETAILS.map((detail) => (
+            {componentDetails.map((detail) => (
               <ComponentDetailView key={detail.id} detail={detail} />
             ))}
           </div>
         </Section>
 
         {/* 4. 제품 수량 및 패키징 */}
-        <Section title="제품 수량 및 패키징">
+        <Section title={t('packaging.title', { ns: 'education' })}>
           <div className="ed-prose">
-            <p>
-              자성유체는 100㎖ 단위로, 세척액·에칭제·코팅제는 1,000㎖ 단위로 제공됩니다.
-              사용 목적과 수량에 맞춰 구성을 조정할 수 있습니다.
-            </p>
+            <p>{t('packaging.prose', { ns: 'education' })}</p>
           </div>
           <div className="ed-video-grid ed-video-grid--two">
-            {PACKAGING_VIDEOS.map((video) => (
+            {packagingVideos.map((video) => (
               <VideoSlot key={video.label} video={video} />
             ))}
           </div>
         </Section>
 
         {/* 5. 동작 원리 */}
-        <Section title="동작 원리">
+        <Section title={t('principle.title', { ns: 'education' })}>
           <div className="ed-prose">
-            {PRINCIPLE_TEXT.map((paragraph) => (
+            {principleText.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <p className="ed-highlight">
-            자성유체는 “자석에 반응하는 액체”로, 자기장에 따라 살아 움직이는 듯한 패턴을
-            만들어냅니다.
-          </p>
+          <p className="ed-highlight">{t('principle.highlight', { ns: 'education' })}</p>
         </Section>
 
         {/* 6. 제작 방법 */}
-        <Section title="제작 방법">
+        <Section title={t('making.title', { ns: 'education' })}>
           <div className="ed-prose">
-            <p>
-              키트 구성품을 이용해 표면 처리부터 자성유체 적용까지의 과정을 순서대로 진행할
-              수 있습니다. 자세한 과정은 아래 영상과 카탈로그를 통해 확인하실 수 있습니다.
-            </p>
+            <p>{t('making.prose', { ns: 'education' })}</p>
           </div>
           <ol className="ed-safety-list ed-making-list">
-            {MAKING_STEPS.map((step, index) => (
+            {makingSteps.map((step, index) => (
               <li key={step}>
                 <span className="ed-safety-list__num">{index + 1}</span>
                 {step}
@@ -130,9 +163,9 @@ export default function Education() {
             ))}
           </ol>
           <div className="ed-making-video">
-            <VideoSlot video={MAKING_VIDEO} />
+            <VideoSlot video={makingVideo} />
             <figure className="ed-making-video__image">
-              <img src={heroKit} alt="자성유체 키트 사용 예시" loading="lazy" />
+              <img src={heroKit} alt={t('making.imageAlt', { ns: 'education' })} loading="lazy" />
             </figure>
           </div>
         </Section>
@@ -140,28 +173,18 @@ export default function Education() {
         {/* 7. Bottom CTA */}
         <section className="ed-cta-banner">
           <div className="ed-cta-banner__inner">
-            <h2>자성유체 키트가 필요하신가요?</h2>
-            <p>
-              교육용, 전시용, 체험용, 연구 데모용 등 사용 목적에 따라 필요한 구성과 수량이
-              달라질 수 있습니다. 사용 목적을 알려주시면 적합한 자성유체 키트 구성을
-              안내해드립니다.
-            </p>
+            <h2>{t('cta.title', { ns: 'education' })}</h2>
+            <p>{t('cta.desc', { ns: 'education' })}</p>
             <div className="ed-cta-group">
               <CatalogDownloadButton product="education" className="ed-btn ed-btn--primary">
-                카탈로그 다운로드
+                {t('product:catalogDownload')}
               </CatalogDownloadButton>
-              <button
-                type="button"
-                className="ed-btn ed-btn--secondary"
-                onClick={() => setIsQuoteOpen(true)}
-              >
-                제품문의
-              </button>
             </div>
+            <p className="product-cta-note">{t('product:contactNote')}</p>
             <div className="ed-inquiry-list">
-              <p className="ed-cta-banner__note">문의 시 전달하면 좋은 정보</p>
+              <p className="ed-cta-banner__note">{t('product:inquiryNote')}</p>
               <ul className="ed-check-list ed-check-list--light">
-                {INQUIRY_ITEMS.map((item) => (
+                {inquiryItems.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
               </ul>

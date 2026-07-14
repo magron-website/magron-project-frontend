@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { useTranslation } from 'react-i18next'
 import type { ComponentDetail, KitComponent, KitVideo } from '@/pages/products/education/content'
 
 type SectionProps = {
@@ -41,6 +42,7 @@ export function ProductCard({ item }: { item: KitComponent }) {
 
 /** 영상 슬롯 — videoId가 있으면 유튜브 임베드, 없으면 "준비중" 자리표시자 */
 export function VideoSlot({ video }: { video: KitVideo }) {
+  const { t } = useTranslation('education')
   return (
     <figure className="ed-video-slot">
       {video.videoId ? (
@@ -57,7 +59,7 @@ export function VideoSlot({ video }: { video: KitVideo }) {
       ) : (
         <div className="ed-video-slot__frame">
           <span className="ed-video-slot__play" aria-hidden="true" />
-          <span className="ed-video-slot__badge">영상 준비중</span>
+          <span className="ed-video-slot__badge">{t('videoBadge')}</span>
         </div>
       )}
       <figcaption>{video.label}</figcaption>

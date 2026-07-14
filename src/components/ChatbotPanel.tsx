@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -12,6 +13,7 @@ type ChatbotPanelProps = {
 }
 
 export default function ChatbotPanel({ isOpen, onClose }: ChatbotPanelProps) {
+  const { t } = useTranslation('chatbot')
   const { messages, isLoading, sendMessage } = useChat()
   const [input, setInput] = useState('')
   const listRef = useRef<HTMLDivElement>(null)
@@ -67,7 +69,7 @@ export default function ChatbotPanel({ isOpen, onClose }: ChatbotPanelProps) {
             className="chat-panel"
             role="dialog"
             aria-modal="true"
-            aria-label="MAGRON 챗봇"
+            aria-label={t('title')}
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
@@ -77,15 +79,15 @@ export default function ChatbotPanel({ isOpen, onClose }: ChatbotPanelProps) {
               <div className="chat-panel__brand">
                 <img className="chat-panel__avatar" src={chatbotImage} alt="" />
                 <div>
-                  <p className="chat-panel__title">MAGRON 챗봇</p>
-                  <p className="chat-panel__subtitle">무엇이든 물어보세요</p>
+                  <p className="chat-panel__title">{t('title')}</p>
+                  <p className="chat-panel__subtitle">{t('subtitle')}</p>
                 </div>
               </div>
               <button
                 type="button"
                 className="chat-panel__close"
                 onClick={onClose}
-                aria-label="챗봇 닫기"
+                aria-label={t('close')}
               >
                 <span />
                 <span />
@@ -127,7 +129,7 @@ export default function ChatbotPanel({ isOpen, onClose }: ChatbotPanelProps) {
               <textarea
                 ref={inputRef}
                 className="chat-panel__input"
-                placeholder="메시지를 입력하세요..."
+                placeholder={t('placeholder')}
                 rows={1}
                 value={input}
                 onChange={(event) => setInput(event.target.value)}
@@ -138,7 +140,7 @@ export default function ChatbotPanel({ isOpen, onClose }: ChatbotPanelProps) {
                 className="chat-panel__send"
                 onClick={handleSubmit}
                 disabled={isLoading || !input.trim()}
-                aria-label="전송"
+                aria-label={t('send')}
               >
                 <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
                   <path

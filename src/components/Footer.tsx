@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import '@/assets/design/footer.css'
 import { homeImages } from '@/assets/images/homeImages'
 
@@ -77,13 +78,15 @@ const SOCIAL_LINKS: SocialLink[] = [
 ]
 
 export default function Footer() {
+  const { t } = useTranslation('footer')
+
   return (
     <footer className="home-footer">
       <div className="home-footer__inner">
         <div className="home-footer__company">
-          <p className="home-footer__company-name">㈜마그론 / MAGRON</p>
+          <p className="home-footer__company-name">{t('companyName')}</p>
           <p className="home-footer__company-detail">
-            (15588) 경기도 안산시 상록구 해안로 706 경기테크노파크 3동 403호
+            {t('address')}
             <br />
             copyright © 2024 MAGRON
             <br />
@@ -95,13 +98,11 @@ export default function Footer() {
           <div className="home-footer__contact">
             <PhoneIcon />
             <p className="home-footer__contact-text">
-              TEL : (Domestic) 031-500-4633
+              {t('telDomestic')}
               <br />
-              <span className="home-footer__contact-indent">
-                (Overseas) +82-31-500-4632
-              </span>
+              <span className="home-footer__contact-indent">{t('telOverseas')}</span>
               <br />
-              FAX : 02-31-500-4631
+              {t('fax')}
             </p>
           </div>
 

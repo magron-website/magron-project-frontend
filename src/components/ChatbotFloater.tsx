@@ -1,4 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
 import chatbotImage from '@/assets/images/chatbot.png'
@@ -11,6 +12,7 @@ const HEADER_OFFSET = 96
 type FloaterMode = 'hero' | 'top'
 
 export default function ChatbotFloater() {
+  const { t } = useTranslation('chatbot')
   const { pathname } = useLocation()
   const floaterRef = useRef<HTMLDivElement>(null)
   const [mode, setMode] = useState<FloaterMode>('hero')
@@ -86,17 +88,18 @@ export default function ChatbotFloater() {
       >
         <div className="chatbot-floater__panel">
           <p className="chatbot-floater__text">
-            궁금한건
-            <br />
-            챗봇에게
-            <br />
-            물어보세요!
+            {(t('floaterLines', { returnObjects: true }) as string[]).map((line, index) => (
+              <span key={index}>
+                {line}
+                {index < 2 ? <br /> : null}
+              </span>
+            ))}
           </p>
         </div>
         <button
           type="button"
           className="chatbot-floater__button"
-          aria-label="챗봇 열기"
+          aria-label={t('open')}
           onClick={() => setIsChatOpen(true)}
         >
           <img className="chatbot-floater__icon" src={chatbotImage} alt="" />

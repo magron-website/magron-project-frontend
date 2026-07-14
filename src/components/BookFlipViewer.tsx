@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useRef, useState, type CSSProperties } from 'react'
+import { useTranslation } from 'react-i18next'
 import HTMLFlipBook from 'react-pageflip'
 import * as pdfjs from 'pdfjs-dist'
 import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
@@ -128,6 +129,7 @@ async function renderPdfToImages(pdfUrl: string, pageWidth: number): Promise<str
 }
 
 export default function BookFlipViewer({ isOpen, title, pdfUrl, onClose }: BookFlipViewerProps) {
+  const { t } = useTranslation('viewer')
   const [pageImages, setPageImages] = useState<string[]>([])
   const [isLoading, setIsLoading] = useState(false)
   const [loadError, setLoadError] = useState<string | null>(null)
@@ -185,7 +187,7 @@ export default function BookFlipViewer({ isOpen, title, pdfUrl, onClose }: BookF
         if (cancelled) return
         const message = getErrorMessage(error)
         console.error('Failed to load PDF:', error)
-        setLoadError(`PDF를 불러오지 못했습니다. (${message})`)
+        setLoadError(t('pdfError', { message }))
       } finally {
         if (!cancelled) {
           setIsLoading(false)
@@ -207,7 +209,7 @@ export default function BookFlipViewer({ isOpen, title, pdfUrl, onClose }: BookF
       <button
         type="button"
         className="book-flip-viewer__backdrop"
-        aria-label="닫기"
+        aria-label={t('close')}
         onClick={onClose}
       />
       <div
@@ -223,7 +225,7 @@ export default function BookFlipViewer({ isOpen, title, pdfUrl, onClose }: BookF
         <div className="book-flip-viewer__header">
           <h2 className="book-flip-viewer__title">{title}</h2>
           <button type="button" className="book-flip-viewer__close" onClick={onClose}>
-            닫기
+            {t('close')}
           </button>
         </div>
 
@@ -234,7 +236,7 @@ export default function BookFlipViewer({ isOpen, title, pdfUrl, onClose }: BookF
             </p>
           ) : isLoading || pageImages.length === 0 ? (
             <div className="book-flip-viewer__status" aria-busy="true">
-              <ClipLoader color="#205694" size={48} aria-label="PDF 로딩 중" />
+              <ClipLoader color="#205694" size={48} aria-label={t('pdfLoading')} />
             </div>
           ) : (
             <HTMLFlipBook

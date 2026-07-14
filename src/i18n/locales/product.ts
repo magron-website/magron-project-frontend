@@ -1,0 +1,40 @@
+const product = {
+  ko: {
+    sectionAria: '제품 소개',
+    heading: '제품 정보',
+    loadError: '제품 정보를 불러올 수 없습니다.',
+    tileDetailAria: '{{title}} 상세 보기',
+    statusNotFound: '제품을 찾을 수 없습니다.',
+    statusBack: '홈으로 돌아가기',
+    catalogDownload: '카탈로그 다운로드',
+    productInquiry: '제품문의',
+    inquiryNote: '문의 시 전달하면 좋은 정보',
+    contactNote: '문의사항은 magron@magron.co.kr 로 해주시기 바랍니다.',
+  },
+  en: {
+    sectionAria: 'Product introduction',
+    heading: 'Products',
+    loadError: 'Unable to load product information.',
+    tileDetailAria: 'View {{title}} details',
+    statusNotFound: 'Product not found.',
+    statusBack: 'Back to home',
+    catalogDownload: 'Download Catalog',
+    productInquiry: 'Product Inquiry',
+    inquiryNote: 'Helpful information to include in your inquiry',
+    contactNote: 'For inquiries, please contact magron@magron.co.kr.',
+  },
+  zh: {
+    sectionAria: '产品介绍',
+    heading: '产品信息',
+    loadError: '无法加载产品信息。',
+    tileDetailAria: '查看 {{title}} 详情',
+    statusNotFound: '未找到产品。',
+    statusBack: '返回首页',
+    catalogDownload: '下载产品目录',
+    productInquiry: '产品咨询',
+    inquiryNote: '咨询时建议提供的信息',
+    contactNote: '如有咨询，请联系 magron@magron.co.kr。',
+  },
+}
+
+export default product

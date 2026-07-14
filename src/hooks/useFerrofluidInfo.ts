@@ -1,21 +1,26 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import i18n, { type Language } from '@/i18n'
+import { localize } from '@/lib/localizeRow'
 import { supabase } from '@/lib/supabase'
 import type { FerrofluidInfo, FerrofluidInfoRow } from '@/types/ferrofluidInfo'
 
-function mapRow(row: FerrofluidInfoRow): FerrofluidInfo {
+function mapRow(row: FerrofluidInfoRow, lang: Language): FerrofluidInfo {
   return {
     id: row.id,
-    title: row.title,
-    subtitle: row.subtitle ?? '',
-    description: row.description ?? '',
+    title: localize(row, 'title', lang) ?? '',
+    subtitle: localize(row, 'subtitle', lang) ?? '',
+    description: localize(row, 'description', lang) ?? '',
     imageUrl: row.image_url,
-    category: row.category ?? 'ferrofluid',
+    category: localize(row, 'category', lang) ?? 'ferrofluid',
     sortOrder: row.sort_order,
   }
 }
 
 export function useFerrofluidInfo() {
-  const [images, setImages] = useState<FerrofluidInfo[]>([])
+  const { i18n: i18next } = useTranslation()
+  const lang = i18next.language as Language
+  const [rows, setRows] = useState<FerrofluidInfoRow[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
@@ -29,7 +34,7 @@ export function useFerrofluidInfo() {
       try {
         const { data, error: fetchError } = await supabase
           .from('ferrofluid_info')
-          .select('id, title, subtitle, description, image_url, category, sort_order, is_active')
+          .select('*')
           .eq('is_active', true)
           .order('sort_order', { ascending: true })
 
@@ -38,24 +43,24 @@ export function useFerrofluidInfo() {
         if (fetchError) {
           console.error('Failed to load ferrofluid images:', fetchError.message)
           setError(fetchError.message)
-          setImages([])
+          setRows([])
           return
         }
 
         if (data?.length) {
-          setImages(data.map((row) => mapRow(row as FerrofluidInfoRow)))
+          setRows(data as FerrofluidInfoRow[])
           return
         }
 
-        setError('등록된 Ferrofluid 이미지가 없습니다.')
-        setImages([])
+        setError(i18n.t('messages:ferroNone'))
+        setRows([])
       } catch (err) {
         if (cancelled) return
         const message =
-          err instanceof Error ? err.message : 'Ferrofluid 이미지를 불러오지 못했습니다.'
+          err instanceof Error ? err.message : i18n.t('messages:ferroLoadFailed')
         console.error('Failed to load ferrofluid images:', message)
         setError(message)
-        setImages([])
+        setRows([])
       } finally {
         if (!cancelled) {
           setIsLoading(false)
@@ -69,6 +74,8 @@ export function useFerrofluidInfo() {
       cancelled = true
     }
   }, [])
+
+  const images = useMemo(() => rows.map((row) => mapRow(row, lang)), [rows, lang])
 
   return { images, isLoading, error }
 }
