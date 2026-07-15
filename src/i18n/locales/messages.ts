@@ -14,6 +14,8 @@ const messages = {
     ferroLoadFailed: 'Ferrofluid 이미지를 불러오지 못했습니다.',
     booksNone: '등록된 카탈로그가 없습니다.',
     booksLoadFailed: '카탈로그를 불러오지 못했습니다.',
+    techNone: '등록된 기술자료가 없습니다.',
+    techLoadFailed: '기술자료를 불러오지 못했습니다.',
   },
   en: {
     chatWelcome:
@@ -32,6 +34,8 @@ const messages = {
     ferroLoadFailed: 'Failed to load Ferrofluid images.',
     booksNone: 'No catalog is registered.',
     booksLoadFailed: 'Failed to load the catalog.',
+    techNone: 'No technical documents are registered.',
+    techLoadFailed: 'Failed to load the technical documents.',
   },
   zh: {
     chatWelcome: '您好！我是 MAGRON 聊天机器人。有关产品或公司的任何问题，欢迎向我提问。',
@@ -48,6 +52,8 @@ const messages = {
     ferroLoadFailed: '无法加载 Ferrofluid 图片。',
     booksNone: '暂无已登记的产品目录。',
     booksLoadFailed: '无法加载产品目录。',
+    techNone: '暂无已登记的技术资料。',
+    techLoadFailed: '无法加载技术资料。',
   },
 }
 

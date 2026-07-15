@@ -7,7 +7,10 @@
       "Bash(grep -n \"^\\\\.mg-[a-z-]*\\\\s*{\\\\|^\\\\.mg-[a-z-]*[ ,]\" src/assets/design/products/magoil.css)",
       "Bash(cd \"c:/Users/admin/Desktop/sungcheol/magron-project-frontend\" && grep -n \"export const HERO_POINTS\\\\|export const INQUIRY_ITEMS\" src/pages/products/magoil/content.ts && sed -n '/export const HERO_POINTS/,/] as const/p' src/pages/products/magoil/content.ts)",
       "Bash(npx tsc *)",
-      "Bash(npx vite *)"
+      "Bash(npx vite *)",
+      "Bash(node -e ' *)",
+      "Bash(echo \"exit=$?\")",
+      "Bash(npm run *)"
     ],
     "additionalDirectories": [
       "c:\\Users\\admin\\Desktop\\sungcheol\\magron-project-frontend\\src\\pages\\products\\magoil"

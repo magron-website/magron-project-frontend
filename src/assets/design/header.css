@@ -153,6 +153,7 @@
   font-size: inherit;
   font-weight: 700;
   line-height: inherit;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -439,12 +440,8 @@
     font-size: 16px;
     font-weight: 700;
     text-align: left;
+    text-decoration: none;
     cursor: pointer;
-  }
-
-  .home-header__mobile-item--static {
-    color: #a1a1aa;
-    cursor: default;
   }
 
   .home-header__mobile-sub {

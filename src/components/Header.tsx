@@ -165,9 +165,13 @@ export default function Header() {
                 {t('nav.catalog')}
               </button>
             ) : (
-              <span key={key} className="home-header__nav-item">
+              <Link
+                key={key}
+                to="/tech"
+                className={`home-header__nav-item home-header__nav-item--link${pathname === '/tech' ? ' home-header__nav-item--active' : ''}`}
+              >
                 {t('nav.tech')}
-              </span>
+              </Link>
             ),
           )}
         </nav>
@@ -264,9 +268,13 @@ export default function Header() {
             >
               {t('nav.catalog')}
             </button>
-            <span className="home-header__mobile-item home-header__mobile-item--static">
+            <Link
+              to="/tech"
+              className="home-header__mobile-item"
+              onClick={() => setMobileOpen(false)}
+            >
               {t('nav.tech')}
-            </span>
+            </Link>
 
             <div className="home-header__mobile-divider" />
 

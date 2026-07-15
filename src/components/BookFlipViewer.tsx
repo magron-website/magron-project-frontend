@@ -1,18 +1,9 @@
 import { forwardRef, useEffect, useRef, useState, type CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import HTMLFlipBook from 'react-pageflip'
-import * as pdfjs from 'pdfjs-dist'
-import pdfjsWorker from 'pdfjs-dist/build/pdf.worker.min.mjs?url'
 import { ClipLoader } from 'react-spinners'
+import { renderPdfToImages } from '@/lib/pdf'
 import '@/assets/design/book-flip-viewer.css'
-
-pdfjs.GlobalWorkerOptions.workerSrc = pdfjsWorker
-
-const pdfDocumentOptions = {
-  cMapUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/cmaps/`,
-  cMapPacked: true,
-  standardFontDataUrl: `https://unpkg.com/pdfjs-dist@${pdfjs.version}/standard_fonts/`,
-}
 
 type BookFlipViewerProps = {
   isOpen: boolean
@@ -93,39 +84,6 @@ function getErrorMessage(error: unknown): string {
     return String((error as { message: unknown }).message)
   }
   return String(error)
-}
-
-async function renderPdfToImages(pdfUrl: string, pageWidth: number): Promise<string[]> {
-  const pdf = await pdfjs.getDocument({ url: pdfUrl, ...pdfDocumentOptions }).promise
-  const images: string[] = []
-
-  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-    const page = await pdf.getPage(pageNumber)
-    const viewport = page.getViewport({ scale: 1 })
-    const scale = pageWidth / viewport.width
-    const scaledViewport = page.getViewport({ scale })
-
-    const canvas = document.createElement('canvas')
-    const context = canvas.getContext('2d')
-
-    if (!context) {
-      throw new Error('Canvas is not supported')
-    }
-
-    canvas.width = Math.floor(scaledViewport.width)
-    canvas.height = Math.floor(scaledViewport.height)
-
-    const renderTask = page.render({
-      canvasContext: context,
-      viewport: scaledViewport,
-      canvas,
-    })
-
-    await renderTask.promise
-    images.push(canvas.toDataURL('image/jpeg', 0.92))
-  }
-
-  return images
 }
 
 export default function BookFlipViewer({ isOpen, title, pdfUrl, onClose }: BookFlipViewerProps) {

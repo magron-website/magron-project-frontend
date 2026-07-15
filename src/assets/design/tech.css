@@ -1,0 +1,425 @@
+/* ==========================================================================
+   Technical information — the home teaser section, the /tech page, and the
+   document card shared by both.
+   ========================================================================== */
+
+@import './font.css';
+
+/* --------------------------------------------------------------------------
+   Document card + grid (shared)
+   -------------------------------------------------------------------------- */
+
+.tech-doc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 72px 32px;
+  width: 100%;
+}
+
+.tech-doc {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+}
+
+.tech-doc__title {
+  width: 100%;
+  height: 24px;
+  color: #27272a;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tech-doc__book-button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.tech-doc__book-button:disabled {
+  cursor: default;
+}
+
+.tech-doc__book-button:disabled .tech-doc__hint {
+  display: none;
+}
+
+.tech-doc__book {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 325px;
+  padding: 8px 24px;
+  overflow: visible;
+}
+
+/* book-cover-3d absolutely positions, sizes and rounds this wrapper. */
+.tech-doc__cover {
+  overflow: hidden;
+}
+
+/* `contain`, not `cover`: show the whole first page even when that letterboxes
+   it. The white background stands in for the rest of the sheet — cropping cut
+   the margins (and text) off pages that aren't the book's aspect ratio. */
+.tech-doc__cover-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: #fff;
+  display: block;
+}
+
+.tech-doc__cover-fallback {
+  width: 100%;
+  height: 100%;
+  background: #f4f4f5;
+}
+
+/* A cover that could not be rasterised — the card still opens and downloads. */
+.tech-doc__cover-fallback--failed {
+  background: repeating-linear-gradient(
+    45deg,
+    #f4f4f5,
+    #f4f4f5 10px,
+    #ebebee 10px,
+    #ebebee 20px
+  );
+}
+
+.tech-doc__hint {
+  margin: 10px 0 0;
+  padding: 0;
+  color: #52525b;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition:
+    opacity 0.2s ease,
+    visibility 0.2s ease,
+    transform 0.2s ease;
+}
+
+.tech-doc__book-button:hover:not(:disabled) .tech-doc__hint,
+.tech-doc__book-button:focus-visible:not(:disabled) .tech-doc__hint {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* Clamped rather than free-flowing: the home teaser sits in a fixed-height
+   slot, so every card has to occupy the same number of lines. */
+.tech-doc__desc {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin: 0;
+  height: 60px;
+  color: #52525b;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  text-align: center;
+}
+
+.tech-doc__download {
+  width: 144px;
+  height: 28px;
+  background: #082f49;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.tech-doc__download--disabled {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+
+.tech-doc__download-text {
+  color: #fff;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+}
+
+/* --------------------------------------------------------------------------
+   Home teaser section
+   -------------------------------------------------------------------------- */
+
+.home-tech {
+  position: absolute;
+  top: calc(
+    var(--product-section-offset) + var(--product-scroll-height) + var(--catalog-height)
+  );
+  left: 0;
+  width: 100%;
+  height: var(--tech-height);
+  background: #f6f7f9;
+  border-top: 1px solid #ececf0;
+  border-bottom: 1px solid #ececf0;
+  box-sizing: border-box;
+}
+
+.home-tech__inner {
+  position: relative;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 20px 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+.home-tech__header {
+  margin: 0;
+  padding: 72px 0 40px;
+  text-align: center;
+}
+
+.home-tech__title {
+  margin: 0;
+  color: #111;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 42px;
+  font-weight: 400;
+  line-height: 50px;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.home-tech__lead {
+  margin: 14px 0 0;
+  color: #52525b;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  text-align: center;
+}
+
+.home-tech__message {
+  margin: 0 0 24px;
+  text-align: center;
+  color: #71717a;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 16px;
+}
+
+.home-tech__more {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 200px;
+  height: 52px;
+  margin-top: 56px;
+  padding: 0 32px;
+  border: 1px solid #082f49;
+  border-radius: 100px;
+  background: transparent;
+  color: #082f49;
+  font-family: 'ChosunIlboMyungjo', serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 52px;
+  text-decoration: none;
+  box-sizing: border-box;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.home-tech__more:hover,
+.home-tech__more:focus-visible {
+  background: #082f49;
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* --------------------------------------------------------------------------
+   /tech page
+   -------------------------------------------------------------------------- */
+
+.tech-page {
+  display: block;
+  font-family: 'ChosunIlboMyungjo', serif;
+}
+
+.tech-page__hero {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f6f7f9 0%, #fff 60%);
+}
+
+.tech-page__glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.tech-page__glow--one {
+  top: -180px;
+  left: -120px;
+  width: 420px;
+  height: 420px;
+  background: rgba(8, 47, 73, 0.14);
+}
+
+.tech-page__glow--two {
+  top: -80px;
+  right: -140px;
+  width: 360px;
+  height: 360px;
+  background: rgba(32, 86, 148, 0.12);
+}
+
+.tech-page__inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 88px 20px 120px;
+  box-sizing: border-box;
+}
+
+.tech-page__heading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 64px;
+  text-align: center;
+}
+
+.tech-page__title {
+  margin: 0;
+  color: #111;
+  font-size: 46px;
+  font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
+
+.tech-page__rule {
+  width: 64px;
+  height: 1px;
+  margin: 20px 0;
+  background: #082f49;
+}
+
+.tech-page__lead {
+  max-width: 720px;
+  margin: 0;
+  color: #52525b;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.tech-page__message {
+  margin: 0 0 32px;
+  text-align: center;
+  color: #71717a;
+  font-size: 16px;
+}
+
+/* --------------------------------------------------------------------------
+   Mobile / tablet — matches the catalog: the fixed desktop slot is dropped and
+   the section flows in document order.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .home-tech {
+    position: static;
+    height: auto;
+  }
+
+  .home-tech__inner {
+    padding: 0 20px 56px;
+  }
+
+  .home-tech__header {
+    padding: 48px 0 32px;
+  }
+
+  .home-tech__title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .tech-doc-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 44px 20px;
+  }
+
+  .tech-doc__book {
+    min-height: auto;
+    padding: 0;
+  }
+
+  .tech-doc__title {
+    height: auto;
+    font-size: 16px;
+    line-height: 20px;
+    white-space: normal;
+  }
+
+  .tech-doc__desc {
+    height: auto;
+  }
+
+  .home-tech__more {
+    margin-top: 40px;
+  }
+
+  .tech-page__inner {
+    padding: 56px 20px 72px;
+  }
+
+  .tech-page__heading {
+    margin-bottom: 44px;
+  }
+
+  .tech-page__title {
+    font-size: 32px;
+  }
+}
+
+@media (max-width: 560px) {
+  .tech-doc-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .home-tech__title,
+  .tech-page__title {
+    font-size: 26px;
+  }
+}

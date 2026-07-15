@@ -1,16 +1,24 @@
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import { BookCover } from 'book-cover-3d'
 import { homeImages } from '@/assets/images/homeImages'
 import BookFlipViewer from '@/components/BookFlipViewer'
 import HeroCarousel from '@/components/HeroCarousel'
+import TechDocumentCard from '@/components/TechDocumentCard'
 import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
+import { useTechDocuments } from '@/hooks/useTechDocuments'
 import type { Book } from '@/types/book'
+import type { TechDocument } from '@/types/techDocument'
 import '@/assets/design/animation.css'
+import '@/assets/design/tech.css'
 
 const catalogSortOrders = [1, 2, 3, 4, 5, 6] as const
+
+/** The home teaser shows a fixed six; the rest live behind "View More" on /tech. */
+const HOME_TECH_LIMIT = 6
 
 const catalogBookProps = {
   width: 230,
@@ -129,6 +137,61 @@ function HomeCatalog() {
   )
 }
 
+function HomeTech() {
+  const { t } = useTranslation('tech')
+  const { documents, error } = useTechDocuments()
+  const [viewerDocument, setViewerDocument] = useState<TechDocument | null>(null)
+  const { ref, inView } = useInView<HTMLElement>({ threshold: 0.08, once: false })
+
+  // The reveal re-runs on every pass (once: false), but a cover only needs
+  // rendering the first time the section is reached — so latch it here.
+  const [hasBeenInView, setHasBeenInView] = useState(false)
+
+  useEffect(() => {
+    if (inView) setHasBeenInView(true)
+  }, [inView])
+
+  const teaserDocuments = useMemo(
+    () => documents.slice(0, HOME_TECH_LIMIT),
+    [documents],
+  )
+
+  return (
+    <section id="tech" ref={ref} className={`home-tech${inView ? ' is-revealed' : ''}`}>
+      <BookFlipViewer
+        isOpen={viewerDocument !== null}
+        title={viewerDocument?.title ?? ''}
+        pdfUrl={viewerDocument?.fileUrl ?? ''}
+        onClose={() => setViewerDocument(null)}
+      />
+      <div className="home-tech__inner">
+        <div className="home-tech__header">
+          <h2 className="home-tech__title">{t('heading')}</h2>
+          <p className="home-tech__lead">{t('lead')}</p>
+        </div>
+        {error ? (
+          <p className="home-tech__message" role="alert">
+            {error}
+          </p>
+        ) : null}
+        <div className="tech-doc-grid">
+          {teaserDocuments.map((document) => (
+            <TechDocumentCard
+              key={document.id}
+              document={document}
+              isVisible={hasBeenInView}
+              onOpen={setViewerDocument}
+            />
+          ))}
+        </div>
+        <Link className="home-tech__more" to="/tech" aria-label={t('viewMoreAria')}>
+          {t('viewMore')}
+        </Link>
+      </div>
+    </section>
+  )
+}
+
 function HomeContact() {
   const { t } = useTranslation('home')
   const { ref, inView } = useInView<HTMLElement>({ threshold: 0.15, once: false })
@@ -216,6 +279,7 @@ export default function Home() {
       <HomeHero />
       <HomeProducts />
       <HomeCatalog />
+      <HomeTech />
       <HomeContact />
     </div>
   )

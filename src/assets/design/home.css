@@ -8,11 +8,18 @@
   --header-height: 80px;
   --product-scroll-height: 1500px;
   --product-section-offset: calc(690px + var(--header-height));
+  --catalog-height: 1432px;
+  /* Fixed slot for the tech teaser: always two rows of six fixed-height cards
+     plus the header, the View More link and the 1px rules. Keep in sync with
+     tech.css — measured content is 1544px. */
+  --tech-height: 1548px;
   --contact-offset: 3133px;
   --contact-height: 560px;
   --footer-height: 144px;
   --layout-base: calc(var(--header-height) + var(--product-scroll-height) - 1011px);
-  --content-end: calc(var(--contact-offset) + var(--contact-height) + var(--layout-base));
+  --content-end: calc(
+    var(--contact-offset) + var(--tech-height) + var(--contact-height) + var(--layout-base)
+  );
 
   position: relative;
   width: 100%;
@@ -61,7 +68,7 @@
   top: calc(var(--product-section-offset) + var(--product-scroll-height));
   left: 0;
   width: 100%;
-  height: 1432px;
+  height: var(--catalog-height);
 }
 
 .home-catalog__inner {
@@ -243,7 +250,7 @@
 
 .home-contact {
   position: absolute;
-  top: calc(var(--contact-offset) + var(--layout-base));
+  top: calc(var(--contact-offset) + var(--tech-height) + var(--layout-base));
   left: 0;
   width: 100%;
   height: var(--contact-height);

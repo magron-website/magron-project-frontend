@@ -37,6 +37,18 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       zh: 'MAGRON 成立于2004年，专业研发与生产磁流体及相关部件，广泛应用于半导体、显示、太阳能电池、电子及汽车等行业。',
     },
   },
+  '/tech': {
+    title: {
+      ko: `기술정보 · 자성유체 기술자료 및 시험성적서 | ${BRAND}`,
+      en: `Technical Information · Ferrofluid Data & Test Reports | ${BRAND}`,
+      zh: `技术信息 · 磁流体技术资料与检测报告 | ${BRAND}`,
+    },
+    description: {
+      ko: 'MFF-M 자성유체의 내열성·증기압·진공 안정성을 뒷받침하는 기술자료입니다. 증기압 기술노트, KOPTRI 공인시험 성적서, TGA 원자료를 PDF로 열람·다운로드할 수 있습니다.',
+      en: 'Technical documents backing the heat resistance, vapor pressure, and vacuum stability of MFF-M ferrofluid — vapor pressure notes, KOPTRI accredited test reports, and TGA raw data, viewable and downloadable as PDF.',
+      zh: '支持 MFF-M 磁流体耐热性、蒸气压与真空稳定性的技术资料。可在线阅览并下载蒸气压技术说明、KOPTRI 权威检测报告及 TGA 原始数据 PDF。',
+    },
+  },
   '/ferrofluid': {
     title: {
       ko: `유해가스 및 분진 차단용 자성유체 | ${BRAND}`,
