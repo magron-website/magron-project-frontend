@@ -8,7 +8,7 @@ import type { ChatMessage, ChatResponse } from '@/types/chat'
  * no visitor can reach — point the env var at 127.0.0.1 to develop against a
  * local server.
  */
-const DEFAULT_API_BASE = 'https://magron-website-backend-production.up.railway.app'
+const DEFAULT_API_BASE = 'https://magron-website-backend-production-1289.up.railway.app'
 
 /** Trailing slashes would otherwise produce a double-slashed `//api/chat`. */
 const API_BASE = (import.meta.env.VITE_CHAT_API_URL || DEFAULT_API_BASE).replace(/\/+$/, '')
