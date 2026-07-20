@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next'
 import { BookCover } from 'book-cover-3d'
 import { usePdfThumbnail } from '@/hooks/usePdfThumbnail'
+import { getTechCover } from '@/assets/images/tech'
 import type { TechDocument } from '@/types/techDocument'
 
 /** Thinner than the catalog booklets — these are reports, not bound catalogues. */
@@ -29,7 +30,14 @@ export default function TechDocumentCard({
   onOpen,
 }: TechDocumentCardProps) {
   const { t } = useTranslation('tech')
-  const { imageUrl, hasFailed } = usePdfThumbnail(document.fileUrl, isVisible)
+  /* A captured cover ships with the bundle, so it skips the pdf.js render
+     entirely; documents uploaded since the last capture still fall back to it. */
+  const capturedCover = getTechCover(document.fileUrl)
+  const { imageUrl: renderedCover, hasFailed } = usePdfThumbnail(
+    document.fileUrl,
+    isVisible && !capturedCover,
+  )
+  const imageUrl = capturedCover ?? renderedCover
 
   return (
     <div className="tech-doc">

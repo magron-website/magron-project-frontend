@@ -10,7 +10,8 @@
       "Bash(npx vite *)",
       "Bash(node -e ' *)",
       "Bash(echo \"exit=$?\")",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "PowerShell(npx tsc -p tsconfig.app.json --noEmit; \"TSC_EXIT=$LASTEXITCODE\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\admin\\Desktop\\sungcheol\\magron-project-frontend\\src\\pages\\products\\magoil"
