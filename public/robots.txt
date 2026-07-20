@@ -1,4 +1,4 @@
-# MAGRON (주)마그론 — https://www.magron.co.kr
+# MAGRON (주)마그론 — https://magron.kr
 # Search engines and AI / LLM crawlers are welcome to index this site.
 
 User-agent: *
@@ -47,4 +47,4 @@ Allow: /
 User-agent: cohere-ai
 Allow: /
 
-Sitemap: https://www.magron.co.kr/sitemap.xml
+Sitemap: https://magron.kr/sitemap.xml

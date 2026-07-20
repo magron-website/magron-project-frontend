@@ -2,13 +2,14 @@
  * The public path the built site is served from — shared by vite.config.ts and
  * scripts/prerender.mjs so the bundle and the prerendered HTML never disagree.
  *
- * GitHub Pages serves a project repo under /<repo>/, so that is the default.
- * When the custom domain (www.magron.co.kr) is switched over, the site moves to
- * the root: set VITE_BASE_PATH=/ in the build environment, or change the
- * fallback below. Nothing else needs to change — SITE_URL in src/seo/routeMeta.ts
- * and scripts/prerender.mjs already points at the final domain.
+ * The custom domain (magron.kr) is live, so the site is served from the root.
+ * public/CNAME is what keeps it pointed there — it lives in public/ rather than
+ * docs/ because build.emptyOutDir wipes docs/ on every build, which would drop
+ * the file and silently unset the domain on GitHub Pages.
+ * To go back to the bare GitHub Pages project path, set
+ * VITE_BASE_PATH=/magron-project-frontend/ in the build environment.
  */
-const raw = process.env.VITE_BASE_PATH ?? '/magron-project-frontend/'
+const raw = process.env.VITE_BASE_PATH ?? '/'
 
 /** Vite wants a leading and trailing slash; '/' stays '/'. */
 export const BASE_PATH = `/${raw.replace(/^\/+|\/+$/g, '')}/`.replace(/^\/\/$/, '/')

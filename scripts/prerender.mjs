@@ -13,7 +13,7 @@ import { BASE_PREFIX } from './base-path.mjs'
 // The canonical home of the site. Deliberately the final custom domain even
 // while the build is served from github.io — canonical tags should point at
 // where the content will live, so the staging URL never competes for indexing.
-const SITE_URL = 'https://www.magron.co.kr'
+const SITE_URL = 'https://magron.kr'
 const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'docs')
 
 /** Prefixes a site-absolute path with the deploy base ('/tech' -> '/repo/tech'). */

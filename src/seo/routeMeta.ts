@@ -1,6 +1,6 @@
 import type { Language } from '@/i18n'
 
-export const SITE_URL = 'https://www.magron.co.kr'
+export const SITE_URL = 'https://magron.kr'
 
 type Localized = Record<Language, string>
 
