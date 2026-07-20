@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
+import { useDisplayVideos } from '@/hooks/useDisplayVideos'
 import { MAIN_VIDEO, PORTFOLIO_VIDEOS } from '@/pages/products/display/content'
 import { ApplicationCard, Section, VideoCard } from '@/pages/products/display/components'
 import '@/assets/design/products/display.css'
@@ -8,6 +9,7 @@ type Card = { title: string; description: string }
 
 export default function Display() {
   const { t } = useTranslation(['display', 'product'])
+  const { videos } = useDisplayVideos()
   const opts = { returnObjects: true, ns: 'display' } as const
   const portfolioDescriptions = t('portfolio.descriptions', opts) as unknown as string[]
   const applicationCards = t('application.cards', opts) as unknown as Card[]
@@ -50,7 +52,8 @@ export default function Display() {
                 variant="portfolio"
                 placeholderId={video.placeholderId}
                 description={portfolioDescriptions[i]}
-                videoSrc={video.videoSrc}
+                /* Positional pairing: card i takes the i-th row by sort_order. */
+                videoSrc={videos[i]?.videoUrl}
                 thumbnailSrc={video.thumbnailSrc}
                 title={video.title}
                 subtitle={portfolioDescriptions[i]}

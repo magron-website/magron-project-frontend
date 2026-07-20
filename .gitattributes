@@ -1,0 +1,19 @@
+# core.autocrlf is on for this repo, so be explicit: media must never be run
+# through line-ending conversion, and committed build output should not be
+# treated as hand-written source.
+
+* text=auto
+
+*.mp4  binary
+*.avif binary
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.pdf  binary
+*.ico  binary
+*.woff binary
+*.woff2 binary
+
+# docs/ is the built site published by GitHub Pages, not source. Collapsing it
+# in diffs keeps deploy commits reviewable and keeps language stats honest.
+docs/** linguist-generated=true

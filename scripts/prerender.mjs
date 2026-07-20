@@ -2,15 +2,33 @@
 // bots that do not execute JavaScript still receive route-specific <head> tags,
 // JSON-LD, and readable <noscript> content. Runs after `vite build`.
 //
-// No headless browser required — it clones the built dist/index.html shell and
+// No headless browser required — it clones the built docs/index.html shell and
 // swaps in per-route metadata. The React app still boots normally on top of it.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { BASE_PREFIX } from './base-path.mjs'
 
+// The canonical home of the site. Deliberately the final custom domain even
+// while the build is served from github.io — canonical tags should point at
+// where the content will live, so the staging URL never competes for indexing.
 const SITE_URL = 'https://www.magron.co.kr'
-const DIST = join(dirname(fileURLToPath(import.meta.url)), '..', 'dist')
+const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'docs')
+
+/** Prefixes a site-absolute path with the deploy base ('/tech' -> '/repo/tech'). */
+const withBase = (path) => `${BASE_PREFIX}${path}`
+
+/**
+ * The <noscript> fallbacks are authored with root-absolute hrefs; under a
+ * project-page base those would 404, so rewrite them to carry the prefix.
+ */
+function rebaseNoscriptLinks(html) {
+  if (!BASE_PREFIX) return html
+  return html.replace(/<noscript>[\s\S]*?<\/noscript>/, (block) =>
+    block.replace(/href="(\/[^"]*)"/g, (_, path) => `href="${withBase(path)}"`),
+  )
+}
 
 // Korean content mirrors src/seo/routeMeta.ts (keep in sync). `body` is the
 // per-route readable fallback shown to non-JS crawlers.
@@ -115,21 +133,37 @@ function applyRoute(shell, route) {
 
   const noscript = `<noscript>\n      <h1>${escHtml(route.heading)}</h1>\n      <p>${escHtml(
     route.body,
-  )}</p>\n      <p><a href="/">MAGRON 홈으로</a> · <a href="mailto:magron@magron.co.kr">magron@magron.co.kr</a></p>\n    </noscript>`
+  )}</p>\n      <p><a href="${withBase('/')}">MAGRON 홈으로</a> · <a href="mailto:magron@magron.co.kr">magron@magron.co.kr</a></p>\n    </noscript>`
   html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscript)
 
   return html
 }
 
 async function run() {
-  const shell = await readFile(join(DIST, 'index.html'), 'utf8')
+  const shell = await readFile(join(OUT, 'index.html'), 'utf8')
+
+  // The home shell ships as-is apart from its <noscript> links.
+  await writeFile(join(OUT, 'index.html'), rebaseNoscriptLinks(shell), 'utf8')
+
   for (const route of ROUTES) {
-    const outDir = join(DIST, route.path)
+    const outDir = join(OUT, route.path)
     await mkdir(outDir, { recursive: true })
     await writeFile(join(outDir, 'index.html'), applyRoute(shell, route), 'utf8')
-    console.log(`prerendered: dist${route.path}/index.html`)
+    console.log(`prerendered: docs${route.path}/index.html`)
   }
-  console.log(`prerender complete (${ROUTES.length} routes)`)
+
+  // GitHub Pages has no SPA rewrite rule: every route above is emitted as a real
+  // directory, but an unknown deep link (or a stale URL) would otherwise hit the
+  // default 404 page. Serving the app shell there lets the router handle it.
+  await writeFile(join(OUT, '404.html'), rebaseNoscriptLinks(shell), 'utf8')
+  console.log('wrote: docs/404.html (SPA fallback)')
+
+  // Without this, GitHub Pages runs the output through Jekyll, which silently
+  // drops files and folders whose names begin with an underscore.
+  await writeFile(join(OUT, '.nojekyll'), '', 'utf8')
+  console.log('wrote: docs/.nojekyll')
+
+  console.log(`prerender complete (${ROUTES.length} routes, base "${BASE_PREFIX || '/'}")`)
 }
 
 run().catch((err) => {
