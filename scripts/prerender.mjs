@@ -125,7 +125,10 @@ function setMeta(html, attr, value, content) {
  * the meta-only fallback so indexable metadata is identical either way.
  */
 function applyRouteMeta(shell, route) {
-  const canonical = `${SITE_URL}${route.path}`
+  // Trailing slash: GitHub Pages serves each route as a directory and 301s the
+  // slash-less URL to the slashed one, so canonical/og:url must point at the
+  // slashed form or search engines flag the canonical as a redirect.
+  const canonical = `${SITE_URL}${route.path}/`
   let html = shell
 
   html = html.replace(/<title>[\s\S]*?<\/title>/, `<title>${escHtml(route.title)}</title>`)
