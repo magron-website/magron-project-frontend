@@ -1,13 +1,25 @@
-// Post-build prerender: emit a static HTML file per route so crawlers / AI search
-// bots that do not execute JavaScript still receive route-specific <head> tags,
-// JSON-LD, and readable <noscript> content. Runs after `vite build`.
+// Post-build prerender (build-time SSR): render the real React app in a headless
+// browser and emit a fully-rendered static HTML file per route. Crawlers / AI
+// search bots that do not execute JavaScript then receive real, route-specific
+// content — headings, product copy, and the Supabase-driven lists — instead of an
+// empty shell. The React bundle still boots on top and takes over on the client.
 //
-// No headless browser required — it clones the built docs/index.html shell and
-// swaps in per-route metadata. The React app still boots normally on top of it.
+// Why a headless browser instead of renderToString: the app leans on libraries
+// that touch the DOM directly (book-cover-3d, react-pageflip, embla-carousel,
+// pdf.js, framer-motion). Rendering the production build in a real browser keeps
+// every feature and pixel intact, which server-side renderToString could not
+// guarantee without invasive, risky refactoring.
+//
+// Runs after `vite build`. If the browser step fails for any reason, it falls
+// back to injecting per-route <head> metadata into the shell so the build never
+// breaks and still ships valid, indexable HTML.
 
 import { readFile, writeFile, mkdir } from 'node:fs/promises'
-import { dirname, join } from 'node:path'
+import { existsSync } from 'node:fs'
+import { createServer } from 'node:http'
+import { dirname, join, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { chromium } from 'playwright'
 import { BASE_PREFIX } from './base-path.mjs'
 
 // The canonical home of the site. Deliberately the final custom domain even
@@ -106,7 +118,13 @@ function setMeta(html, attr, value, content) {
   return html.replace(re, `<meta ${attr}="${value}" content="${escAttr(content)}" />`)
 }
 
-function applyRoute(shell, route) {
+/**
+ * Swaps the shell's home-page <head> metadata for the route's own — title,
+ * description, canonical, Open Graph — and appends a WebPage JSON-LD block plus a
+ * route-specific <noscript> fallback. Applied to both the rendered snapshot and
+ * the meta-only fallback so indexable metadata is identical either way.
+ */
+function applyRouteMeta(shell, route) {
   const canonical = `${SITE_URL}${route.path}`
   let html = shell
 
@@ -139,17 +157,130 @@ function applyRoute(shell, route) {
   return html
 }
 
+const MIME = {
+  '.html': 'text/html; charset=utf-8',
+  '.js': 'application/javascript; charset=utf-8',
+  '.mjs': 'application/javascript; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.png': 'image/png',
+  '.jpg': 'image/jpeg',
+  '.jpeg': 'image/jpeg',
+  '.webp': 'image/webp',
+  '.gif': 'image/gif',
+  '.ico': 'image/x-icon',
+  '.woff': 'font/woff',
+  '.woff2': 'font/woff2',
+  '.ttf': 'font/ttf',
+  '.txt': 'text/plain; charset=utf-8',
+  '.xml': 'application/xml; charset=utf-8',
+  '.map': 'application/json; charset=utf-8',
+  '.wasm': 'application/wasm',
+}
+
+/**
+ * Serves the built docs/ over HTTP with SPA-fallback semantics: real files are
+ * served as-is, any other path returns index.html so the client router can take
+ * the route. Playwright needs a real origin (not file://) for the router and
+ * Supabase fetches to behave exactly as they do in production.
+ */
+function startStaticServer() {
+  const server = createServer(async (req, res) => {
+    try {
+      const pathname = decodeURIComponent((req.url || '/').split('?')[0])
+      const ext = extname(pathname)
+      let filePath = join(OUT, pathname)
+
+      // No extension (a route) or a missing file → serve the SPA shell.
+      if (!ext || !existsSync(filePath)) {
+        filePath = join(OUT, 'index.html')
+      }
+
+      const data = await readFile(filePath)
+      res.writeHead(200, { 'Content-Type': MIME[extname(filePath)] || 'application/octet-stream' })
+      res.end(data)
+    } catch (err) {
+      res.writeHead(500)
+      res.end(String(err))
+    }
+  })
+
+  return new Promise((resolve) => {
+    server.listen(0, '127.0.0.1', () => {
+      const { port } = server.address()
+      resolve({ server, origin: `http://127.0.0.1:${port}` })
+    })
+  })
+}
+
+/**
+ * Loads one route in the browser, waits for the app (and its Supabase-driven
+ * lists) to settle, and returns the fully-rendered HTML. The autoplay carousel
+ * advances every 4s, so the ~1.5s of waits here keep the snapshot on the first
+ * slide.
+ */
+async function renderRoute(page, origin, route) {
+  await page.goto(`${origin}${withBase(route.path)}`, {
+    waitUntil: 'networkidle',
+    timeout: 30000,
+  })
+
+  // The app has mounted once #root has children; give async data + reveal
+  // transitions a beat to land. Never hard-fail on a slow list — partial content
+  // still beats an empty shell.
+  await page
+    .waitForFunction(() => document.querySelector('#root')?.children.length > 0, null, {
+      timeout: 15000,
+    })
+    .catch(() => {})
+  await page.waitForTimeout(700)
+
+  return page.content()
+}
+
 async function run() {
   const shell = await readFile(join(OUT, 'index.html'), 'utf8')
 
-  // The home shell ships as-is apart from its <noscript> links.
-  await writeFile(join(OUT, 'index.html'), rebaseNoscriptLinks(shell), 'utf8')
+  const allRoutes = [{ path: '/', meta: null }, ...ROUTES.map((r) => ({ path: r.path, meta: r }))]
 
-  for (const route of ROUTES) {
-    const outDir = join(OUT, route.path)
-    await mkdir(outDir, { recursive: true })
-    await writeFile(join(outDir, 'index.html'), applyRoute(shell, route), 'utf8')
-    console.log(`prerendered: docs${route.path}/index.html`)
+  let browser
+  let serverHandle
+  let usedBrowser = false
+
+  try {
+    serverHandle = await startStaticServer()
+    browser = await chromium.launch()
+    const page = await browser.newPage({ viewport: { width: 1440, height: 900 } })
+    usedBrowser = true
+
+    for (const route of allRoutes) {
+      let html = await renderRoute(page, serverHandle.origin, route)
+      // The app manages no <head>, so the snapshot's head is the shell's default
+      // (home) metadata — swap in the route's own for everything but home.
+      html = route.meta ? applyRouteMeta(html, route.meta) : rebaseNoscriptLinks(html)
+
+      const outDir = route.path === '/' ? OUT : join(OUT, route.path)
+      await mkdir(outDir, { recursive: true })
+      await writeFile(join(outDir, 'index.html'), html, 'utf8')
+      console.log(`prerendered (rendered): docs${route.path === '/' ? '' : route.path}/index.html`)
+    }
+  } catch (err) {
+    // Browser rendering failed — fall back to shipping the shell with per-route
+    // <head> metadata so the build still produces valid, indexable HTML.
+    console.warn('⚠ browser prerender failed, falling back to meta-only injection:')
+    console.warn(`  ${err?.message || err}`)
+
+    await writeFile(join(OUT, 'index.html'), rebaseNoscriptLinks(shell), 'utf8')
+    for (const route of ROUTES) {
+      const outDir = join(OUT, route.path)
+      await mkdir(outDir, { recursive: true })
+      await writeFile(join(outDir, 'index.html'), applyRouteMeta(shell, route), 'utf8')
+      console.log(`prerendered (meta-only): docs${route.path}/index.html`)
+    }
+  } finally {
+    if (browser) await browser.close()
+    if (serverHandle) serverHandle.server.close()
   }
 
   // GitHub Pages has no SPA rewrite rule: every route above is emitted as a real
@@ -163,7 +294,11 @@ async function run() {
   await writeFile(join(OUT, '.nojekyll'), '', 'utf8')
   console.log('wrote: docs/.nojekyll')
 
-  console.log(`prerender complete (${ROUTES.length} routes, base "${BASE_PREFIX || '/'}")`)
+  console.log(
+    `prerender complete (${allRoutes.length} routes, ${
+      usedBrowser ? 'rendered' : 'meta-only'
+    }, base "${BASE_PREFIX || '/'}")`,
+  )
 }
 
 run().catch((err) => {

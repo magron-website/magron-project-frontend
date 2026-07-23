@@ -189,6 +189,11 @@
   aspect-ratio: auto;
 }
 
+.roll__media-frame--square {
+  max-width: 320px;
+  aspect-ratio: 1 / 1;
+}
+
 .roll__media-crop {
   position: relative;
   flex: 1;
@@ -414,6 +419,11 @@
   .roll__media-frame--natural {
     max-width: 100%;
     max-height: none;
+  }
+
+  .roll__media-frame--square {
+    max-width: 270px;
+    max-height: 270px;
   }
 
   .roll__image--natural {

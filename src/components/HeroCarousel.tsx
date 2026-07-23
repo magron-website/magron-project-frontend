@@ -12,6 +12,11 @@ function usesNaturalImage(slide: HeroSlide) {
   return slide.sortOrder === 2 || slide.sortOrder === 3
 }
 
+/** The company-intro slide shows its cover cropped to a smaller square tile. */
+function usesSquareImage(slide: HeroSlide) {
+  return slide.sortOrder === 1
+}
+
 function HeroVisualShell({
   variant,
   message,
@@ -133,7 +138,7 @@ function HeroCarouselContent({ slides }: { slides: HeroSlide[] }) {
                   <div
                     className={`roll__media-frame${
                       usesNaturalImage(slide) ? ' roll__media-frame--natural' : ''
-                    }`}
+                    }${usesSquareImage(slide) ? ' roll__media-frame--square' : ''}`}
                   >
                     {usesNaturalImage(slide) ? (
                       <img
