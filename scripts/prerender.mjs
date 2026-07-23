@@ -236,6 +236,18 @@ async function renderRoute(page, origin, route) {
     .catch(() => {})
   await page.waitForTimeout(700)
 
+  // Strip React portals rendered outside #root (e.g. the chatbot floater, which
+  // portals to document.body). If left in the snapshot they persist as dead
+  // "ghost" nodes after the client boots: createRoot only manages #root, so it
+  // never removes them, and the live portal renders a second copy on top. Keep
+  // only #root, scripts, and the <noscript> fallback — React recreates the rest.
+  await page.evaluate(() => {
+    document.querySelectorAll('body > *').forEach((el) => {
+      const keep = el.id === 'root' || el.tagName === 'SCRIPT' || el.tagName === 'NOSCRIPT'
+      if (!keep) el.remove()
+    })
+  })
+
   return page.content()
 }
 
