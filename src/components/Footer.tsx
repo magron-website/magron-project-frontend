@@ -88,7 +88,7 @@ export default function Footer() {
           <p className="home-footer__company-detail">
             {t('address')}
             <br />
-            copyright © 2024 MAGRON
+            copyright © 2026 MAGRON
             <br />
             All Rights Reserved.
           </p>

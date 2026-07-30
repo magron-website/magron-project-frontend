@@ -199,11 +199,11 @@ function HomeContact() {
   const webLinks = [
     {
       flag: homeImages.contactFlagKor,
-      url: 'www.ferrofluidmagron.co.kr (www.magron.co.kr)',
+      url: 'www.magron.kr, (www.magron.co.kr)',
     },
     {
       flag: homeImages.contactFlagEng,
-      url: 'www.ferrofluidmagron.com (www.ferrozone.co.kr)',
+      url: 'www.ferrofluidmagron.com',
     },
     {
       flag: homeImages.contactFlagChn,
