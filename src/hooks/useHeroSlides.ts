@@ -80,9 +80,3 @@ export function useHeroSlides() {
   return { slides, isLoading, error }
 }
 
-export function resolveHeroButtonLink(link: string | null): string {
-  if (!link) return '#'
-  if (link.startsWith('http') || link.startsWith('#')) return link
-  if (link.startsWith('/')) return `#${link.slice(1)}`
-  return link
-}

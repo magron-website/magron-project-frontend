@@ -2,11 +2,23 @@ import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ClipLoader } from 'react-spinners'
-import { resolveHeroButtonLink, useHeroSlides } from '@/hooks/useHeroSlides'
+import { Link, useNavigate } from 'react-router-dom'
+import { useHeroSlides } from '@/hooks/useHeroSlides'
 import type { HeroSlide } from '@/types/heroSlide'
 import '@/assets/design/hero-carousel.css'
 
 const AUTOPLAY_DELAY_MS = 4000
+
+/**
+ * Fixed button destinations by slide order — intentionally hardcoded, NOT read
+ * from Supabase `button_link`. Slide 1 회사소개 → the company page; slides 2/3
+ * → their product pages.
+ */
+const HERO_BUTTON_LINKS: Record<number, string> = {
+  1: '/company',
+  2: '/ferrofluid',
+  3: '/feedthrough',
+}
 
 function usesNaturalImage(slide: HeroSlide) {
   return slide.sortOrder === 2 || slide.sortOrder === 3
@@ -40,6 +52,42 @@ function HeroVisualShell({
         </p>
       )}
     </section>
+  )
+}
+
+/**
+ * Renders a slide's call-to-action using a fixed destination from
+ * HERO_BUTTON_LINKS (keyed by slide order). Page routes go through react-router
+ * <Link>; same-page `#section` links scroll the home page to that section.
+ */
+function HeroButton({ sortOrder, label }: { sortOrder: number; label: string }) {
+  const navigate = useNavigate()
+  const link = HERO_BUTTON_LINKS[sortOrder]
+  if (!link) return null
+
+  if (link.startsWith('#')) {
+    const sectionId = link.slice(1)
+    const scrollToSection = () => {
+      navigate('/')
+      requestAnimationFrame(() => {
+        document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
+      })
+    }
+    return (
+      <button type="button" className="roll__button" onClick={scrollToSection}>
+        {label}
+      </button>
+    )
+  }
+
+  return (
+    <Link
+      className="roll__button"
+      to={link}
+      onClick={() => window.scrollTo({ top: 0 })}
+    >
+      {label}
+    </Link>
   )
 }
 
@@ -120,13 +168,8 @@ function HeroCarouselContent({ slides }: { slides: HeroSlide[] }) {
                     <p className="roll__description">{slide.description}</p>
                   ) : null}
 
-                  {slide.buttonText && slide.buttonLink ? (
-                    <a
-                      className="roll__button"
-                      href={resolveHeroButtonLink(slide.buttonLink)}
-                    >
-                      {slide.buttonText}
-                    </a>
+                  {slide.buttonText ? (
+                    <HeroButton sortOrder={slide.sortOrder} label={slide.buttonText} />
                   ) : null}
 
                   <div className="roll__ornament roll__ornament--bottom" aria-hidden="true">
