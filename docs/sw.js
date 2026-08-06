@@ -23,7 +23,7 @@
  * handler deletes every cache that does not match.
  */
 
-const CACHE_VERSION = 'v1'
+const CACHE_VERSION = 'v2'
 const PRECACHE = `magron-precache-${CACHE_VERSION}`
 const RUNTIME = `magron-runtime-${CACHE_VERSION}`
 const CDN = `magron-cdn-${CACHE_VERSION}`
