@@ -3,6 +3,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="https://static.wixstatic.com/media/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3%7Emv2.png" type="image/png">
 
+    <!-- PWA: installable to a phone or desktop home screen ("홈 화면에 추가").
+         / is Vite's deploy base, so these keep resolving if the site
+         ever moves back under a GitHub Pages project path. -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#f4f4f5">
+    <meta name="application-name" content="MAGRON">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <!-- iOS has no manifest support: these are what make a home-screen launch
+         open full screen with the right name instead of inside Safari. -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="MAGRON">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
     <title>Ferrofluid 진공 피드스루 (Feedthrough) | MAGRON (주)마그론</title>
     <meta name="description" content="자성유체 씰이 적용된 진공 회전 도입기(Feedthrough)로, 진공·가스 환경에서 회전 운동을 안정적으로 전달하면서 누설을 차단합니다." />
     <meta name="keywords" content="자성유체, ferrofluid, magnetic fluid, 마그론, MAGRON, 자성유체 씰, ferrofluidic seal, ferro seal, magnetic fluid seal, 진공 피드스루, vacuum feedthrough, 맥오일, Mag oil, Daiwa reel, 자석, magnet, 자성소재">
@@ -140,8 +154,8 @@
         ]
       }
     </script>
-    <script type="module" crossorigin="" src="/assets/index-C08duBDG.js"></script>
-    <link rel="stylesheet" crossorigin="" href="/assets/index-BbUHiaIk.css">
+    <script type="module" crossorigin="" src="/assets/index-BFrTy-sA.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-BklBYk-D.css">
   <style type="text/css">.stf__parent {
   position: relative;
   display: block;

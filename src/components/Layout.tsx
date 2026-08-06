@@ -4,6 +4,7 @@ import '@/assets/design/home.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ChatbotFloater from '@/components/ChatbotFloater'
+import InstallPrompt from '@/components/InstallPrompt'
 import { useSeoMeta } from '@/seo/useSeoMeta'
 
 export default function Layout() {
@@ -31,6 +32,7 @@ export default function Layout() {
         <Outlet />
       </div>
       <ChatbotFloater />
+      <InstallPrompt />
       <Footer />
     </div>
   )

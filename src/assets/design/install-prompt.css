@@ -1,0 +1,137 @@
+/* "홈 화면에 추가" banner — pinned to the bottom so it never covers the header
+   navigation or the chatbot floater on the right. */
+
+.install-prompt {
+  position: fixed;
+  right: 16px;
+  bottom: 16px;
+  left: 16px;
+  z-index: 120;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 460px;
+  margin: 0 auto;
+  padding: 14px 16px;
+  border: 1px solid #e4e4e7;
+  border-radius: 14px;
+  background: #fff;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+  /* Keeps the banner clear of the iOS home indicator. */
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+  animation: install-prompt-in 0.28s ease-out;
+}
+
+@keyframes install-prompt-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.install-prompt__icon {
+  width: 44px;
+  height: 44px;
+  border: 1px solid #e4e4e7;
+  border-radius: 10px;
+  object-fit: contain;
+  flex-shrink: 0;
+  background: #fff;
+}
+
+.install-prompt__body {
+  flex: 1;
+  min-width: 0;
+}
+
+.install-prompt__title {
+  margin: 0;
+  color: #18181b;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+}
+
+.install-prompt__text {
+  margin: 4px 0 0;
+  color: #52525b;
+  font-size: 13px;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  word-break: keep-all;
+}
+
+.install-prompt__actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.install-prompt__install {
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 8px;
+  background: #1a4fd6;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.install-prompt__install:hover {
+  background: #163fae;
+  transform: translateY(-1px);
+}
+
+.install-prompt__close {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #71717a;
+  font-size: 20px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.install-prompt__close:hover {
+  background: #f4f4f5;
+  color: #18181b;
+}
+
+@media (max-width: 480px) {
+  .install-prompt {
+    gap: 12px;
+    padding: 12px 14px;
+  }
+
+  .install-prompt__icon {
+    width: 38px;
+    height: 38px;
+  }
+
+  .install-prompt__title {
+    font-size: 14px;
+  }
+
+  .install-prompt__text {
+    font-size: 12px;
+  }
+}

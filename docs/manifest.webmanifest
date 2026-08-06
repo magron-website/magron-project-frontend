@@ -1,0 +1,60 @@
+{
+  "name": "(주)마그론 MAGRON — 자성유체 전문기업",
+  "short_name": "MAGRON",
+  "description": "2004년 설립된 자성유체(Ferrofluid)·자성소재 전문 기업 (주)마그론. 자성유체 씰, 진공 피드스루, 맥오일, 자석, 자성유체 디스플레이를 제조·공급합니다.",
+  "lang": "ko",
+  "dir": "ltr",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f4f4f5",
+  "categories": ["business", "education"],
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icons/icon-maskable-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "./icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "회사소개",
+      "short_name": "회사소개",
+      "url": "./company/",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "기술정보",
+      "short_name": "기술정보",
+      "url": "./tech/",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    },
+    {
+      "name": "유해가스 및 분진 차단용 자성유체",
+      "short_name": "자성유체",
+      "url": "./ferrofluid/",
+      "icons": [{ "src": "./icons/icon-192.png", "sizes": "192x192", "type": "image/png" }]
+    }
+  ]
+}
