@@ -1,18 +1,19 @@
 @import '../font.css';
 
 /* ==========================================================================
-   PIEZO Ink Product Page
+   Conductive & Piezo Ink Product Page
    ========================================================================== */
 
 .pi-page {
   --pi-navy: #0b1f3a;
   --pi-navy-deep: #071528;
   --pi-blue: #1d4ed8;
+  --pi-violet: #7e22ce;
   --pi-bg: #f8fafc;
   --pi-border: #dbe4f0;
   --pi-text: #1e293b;
   --pi-muted: #64748b;
-  --pi-max: 960px;
+  --pi-max: 1180px;
 
   width: 100%;
   background: #fff;
@@ -24,30 +25,30 @@
   width: 100%;
   max-width: var(--pi-max);
   margin: 0 auto;
-  padding: 56px 24px 96px;
+  padding: 32px 24px 96px;
 }
 
 /* Hero ------------------------------------------------------------------ */
 
 .pi-hero {
-  background: linear-gradient(135deg, var(--pi-navy-deep) 0%, var(--pi-navy) 55%, #1e3a5f 100%);
+  background: linear-gradient(135deg, var(--pi-navy-deep) 0%, var(--pi-navy) 55%, #3b1e63 100%);
   color: #fff;
 }
 
 .pi-hero__inner {
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 40px;
-  align-items: center;
   width: 100%;
   max-width: calc(var(--pi-max) + 96px);
   margin: 0 auto;
   padding: 56px 24px 64px;
 }
 
+.pi-hero__content {
+  max-width: 820px;
+}
+
 .pi-hero__label {
   margin: 0 0 12px;
-  color: #93c5fd;
+  color: #d8b4fe;
   font-size: 13px;
   font-weight: 700;
   letter-spacing: 0.14em;
@@ -86,21 +87,21 @@
 
 .pi-hero__cards {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 12px;
   margin-top: 28px;
 }
 
 .pi-feature-card {
   padding: 16px;
-  border: 1px solid rgba(147, 197, 253, 0.22);
+  border: 1px solid rgba(216, 180, 254, 0.22);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.06);
 }
 
 .pi-feature-card h3 {
   margin: 0 0 8px;
-  color: #dbeafe;
+  color: #f3e8ff;
   font-size: 14px;
   font-weight: 700;
   line-height: 1.4;
@@ -113,27 +114,259 @@
   line-height: 1.6;
 }
 
-.pi-hero__visual {
-  min-width: 0;
+/* Category quick-nav ------------------------------------------------------ */
+
+.pi-catnav {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 40px 0 8px;
 }
 
-.pi-hero__image {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 12px;
+.pi-catnav__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px 18px;
+  border: 1px solid var(--pi-border);
+  border-radius: 10px;
+  background: var(--pi-bg);
+  text-decoration: none;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.pi-catnav__item:hover {
+  border-color: var(--pi-violet);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(126, 34, 206, 0.12);
+}
+
+.pi-catnav__title {
+  color: var(--pi-navy);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.pi-catnav__kr {
+  color: var(--pi-muted);
+  font-size: 12px;
+}
+
+/* Category section --------------------------------------------------------- */
+
+.pi-category {
+  padding-top: 72px;
+  scroll-margin-top: 24px;
+}
+
+.pi-category__header {
+  margin-bottom: 8px;
+  padding-bottom: 18px;
+  border-bottom: 2px solid var(--pi-navy);
+}
+
+.pi-category__eyebrow {
+  margin: 0 0 6px;
+  color: var(--pi-violet);
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pi-category__title {
+  margin: 0;
+  color: var(--pi-navy);
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.pi-category__intro {
+  margin: 12px 0 0;
+  max-width: 720px;
+  color: var(--pi-text);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.pi-category__products {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 32px;
+}
+
+/* Product card -------------------------------------------------------------- */
+
+.pi-product {
+  padding: 28px;
+  border: 1px solid var(--pi-border);
+  border-radius: 14px;
   background: #fff;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  scroll-margin-top: 24px;
 }
 
-/* Sections ---------------------------------------------------------------- */
+.pi-product__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.pi-product__code {
+  margin: 0 0 4px;
+  color: var(--pi-violet);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.pi-product__title {
+  margin: 0;
+  color: var(--pi-navy);
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.pi-product__title-kr {
+  margin: 4px 0 0;
+  color: var(--pi-muted);
+  font-size: 14px;
+}
+
+.pi-product__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  max-width: 320px;
+  justify-content: flex-end;
+}
+
+.pi-product__tags li {
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: #f3e8ff;
+  color: var(--pi-violet);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.pi-product__desc {
+  margin: 16px 0 0;
+  color: var(--pi-text);
+  font-size: 15px;
+  line-height: 1.75;
+  max-width: 68ch;
+}
+
+.pi-product__substrates {
+  margin: 14px 0 0;
+  color: var(--pi-muted);
+  font-size: 13.5px;
+}
+
+.pi-product__substrates span {
+  display: inline-block;
+  margin-right: 8px;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--pi-bg);
+  color: var(--pi-navy);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.pi-product__no-datasheet {
+  margin: 18px 0 0;
+  padding: 12px 16px;
+  border: 1px dashed var(--pi-border);
+  border-radius: 8px;
+  background: var(--pi-bg);
+  color: var(--pi-muted);
+  font-size: 13.5px;
+}
+
+.pi-product__process-note {
+  margin: 16px 0 0;
+  padding: 14px 16px;
+  border-left: 3px solid var(--pi-violet);
+  background: #faf5ff;
+  color: var(--pi-navy);
+  font-size: 13.5px;
+  line-height: 1.7;
+}
+
+/* Spec table ------------------------------------------------------------- */
+
+.pi-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 18px;
+  border: 1px solid var(--pi-border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.pi-table {
+  width: 100%;
+  min-width: 380px;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.pi-table th,
+.pi-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--pi-border);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.pi-table th[scope='row'] {
+  width: 220px;
+  background: #f6f2fb;
+  color: var(--pi-navy);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.pi-table td {
+  font-variant-numeric: tabular-nums;
+  color: var(--pi-text);
+}
+
+.pi-table tr:last-child th,
+.pi-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Sections (In-Mold Electronics) ------------------------------------------ */
 
 .pi-section {
-  padding: 64px 0 0;
+  padding-top: 72px;
+}
+
+.pi-section--first {
+  padding-top: 40px;
+}
+
+.pi-section__eyebrow {
+  margin: 0 0 6px;
+  color: var(--pi-violet);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 .pi-section__header {
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   padding-bottom: 16px;
   border-bottom: 2px solid var(--pi-navy);
 }
@@ -147,11 +380,109 @@
   letter-spacing: -0.02em;
 }
 
-.pi-prose p {
-  margin: 0;
+.pi-prose {
+  margin: 0 0 8px;
+  max-width: 72ch;
   font-size: 16px;
   line-height: 1.85;
   color: var(--pi-text);
+}
+
+.pi-process {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  margin: 32px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.pi-process__step {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 20px 14px;
+  text-align: center;
+  border: 1px solid var(--pi-border);
+  background: var(--pi-bg);
+  position: relative;
+}
+
+.pi-process__step:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.pi-process__step:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+.pi-process__step + .pi-process__step {
+  border-left: none;
+}
+
+.pi-process__step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  right: -9px;
+  top: 50%;
+  width: 16px;
+  height: 16px;
+  transform: translateY(-50%) rotate(45deg);
+  background: #fff;
+  border-top: 1px solid var(--pi-border);
+  border-right: 1px solid var(--pi-border);
+  z-index: 1;
+}
+
+.pi-process__num {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--pi-navy);
+  color: #fff;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.pi-process__label {
+  color: var(--pi-navy);
+  font-size: 13.5px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.pi-advantage-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.pi-advantage-card {
+  padding: 20px;
+  border: 1px solid var(--pi-border);
+  border-top: 3px solid var(--pi-violet);
+  border-radius: 10px;
+  background: #fff;
+}
+
+.pi-advantage-card h3 {
+  margin: 0 0 10px;
+  color: var(--pi-navy);
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.pi-advantage-card p {
+  margin: 0;
+  color: var(--pi-muted);
+  font-size: 13.5px;
+  line-height: 1.65;
 }
 
 /* CTA banner --------------------------------------------------------------- */
@@ -160,7 +491,7 @@
   margin-top: 80px;
   padding: 48px 28px;
   border-radius: 14px;
-  background: linear-gradient(135deg, var(--pi-navy-deep), var(--pi-navy));
+  background: linear-gradient(135deg, var(--pi-navy-deep), #3b1e63);
   color: #fff;
 }
 
@@ -209,12 +540,12 @@
 
 .pi-btn--primary {
   border: none;
-  background: var(--pi-blue);
+  background: var(--pi-violet);
   color: #fff;
 }
 
 .pi-btn--primary:hover {
-  background: #1e40af;
+  background: #6b21a8;
 }
 
 .pi-inquiry-list {
@@ -225,7 +556,7 @@
 
 .pi-cta-banner__note {
   margin: 0 0 8px;
-  color: #93c5fd;
+  color: #d8b4fe;
   font-size: 14px;
   font-weight: 700;
 }
@@ -249,7 +580,7 @@
   content: '✓';
   position: absolute;
   left: 0;
-  color: #93c5fd;
+  color: #d8b4fe;
   font-weight: 700;
 }
 
@@ -262,17 +593,57 @@
 /* Responsive ---------------------------------------------------------------- */
 
 @media (max-width: 1024px) {
-  .pi-hero__inner {
-    grid-template-columns: 1fr;
+  .pi-hero__cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .pi-hero__visual {
-    order: -1;
+  .pi-advantage-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @media (max-width: 768px) {
   .pi-hero__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .pi-catnav {
+    grid-template-columns: 1fr;
+  }
+
+  .pi-product {
+    padding: 20px 16px;
+  }
+
+  .pi-product__tags {
+    justify-content: flex-start;
+    max-width: none;
+  }
+
+  .pi-process {
+    flex-direction: column;
+  }
+
+  .pi-process__step,
+  .pi-process__step:first-child,
+  .pi-process__step:last-child {
+    border-radius: 10px;
+  }
+
+  .pi-process__step + .pi-process__step {
+    border-left: 1px solid var(--pi-border);
+    border-top: none;
+    margin-top: -1px;
+  }
+
+  .pi-process__step:not(:last-child)::after {
+    right: 50%;
+    top: auto;
+    bottom: -9px;
+    transform: translateX(50%) rotate(135deg);
+  }
+
+  .pi-advantage-grid {
     grid-template-columns: 1fr;
   }
 
