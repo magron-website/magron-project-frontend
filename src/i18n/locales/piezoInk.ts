@@ -5,16 +5,16 @@ const piezoInk = {
       title: 'PIEZO Ink',
       titleEn: 'Conductive & Piezo Ink',
       lead: [
-        '압력에 반응해 전기 신호를 발생시키는 압전(Piezoelectric) 잉크, 인쇄 회로를 구현하는 전도성(Conductive) 잉크, 압력 변화를 저항 변화로 감지하는 압저항(Piezoresistive) 잉크까지 — 인쇄 공정 하나로 기능성 회로와 센서를 구현하는 잉크 라인업입니다.',
         'In-Mold Electronics, 웨어러블 센서, 인쇄 전자, 스마트 텍스타일 등 다양한 분야에 적용할 수 있습니다.',
+        '압력에 반응해 전기 신호를 발생시키는 압전(Piezoelectric) 잉크, 인쇄 회로를 구현하는 전도성(Conductive) 잉크, 압력 변화를 저항 변화로 감지하는 압저항(Piezoresistive) 잉크까지 — 인쇄 공정 하나로 기능성 회로와 센서를 구현하는 잉크 라인업입니다.',
       ],
       heroAlt: 'Conductive & Piezo Ink 제품군',
     },
     catnavAria: '제품 카테고리',
     heroCards: [
-      { title: 'Print-based Circuits', description: '스크린 프린팅만으로 소재 위에 전도성 회로와 센서를 직접 구현합니다.' },
-      { title: 'Pressure & Deformation Sensing', description: '압전·압저항 잉크로 압력, 충격, 변형을 전기 신호로 감지합니다.' },
       { title: 'In-Mold Electronics Ready', description: '열성형·사출성형 공정과 결합해 플라스틱 부품에 회로를 그대로 내장할 수 있습니다.' },
+      { title: 'Pressure & Deformation Sensing', description: '압전·압저항 잉크로 압력, 충격, 변형을 전기 신호로 감지합니다.' },
+      { title: 'Print-based Circuits', description: '스크린 프린팅만으로 소재 위에 전도성 회로와 센서를 직접 구현합니다.' },
       { title: 'Custom Formulation', description: '적용 분야와 요구 사양에 맞춰 배합과 물성을 조정할 수 있습니다.' },
     ],
     categories: {
@@ -99,16 +99,16 @@ const piezoInk = {
       title: 'PIEZO Ink',
       titleEn: 'Conductive & Piezo Ink',
       lead: [
-        'From piezoelectric ink that generates an electrical signal under pressure, to conductive ink that prints circuits, to piezoresistive ink that senses pressure as a change in resistance — a single printing process builds functional circuits and sensors.',
         'Applicable to In-Mold Electronics, wearable sensors, printed electronics, smart textiles, and more.',
+        'From piezoelectric ink that generates an electrical signal under pressure, to conductive ink that prints circuits, to piezoresistive ink that senses pressure as a change in resistance — a single printing process builds functional circuits and sensors.',
       ],
       heroAlt: 'Conductive & Piezo Ink product family',
     },
     catnavAria: 'Product categories',
     heroCards: [
-      { title: 'Print-based Circuits', description: 'Screen printing alone builds conductive circuits and sensors directly onto the substrate.' },
-      { title: 'Pressure & Deformation Sensing', description: 'Piezoelectric and piezoresistive inks sense pressure, impact, and deformation as electrical signals.' },
       { title: 'In-Mold Electronics Ready', description: 'Combines with thermoforming and injection molding to embed circuits directly into plastic parts.' },
+      { title: 'Pressure & Deformation Sensing', description: 'Piezoelectric and piezoresistive inks sense pressure, impact, and deformation as electrical signals.' },
+      { title: 'Print-based Circuits', description: 'Screen printing alone builds conductive circuits and sensors directly onto the substrate.' },
       { title: 'Custom Formulation', description: 'Formulation and properties can be tuned to the application and required specs.' },
     ],
     categories: {
@@ -193,16 +193,16 @@ const piezoInk = {
       title: 'PIEZO Ink',
       titleEn: 'Conductive & Piezo Ink',
       lead: [
-        '从受压产生电信号的压电（Piezoelectric）油墨、可印刷电路的导电（Conductive）油墨，到将压力变化转换为电阻变化的压阻（Piezoresistive）油墨——仅通过印刷工艺即可实现功能电路与传感器。',
         '可应用于 In-Mold Electronics、可穿戴传感器、印刷电子、智能纺织品等多种领域。',
+        '从受压产生电信号的压电（Piezoelectric）油墨、可印刷电路的导电（Conductive）油墨，到将压力变化转换为电阻变化的压阻（Piezoresistive）油墨——仅通过印刷工艺即可实现功能电路与传感器。',
       ],
       heroAlt: 'Conductive & Piezo Ink 产品系列',
     },
     catnavAria: '产品类别',
     heroCards: [
-      { title: 'Print-based Circuits', description: '仅通过丝网印刷即可在基材上直接实现导电电路与传感器。' },
-      { title: 'Pressure & Deformation Sensing', description: '压电与压阻油墨可将压力、冲击、形变感应为电信号。' },
       { title: 'In-Mold Electronics Ready', description: '与热成型、注塑成型工艺结合，可将电路直接嵌入塑料部件。' },
+      { title: 'Pressure & Deformation Sensing', description: '压电与压阻油墨可将压力、冲击、形变感应为电信号。' },
+      { title: 'Print-based Circuits', description: '仅通过丝网印刷即可在基材上直接实现导电电路与传感器。' },
       { title: 'Custom Formulation', description: '可根据应用领域与要求规格调整配方与物性。' },
     ],
     categories: {

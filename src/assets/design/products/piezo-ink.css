@@ -593,10 +593,6 @@
 /* Responsive ---------------------------------------------------------------- */
 
 @media (max-width: 1024px) {
-  .pi-hero__cards {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .pi-advantage-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
