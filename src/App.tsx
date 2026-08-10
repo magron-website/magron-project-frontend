@@ -10,6 +10,7 @@ import {
   Ferrofluid,
   Magoil,
   Magnet,
+  PiezoInk,
 } from '@/pages/products'
 
 /**
@@ -32,6 +33,7 @@ function App() {
           <Route path="/magoil" element={<Magoil />} />
           <Route path="/magnet" element={<Magnet />} />
           <Route path="/education" element={<Education />} />
+          <Route path="/piezo-ink" element={<PiezoInk />} />
           <Route path="/display" element={<Display />} />
           {/* GitHub Pages serves docs/404.html for any unmatched deep link, so
               the app boots with a path no route claims. Without this the shell

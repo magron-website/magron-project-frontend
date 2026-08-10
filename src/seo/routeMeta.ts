@@ -109,6 +109,18 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       zh: '可亲身体验并学习磁流体原理与特性的教育用磁流体套件。',
     },
   },
+  '/piezo-ink': {
+    title: {
+      ko: `PIEZO Ink · 압전/전도성 잉크 | ${BRAND}`,
+      en: `PIEZO Ink · Piezoelectric & Conductive Ink | ${BRAND}`,
+      zh: `PIEZO Ink · 压电/导电油墨 | ${BRAND}`,
+    },
+    description: {
+      ko: '압력에 반응해 전기 신호를 발생시키는 압전(Piezo) 잉크와 인쇄 회로용 전도성(Conductive) 잉크입니다. 인쇄 전자, 웨어러블 센서 등에 적용됩니다.',
+      en: 'A piezoelectric ink that generates an electrical signal under pressure, and a conductive ink for printed circuits — used in printed electronics and wearable sensors.',
+      zh: '受压时产生电信号的压电油墨与用于印刷电路的导电油墨，应用于印刷电子、可穿戴传感器等领域。',
+    },
+  },
   '/display': {
     title: {
       ko: `대형 자성유체 디스플레이 | ${BRAND}`,

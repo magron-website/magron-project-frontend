@@ -100,6 +100,14 @@ const ROUTES = [
     body: '자성유체의 원리와 특성을 직접 체험하고 학습할 수 있는 교육용 자성유체 키트입니다.',
   },
   {
+    path: '/piezo-ink',
+    title: 'PIEZO Ink · 압전/전도성 잉크 | MAGRON (주)마그론',
+    description:
+      '압력에 반응해 전기 신호를 발생시키는 압전(Piezo) 잉크와 인쇄 회로용 전도성(Conductive) 잉크입니다. 인쇄 전자, 웨어러블 센서 등에 적용됩니다.',
+    heading: 'PIEZO Ink (압전/전도성 잉크)',
+    body: '압력에 반응해 전기 신호를 발생시키는 압전(Piezo) 잉크와 인쇄를 통해 회로를 구현하는 전도성(Conductive) 잉크 제품입니다. 인쇄 전자, 웨어러블 센서, 압력 감지 등 다양한 분야에 적용할 수 있습니다.',
+  },
+  {
     path: '/display',
     title: '대형 자성유체 디스플레이 | MAGRON (주)마그론',
     description:

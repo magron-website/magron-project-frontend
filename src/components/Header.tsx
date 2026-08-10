@@ -14,6 +14,7 @@ const PRODUCT_SUB_ITEMS = [
   { key: 'magoil', to: PRODUCT_PAGE_PATHS.magoil },
   { key: 'magnet', to: PRODUCT_PAGE_PATHS.magnet },
   { key: 'education', to: PRODUCT_PAGE_PATHS.education },
+  { key: 'piezoInk', to: PRODUCT_PAGE_PATHS.piezoInk },
   { key: 'display', to: PRODUCT_PAGE_PATHS.display },
 ] as const
 
