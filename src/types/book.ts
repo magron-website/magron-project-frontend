@@ -4,6 +4,8 @@ export type BookRow = {
   subtitle: string | null
   image_url: string
   pdf_url: string
+  pdf_url_en?: string | null
+  pdf_url_zh?: string | null
   sort_order: number
   is_active: boolean
 }

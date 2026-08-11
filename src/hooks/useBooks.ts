@@ -1,22 +1,28 @@
 import { useEffect, useMemo, useState } from 'react'
-import i18n from '@/i18n'
+import { useTranslation } from 'react-i18next'
+import i18n, { type Language } from '@/i18n'
+import { localize } from '@/lib/localizeRow'
 import { supabase } from '@/lib/supabase'
 import type { Book, BookRow } from '@/types/book'
 
 /**
  * Supabase supplies the cover image and the PDF only — a book's caption is the
  * catalog label in `locales/home.ts` (`catalog.items`, keyed by sort order).
+ * The PDF is per-language when `pdf_url_en` / `pdf_url_zh` are filled, otherwise
+ * it falls back to the base Korean `pdf_url`.
  */
-function mapRow(row: BookRow): Book {
+function mapRow(row: BookRow, lang: Language): Book {
   return {
     id: row.id,
     imageUrl: row.image_url,
-    pdfUrl: row.pdf_url,
+    pdfUrl: localize(row, 'pdf_url', lang) ?? row.pdf_url,
     sortOrder: row.sort_order,
   }
 }
 
 export function useBooks() {
+  const { i18n: i18next } = useTranslation()
+  const lang = i18next.language as Language
   const [rows, setRows] = useState<BookRow[]>([])
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
@@ -72,7 +78,7 @@ export function useBooks() {
     }
   }, [])
 
-  const books = useMemo(() => rows.map(mapRow), [rows])
+  const books = useMemo(() => rows.map((row) => mapRow(row, lang)), [rows, lang])
 
   return { books, isLoading, error }
 }
