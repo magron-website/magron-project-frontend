@@ -33,6 +33,10 @@ const tech = {
         title: 'TGA 데이터 — Inert Gas',
         description: '불활성 가스용 MFS/MFH 시리즈의 TGA 전체 원자료',
       },
+      7: {
+        title: 'What is Ferrofluid?',
+        description: '자성유체(Ferrofluid)의 원리와 특성을 쉽게 설명한 소개 자료',
+      },
     },
     heading: '기술정보',
     lead: '공인시험기관 검증 데이터와 기술노트를 확인하실 수 있습니다.',
@@ -76,6 +80,10 @@ const tech = {
         title: 'TGA Data — Inert Gas',
         description: 'Full TGA raw data for the MFS/MFH series used in inert gas environments.',
       },
+      7: {
+        title: 'What is Ferrofluid?',
+        description: 'An introductory guide explaining the principles and properties of ferrofluid.',
+      },
     },
     heading: 'Technical Info',
     lead: 'Technical notes and data verified by accredited testing institutes.',
@@ -115,6 +123,10 @@ const tech = {
       6: {
         title: 'TGA 数据 — 惰性气体',
         description: '用于惰性气体环境的 MFS/MFH 系列的 TGA 完整原始数据。',
+      },
+      7: {
+        title: '什么是磁性流体?',
+        description: '介绍磁性流体（Ferrofluid）原理与特性的入门资料。',
       },
     },
     heading: '技术信息',
