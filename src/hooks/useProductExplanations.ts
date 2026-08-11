@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n, { type Language } from '@/i18n'
-import { localize } from '@/lib/localizeRow'
 import { supabase } from '@/lib/supabase'
 import type { ProductExplanation, ProductExplanationRow } from '@/types/productExplanation'
 
@@ -12,13 +11,24 @@ function formatLabel(category: string | null, title: string): string {
   return `${cat} | ${title}`
 }
 
+/**
+ * Supabase supplies the tile image only — the wording comes from the `tiles`
+ * block in `locales/product.ts`, keyed by sort order. A row added to the DB
+ * before its copy is written falls back to its own Korean columns.
+ */
 function mapRow(row: ProductExplanationRow, lang: Language): ProductExplanation {
+  const text = (field: string, fallback: string | null) =>
+    i18n.t(`product:tiles.${row.sort_order}.${field}`, {
+      lng: lang,
+      defaultValue: fallback ?? '',
+    })
+
   return {
     id: row.id,
-    title: localize(row, 'title', lang) ?? '',
-    subtitle: localize(row, 'subtitle', lang) ?? '',
+    title: text('title', row.title),
+    subtitle: text('subtitle', row.subtitle),
     imageUrl: row.image_url,
-    category: localize(row, 'category', lang) ?? 'product',
+    category: text('category', row.category) || 'product',
     sortOrder: row.sort_order,
   }
 }

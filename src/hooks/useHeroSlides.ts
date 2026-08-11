@@ -1,18 +1,29 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n, { type Language } from '@/i18n'
-import { localize } from '@/lib/localizeRow'
 import { supabase } from '@/lib/supabase'
 import type { HeroSlide, HeroSlideRow } from '@/types/heroSlide'
 
+/**
+ * Supabase supplies the slide image only — the wording comes from
+ * `locales/hero.ts`, keyed by sort order. A slide added to the DB before its
+ * copy is written falls back to the row's own Korean columns so it still
+ * renders.
+ */
 function mapRow(row: HeroSlideRow, lang: Language): HeroSlide {
+  const text = (field: string, fallback: string | null) =>
+    i18n.t(`hero:slides.${row.sort_order}.${field}`, {
+      lng: lang,
+      defaultValue: fallback ?? '',
+    })
+
   return {
     id: row.id,
     imageUrl: row.image_url,
-    title: localize(row, 'title', lang) ?? '',
-    subtitle: localize(row, 'subtitle', lang) ?? '',
-    description: localize(row, 'description', lang) ?? '',
-    buttonText: localize(row, 'button_text', lang),
+    title: text('title', row.title),
+    subtitle: text('subtitle', row.subtitle),
+    description: text('description', row.description),
+    buttonText: text('buttonText', row.button_text) || null,
     buttonLink: row.button_link,
     sortOrder: row.sort_order,
   }

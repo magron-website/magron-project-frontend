@@ -1,15 +1,26 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n, { type Language } from '@/i18n'
-import { localize } from '@/lib/localizeRow'
 import { supabase } from '@/lib/supabase'
 import type { TechDocument, TechDocumentRow } from '@/types/techDocument'
 
+/**
+ * Supabase supplies the PDF file URL only — titles and descriptions come from
+ * the `documents` block in `locales/tech.ts`, keyed by sort order. A document
+ * added to the DB before its copy is written falls back to its own Korean
+ * columns.
+ */
 function mapRow(row: TechDocumentRow, lang: Language): TechDocument {
+  const text = (field: string, fallback: string | null) =>
+    i18n.t(`tech:documents.${row.sort_order}.${field}`, {
+      lng: lang,
+      defaultValue: fallback ?? '',
+    })
+
   return {
     id: row.id,
-    title: localize(row, 'title', lang) ?? '',
-    description: localize(row, 'description', lang) ?? '',
+    title: text('title', row.title),
+    description: text('description', row.description),
     fileUrl: row.file_url,
     sortOrder: row.sort_order,
   }

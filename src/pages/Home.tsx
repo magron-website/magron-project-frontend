@@ -10,7 +10,6 @@ import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
 import { useTechDocuments } from '@/hooks/useTechDocuments'
-import type { Book } from '@/types/book'
 import type { TechDocument } from '@/types/techDocument'
 import '@/assets/design/animation.css'
 import '@/assets/design/tech.css'
@@ -43,7 +42,9 @@ function HomeProducts() {
 function HomeCatalog() {
   const { t } = useTranslation('home')
   const { books, isLoading, error } = useBooks()
-  const [viewerBook, setViewerBook] = useState<Book | null>(null)
+  /* The viewer header shows the catalog label, so carry it with the PDF —
+     the book row itself no longer holds any text. */
+  const [viewer, setViewer] = useState<{ title: string; pdfUrl: string } | null>(null)
   const { ref, inView } = useInView<HTMLElement>({ threshold: 0.08, once: false })
 
   const booksBySortOrder = useMemo(
@@ -58,10 +59,10 @@ function HomeCatalog() {
       className={`home-catalog${inView ? ' is-revealed' : ''}`}
     >
       <BookFlipViewer
-        isOpen={viewerBook !== null}
-        title={viewerBook?.subtitle || viewerBook?.title || ''}
-        pdfUrl={viewerBook?.pdfUrl ?? ''}
-        onClose={() => setViewerBook(null)}
+        isOpen={viewer !== null}
+        title={viewer?.title ?? ''}
+        pdfUrl={viewer?.pdfUrl ?? ''}
+        onClose={() => setViewer(null)}
       />
       <div className="home-catalog__inner">
         <div className="home-catalog__header">
@@ -83,7 +84,7 @@ function HomeCatalog() {
                 <button
                   type="button"
                   className="home-catalog__book-button"
-                  onClick={() => book && setViewerBook(book)}
+                  onClick={() => book?.pdfUrl && setViewer({ title, pdfUrl: book.pdfUrl })}
                   disabled={!book?.pdfUrl}
                   aria-label={t('catalog.viewPdfAria', { title })}
                 >

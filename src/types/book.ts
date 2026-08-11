@@ -8,10 +8,9 @@ export type BookRow = {
   is_active: boolean
 }
 
+/** Only the files come from Supabase — the caption is authored in `locales/home.ts`. */
 export type Book = {
   id: string
-  title: string
-  subtitle: string
   imageUrl: string
   pdfUrl: string
   sortOrder: number
