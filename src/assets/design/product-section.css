@@ -235,12 +235,25 @@
     min-height: 240px;
   }
 
+  .product-scroll__tile-content {
+    /* Tiles are much shorter here — tighten the gutters so the copy still
+       clears the brand mark instead of sitting on top of it. */
+    padding: 0 20px 78px 22px;
+    gap: 6px;
+  }
+
+  .product-scroll__tile-label {
+    font-size: 16px;
+  }
+
   .product-scroll__tile-title {
-    font-size: 26px;
+    font-size: clamp(15px, 5.2cqw, 24px);
   }
 
   .product-scroll__tile-brand {
-    bottom: 20px;
+    bottom: 16px;
+    right: 20px;
+    font-size: 16px;
   }
 }
 
@@ -254,6 +267,7 @@
   }
 
   .product-scroll__tile-content {
-    padding: 0 24px;
+    /* Keep the bottom gutter — without it the copy runs into the brand mark. */
+    padding: 0 20px 52px 24px;
   }
 }
