@@ -190,8 +190,28 @@
   text-align: center;
   white-space: nowrap;
   width: max-content;
-  max-width: none;
+  max-width: 100%;
   margin: 0 auto;
+  /* Brackets flank the caption as a pair rather than riding the first and
+     last text line once the title wraps. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.home-catalog__item-bracket {
+  flex: 0 0 auto;
+  font-size: 34px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.home-catalog__item-text {
+  min-width: 0;
+  white-space: normal;
+  word-break: keep-all;
+  text-align: center;
 }
 
 .home-catalog__message {
@@ -520,17 +540,22 @@
   }
 
   .home-catalog__item-title {
-    /* The desktop rule sizes this to max-content on one nowrap line, which
-       runs straight over the neighbouring column at phone widths. */
+    /* The desktop rule sizes this to max-content, which runs straight over the
+       neighbouring column at phone widths. */
     white-space: normal;
     word-break: keep-all;
     width: 100%;
     max-width: 100%;
     font-size: 12px;
     line-height: 1.35;
-    /* Two lines' worth of space for every caption so the books below stay on
-       one baseline regardless of title length. */
-    min-height: calc(2 * 1.35 * 12px);
+    gap: 3px;
+    /* Space for the longest wrapped caption so every book starts on the same
+       baseline across the row. */
+    min-height: calc(4 * 1.35 * 12px);
+  }
+
+  .home-catalog__item-bracket {
+    font-size: 30px;
   }
 
   /* Hidden hover hint keeps its nowrap intrinsic width and would stretch the

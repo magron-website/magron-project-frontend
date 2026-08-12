@@ -462,6 +462,7 @@
 
   .tech-doc__title-text {
     min-width: 0;
+    text-align: center;
     /* Two lines keeps every caption inside the bracket pair's height. */
     display: -webkit-box;
     -webkit-line-clamp: 2;

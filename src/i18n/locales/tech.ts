@@ -26,11 +26,11 @@ const tech = {
           'KOPTRI(한국고분자시험연구소)에서 OECD TG 104(Effusion법)로 측정한 MFF-M4251 증기압 공인시험 성적서 (Torr/Pa)',
       },
       5: {
-        title: 'TGA 데이터 — Active Gas',
+        title: 'TGA 데이터 Active Gas',
         description: '부식성(활성) 가스용 MFF-M4251/M5070의 TGA 및 리크 테스트 전체 원자료',
       },
       6: {
-        title: 'TGA 데이터 — Inert Gas',
+        title: 'TGA 데이터 Inert Gas',
         description: '불활성 가스용 MFS/MFH 시리즈의 TGA 전체 원자료',
       },
       7: {
@@ -72,12 +72,12 @@ const tech = {
           'The official KOPTRI test report for MFF-M4251 vapor pressure, measured by OECD TG 104 (Effusion method), in Torr and Pa.',
       },
       5: {
-        title: 'TGA Data — Active Gas',
+        title: 'TGA Data Active Gas',
         description:
           'Full TGA and leak-test raw data for MFF-M4251/M5070 used in corrosive (active) gas environments.',
       },
       6: {
-        title: 'TGA Data — Inert Gas',
+        title: 'TGA Data Inert Gas',
         description: 'Full TGA raw data for the MFS/MFH series used in inert gas environments.',
       },
       7: {
@@ -117,11 +117,11 @@ const tech = {
           '由 KOPTRI（韩国高分子测试研究所）依据 OECD TG 104（有效扩散法）测定的 MFF-M4251 蒸气压正式检测报告（Torr/Pa）。',
       },
       5: {
-        title: 'TGA 数据 — 活性气体',
+        title: 'TGA 数据 活性气体',
         description: '用于腐蚀性（活性）气体环境的 MFF-M4251/M5070 的 TGA 及泄漏测试完整原始数据。',
       },
       6: {
-        title: 'TGA 数据 — 惰性气体',
+        title: 'TGA 数据 惰性气体',
         description: '用于惰性气体环境的 MFS/MFH 系列的 TGA 完整原始数据。',
       },
       7: {

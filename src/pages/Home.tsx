@@ -80,7 +80,18 @@ function HomeCatalog() {
             const title = t(`catalog.items.${sortOrder}`)
             return (
               <div key={sortOrder} className="home-catalog__item">
-                <div className="home-catalog__item-title">&lt; {title} &gt;</div>
+                {/* Brackets are their own spans so they can be scaled to
+                    embrace a wrapped caption instead of sitting inline with
+                    the first and last line. */}
+                <div className="home-catalog__item-title">
+                  <span className="home-catalog__item-bracket" aria-hidden="true">
+                    &lt;
+                  </span>
+                  <span className="home-catalog__item-text">{title}</span>
+                  <span className="home-catalog__item-bracket" aria-hidden="true">
+                    &gt;
+                  </span>
+                </div>
                 <button
                   type="button"
                   className="home-catalog__book-button"
