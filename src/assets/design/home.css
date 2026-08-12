@@ -5,7 +5,8 @@
 @import './font.css';
 
 .home {
-  --header-height: 80px;
+  /* Keep in sync with header.css — the enlarged brand block needs 96px. */
+  --header-height: 96px;
   --product-scroll-height: 1500px;
   --product-section-offset: calc(690px + var(--header-height));
   --catalog-height: 1432px;

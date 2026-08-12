@@ -6,7 +6,9 @@
    ========================================================================== */
 
 .home-header {
-  --header-height: 80px;
+  /* Fits the enlarged logo + brand block (58px name over an 18px tagline);
+     at 80px the tagline was clipped by the header edge. */
+  --header-height: 96px;
   --header-side-padding: clamp(32px, 6vw, 140px);
   --header-column-gap: 64px;
   --header-group-gap: 18px;
