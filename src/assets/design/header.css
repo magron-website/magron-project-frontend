@@ -76,8 +76,8 @@
 }
 
 .home-header__logo-img {
-  width: 56px;
-  height: 56px;
+  width: 68px;
+  height: 68px;
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -92,22 +92,20 @@
 .home-header__brand-name {
   font-family: 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
   font-weight: bold;
-  color: #1e35ce;
-  text-shadow:
-    1px 1px 0 #1a2fb8,
-    2px 2px 0 #16299c,
-    3px 3px 0 #12227f,
-    4px 4px 0 #0e1b63,
-    5px 5px 0 #0a1447,
-    6px 8px 12px rgba(0, 0, 0, 0.35);
-  font-size: 50px;
+  /* Deeper navy reads cleanly against the white header. The old 5-layer
+     stacked shadow smeared the letterforms — one tight offset keeps the
+     3D feel while the glyph edges stay sharp. */
+  color: #16299c;
+  text-shadow: 2px 2px 0 rgba(10, 20, 71, 0.55);
+  -webkit-font-smoothing: antialiased;
+  font-size: 58px;
   line-height: 1.1;
   white-space: nowrap;
 }
 
 .home-header__brand-tagline {
   color: #205694;
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 700;
   line-height: 1.2;
   white-space: nowrap;

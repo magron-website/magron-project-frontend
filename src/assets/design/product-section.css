@@ -168,6 +168,8 @@
   font-weight: bold;
   line-height: 1.35;
   letter-spacing: -0.02em;
+  /* tile copy can carry authored line breaks (locales/product.ts) */
+  white-space: pre-line;
 }
 
 .product-scroll__tile-brand {
@@ -177,9 +179,9 @@
   right: 0;
   z-index: 1;
   margin: 0;
-  color: #33ff00;
+  color: #14307a;
   font-family: 'ChosunIlboMyungjo', serif;
-  font-size: 11px;
+  font-size: 22px;
   font-weight: bold;
   letter-spacing: 0.28em;
   text-align: center;

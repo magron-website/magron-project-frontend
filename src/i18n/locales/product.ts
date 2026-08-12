@@ -6,11 +6,23 @@
 const product = {
   ko: {
     tiles: {
-      1: { category: '제품', title: 'Ferrofluid', subtitle: 'Vacuum Feedthrough용 자성유체' },
+      1: {
+        category: '제품',
+        title: 'Ferrofluid',
+        subtitle: 'For semiconductor equipment\nVacuum Feedthrough용 자성유체',
+      },
       2: { category: '제품', title: 'Feedthrough', subtitle: '진공 회전 피드스루' },
-      3: { category: '제품', title: 'Reel Mag-Oil', subtitle: '낚시 릴 방수용 자성유체 오일' },
-      4: { category: '제품', title: 'Magnet', subtitle: '자석 Assembly' },
-      5: { category: '제품', title: 'PIEZO Ink', subtitle: 'Conductive Ink & PIEZO Ink' },
+      3: {
+        category: '제품',
+        title: 'Daiwa Reel Mag-Oil',
+        subtitle: 'Daiwa 낚시 릴\n방수용 자성유체 오일',
+      },
+      4: { category: '제품', title: 'Magnet', subtitle: '자석 & Assembly' },
+      5: {
+        category: '제품',
+        title: 'Conductive & PIEZO Ink',
+        subtitle: 'In mold Conductive ink\nPiezo ink',
+      },
       6: { category: '응용 분야', title: 'Display', subtitle: '전시용 대형 자성유체 디스플레이' },
     },
     sectionAria: '제품 소개',
@@ -29,16 +41,20 @@ const product = {
       1: {
         category: 'Product',
         title: 'Ferrofluid',
-        subtitle: 'Gas & Dust Sealing Ferrofluid for Feedthroughs',
+        subtitle: 'For semiconductor equipment\nGas & Dust Sealing Ferrofluid for Feedthroughs',
       },
       2: { category: 'Product', title: 'Feedthrough', subtitle: 'Vacuum Rotary Feedthrough' },
       3: {
         category: 'Product',
-        title: 'Reel Mag-Oil',
-        subtitle: 'Water-Proof Ferrofluid Oil for Fishing Reels',
+        title: 'Daiwa Reel Mag-Oil',
+        subtitle: 'Daiwa Fishing Reel\nWater-Proof Ferrofluid Oil',
       },
-      4: { category: 'Product', title: 'Magnet', subtitle: 'Magnet and Magnetic Components' },
-      5: { category: 'Product', title: 'PIEZO Ink', subtitle: 'Conductive & Piezo Ink' },
+      4: { category: 'Product', title: 'Magnet', subtitle: 'Magnet & Assembly' },
+      5: {
+        category: 'Product',
+        title: 'Conductive & PIEZO Ink',
+        subtitle: 'In mold Conductive ink\nPiezo ink',
+      },
       6: { category: 'Application', title: 'Display', subtitle: 'Large-Scale Ferrofluid Display' },
     },
     sectionAria: 'Product introduction',
@@ -54,11 +70,23 @@ const product = {
   },
   zh: {
     tiles: {
-      1: { category: '产品', title: '磁性流体', subtitle: '用于真空旋转导入装置的磁性流体' },
+      1: {
+        category: '产品',
+        title: '磁性流体',
+        subtitle: 'For semiconductor equipment\n用于真空旋转导入装置的磁性流体',
+      },
       2: { category: '产品', title: '真空旋转导入装置', subtitle: '真空旋转导入装置' },
-      3: { category: '产品', title: 'Reel Mag-Oil', subtitle: '用于钓鱼线轮防水的磁性流体油' },
-      4: { category: '产品', title: '磁铁', subtitle: '磁铁及磁性部件' },
-      5: { category: '产品', title: 'PIEZO Ink', subtitle: '导电油墨与压电油墨' },
+      3: {
+        category: '产品',
+        title: 'Daiwa Reel Mag-Oil',
+        subtitle: 'Daiwa 钓鱼线轮\n防水磁性流体油',
+      },
+      4: { category: '产品', title: '磁铁', subtitle: '磁铁 & 组件' },
+      5: {
+        category: '产品',
+        title: 'Conductive & PIEZO Ink',
+        subtitle: 'In mold Conductive ink\nPiezo ink',
+      },
       6: { category: '应用领域', title: '显示器', subtitle: '大型磁性流体显示装置' },
     },
     sectionAria: '产品介绍',
