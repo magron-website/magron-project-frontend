@@ -104,8 +104,13 @@
 .product-scroll__tile--image {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: stretch;
+  /* Copy sits on the bottom edge instead of over the middle of the photo —
+     the subject stays visible and the text gets the gradient scrim below. */
+  justify-content: flex-end;
+  /* Type scales with the tile itself, so authored line breaks survive at
+     every grid width instead of re-wrapping mid-phrase. */
+  container-type: inline-size;
 }
 
 .product-scroll__tile-bg {
@@ -120,8 +125,17 @@
 .product-scroll__tile-overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.35);
-  transition: background 0.3s ease;
+  /* Scrim weighted to the left, where the copy sits: the text keeps full
+     contrast while the right half of the product shot stays bright (and the
+     navy brand mark there stays legible). */
+  background: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0.68) 0%,
+    rgba(0, 0, 0, 0.52) 38%,
+    rgba(0, 0, 0, 0.26) 68%,
+    rgba(0, 0, 0, 0.18) 100%
+  );
+  transition: opacity 0.3s ease;
 }
 
 .product-scroll__tile:hover .product-scroll__tile-bg,
@@ -133,11 +147,11 @@
 .product-scroll__tile:hover .product-scroll__tile-overlay,
 .product-scroll__tile:focus-visible .product-scroll__tile-overlay,
 .product-scroll__tile--active .product-scroll__tile-overlay {
-  background: rgba(0, 0, 0, 0.22);
+  opacity: 0.8;
 }
 
 .product-scroll__tile:active:not(.product-scroll__tile--active) .product-scroll__tile-overlay {
-  background: rgba(0, 0, 0, 0.45);
+  opacity: 1;
 }
 
 .product-scroll__tile-content {
@@ -145,38 +159,42 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 20px;
-  padding: 0 40px;
-  text-align: center;
+  align-items: flex-start;
+  gap: 10px;
+  /* Bottom padding clears the brand mark; the right cap keeps long titles
+     off the bright side of the photo. */
+  padding: 0 24px 64px 32px;
+  text-align: left;
 }
 
 .product-scroll__tile-label {
   margin: 0;
-  color: #33ff00;
+  color: #b6ff8a;
   font-family: 'ChosunIlboMyungjo', serif;
   font-size: 22px;
   font-weight: bold;
   letter-spacing: 0.06em;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
 }
 
 .product-scroll__tile-title {
   margin: 0;
-  color: #33ff00;
+  color: #ffffff;
   font-family: 'ChosunIlboMyungjo', serif;
-  font-size: 36px;
+  /* Scales down on narrow tiles so authored lines don't wrap mid-phrase. */
+  font-size: clamp(17px, 5.6cqw, 30px);
   font-weight: bold;
-  line-height: 1.35;
+  line-height: 1.3;
   letter-spacing: -0.02em;
   /* tile copy can carry authored line breaks (locales/product.ts) */
   white-space: pre-line;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
 }
 
 .product-scroll__tile-brand {
   position: absolute;
-  bottom: 36px;
-  left: 0;
-  right: 0;
+  bottom: 28px;
+  right: 34px;
   z-index: 1;
   margin: 0;
   color: #14307a;
@@ -184,8 +202,9 @@
   font-size: 22px;
   font-weight: bold;
   letter-spacing: 0.28em;
-  text-align: center;
+  text-align: right;
   text-transform: uppercase;
+  text-shadow: 0 1px 3px rgba(255, 255, 255, 0.55);
 }
 
 /* --------------------------------------------------------------------------
