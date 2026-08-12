@@ -490,17 +490,9 @@
   }
 
   .tech-doc__desc {
-    /* Desktop reserves a fixed 60px / 3-line slot; at 10px that leaves the
-       text floating into the download button, so clamp to two short lines. */
-    width: 100%;
-    min-width: 0;
-    max-width: 100%;
-    height: auto;
-    -webkit-line-clamp: 2;
-    font-size: 10px;
-    line-height: 14px;
-    min-height: 28px;
-    word-break: keep-all;
+    /* Three-up cards are too narrow for the blurb — it only ever showed a
+       clipped fragment, so drop it on phones and let the title carry it. */
+    display: none;
   }
 
   .tech-doc__book {

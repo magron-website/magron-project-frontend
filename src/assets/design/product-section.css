@@ -186,6 +186,10 @@
   font-weight: bold;
   line-height: 1.3;
   letter-spacing: -0.02em;
+  /* Reserve two lines for every tile: the copy is bottom-anchored, so a
+     one-line caption would otherwise start lower than a two-line one and the
+     row would read as misaligned. */
+  min-height: 2.6em;
   /* tile copy can carry authored line breaks (locales/product.ts) */
   white-space: pre-line;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.75);
