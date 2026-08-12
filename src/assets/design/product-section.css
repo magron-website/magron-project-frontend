@@ -263,7 +263,9 @@
   }
 
   .product-scroll__tile {
-    min-height: 200px;
+    /* Six stacked tiles made this the longest section on phones; a shorter
+       card keeps the whole product list within a couple of swipes. */
+    min-height: 150px;
   }
 
   .product-scroll__tile-content {
