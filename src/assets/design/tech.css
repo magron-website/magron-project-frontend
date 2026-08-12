@@ -414,8 +414,69 @@
 
 @media (max-width: 560px) {
   .tech-doc-grid {
-    grid-template-columns: 1fr;
-    gap: 40px;
+    /* Two-up on phones as well — a single column made this section scroll
+       for pages. minmax(0, …) lets the tracks shrink past the intrinsic
+       width of the captions instead of overflowing. */
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px 8px;
+  }
+
+  .tech-doc,
+  .tech-doc__book-button {
+    min-width: 0;
+  }
+
+  .tech-doc__title {
+    white-space: normal;
+    word-break: keep-all;
+    font-size: 12px;
+    line-height: 1.35;
+    /* Two lines' worth of space for every caption so the books below stay on
+       one baseline regardless of title length. */
+    min-height: calc(2 * 1.35em);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+  }
+
+  /* Hidden hover hint keeps its nowrap intrinsic width and would stretch the
+     narrow phone tracks, so let it wrap too. */
+  .tech-doc__hint {
+    white-space: normal;
+  }
+
+  .tech-doc__download {
+    width: 100%;
+    min-width: 0;
+    padding: 5px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+  }
+
+  .tech-doc__desc {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    font-size: 10px;
+    line-height: 1.4;
+    word-break: keep-all;
+  }
+
+  .tech-doc__book {
+    /* Matches the catalog: the box is pinned to the scaled footprint because a
+       transform leaves the BookCover's 230x325 layout size untouched. */
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 104px;
+    max-width: 100%;
+    min-height: 0;
+    height: 150px;
+    padding: 0;
+  }
+
+  .tech-doc__book > * {
+    transform: scale(0.45);
+    transform-origin: top left;
   }
 
   .home-tech__title,
