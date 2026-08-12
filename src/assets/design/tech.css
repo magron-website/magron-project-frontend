@@ -38,6 +38,11 @@
   text-overflow: ellipsis;
 }
 
+/* Spacing that the literal "< title >" text used to provide. */
+.tech-doc__title-bracket {
+  margin: 0 0.25em;
+}
+
 .tech-doc__book-button {
   display: flex;
   flex-direction: column;
@@ -427,16 +432,41 @@
   }
 
   .tech-doc__title {
+    /* Desktop pins this to a single 24px ellipsised line; at phone widths the
+       caption needs two real lines instead of spilling over its neighbours. */
     white-space: normal;
     word-break: keep-all;
-    font-size: 12px;
-    line-height: 1.35;
-    /* Two lines' worth of space for every caption so the books below stay on
-       one baseline regardless of title length. */
-    min-height: calc(2 * 1.35em);
+    overflow: visible;
+    text-overflow: clip;
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    font-size: 11px;
+    line-height: 1.3;
+    /* Two lines' worth of space so the books below stay on one baseline. */
+    min-height: calc(2 * 1.3 * 11px);
+    /* Brackets flank the wrapped caption rather than sitting on line one. */
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: center;
+    gap: 3px;
+  }
+
+  .tech-doc__title-bracket {
+    margin: 0;
+    flex: 0 0 auto;
+    font-size: 30px;
+    font-weight: 400;
+    line-height: 1;
+  }
+
+  .tech-doc__title-text {
+    min-width: 0;
+    /* Two lines keeps every caption inside the bracket pair's height. */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   /* Hidden hover hint keeps its nowrap intrinsic width and would stretch the
@@ -448,17 +478,27 @@
   .tech-doc__download {
     width: 100%;
     min-width: 0;
-    padding: 5px 4px;
-    font-size: 10px;
+    height: 22px;
+    padding: 0 4px;
+    font-size: 9px;
     line-height: 1.2;
   }
 
+  .tech-doc__download-text {
+    font-size: 9px;
+  }
+
   .tech-doc__desc {
+    /* Desktop reserves a fixed 60px / 3-line slot; at 10px that leaves the
+       text floating into the download button, so clamp to two short lines. */
     width: 100%;
     min-width: 0;
     max-width: 100%;
+    height: auto;
+    -webkit-line-clamp: 2;
     font-size: 10px;
-    line-height: 1.4;
+    line-height: 14px;
+    min-height: 28px;
     word-break: keep-all;
   }
 

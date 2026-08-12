@@ -41,7 +41,17 @@ export default function TechDocumentCard({
 
   return (
     <div className="tech-doc">
-      <div className="tech-doc__title">&lt; {document.title} &gt;</div>
+      {/* Brackets are their own spans so they can be scaled to embrace a
+          two-line caption instead of sitting inline with the first line. */}
+      <div className="tech-doc__title">
+        <span className="tech-doc__title-bracket" aria-hidden="true">
+          &lt;
+        </span>
+        <span className="tech-doc__title-text">{document.title}</span>
+        <span className="tech-doc__title-bracket" aria-hidden="true">
+          &gt;
+        </span>
+      </div>
       <button
         type="button"
         className="tech-doc__book-button"

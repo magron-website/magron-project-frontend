@@ -520,16 +520,17 @@
   }
 
   .home-catalog__item-title {
+    /* The desktop rule sizes this to max-content on one nowrap line, which
+       runs straight over the neighbouring column at phone widths. */
     white-space: normal;
     word-break: keep-all;
+    width: 100%;
+    max-width: 100%;
     font-size: 12px;
     line-height: 1.35;
     /* Two lines' worth of space for every caption so the books below stay on
        one baseline regardless of title length. */
-    min-height: calc(2 * 1.35em);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
+    min-height: calc(2 * 1.35 * 12px);
   }
 
   /* Hidden hover hint keeps its nowrap intrinsic width and would stretch the
@@ -541,8 +542,9 @@
   .home-catalog__download {
     width: 100%;
     min-width: 0;
-    padding: 5px 4px;
-    font-size: 10px;
+    height: 22px;
+    padding: 0 4px;
+    font-size: 9px;
     line-height: 1.2;
   }
 
