@@ -12,6 +12,18 @@ body {
   font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   background: #fff;
   overflow-x: auto;
+  /* 컨테이너보다 긴 토큰(URL·품번 등)이 넘치지 않게 받쳐준다. */
+  overflow-wrap: break-word;
+}
+
+/* 한국어는 기본값이 음절 단위로 끊겨서 "콘텐츠입니 / 다." 처럼 어절 중간이
+   갈라진다. keep-all로 어절 단위로만 끊는다.
+   중국어(zh)는 원래 아무 글자에서나 끊는 게 정상이라 제외한다 — keep-all을
+   걸면 문장부호까지 안 끊겨서 줄이 통째로 밀린다.
+   html lang은 언어 전환 시 i18n이 갱신한다. */
+html[lang='ko'] body,
+html[lang='en'] body {
+  word-break: keep-all;
 }
 
 #root {

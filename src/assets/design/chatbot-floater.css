@@ -83,7 +83,8 @@
   }
 
   .chatbot-floater__panel {
-    width: 64px;
+    /* 64px에서는 "물어보세요!"가 어절 중간에서 잘렸다 */
+    width: 78px;
     padding: 16px 8px 14px;
   }
 

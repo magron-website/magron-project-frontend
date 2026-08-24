@@ -19,7 +19,7 @@ const tech = {
       },
       4: {
         title: 'KOPTRI 증기압 성적서',
-        description: 'KOPTRI에서 OECD TG 104(Effusion법)로 측정한 증기압 공인시험 성적서',
+        description: 'KOPTRI에서 OECD TG 104로 측정한 증기압 공인시험 성적서',
       },
       5: {
         title: 'TGA 데이터 Active Gas',
