@@ -26,9 +26,12 @@ const FlipPage = forwardRef<HTMLDivElement, FlipPageProps>(({ src, width, height
 
 FlipPage.displayName = 'FlipPage'
 
-const VIEWER_HEADER_HEIGHT = 60
-const VIEWER_CONTENT_PADDING_Y = 64
-const VIEWER_OUTER_PADDING = 32
+// CSS(book-flip-viewer.css)의 실제 여백과 반드시 같아야 한다.
+// 헤더 48 / 안쪽 위아래 10+12=22 / 바깥 6+6=12 / 안쪽 좌우 16
+const VIEWER_HEADER_HEIGHT = 48
+const VIEWER_CONTENT_PADDING_Y = 22
+const VIEWER_OUTER_PADDING = 12
+const VIEWER_CONTENT_PADDING_X = 16
 
 function useViewerLayout() {
   const [layout, setLayout] = useState({
@@ -41,19 +44,26 @@ function useViewerLayout() {
 
   useEffect(() => {
     const updateLayout = () => {
-      const panelWidth = Math.min(Math.floor(window.innerWidth * 0.98), 1500)
-      const panelMaxHeight = Math.floor(window.innerHeight * 0.96)
+      // 창을 화면에 꽉 채우고, 그 안에서 A4(1:1.414) 두 장이 들어갈 수 있는
+      // 최대 크기를 구한다. 예전 코드엔 페이지 폭 580px 상한이 있었지만
+      // 실제로는 화면 높이가 먼저 막아서 상한이 걸리지도 않았다.
+      // 이제 가로·세로 제약 중 작은 쪽에 맞춰 최대화한다.
+      // index.css가 데스크톱에서 html에 zoom(0.75)을 걸기 때문에,
+      // window.innerWidth/Height(장치 픽셀)를 그대로 px로 쓰면
+      // 그 값이 다시 0.75배로 렌더돼서 창이 화면의 73%밖에 차지 않는다.
+      // zoom으로 나눠 'CSS 픽셀' 기준으로 계산해야 실제로 꽉 찬다.
+      const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1
+      const viewportWidth = window.innerWidth / zoom
+      const viewportHeight = window.innerHeight / zoom
+
+      const panelWidth = Math.floor(viewportWidth * 0.98)
+      const panelMaxHeight = Math.floor(viewportHeight * 0.96)
       const maxBookHeight =
         panelMaxHeight - VIEWER_HEADER_HEIGHT - VIEWER_CONTENT_PADDING_Y - VIEWER_OUTER_PADDING
-      const maxBookWidth = Math.floor((panelWidth - 64 - 48) / 2)
+      const maxBookWidth = Math.floor((panelWidth - VIEWER_CONTENT_PADDING_X * 2) / 2)
 
-      let width = Math.min(580, maxBookWidth, Math.floor(window.innerWidth * 0.52))
-      let height = Math.round(width * 1.414)
-
-      if (height > maxBookHeight) {
-        height = Math.max(508, maxBookHeight)
-        width = Math.round(height / 1.414)
-      }
+      let height = Math.min(maxBookHeight, Math.round(maxBookWidth * 1.414))
+      let width = Math.round(height / 1.414)
 
       width = Math.max(360, width)
       height = Math.max(508, height)
