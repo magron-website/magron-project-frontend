@@ -132,12 +132,14 @@
 /* Clamped rather than free-flowing: the home teaser sits in a fixed-height
    slot, so every card has to occupy the same number of lines. */
 .tech-doc__desc {
+  /* "OECD TG 104(Effusion...)" 같이 안 쪼개지는 긴 토큰이 4px 삐져나왔다 */
+  overflow-wrap: anywhere;
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
   margin: 0;
-  height: 60px;
+  height: 40px;
   color: #52525b;
   font-family: 'ChosunIlboMyungjo', serif;
   font-size: 14px;
@@ -273,7 +275,7 @@
 
 .tech-page {
   display: block;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
 
 .tech-page__hero {

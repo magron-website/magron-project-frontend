@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Nanum+Gothic&display=swap');
+/* 사이트 폰트는 font.css / index.html 참고 (IBM Plex Sans KR) */
 
 *,
 *::before,
@@ -9,7 +9,7 @@
 }
 
 body {
-  font-family: Helvetica, Arial, 'Nanum Gothic', sans-serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   background: #fff;
   overflow-x: auto;
 }
@@ -28,5 +28,289 @@ body {
 @media (min-width: 1025px) {
   html {
     zoom: 0.75;
+  }
+}
+
+
+/* ==========================================================================
+   글자 크기 보정 (데스크톱 전용)
+   위 zoom 0.75는 레이아웃과 글자를 함께 줄인다. 레이아웃(여백·타일 크기)은
+   75% 그대로 두고, 읽어야 하는 글자만 다시 키운다.
+
+   선택자에 body를 붙인 이유: 각 화면 CSS(home.css 등)가 이 파일보다 나중에
+   로드돼 같은 우선순위면 그쪽이 이긴다. body를 붙여 우선순위를 한 단계 올린다.
+
+   조절 방법
+   - 상세 페이지 전체 크기: 아래 zoom 1.32 (1.0 = 75% 그대로, 1.33 = 원래 크기)
+   - 홈 화면 글자: 각 font-size 값 (원래 px × 1.25 기준)
+   ========================================================================== */
+@media (min-width: 1025px) {
+  /* 1) 문서형 페이지(제품 상세·기술정보·회사소개)는 통째로 원래 크기로 되돌린다.
+        0.75 × 1.32 ≈ 0.99 */
+  body .cp-page,
+  body .tech-page {
+    zoom: 1.32;
+  }
+
+  /* 1-2) 제품 상세 6종은 한 단계 더 키워 본문이 화면 폭(밴드)까지 차게 한다.
+          0.75 × 1.60 = 1.20 (원래 크기의 1.2배). 이 숫자만 바꾸면 상세 폭·글자가 같이 조절된다. */
+  body .ff-page,
+  body .ft-page,
+  body .mg-page,
+  body .mn-page,
+  body .ed-page,
+  body .dp-page,
+  body .pi-page {
+    zoom: 1.6;
+  }
+
+  /* Mag-oil·교육키트만 본문 폭이 1100px이라 다른 페이지보다 좁게 끝났다 */
+  body .mg-page {
+    --mg-max: 1180px;
+  }
+
+  body .ed-page {
+    --ed-max: 1180px;
+  }
+
+  /* 1-3) 큰 제목은 지금 크기가 좋다고 해서 위 확대분을 되돌린다 (1.32 ÷ 1.60) */
+  body .ff-hero__title,
+  body .ft-hero__title,
+  body .mg-hero__title,
+  body .mn-hero__title,
+  body .ed-hero__title,
+  body .dp-hero__title,
+  body .pi-hero__title {
+    zoom: 0.825;
+  }
+
+  /* 1-4) 히어로 설명문·특징 카드는 조금 더 키운다 */
+  body .ff-hero__lead,
+  body .ft-hero__lead,
+  body .mg-hero__lead,
+  body .mn-hero__lead,
+  body .ed-hero__lead,
+  body .dp-hero__lead,
+  body .pi-hero__lead,
+  body .ed-hero__lead p,
+  body .pi-hero__lead p {
+    font-size: 19px;
+  }
+
+  body .ff-hero__body p,
+  body .ft-hero__body p,
+  body .mn-hero__body p {
+    font-size: 17px;
+  }
+
+  body .ff-feature-card h3,
+  body .mn-feature-card h3,
+  body .pi-feature-card h3 {
+    font-size: 16px;
+  }
+
+  /* Feedthrough는 카드가 4개라 폭이 좁다. 16px면 "Rotary Motion Transfer"만
+     3줄로 넘어가 한 줄이 어긋나므로 여기만 15px. */
+  body .ft-feature-card h3 {
+    font-size: 15px;
+  }
+
+  body .ff-feature-card p,
+  body .ft-feature-card p,
+  body .mn-feature-card p,
+  body .pi-feature-card p {
+    font-size: 15px;
+  }
+
+  /* 2) 홈 화면은 배치를 지켜야 하므로 글자 크기만 올린다 (약 1.25배) */
+  body .home-catalog__title,
+  body .product-scroll__heading,
+  body .home-tech__title {
+    font-size: 52px;
+  }
+
+  body .product-scroll__tile-label,
+  body .product-scroll__tile-brand {
+    font-size: 27px;
+  }
+
+  body .product-scroll__tile-title {
+    font-size: clamp(21px, 7cqw, 37px);
+  }
+
+  body .home-catalog__item-title {
+    font-size: 25px;
+  }
+
+  body .home-catalog__item-bracket {
+    font-size: 42px;
+  }
+
+  body .home-catalog__download-text,
+  body .tech-doc__download-text {
+    font-size: 22px;
+  }
+
+  body .tech-doc__title {
+    font-size: 25px;
+  }
+
+  body .tech-doc__desc,
+  body .home-tech__lead {
+    font-size: 18px;
+  }
+
+  body .home-contact__title {
+    font-size: 37px;
+  }
+
+  body .home-contact__address,
+  body .home-contact__label,
+  body .home-contact__value {
+    font-size: 20px;
+  }
+
+  /* ------------------------------------------------------------------
+     3) 헤더 — zoom 0.75로 줄어든 글자를 원래 크기로 되돌린다 (×1.33).
+        글자가 커진 만큼 헤더 높이도 같이 올려야 태그라인이 잘리지 않는다.
+        --header-height는 .home-header(헤더 자신)와 .home(본문 오프셋)
+        양쪽에 정의돼 있어서 둘 다 바꿔야 한다.
+     ------------------------------------------------------------------ */
+  body .home-header,
+  body .home {
+    --header-height: 128px;
+  }
+
+  /* 카탈로그·기술자료 카드가 2배로 커진 만큼 세로 슬롯도 늘려준다.
+     (홈은 각 섹션이 absolute + 고정 높이로 쌓여 있어 아래 값이 안 맞으면 겹친다)
+       --catalog-height  1432 + 1056
+       --tech-height     1548 + 1176
+       --contact-offset  = 1701 + --catalog-height */
+  body .home {
+    --catalog-height: 1817px;
+    --tech-height: 1908px;
+    --contact-offset: 3518px;
+  }
+
+  body .home-catalog__keywords {
+    top: 1732px;
+  }
+
+  body .home-header__logo-img {
+    width: 88px;
+    height: 88px;
+  }
+
+  body .home-header__brand-name {
+    font-size: 74px;
+  }
+
+  body .home-header__brand-tagline {
+    font-size: 24px;
+  }
+
+  body .home-header__nav-item {
+    font-size: 21px;
+  }
+
+  body .home-header__dropdown-item {
+    font-size: 20px;
+  }
+
+  body .home-header__dropdown-list {
+    min-width: 186px;
+  }
+
+  body .home-header__dropdown-list--wide {
+    min-width: 292px;
+  }
+
+  body .home-header__lang-label {
+    font-size: 21px;
+    line-height: 26px;
+  }
+
+  body .home-header__lang-label--chn {
+    font-size: 18px;
+  }
+
+  body .home-header__lang-flag {
+    width: 40px;
+    height: 20px;
+  }
+
+  body .home-header__lang-flag--chn {
+    width: 27px;
+  }
+
+  body .home-header__shop {
+    min-width: 96px;
+    height: 45px;
+  }
+
+  body .home-header__shop-text {
+    font-size: 21px;
+  }
+
+  /* ------------------------------------------------------------------
+     4) 홈 카탈로그 / 기술자료 — 화면 폭에 비해 너무 좁아 가운데만 쓰고 있었다.
+        (a) 바깥 폭을 밴드(1920px 슬롯) 가까이 넓히고
+        (b) 카드 격자 전체에 zoom을 걸어 책·캡션·다운로드 버튼을 통째로 키운다.
+        배율을 바꾸려면 max-width와 zoom을 같은 비율로 함께 조절할 것.
+     ------------------------------------------------------------------ */
+  body .home-catalog__inner,
+  body .home-tech__inner {
+    max-width: 1620px;
+  }
+
+  body .home-catalog__grid,
+  body .home-tech .tech-doc-grid {
+    zoom: 1.35;
+  }
+
+  /* 섹션 제목도 커진 카드에 맞춰 한 단계 올린다 */
+  body .home-catalog__title,
+  body .home-tech__title {
+    font-size: 56px;
+  }
+
+  body .home-tech__lead {
+    font-size: 20px;
+  }
+
+  body .home-tech__more {
+    min-width: 232px;
+    height: 60px;
+    font-size: 21px;
+    line-height: 60px;
+  }
+
+  /* ------------------------------------------------------------------
+     5) 메인 히어로 캐러셀 — zoom 0.75로 글자가 작아 보여서 통째로 키운다.
+        (폰트는 예전 조선일보명조 유지, hero-carousel.css 참고)
+        원래 값 × 약 1.5 — 이 숫자들만 바꾸면 히어로 글자 크기가 조절된다.
+     ------------------------------------------------------------------ */
+  /* 타이틀(MAGRON …)은 원래 크기 유지 — hero-carousel.css의 clamp(42px, 4.8vw, 68px)
+     아래 부제·설명·버튼만 키운다 */
+
+  body .roll__subtitle {
+    font-size: clamp(21px, 2.2vw, 30px);
+  }
+
+  body .roll__description {
+    font-size: 21px;
+  }
+
+  body .roll__button {
+    margin-top: 34px;
+    padding: 17px 40px;
+    font-size: 19px;
+  }
+
+  /* 글자를 키우면서 1번 슬라이드의 부제/설명만 2줄로 접혔다.
+     본문 폭을 넓혀 네 슬라이드 모두 부제·설명이 한 줄로 떨어지게 맞춘다.
+     (실제로는 그리드 칸 폭에서 잘려 808px 선에서 멈춘다) */
+  body .roll__content {
+    max-width: 900px;
   }
 }

@@ -22,7 +22,7 @@
   width: 100%;
   height: var(--header-height);
   z-index: 100;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
 
 .home-header__border {
@@ -440,7 +440,7 @@
     padding: 8px 20px 24px;
     background: #f4f4f5;
     box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
-    font-family: 'ChosunIlboMyungjo', serif;
+    font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   }
 
   .home-header__mobile-item {

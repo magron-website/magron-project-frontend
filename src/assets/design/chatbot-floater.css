@@ -20,7 +20,8 @@
 }
 
 .chatbot-floater__panel {
-  width: 72px;
+  /* 72px에서는 "물어보세요!"가 오른쪽으로 잘렸다 (word-break: keep-all이라 안 쪼개짐) */
+  width: 88px;
   padding: 20px 10px 18px;
   background: #1f1f1f;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.18);
@@ -30,7 +31,7 @@
 .chatbot-floater__text {
   margin: 0;
   color: #fff;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 13px;
   font-weight: 400;
   line-height: 1.55;

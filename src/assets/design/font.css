@@ -1,11 +1,24 @@
-/*조선일보명조*/
+/* ==========================================================================
+   사이트 기본 폰트 — IBM Plex Sans KR
+   2026-08-24: 조선일보명조(ChosunIlboMyungjo)에서 교체.
+   Google Fonts 400/500/700 세 굵기를 index.html의 <link>로 불러온다(무료 상업 이용, OFL).
+   폰트를 다시 바꾸려면 index.html의 폰트 link와 아래 font-family 값만 고치면 된다.
+   ========================================================================== */
+
+
+/* 메인 히어로 캐러셀만 예전 폰트(조선일보명조)를 그대로 쓴다.
+   — 명조 쪽이 "MAGRON" 타이틀에 무게감이 있어서 그 자리만 남겨둠 (2026-08-24) */
 @font-face {
-    font-family: 'ChosunIlboMyungjo';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
-    font-weight: normal;
-    font-display: swap;
+  font-family: 'ChosunIlboMyungjo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+  font-weight: normal;
+  font-display: swap;
+}
+
+:root {
+  --font-body: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
 
 .home-page {
-    font-family: 'ChosunIlboMyungjo', serif;
+    font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }

@@ -1,4 +1,5 @@
 import { forwardRef, useEffect, useRef, useState, type CSSProperties } from 'react'
+import { createPortal } from 'react-dom'
 import { useTranslation } from 'react-i18next'
 import HTMLFlipBook from 'react-pageflip'
 import { ClipLoader } from 'react-spinners'
@@ -172,7 +173,10 @@ export default function BookFlipViewer({ isOpen, title, pdfUrl, onClose }: BookF
 
   if (!isOpen) return null
 
-  return (
+  /* 상세 페이지(.tech-page, .ff-page …)에는 zoom이 걸려 있어서 그 안에서 열면
+     position:fixed 패널의 vw/vh가 zoom 배수만큼 커져 화면 밖으로 잘린다.
+     body로 포털해서 항상 html zoom 기준으로만 계산되게 한다. */
+  return createPortal(
     <div className="book-flip-viewer" role="dialog" aria-modal="true" aria-label={`${title} PDF`}>
       <button
         type="button"
@@ -231,6 +235,7 @@ export default function BookFlipViewer({ isOpen, title, pdfUrl, onClose }: BookF
           )}
         </div>
       </div>
-    </div>
+    </div>,
+    document.body,
   )
 }

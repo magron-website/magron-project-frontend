@@ -321,7 +321,7 @@
 .home-contact__title {
   margin: 0;
   color: #fff;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 30px;
   font-weight: 700;
   line-height: 36px;
@@ -337,7 +337,7 @@
 .home-contact__address {
   margin: 0 0 28px;
   color: #27272a;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
@@ -364,7 +364,7 @@
 
 .home-contact__label {
   color: #000;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 20px;
@@ -373,7 +373,7 @@
 .home-contact__text {
   margin: 0;
   color: #000;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 20px;
@@ -409,7 +409,7 @@
   border-radius: 100px;
   background: #fff;
   color: #082f49;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 16px;
   font-weight: 700;
   line-height: 1.5;

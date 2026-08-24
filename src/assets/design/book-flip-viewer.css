@@ -46,7 +46,7 @@
 .book-flip-viewer__title {
   margin: 0;
   color: #205694;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 20px;
   font-weight: 700;
 }
@@ -57,7 +57,7 @@
   padding: 8px 14px;
   background: #082f49;
   color: #fff;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 14px;
   font-weight: 700;
   cursor: pointer;
@@ -91,7 +91,7 @@
   margin: 0;
   padding: 0 16px;
   color: #71717a;
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   font-size: 16px;
   text-align: center;
 }

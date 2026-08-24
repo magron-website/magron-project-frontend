@@ -18,7 +18,7 @@
   width: 100%;
   background: #fff;
   color: var(--mn-text);
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
 
 .mn-page__body {

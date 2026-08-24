@@ -14,7 +14,7 @@ import type { Book, BookRow } from '@/types/book'
 function mapRow(row: BookRow, lang: Language): Book {
   return {
     id: row.id,
-    imageUrl: row.image_url,
+    imageUrl: localize(row, 'image_url', lang) ?? row.image_url,
     pdfUrl: localize(row, 'pdf_url', lang) ?? row.pdf_url,
     sortOrder: row.sort_order,
   }

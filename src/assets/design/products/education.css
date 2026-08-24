@@ -21,7 +21,7 @@
   width: 100%;
   background: #fff;
   color: var(--ed-text);
-  font-family: 'ChosunIlboMyungjo', serif;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
 }
 
 .ed-page__body {
