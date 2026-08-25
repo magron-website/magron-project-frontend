@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import BookFlipViewer from '@/components/BookFlipViewer'
 import TechDocumentCard from '@/components/TechDocumentCard'
 import { useTechDocuments } from '@/hooks/useTechDocuments'
+import { isDesktopViewport, openPdfInNewTab } from '@/lib/openPdf'
 import type { TechDocument } from '@/types/techDocument'
 import '@/assets/design/tech.css'
 
@@ -43,7 +44,10 @@ export default function Tech() {
                 key={document.id}
                 document={document}
                 isVisible
-                onOpen={setViewerDocument}
+                onOpen={(doc) => {
+                  if (isDesktopViewport() && doc.fileUrl) openPdfInNewTab(doc.fileUrl)
+                  else setViewerDocument(doc)
+                }}
               />
             ))}
           </div>

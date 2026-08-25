@@ -9,6 +9,7 @@ import TechDocumentCard from '@/components/TechDocumentCard'
 import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
+import { isDesktopViewport, openPdfInNewTab } from '@/lib/openPdf'
 import { useTechDocuments } from '@/hooks/useTechDocuments'
 import type { TechDocument } from '@/types/techDocument'
 import '@/assets/design/animation.css'
@@ -95,7 +96,13 @@ function HomeCatalog() {
                 <button
                   type="button"
                   className="home-catalog__book-button"
-                  onClick={() => book?.pdfUrl && setViewer({ title, pdfUrl: book.pdfUrl })}
+                  onClick={() => {
+                    if (!book?.pdfUrl) return
+                    // PC는 다운로드 버튼과 같은 화면(브라우저 PDF 뷰어)으로 —
+                    // 책넘김 뷰어는 글자가 작아 안 보인다는 피드백.
+                    if (isDesktopViewport()) openPdfInNewTab(book.pdfUrl)
+                    else setViewer({ title, pdfUrl: book.pdfUrl })
+                  }}
                   disabled={!book?.pdfUrl}
                   aria-label={t('catalog.viewPdfAria', { title })}
                 >
@@ -192,7 +199,10 @@ function HomeTech() {
               key={document.id}
               document={document}
               isVisible={hasBeenInView}
-              onOpen={setViewerDocument}
+              onOpen={(doc) => {
+                if (isDesktopViewport() && doc.fileUrl) openPdfInNewTab(doc.fileUrl)
+                else setViewerDocument(doc)
+              }}
             />
           ))}
         </div>
