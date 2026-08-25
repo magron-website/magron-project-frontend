@@ -9,6 +9,7 @@ import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
 import { openPdfInNewTab, toDownloadUrl } from '@/lib/openPdf'
+import { useLangPath } from '@/i18n/routing'
 import { useTechDocuments } from '@/hooks/useTechDocuments'
 import '@/assets/design/animation.css'
 import '@/assets/design/tech.css'
@@ -139,6 +140,7 @@ function HomeCatalog() {
 
 function HomeTech() {
   const { t } = useTranslation('tech')
+  const lp = useLangPath()
   const { documents, error } = useTechDocuments()
   const { ref, inView } = useInView<HTMLElement>({ threshold: 0.08, once: false })
 
@@ -177,7 +179,7 @@ function HomeTech() {
             />
           ))}
         </div>
-        <Link className="home-tech__more" to="/tech" aria-label={t('viewMoreAria')}>
+        <Link className="home-tech__more" to={lp('/tech')} aria-label={t('viewMoreAria')}>
           {t('viewMore')}
         </Link>
       </div>
@@ -267,8 +269,13 @@ function HomeContact() {
 }
 
 export default function Home() {
+  const { t } = useTranslation('home')
+
   return (
     <div className="home-page">
+      {/* 홈에만 <h1>이 없어서 검색엔진이 이 페이지의 주제를 잡지 못했다.
+          디자인에 큰 제목 자리가 없으므로 화면에서만 숨긴다 (sr-only). */}
+      <h1 className="sr-only">{t('pageHeading')}</h1>
       <HomeHero />
       <HomeProducts />
       <HomeCatalog />

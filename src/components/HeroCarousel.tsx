@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useLangPath } from '@/i18n/routing'
 import useEmblaCarousel from 'embla-carousel-react'
 import { ClipLoader } from 'react-spinners'
 import { Link, useNavigate } from 'react-router-dom'
@@ -62,13 +63,14 @@ function HeroVisualShell({
  */
 function HeroButton({ sortOrder, label }: { sortOrder: number; label: string }) {
   const navigate = useNavigate()
+  const lp = useLangPath()
   const link = HERO_BUTTON_LINKS[sortOrder]
   if (!link) return null
 
   if (link.startsWith('#')) {
     const sectionId = link.slice(1)
     const scrollToSection = () => {
-      navigate('/')
+      navigate(lp('/'))
       requestAnimationFrame(() => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
       })
@@ -83,7 +85,7 @@ function HeroButton({ sortOrder, label }: { sortOrder: number; label: string }) 
   return (
     <Link
       className="roll__button"
-      to={link}
+      to={lp(link)}
       onClick={() => window.scrollTo({ top: 0 })}
     >
       {label}

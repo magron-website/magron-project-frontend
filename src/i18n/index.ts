@@ -36,8 +36,20 @@ function isLanguage(value: string | null): value is Language {
   return value !== null && (LANGUAGES as readonly string[]).includes(value)
 }
 
+/**
+ * 첫 화면 언어는 **주소가 먼저**다. /en/tech 로 들어온 사람에게 저장된 한국어를
+ * 보여줬다가 곧바로 영어로 바뀌면 글자가 한 번 깜빡이고, 프리렌더된 영문 HTML과도
+ * 어긋난다. 접두어가 없을 때만 지난번 선택(localStorage)을 쓴다.
+ */
 function getInitialLanguage(): Language {
   if (typeof window === 'undefined') return 'ko'
+
+  const path = window.location.pathname
+  for (const lang of LANGUAGES) {
+    if (lang === 'ko') continue
+    if (path === `/${lang}` || path.startsWith(`/${lang}/`)) return lang
+  }
+
   const stored = window.localStorage.getItem(STORAGE_KEY)
   return isLanguage(stored) ? stored : 'ko'
 }

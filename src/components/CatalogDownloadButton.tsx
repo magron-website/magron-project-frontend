@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 import { useBooks } from '@/hooks/useBooks'
 import { toDownloadUrl } from '@/lib/openPdf'
+import { useLangPath } from '@/i18n/routing'
 import { PRODUCT_SORT_ORDER, type ProductPageKey } from '@/pages/products/productRoutes'
 
 type CatalogDownloadButtonProps = {
@@ -21,6 +22,7 @@ export default function CatalogDownloadButton({
   children,
 }: CatalogDownloadButtonProps) {
   const { books } = useBooks()
+  const lp = useLangPath()
   const sortOrder = PRODUCT_SORT_ORDER[product]
   const pdfUrl = books.find((book) => book.sortOrder === sortOrder)?.pdfUrl
 
@@ -37,7 +39,7 @@ export default function CatalogDownloadButton({
   }
 
   return (
-    <a className={className} href="/#products">
+    <a className={className} href={`${lp('/')}#products`}>
       {children}
     </a>
   )

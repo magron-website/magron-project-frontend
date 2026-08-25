@@ -10,6 +10,7 @@ import {
 import { useInView } from '@/hooks/useInView'
 import type { ProductExplanation } from '@/types/productExplanation'
 import { getProductPathBySortOrder } from '@/pages/products/productRoutes'
+import { useLangPath } from '@/i18n/routing'
 import '@/assets/design/product-section.css'
 
 type ProductTileCardProps = {
@@ -20,12 +21,13 @@ type ProductTileCardProps = {
 
 function ProductTileCard({ product, isActive, onActivate }: ProductTileCardProps) {
   const { t } = useTranslation('product')
+  const lp = useLangPath()
   const label = getProductTileLabel(product)
   const title = getProductTileTitle(product)
 
   return (
     <Link
-      to={getProductPathBySortOrder(product.sortOrder)}
+      to={lp(getProductPathBySortOrder(product.sortOrder))}
       className={`product-scroll__tile product-scroll__tile--image${isActive ? ' product-scroll__tile--active' : ''}`}
       aria-label={t('tileDetailAria', { title })}
       aria-current={isActive ? 'true' : undefined}

@@ -63,7 +63,10 @@
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  white-space: nowrap;
+  /* nowrap이었는데 영문 제목("Ferrofluid for Corrosive Gas & Dust Blocking")이
+     칸을 18px 넘겼다. 한국어·중국어는 이대로도 한 줄에 들어가고, 영문만 두 줄로
+     접힌다. */
+  white-space: normal;
 }
 
 .ff-hero__title-en {

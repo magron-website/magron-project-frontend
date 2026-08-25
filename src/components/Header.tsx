@@ -5,6 +5,7 @@ import '@/assets/design/header.css'
 import { homeImages } from '@/assets/images/homeImages'
 import { PRODUCT_PAGE_PATHS } from '@/pages/products/productRoutes'
 import { LANGUAGES, type Language } from '@/i18n'
+import { splitLangPath, useLangPath, withLang } from '@/i18n/routing'
 
 const NAV_KEYS = ['company', 'products', 'catalog', 'tech'] as const
 
@@ -33,39 +34,44 @@ export default function Header() {
   const [companyOpen, setCompanyOpen] = useState(false)
   const [productsOpen, setProductsOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
-  const isProductPage = PRODUCT_PAGE_PATH_LIST.includes(pathname)
+  const lp = useLangPath()
+  const { path: barePath } = splitLangPath(pathname)
+  const isProductPage = PRODUCT_PAGE_PATH_LIST.includes(barePath)
   const currentLang = i18n.language as Language
 
   const goToTop = () => {
     setCompanyOpen(false)
     setMobileOpen(false)
-    if (pathname === '/') {
+    if (barePath === '/') {
       window.scrollTo({ top: 0, behavior: 'smooth' })
       return
     }
-    navigate('/')
+    navigate(lp('/'))
   }
 
   const goToCompany = () => {
     setCompanyOpen(false)
     setMobileOpen(false)
-    navigate('/company')
+    navigate(lp('/company'))
     window.scrollTo({ top: 0, behavior: 'smooth' })
   }
 
   const goToSection = (sectionId: string) => {
     setProductsOpen(false)
     setMobileOpen(false)
-    navigate(`/#${sectionId}`)
-    if (pathname === '/') {
+    navigate(`${lp('/')}#${sectionId}`)
+    if (barePath === '/') {
       requestAnimationFrame(() => {
         document.getElementById(sectionId)?.scrollIntoView({ behavior: 'smooth' })
       })
     }
   }
 
+  /* 언어 전환은 주소를 바꾸는 것으로 처리한다. 같은 화면의 그 언어판 주소로
+     이동하면 Layout이 주소를 보고 언어를 맞춘다 — 그래야 지금 보는 페이지의
+     영문/중문 주소가 실제로 존재하고, 공유·즐겨찾기·검색 색인이 가능해진다. */
   const changeLanguage = (lang: Language) => {
-    void i18n.changeLanguage(lang)
+    navigate(withLang(lang, barePath))
   }
 
   return (
@@ -73,7 +79,7 @@ export default function Header() {
       <div className="home-header__border" />
       <div className="home-header__bg" />
       <div className="home-header__inner">
-        <Link to="/" className="home-header__left" aria-label={t('ariaHome')}>
+        <Link to={lp('/')} className="home-header__left" aria-label={t('ariaHome')}>
           <img className="home-header__logo-img" src={homeImages.logo} alt="MAGRON" />
           <div className="home-header__brand">
             <span className="home-header__brand-name">MAGRON</span>
@@ -144,7 +150,7 @@ export default function Header() {
                       {PRODUCT_SUB_ITEMS.map((subItem) => (
                         <li key={subItem.key}>
                           <Link
-                            to={subItem.to}
+                            to={lp(subItem.to)}
                             className="home-header__dropdown-item"
                             onClick={() => setProductsOpen(false)}
                           >
@@ -168,7 +174,7 @@ export default function Header() {
             ) : (
               <Link
                 key={key}
-                to="/tech"
+                to={lp('/tech')}
                 className={`home-header__nav-item home-header__nav-item--link${pathname === '/tech' ? ' home-header__nav-item--active' : ''}`}
               >
                 {t('nav.tech')}
@@ -254,7 +260,7 @@ export default function Header() {
               {PRODUCT_SUB_ITEMS.map((subItem) => (
                 <Link
                   key={subItem.key}
-                  to={subItem.to}
+                  to={lp(subItem.to)}
                   className="home-header__mobile-subitem"
                   onClick={() => setMobileOpen(false)}
                 >
@@ -270,7 +276,7 @@ export default function Header() {
               {t('nav.catalog')}
             </button>
             <Link
-              to="/tech"
+              to={lp('/tech')}
               className="home-header__mobile-item"
               onClick={() => setMobileOpen(false)}
             >

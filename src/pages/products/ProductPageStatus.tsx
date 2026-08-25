@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { ClipLoader } from 'react-spinners'
+import { useLangPath } from '@/i18n/routing'
 import '@/assets/design/product-detail.css'
 
 type ProductPageStatusProps = {
@@ -10,6 +11,7 @@ type ProductPageStatusProps = {
 
 export default function ProductPageStatus({ loading, error }: ProductPageStatusProps) {
   const { t } = useTranslation(['product', 'common'])
+  const lp = useLangPath()
 
   if (loading) {
     return (
@@ -22,7 +24,7 @@ export default function ProductPageStatus({ loading, error }: ProductPageStatusP
   return (
     <div className="product-detail product-detail--status">
       <p className="product-detail__message">{error ?? t('product:statusNotFound')}</p>
-      <Link className="product-detail__back" to="/">
+      <Link className="product-detail__back" to={lp('/')}>
         {t('product:statusBack')}
       </Link>
     </div>

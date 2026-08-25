@@ -1,5 +1,8 @@
 const home = {
   ko: {
+    /* 홈의 <h1>. 디자인상 큰 제목 자리가 없어 화면에는 숨기고 검색엔진·스크린리더에만
+       읽힌다 (display:none이 아니라 sr-only라서 색인·낭독 모두 정상). */
+    pageHeading: '자성유체·자성소재 전문 제조사 (주)마그론',
     catalog: {
       heading: '카탈로그',
       bookHint: '클릭시 책을 열람할수 있습니다.',
@@ -23,6 +26,7 @@ const home = {
     },
   },
   en: {
+    pageHeading: 'MAGRON — Ferrofluid and Magnetic Materials Specialist',
     catalog: {
       heading: 'Catalog',
       bookHint: 'Click to open the book.',
@@ -47,6 +51,7 @@ const home = {
     },
   },
   zh: {
+    pageHeading: 'MAGRON 玛格龙 — 磁流体与磁性材料专业制造商',
     catalog: {
       heading: '产品目录',
       bookHint: '点击即可翻阅。',

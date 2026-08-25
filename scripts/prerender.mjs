@@ -26,6 +26,19 @@ import { BASE_PREFIX } from './base-path.mjs'
 // while the build is served from github.io — canonical tags should point at
 // where the content will live, so the staging URL never competes for indexing.
 const SITE_URL = 'https://magron.kr'
+
+// 언어별 URL 접두어 — src/i18n/routing.ts 와 반드시 같아야 한다.
+// 한국어는 접두어 없이 기존 주소를 그대로 쓴다(쌓아둔 색인 유지).
+const LANGS = ['ko', 'en', 'zh']
+const LANG_PREFIX = { ko: '', en: '/en', zh: '/zh' }
+const withLang = (lang, path) =>
+  LANG_PREFIX[lang] ? (path === '/' ? `${LANG_PREFIX[lang]}/` : `${LANG_PREFIX[lang]}${path}`) : path
+// sitemap·hreflang에 적는 주소. GitHub Pages가 슬래시 없는 주소를 301 시키므로
+// 정본 주소에는 반드시 끝 슬래시를 붙인다 (src/i18n/routing.ts와 같은 규칙).
+const canonicalPath = (lang, path) => {
+  const built = withLang(lang, path)
+  return built.endsWith('/') ? built : `${built}/`
+}
 const OUT = join(dirname(fileURLToPath(import.meta.url)), '..', 'docs')
 
 /** Prefixes a site-absolute path with the deploy base ('/tech' -> '/repo/tech'). */
@@ -247,6 +260,16 @@ async function renderRoute(page, origin, route) {
     .catch(() => {})
   await page.waitForTimeout(700)
 
+  /* 앱(useSeoMeta)이 언어에 맞는 title·description·canonical·hreflang을 직접
+     심는다. 그게 들어왔는지 확인해서, 들어왔으면 스냅샷의 head를 그대로 신뢰하고
+     아래의 한국어 메타 덮어쓰기를 건너뛴다. */
+  const hasLocalizedHead = await page
+    .waitForFunction(() => document.head.querySelector('link[rel="alternate"][hreflang]') !== null, null, {
+      timeout: 5000,
+    })
+    .then(() => true)
+    .catch(() => false)
+
   // Strip React portals rendered outside #root (e.g. the chatbot floater, which
   // portals to document.body). If left in the snapshot they persist as dead
   // "ghost" nodes after the client boots: createRoot only manages #root, so it
@@ -259,13 +282,18 @@ async function renderRoute(page, origin, route) {
     })
   })
 
-  return page.content()
+  return { html: await page.content(), hasLocalizedHead }
 }
 
 async function run() {
   const shell = await readFile(join(OUT, 'index.html'), 'utf8')
 
-  const allRoutes = [{ path: '/', meta: null }, ...ROUTES.map((r) => ({ path: r.path, meta: r }))]
+  const basePaths = [{ path: '/', meta: null }, ...ROUTES.map((r) => ({ path: r.path, meta: r }))]
+  // 10개 화면 × 3개 언어 = 30개 HTML. 언어마다 주소가 따로 있어야 검색엔진이
+  // 영문·중문 내용을 각각 색인한다.
+  const allRoutes = LANGS.flatMap((lang) =>
+    basePaths.map((r) => ({ ...r, lang, url: withLang(lang, r.path) })),
+  )
 
   let browser
   let serverHandle
@@ -278,15 +306,22 @@ async function run() {
     usedBrowser = true
 
     for (const route of allRoutes) {
-      let html = await renderRoute(page, serverHandle.origin, route)
-      // The app manages no <head>, so the snapshot's head is the shell's default
-      // (home) metadata — swap in the route's own for everything but home.
-      html = route.meta ? applyRouteMeta(html, route.meta) : rebaseNoscriptLinks(html)
+      const { html: rendered, hasLocalizedHead } = await renderRoute(
+        page,
+        serverHandle.origin,
+        { path: route.url },
+      )
+      // 앱이 언어에 맞는 head를 심었으면 그대로 둔다. 못 심었을 때만(스크립트 실패 등)
+      // 한국어 메타로라도 채워서 빈 shell이 나가지 않게 한다.
+      const html =
+        hasLocalizedHead || !route.meta
+          ? rebaseNoscriptLinks(rendered)
+          : applyRouteMeta(rendered, route.meta)
 
-      const outDir = route.path === '/' ? OUT : join(OUT, route.path)
+      const outDir = route.url === '/' ? OUT : join(OUT, route.url)
       await mkdir(outDir, { recursive: true })
       await writeFile(join(outDir, 'index.html'), html, 'utf8')
-      console.log(`prerendered (rendered): docs${route.path === '/' ? '' : route.path}/index.html`)
+      console.log(`prerendered (rendered): docs${route.url === '/' ? '' : route.url}/index.html`)
     }
   } catch (err) {
     // Browser rendering failed — fall back to shipping the shell with per-route
@@ -294,12 +329,17 @@ async function run() {
     console.warn('⚠ browser prerender failed, falling back to meta-only injection:')
     console.warn(`  ${err?.message || err}`)
 
-    await writeFile(join(OUT, 'index.html'), rebaseNoscriptLinks(shell), 'utf8')
-    for (const route of ROUTES) {
-      const outDir = join(OUT, route.path)
-      await mkdir(outDir, { recursive: true })
-      await writeFile(join(outDir, 'index.html'), applyRouteMeta(shell, route), 'utf8')
-      console.log(`prerendered (meta-only): docs${route.path}/index.html`)
+    for (const lang of LANGS) {
+      const home = withLang(lang, '/')
+      const homeDir = home === '/' ? OUT : join(OUT, home)
+      await mkdir(homeDir, { recursive: true })
+      await writeFile(join(homeDir, 'index.html'), rebaseNoscriptLinks(shell), 'utf8')
+      for (const route of ROUTES) {
+        const outDir = join(OUT, withLang(lang, route.path))
+        await mkdir(outDir, { recursive: true })
+        await writeFile(join(outDir, 'index.html'), applyRouteMeta(shell, route), 'utf8')
+        console.log(`prerendered (meta-only): docs${withLang(lang, route.path)}/index.html`)
+      }
     }
   } finally {
     if (browser) await browser.close()
@@ -316,6 +356,39 @@ async function run() {
   // drops files and folders whose names begin with an underscore.
   await writeFile(join(OUT, '.nojekyll'), '', 'utf8')
   console.log('wrote: docs/.nojekyll')
+
+  // sitemap도 여기서 만든다. public/sitemap.xml을 손으로 관리하면 라우트가 늘 때마다
+  // 잊어버리기 때문. 각 URL에 세 언어판 위치(hreflang)를 함께 적어 준다.
+  const sitemapPaths = ['/', ...ROUTES.map((r) => r.path)]
+  const today = new Date().toISOString().slice(0, 10)
+  const entries = LANGS.flatMap((lang) =>
+    sitemapPaths.map((path) => {
+      const alternates = [...LANGS.map((l) => [l, l]), ['ko', 'x-default']]
+        .map(
+          ([target, hreflang]) =>
+            `    <xhtml:link rel="alternate" hreflang="${hreflang}" href="${SITE_URL}${canonicalPath(target, path)}" />`,
+        )
+        .join('\n')
+      return [
+        '  <url>',
+        `    <loc>${SITE_URL}${canonicalPath(lang, path)}</loc>`,
+        `    <lastmod>${today}</lastmod>`,
+        `    <changefreq>${path === '/' ? 'weekly' : 'monthly'}</changefreq>`,
+        `    <priority>${path === '/' ? '1.0' : '0.8'}</priority>`,
+        alternates,
+        '  </url>',
+      ].join('\n')
+    }),
+  )
+  const sitemap = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">',
+    ...entries,
+    '</urlset>',
+    '',
+  ].join('\n')
+  await writeFile(join(OUT, 'sitemap.xml'), sitemap, 'utf8')
+  console.log(`wrote: docs/sitemap.xml (${entries.length} urls)`)
 
   console.log(
     `prerender complete (${allRoutes.length} routes, ${

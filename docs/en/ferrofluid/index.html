@@ -1,0 +1,201 @@
+<!DOCTYPE html><html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://static.wixstatic.com/media/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3%7Emv2.png/v1/fill/w_32%2Ch_32%2Clg_1%2Cusm_0.66_1.00_0.01/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3%7Emv2.png" type="image/png">
+
+    <!-- PWA: installable to a phone or desktop home screen ("홈 화면에 추가").
+         / is Vite's deploy base, so these keep resolving if the site
+         ever moves back under a GitHub Pages project path. -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#f4f4f5">
+    <meta name="application-name" content="마그론">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <!-- iOS has no manifest support: these are what make a home-screen launch
+         open full screen with the right name instead of inside Safari. -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="마그론">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- 본문 폰트 IBM Plex Sans KR (2026-08-24 조선일보명조에서 교체).
+         CSS의 @import보다 여기서 link로 먼저 잡아야 첫 화면 글자 깜빡임이 줄어든다. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;700&amp;display=swap">
+
+    <title>Ferrofluid for Corrosive Gas &amp; Dust Blocking | MAGRON (주)마그론</title>
+    <meta name="description" content="Non-contact ferrofluid sealing that blocks corrosive-gas leakage, dust ingress, and vacuum loss around rotating shafts. MFF/MFS/MFH series for corrosive and non-corrosive gases.">
+    <meta name="keywords" content="자성유체, ferrofluid, magnetic fluid, 마그론, MAGRON, 자성유체 씰, ferrofluidic seal, ferro seal, magnetic fluid seal, 진공 피드스루, vacuum feedthrough, 맥오일, Mag oil, Daiwa reel, 자석, magnet, 자성소재">
+    <meta name="author" content="MAGRON Co., Ltd. (주)마그론">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <link rel="canonical" href="https://magron.kr/en/ferrofluid/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MAGRON (주)마그론">
+    <meta property="og:title" content="Ferrofluid for Corrosive Gas &amp; Dust Blocking | MAGRON (주)마그론">
+    <meta property="og:description" content="Non-contact ferrofluid sealing that blocks corrosive-gas leakage, dust ingress, and vacuum loss around rotating shafts. MFF/MFS/MFH series for corrosive and non-corrosive gases.">
+    <meta property="og:url" content="https://magron.kr/en/ferrofluid/">
+    <meta property="og:image" content="https://static.wixstatic.com/media/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3~mv2.png">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="zh_CN">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="자성유체 | 자성소재 전문회사 (주)마그론">
+    <meta name="twitter:description" content="2004년 설립된 자성유체(Ferrofluid)·자성소재 전문 기업 (주)마그론.">
+    <meta name="twitter:image" content="https://static.wixstatic.com/media/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3~mv2.png">
+
+    <!-- Structured data: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MAGRON Co., Ltd.",
+        "alternateName": ["(주)마그론", "마그론", "MAGRON"],
+        "url": "https://magron.kr/",
+        "logo": "https://static.wixstatic.com/media/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3~mv2.png",
+        "foundingDate": "2004",
+        "description": "(주)마그론(MAGRON)은 2004년 설립된 자성유체(Ferrofluid) 및 자성소재 전문 제조기업으로, 유해가스·분진 차단용 자성유체 씰, 진공 피드스루(Feedthrough), 릴 수리용 맥오일, 자석, 자성유체 키트, 대형 자성유체 디스플레이를 반도체·디스플레이·태양전지·전자·자동차 산업에 공급합니다.",
+        "email": "magron@magron.co.kr",
+        "telephone": "+82-31-500-4633",
+        "faxNumber": "+82-31-500-4631",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "해안로 706 경기테크노파크 3동 403호, 상록구",
+          "addressLocality": "안산시",
+          "addressRegion": "경기도",
+          "postalCode": "15588",
+          "addressCountry": "KR"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+82-31-500-4633",
+            "contactType": "sales",
+            "areaServed": "KR",
+            "availableLanguage": ["Korean", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+82-31-500-4632",
+            "contactType": "sales",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["English", "Korean", "Chinese"]
+          }
+        ],
+        "sameAs": [
+          "https://www.instagram.com/ferrofluidmagron/",
+          "https://www.youtube.com/@magronkorea7396",
+          "https://www.ferrofluidmagron.com",
+          "https://www.ferrofluidmagron.cn",
+          "https://www.ferrofluidshop.com/"
+        ],
+        "knowsAbout": [
+          "Ferrofluid",
+          "Magnetic fluid seal",
+          "Vacuum feedthrough",
+          "Ferrofluid sealing",
+          "Semiconductor equipment",
+          "OLED deposition"
+        ]
+      }
+    </script>
+
+    <!-- Structured data: WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MAGRON (주)마그론",
+        "url": "https://magron.kr/",
+        "inLanguage": ["ko", "en", "zh"]
+      }
+    </script>
+
+    <!-- Structured data: Product catalogue -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "MAGRON 제품",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://magron.kr/ferrofluid/",
+            "name": "유해가스 및 분진 차단용 자성유체 (Ferrofluid for Corrosive Gas & Dust Blocking)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://magron.kr/feedthrough/",
+            "name": "Ferrofluid 진공 피드스루 (Feedthrough)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://magron.kr/magoil/",
+            "name": "릴 수리용 맥오일 (Reel Mag oil)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://magron.kr/magnet/",
+            "name": "자석 (Magnet)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://magron.kr/education/",
+            "name": "자성유체 교육 키트 (Education kit)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://magron.kr/display/",
+            "name": "대형 자성유체 디스플레이 (Large Ferrofluid Display)"
+          }
+        ]
+      }
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-p03fF8SJ.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-BH03HCFh.css">
+  <style></style><style></style><link rel="alternate" hreflang="ko" href="https://magron.kr/ferrofluid/"><link rel="alternate" hreflang="en" href="https://magron.kr/en/ferrofluid/"><link rel="alternate" hreflang="zh" href="https://magron.kr/zh/ferrofluid/"><link rel="alternate" hreflang="x-default" href="https://magron.kr/ferrofluid/"></head>
+  <body>
+    <div id="root"><div class="home home--page"><header class="home-header"><div class="home-header__border"></div><div class="home-header__bg"></div><div class="home-header__inner"><a class="home-header__left" aria-label="Go to home" href="/en/" data-discover="true"><img class="home-header__logo-img" alt="MAGRON" src="https://static.wixstatic.com/media/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3~mv2.png/v1/fill/w_45,h_45,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/8d6a0e_c2287acce5d343d9a935278bc1aa7ab3~mv2.png"><div class="home-header__brand"><span class="home-header__brand-name">MAGRON</span><span class="home-header__brand-tagline">Ferrofluid</span></div></a><nav class="home-header__nav" aria-label="Products"><button type="button" class="home-header__nav-item home-header__nav-item--link">Home</button><div class="home-header__nav-dropdown"><button type="button" class="home-header__nav-item home-header__nav-item--trigger" aria-expanded="false" aria-haspopup="true">About Us</button></div><div class="home-header__nav-dropdown"><button type="button" class="home-header__nav-item home-header__nav-item--trigger home-header__nav-item--active" aria-expanded="false" aria-haspopup="true">Products</button></div><button type="button" class="home-header__nav-item home-header__nav-item--link">Catalog</button><a class="home-header__nav-item home-header__nav-item--link" href="/en/tech" data-discover="true">Technical Info</a></nav><div class="home-header__right"><div class="home-header__lang"><button type="button" class="home-header__lang-group" aria-pressed="false"><img class="home-header__lang-flag" alt="한국어" src="https://static.wixstatic.com/media/dfedd98d46837b90ba171a8a69b2423f.png/v1/fill/w_30,h_15,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%ED%95%9C%EA%B5%AD%EC%9D%98%20%EA%B5%AD%EA%B8%B0.png"><span class="home-header__lang-label">KOR</span></button><button type="button" class="home-header__lang-group home-header__lang-group--active" aria-pressed="true"><img class="home-header__lang-flag" alt="English" src="https://static.wixstatic.com/media/7daeb9be305f4ffcc3916acaaf5b60d1.png/v1/fill/w_30,h_15,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/%EC%98%81%EA%B5%AD%EC%9D%98%20%EA%B5%AD%EA%B8%B0%20.png"><span class="home-header__lang-label">ENG</span></button><button type="button" class="home-header__lang-group" aria-pressed="false"><img class="home-header__lang-flag home-header__lang-flag--chn" alt="中文" src="https://static.wixstatic.com/media/8d6a0e_2cd605ebd86e489ba10c7d72dee3b09b~mv2.png/v1/fill/w_20,h_15,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/image.png"><span class="home-header__lang-label home-header__lang-label--chn">CHN</span></button></div><a class="home-header__shop" href="https://www.ferrofluidshop.com/" target="_blank" rel="noopener noreferrer"><span class="home-header__shop-text">Shop</span></a></div><button type="button" class="home-header__burger" aria-label="Products" aria-expanded="false"><span></span><span></span><span></span></button></div></header><div class="home__content"><article class="ff-page"><header class="ff-hero"><div class="ff-hero__inner"><div class="ff-hero__content"><p class="ff-hero__label">Products</p><h1 class="ff-hero__title">Ferrofluid for Corrosive Gas &amp; Dust Blocking</h1><p class="ff-hero__lead">Around rotating shafts, our ferrofluid-based non-contact sealing structure blocks corrosive-gas leakage, external dust ingress, and vacuum-level degradation. Held within a magnetic field, the ferrofluid permits rotary motion while stably preventing the migration of gases, dust, and contaminants.</p><div class="ff-hero__cards"><article class="ff-feature-card"><h3>Non-contact sealing</h3><p>Ferrofluid held in a magnetic field forms a liquid O-ring sealing film.</p></article><article class="ff-feature-card"><h3>Gas &amp; dust blocking</h3><p>Stably blocks the migration of active/inactive gases and dust.</p></article><article class="ff-feature-card"><h3>High vacuum retention</h3><p>Short pump-down time with a consistently maintained vacuum level.</p></article><article class="ff-feature-card"><h3>Long life · wear-free</h3><p>No mechanical friction means fewer particles and a long service life.</p></article></div></div><div class="ff-hero__visual"><img class="ff-hero__image" alt="Ferrofluid Feedthrough product" src="/assets/ferrofluid_1-BuPOt0iA.avif"></div></div></header><div class="ff-page__body"><section class="ff-section"><div class="ff-section__inner"><header class="ff-section__header"><h2 class="ff-section__title">Ferrofluid for Corrosive Gas</h2><p class="ff-section__subtitle">Active (corrosive) gas blocking</p></header><div class="ff-split"><figure class="ff-figure ff-figure--product"><img alt="Ferrofluid Feedthrough for corrosive gas" loading="lazy" src="/assets/ferrofluid_2-ugK2stSj.avif"></figure><div class="ff-prose"><p>In corrosive-gas environments, a Perfluoro-Polyether (PFPE) carrier fluid ensures chemical stability and low vapor pressure. It suppresses rotary-shaft leakage and corrosion on the active-gas lines of semiconductor and display processes.</p><ul class="ff-point-list"><li><span class="ff-point-list__label">Ferrofluid For Corrosive Gas</span><span class="ff-point-list__value">For active (corrosive) gas environments</span></li><li><span class="ff-point-list__label">Carrier fluid</span><span class="ff-point-list__value">Perfluoro-Polyether (PFPE)</span></li></ul></div></div><h3 class="ff-subheading">Specification (MFF / MFF-M Series)</h3><figure class="ff-figure"><div class="ff-figure__scroll"><img alt="Specification table for corrosive-gas ferrofluid" loading="lazy" src="/assets/ferrofluid_3-D4WzOFVZ.avif"></div><figcaption>Saturation magnetization · viscosity · vapor pressure · helium gas leak · TGA weight-loss temperature · pour point · density by model</figcaption></figure><h3 class="ff-subheading">Leak Test Data</h3><p class="ff-highlight">The pump-down time is short, and the vacuum level is maintained consistently.</p><div class="ff-figure-pair"><figure class="ff-figure"><img alt="MFF-M4251 Leak test data" loading="lazy" src="/assets/ferrofluid_4-DpCFGOYZ.avif"><figcaption>MFF-M4251 Leak test data</figcaption></figure><figure class="ff-figure"><img alt="MFF-M5070 Leak test data" loading="lazy" src="/assets/ferrofluid_5-BlqpqmeJ.avif"><figcaption>MFF-M5070 Leak test data</figcaption></figure></div></div></section><section class="ff-section"><div class="ff-section__inner"><header class="ff-section__header"><h2 class="ff-section__title">Ferrofluid for Non-Corrosive Gas</h2><p class="ff-section__subtitle">Inactive (non-corrosive) gas blocking</p></header><div class="ff-prose"><p>In non-corrosive-gas environments, viscosity, saturation magnetization, temperature characteristics, and the carrier fluid can be selected to match operating conditions. The MFS series is silicon-based and the MFH series hydrocarbon-based.</p><ul class="ff-point-list"><li><span class="ff-point-list__label">Ferrofluid For Non-Corrosive Gas</span><span class="ff-point-list__value">For inactive (non-corrosive) gas environments</span></li><li><span class="ff-point-list__label">Carrier fluid</span><span class="ff-point-list__value">MFS series – Silicon / MFH series – Hydrocarbon</span></li></ul></div><h3 class="ff-subheading">Specification (MFS / MFH Series)</h3><figure class="ff-figure"><div class="ff-figure__scroll"><img alt="Specification table for non-corrosive-gas ferrofluid" loading="lazy" src="/assets/ferrofluid_6-C2nFGJVO.avif"></div><figcaption>Magnetic and physical properties by grade for the MFS (Silicon) and MFH (Hydrocarbon) series</figcaption></figure></div></section><section class="ff-section"><div class="ff-section__inner"><header class="ff-section__header"><h2 class="ff-section__title">TGA &amp; DTA Measurement</h2><p class="ff-section__subtitle">Thermal Stability</p></header><div class="ff-prose"><p>TGA (Thermo Gravimetric Analysis) and DTA (Differential Thermal Analysis) analyze weight loss and thermal behavior with temperature to evaluate the stability and usable temperature range of the carrier fluid.</p></div><div class="ff-figure-pair"><figure class="ff-figure"><img alt="MFF-M Series TGA &amp; DTA results" loading="lazy" src="/assets/ferrofluid_7-C_VGKR-Z.avif"><figcaption>MFF-M Series</figcaption></figure><figure class="ff-figure"><img alt="MFS / MFH Series TGA results" loading="lazy" src="/assets/ferrofluid_8-CI5AgADA.avif"><figcaption>MFS / MFH Series</figcaption></figure></div></div></section><section class="ff-section"><div class="ff-section__inner"><header class="ff-section__header"><h2 class="ff-section__title">Ferrofluid Seal</h2><p class="ff-section__subtitle">What is a ferrofluid seal?</p></header><figure class="ff-figure ff-figure--full"><img alt="Ferrofluid seal principle, features, and feedthrough exploded view" loading="lazy" src="/assets/ferrofluid_9-Dgl9oKOF.avif"></figure></div></section><section class="ff-section"><div class="ff-section__inner"><header class="ff-section__header"><h2 class="ff-section__title">Equipment &amp; Fields Using Ferrofluid</h2></header><div class="ff-image-stack"><figure class="ff-figure ff-figure--full"><img alt="Application fields of ferrofluid &amp; feedthrough" loading="lazy" src="/assets/ferrofluid_10-DN67Xc9c.avif"></figure><figure class="ff-figure ff-figure--full"><img alt="Ferrofluid application equipment image (1)" loading="lazy" src="/assets/ferrofluid_11-CjxHTL2O.avif"></figure><figure class="ff-figure ff-figure--full"><img alt="Ferrofluid application equipment image (2)" loading="lazy" src="/assets/applications-extra-B4vh2SQw.png"></figure></div></div></section><section class="ff-order-banner"><div class="ff-order-banner__inner"><p class="ff-order-banner__brand">MAGRON</p><h2 class="ff-order-banner__title">We can custom-manufacture to your required specifications.</h2><p class="ff-order-banner__desc">We continuously develop and release new products. Please feel free to contact us.</p></div></section><section class="ff-section"><div class="ff-section__inner"><header class="ff-section__header"><h2 class="ff-section__title">Company Information</h2></header><div class="ff-company"><figure class="ff-company__photo"><img alt="MAGRON headquarters building" loading="lazy" src="/assets/company-building-CWc-HiL4.png"></figure><div class="ff-table-wrap"><table class="ff-company-table"><tbody><tr><th scope="row">Address</th><td>#403, Bldg 3, Gyeonggi Technopark, 705 Haean-ro, Sangnok-gu, Ansan-si, Gyeonggi-do, Korea (15588)</td></tr><tr><th scope="row">Contact</th><td>TEL) 031-500-4633   FAX) 031-500-4631</td></tr><tr><th scope="row">E-mail</th><td>magron@magron.co.kr</td></tr><tr><th scope="row">Website</th><td>(KO) www.ferrofluidmagron.co.kr   (EN) www.ferrofluidmagron.com</td></tr></tbody></table></div></div></div></section><section class="ff-cta-banner"><div class="ff-cta-banner__inner"><h2>Do you need a ferrofluid seal for corrosive-gas &amp; dust blocking?</h2><p>Tell us your process conditions and equipment structure, and we will review a suitable Ferrofluid Seal specification. Download the catalog below for more details.</p><div class="ff-cta-group"><a class="ff-btn ff-btn--primary" href="https://obrwkliqzuaebajjetak.supabase.co/storage/v1/object/public/magron-website/catalog/20260801%20Ferrofluid%20Gas%20%26%20Dust%20Sealing%20Catalogue%20English%20Version_02.pdf?download=20260801%20Ferrofluid%20Gas%20%26%20Dust%20Sealing%20Catalogue%20English%20Version_02.pdf" download="">Download Catalog</a></div><p class="product-cta-note">For inquiries, please contact magron@magron.co.kr.</p><div class="ff-inquiry-list"><p class="ff-cta-banner__note">Helpful information to include in your inquiry</p><ul class="ff-check-list ff-check-list--light"><li>Type of gas used (active / inactive)</li><li>Rotary-shaft diameter and rotation speed</li><li>Required vacuum level and temperature conditions</li><li>Equipment type and applied process</li><li>Required quantity and delivery date</li></ul></div></div></section></div></article></div><footer class="home-footer"><div class="home-footer__inner"><div class="home-footer__company"><p class="home-footer__company-name">MAGRON Co., Ltd.</p><p class="home-footer__company-detail">(15588) #403, Bldg 3, Gyeonggi Technopark, 706 Haean-ro, Sangnok-gu, Ansan-si, Gyeonggi-do, Korea<br>copyright © 2026 MAGRON<br>All Rights Reserved.</p></div><div class="home-footer__meta"><div class="home-footer__contact"><svg class="home-footer__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 1.5h2.2l1.1 2.7a1 1 0 0 1-.24 1.02l-1.3 1.3a9.5 9.5 0 0 0 4.42 4.42l1.3-1.3a1 1 0 0 1 1.02-.24l2.7 1.1v2.2a1 1 0 0 1-1 1A12 12 0 0 1 2.5 2.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg><p class="home-footer__contact-text">TEL : (Domestic) 031-500-4633<br><span class="home-footer__contact-indent">(Overseas) +82-31-500-4632</span><br>FAX : 02-31-500-4631</p></div><div class="home-footer__divider" aria-hidden="true"></div><div class="home-footer__actions"><a class="home-footer__email" href="mailto:magron@magron.co.kr"><svg class="home-footer__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1" stroke="currentColor" stroke-width="1.2"></rect><path d="M2 5.5 8 9.5l6-4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg><span>magron@magron.co.kr</span></a><div class="home-footer__social"><a class="home-footer__social-link" href="#" aria-label="LinkedIn"><img class="home-footer__social-icon" alt="" src="https://static.wixstatic.com/media/11062b_701377645cb348b9bd31d5ae3a7c85e0~mv2.png/v1/fill/w_37,h_37,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_701377645cb348b9bd31d5ae3a7c85e0~mv2.png"></a><a class="home-footer__social-link home-footer__social-link--instagram" href="https://www.instagram.com/ferrofluidmagron/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><span class="home-footer__social-icon home-footer__social-icon--instagram" style="mask-image: url(&quot;https://static.wixstatic.com/media/11062b_94a6580a67244d17a4dc923b54b99fb4~mv2.png/v1/fill/w_37,h_37,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/11062b_94a6580a67244d17a4dc923b54b99fb4~mv2.png&quot;);"></span></a><a class="home-footer__social-link home-footer__social-link--youtube" href="https://www.youtube.com/@magronkorea7396" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><span class="home-footer__social-icon home-footer__social-icon--youtube" style="mask-image: url(&quot;https://static.wixstatic.com/media/af037f3cc11741d1ada5c7f70d1074bf.png/v1/fill/w_37,h_37,al_c,q_85,usm_0.66_1.00_0.01,enc_avif,quality_auto/af037f3cc11741d1ada5c7f70d1074bf.png&quot;);"></span></a></div></div></div></div></footer></div></div>
+
+    <!-- Readable fallback for crawlers / AI search bots that do not execute JavaScript.
+         The React app replaces #root above; this content is only shown when JS is off. -->
+    <noscript>
+      <h1>(주)마그론 MAGRON — 자성유체·자성소재 전문 기업</h1>
+      <p>
+        (주)마그론(MAGRON)은 2004년에 설립된 자성유체(Ferrofluid) 및 관련 부품 전문 제조·공급
+        기업입니다. 주로 활성·비활성 가스와 분진을 차폐하는 용도 및 센서용으로 사용되며, 반도체,
+        태양전지, 디스플레이 장비, 전자제품, 자동차 등 다양한 산업에 적용됩니다. CVD, PVD, 스퍼터링,
+        이온 주입기, 박막, 로봇, 단결정 성장 제조 장비, 항공우주, 원자력, 핵융합 등 첨단 분야에서
+        활용됩니다.
+      </p>
+      <h2>주요 제품</h2>
+      <ul>
+        <li><a href="/ferrofluid/">유해가스 및 분진 차단용 자성유체 (Ferrofluid for Corrosive Gas &amp; Dust Blocking)</a></li>
+        <li><a href="/feedthrough/">Ferrofluid 진공 피드스루 (Feedthrough)</a></li>
+        <li><a href="/magoil/">릴 수리용 맥오일 (Reel Mag oil)</a></li>
+        <li><a href="/magnet/">자석 (Magnet)</a></li>
+        <li><a href="/education/">자성유체 교육 키트 (Education kit)</a></li>
+        <li><a href="/display/">대형 자성유체 디스플레이 (Large Ferrofluid Display)</a></li>
+        <li><a href="/company/">회사소개 (Company)</a></li>
+      </ul>
+      <h2>연락처</h2>
+      <p>
+        경기도 안산시 상록구 해안로 706 경기테크노파크 3동 403호 (우편번호 15588)<br />
+        TEL: 031-500-4633 (국내) / +82-31-500-4632 (해외) · FAX: +82-31-500-4631<br />
+        E-mail: magron@magron.co.kr
+      </p>
+    </noscript>
+
+
+  
+
+</body></html>
