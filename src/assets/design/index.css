@@ -214,7 +214,7 @@ html[lang='en'] body {
        --contact-offset  = 1701 + --catalog-height */
   body .home {
     --catalog-height: 1817px;
-    --tech-height: 1908px;
+    --tech-height: 2005px;
     --contact-offset: 3518px;
   }
 
@@ -227,8 +227,10 @@ html[lang='en'] body {
     height: 88px;
   }
 
+  /* 화면 배율 0.75가 걸려 있으므로 59 x 0.75 = 약 44px로 보인다.
+     (로고 후보 비교에서 고른 크기) */
   body .home-header__brand-name {
-    font-size: 74px;
+    font-size: 59px;
   }
 
   body .home-header__brand-tagline {

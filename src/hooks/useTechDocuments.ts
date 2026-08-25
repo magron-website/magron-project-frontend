@@ -20,6 +20,7 @@ function mapRow(row: TechDocumentRow, lang: Language): TechDocument {
   return {
     id: row.id,
     title: text('title', row.title),
+    titleSub: text('titleSub', null),
     description: text('description', row.description),
     fileUrl: row.file_url,
     sortOrder: row.sort_order,

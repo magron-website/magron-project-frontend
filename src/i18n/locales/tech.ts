@@ -10,7 +10,8 @@ const tech = {
         description: 'MFF-M PFPE 자성유체의 3대 강점을 정리한 종합 발표자료',
       },
       2: {
-        title: '기술·제품 브로슈어',
+        title: 'PFPE Ferrofluid TDS',
+        titleSub: '내열성, 증기압 요약 자료',
         description: '6대 핵심 강점과 제품 라인업, 공인시험 검증 데이터를 담은 기술 브로슈어',
       },
       3: {
@@ -52,7 +53,8 @@ const tech = {
         description: 'Presentation on the three key strengths of MFF-M PFPE ferrofluid.',
       },
       2: {
-        title: 'Product Brochure',
+        title: 'PFPE Ferrofluid TDS',
+        titleSub: 'Heat resistance & vapor pressure',
         description: 'Brochure covering six core strengths and the product lineup.',
       },
       3: {
@@ -94,7 +96,8 @@ const tech = {
         description: '介绍 MFF-M PFPE 磁性流体耐热性、蒸气压与真空稳定性三大优势的资料。',
       },
       2: {
-        title: '技术·产品手册',
+        title: 'PFPE Ferrofluid TDS',
+        titleSub: '耐热性・蒸气压摘要资料',
         description: '包含六大核心优势、产品阵容与权威机构验证数据的技术营销手册。',
       },
       3: {

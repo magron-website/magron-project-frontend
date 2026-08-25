@@ -14,6 +14,8 @@ export type TechDocumentRow = {
 export type TechDocument = {
   id: string
   title: string
+  /** 제목 아래 붙는 둘째 줄. 없으면 빈 문자열 (locales/tech.ts의 titleSub) */
+  titleSub: string
   description: string
   fileUrl: string
   sortOrder: number

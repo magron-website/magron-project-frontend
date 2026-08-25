@@ -25,22 +25,42 @@
 }
 
 .tech-doc__title {
+  /* 두 줄짜리 제목(제목 + 작은 부제)이 생겨서 nowrap·ellipsis를 걷어냈다.
+     높이는 두 줄 기준으로 고정한다 — 한 줄짜리 카드까지 같은 높이를 잡아야
+     책·설명·Download가 카드마다 어긋나지 않는다. */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   width: 100%;
-  height: 24px;
+  height: 60px;
   color: #27272a;
   font-family: 'ChosunIlboMyungjo', serif;
   font-size: 20px;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 1.25;
   text-align: center;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+
+/* 제목 아래 작은 둘째 줄 (예: PFPE Ferrofluid TDS / 내열성, 증기압 요약 자료) */
+.tech-doc__title-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.68em;
+  font-weight: 400;
+  color: #52525b;
 }
 
 /* Spacing that the literal "< title >" text used to provide. */
 .tech-doc__title-bracket {
-  margin: 0 0.25em;
+  flex: 0 0 auto;
+  font-size: 1.5em;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.tech-doc__title-text {
+  min-width: 0;
 }
 
 .tech-doc__book-button {

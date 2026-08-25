@@ -48,7 +48,12 @@ export default function TechDocumentCard({
         <span className="tech-doc__title-bracket" aria-hidden="true">
           &lt;
         </span>
-        <span className="tech-doc__title-text">{document.title}</span>
+        <span className="tech-doc__title-text">
+          {document.title}
+          {document.titleSub ? (
+            <span className="tech-doc__title-sub">{document.titleSub}</span>
+          ) : null}
+        </span>
         <span className="tech-doc__title-bracket" aria-hidden="true">
           &gt;
         </span>

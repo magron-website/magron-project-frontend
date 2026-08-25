@@ -92,22 +92,16 @@
 }
 
 .home-header__brand-name {
-  font-family: 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
-  font-weight: bold;
-  /* Deeper navy reads cleanly against the white header. The old 5-layer
-     stacked shadow smeared the letterforms — one tight offset keeps the
-     3D feel while the glyph edges stay sharp. */
+  /* Haettenschweiler(초압축)에서 교체. 헤더 배경이 밝은 회색(#f4f4f5)인데
+     글자에 흰색 2px 윤곽선을 둘러서 획을 안쪽에서 깎아먹고 있었다 —
+     좁은 획이 더 가늘어져 안 읽혔다. 윤곽선·그림자를 걷어내고 폭이 넓고
+     획이 굵은 Archivo Black으로 바꿔 단색으로 둔다. */
+  font-family: 'Archivo Black', 'Arial Black', sans-serif;
+  font-weight: 400;
   color: #16299c;
-  /* White outline lifts the navy off the header (and off the blue hero band
-     right below it); the offset shadow keeps the original depth. */
-  -webkit-text-stroke: 2px #ffffff;
-  paint-order: stroke fill;
-  text-shadow: 2px 2px 0 rgba(10, 20, 71, 0.55);
   -webkit-font-smoothing: antialiased;
-  font-size: 58px;
-  /* Haettenschweiler is very condensed — a touch of tracking keeps the
-     letterforms from reading as one blue mass. */
-  letter-spacing: 0.04em;
+  font-size: 40px;
+  letter-spacing: -0.01em;
   line-height: 1.1;
   white-space: nowrap;
 }
