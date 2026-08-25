@@ -16,8 +16,22 @@ export function isDesktopViewport(): boolean {
   return window.matchMedia(DESKTOP_QUERY).matches
 }
 
-/** 새 탭으로 PDF를 연다. 팝업이 막히면 현재 탭으로 이동해서 최소한 열리게 한다. */
+/**
+ * 새 탭으로 PDF를 연다.
+ *
+ * window.open을 쓰지 않는 이유: 세 번째 인자에 noopener를 주면 크롬은 성공해도
+ * 반환값을 항상 null로 준다. 그걸 팝업 차단으로 오해해 현재 탭까지 PDF로
+ * 넘겨버려서 PDF 창이 두 개가 됐다.
+ * 다운로드 버튼과 똑같은 <a target="_blank" rel="noopener noreferrer"> 를
+ * 만들어 클릭하면 동작이 같고, 팝업 차단기도 사용자 클릭으로 인정한다.
+ */
 export function openPdfInNewTab(pdfUrl: string): void {
-  const opened = window.open(pdfUrl, '_blank', 'noopener,noreferrer')
-  if (!opened) window.location.href = pdfUrl
+  const link = document.createElement('a')
+  link.href = pdfUrl
+  link.target = '_blank'
+  link.rel = 'noopener noreferrer'
+  link.style.display = 'none'
+  document.body.appendChild(link)
+  link.click()
+  link.remove()
 }
