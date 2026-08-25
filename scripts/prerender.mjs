@@ -35,6 +35,49 @@ const withLang = (lang, path) =>
   LANG_PREFIX[lang] ? (path === '/' ? `${LANG_PREFIX[lang]}/` : `${LANG_PREFIX[lang]}${path}`) : path
 // sitemap·hreflang에 적는 주소. GitHub Pages가 슬래시 없는 주소를 301 시키므로
 // 정본 주소에는 반드시 끝 슬래시를 붙인다 (src/i18n/routing.ts와 같은 규칙).
+// <noscript> 안에서 쓰는 언어별 라벨. 본문(제목·설명·제품명)은 실제 렌더된
+// 화면에서 그대로 긁어오므로, 여기 있는 건 고정 문구뿐이다.
+const NOSCRIPT_LABELS = {
+  ko: { products: '주요 제품', contact: '연락처', home: 'MAGRON 홈으로', tel: '국내', intl: '해외' },
+  en: { products: 'Products', contact: 'Contact', home: 'MAGRON home', tel: 'Korea', intl: 'International' },
+  zh: { products: '主要产品', contact: '联系方式', home: '返回 MAGRON 首页', tel: '韩国', intl: '海外' },
+}
+
+/**
+ * JS를 실행하지 않는 크롤러용 대체 본문.
+ *
+ * 예전에는 shell(index.html)의 한국어 블록이 /en, /zh 페이지에도 그대로 실려서,
+ * 영문 페이지에 한글 <h1>이 하나 더 잡혔다. 이제 방금 렌더한 그 화면에서
+ * 제목·설명·제품 링크를 읽어 만들기 때문에 언어가 항상 맞는다.
+ */
+function buildNoscript(lang, snapshot) {
+  const L = NOSCRIPT_LABELS[lang] || NOSCRIPT_LABELS.ko
+  const products = snapshot.products
+    .filter((x) => x.href && x.text)
+    .map((x) => `        <li><a href="${withBase(x.href)}/">${escHtml(x.text)}</a></li>`)
+    .join('\n')
+
+  return [
+    '<noscript>',
+    `      <h1>${escHtml(snapshot.h1 || 'MAGRON')}</h1>`,
+    `      <p>${escHtml(snapshot.description)}</p>`,
+    products ? `      <h2>${L.products}</h2>` : '',
+    products ? '      <ul>' : '',
+    products,
+    products ? '      </ul>' : '',
+    `      <h2>${L.contact}</h2>`,
+    '      <p>',
+    snapshot.address ? `        ${escHtml(snapshot.address)}<br />` : '',
+    snapshot.contact ? `        ${escHtml(snapshot.contact)}<br />` : '',
+    '        E-mail: <a href="mailto:magron@magron.co.kr">magron@magron.co.kr</a>',
+    '      </p>',
+    `      <p><a href="${withBase(snapshot.homePath)}">${L.home}</a></p>`,
+    '    </noscript>',
+  ]
+    .filter((line) => line !== '')
+    .join('\n')
+}
+
 const canonicalPath = (lang, path) => {
   const built = withLang(lang, path)
   return built.endsWith('/') ? built : `${built}/`
@@ -263,6 +306,42 @@ async function renderRoute(page, origin, route) {
   /* 앱(useSeoMeta)이 언어에 맞는 title·description·canonical·hreflang을 직접
      심는다. 그게 들어왔는지 확인해서, 들어왔으면 스냅샷의 head를 그대로 신뢰하고
      아래의 한국어 메타 덮어쓰기를 건너뛴다. */
+  // noscript 대체 본문을 만들 재료를 방금 렌더된 화면에서 그대로 읽는다.
+  const snapshot = await page.evaluate(() => ({
+    h1: document.querySelector('h1')?.textContent?.trim() || '',
+    description: document.querySelector('meta[name="description"]')?.getAttribute('content') || '',
+    products: [...document.querySelectorAll('.product-scroll__tile')].map((a) => ({
+      href: a.getAttribute('href') || '',
+      text: (a.querySelector('.product-scroll__tile-title')?.textContent || '')
+        .replace(/\s+/g, ' ')
+        .trim(),
+    })),
+    homePath: document.querySelector('.home-header__left')?.getAttribute('href') || '/',
+    // 주소·전화는 언어별 번역이 이미 푸터에 있다 — 그대로 쓴다.
+    // textContent로 뽑으면 <br>이 사라져 "…Koreacopyright ©…"처럼 붙어버리므로
+    // <br> 단위로 잘라서 필요한 줄만 쓴다.
+    ...(() => {
+      const lines = (el) => {
+        if (!el) return []
+        return [...el.childNodes]
+          .reduce(
+            (acc, node) => {
+              if (node.nodeName === 'BR') acc.push('')
+              else acc[acc.length - 1] += node.textContent || ''
+              return acc
+            },
+            [''],
+          )
+          .map((line) => line.replace(/\s+/g, ' ').trim())
+          .filter(Boolean)
+      }
+      // 첫 줄만 주소로 쓰고 copyright 줄은 버린다.
+      const address = lines(document.querySelector('.home-footer__company-detail'))[0] || ''
+      const contact = lines(document.querySelector('.home-footer__contact-text')).join(' · ')
+      return { address, contact }
+    })(),
+  }))
+
   const hasLocalizedHead = await page
     .waitForFunction(() => document.head.querySelector('link[rel="alternate"][hreflang]') !== null, null, {
       timeout: 5000,
@@ -282,7 +361,7 @@ async function renderRoute(page, origin, route) {
     })
   })
 
-  return { html: await page.content(), hasLocalizedHead }
+  return { html: await page.content(), hasLocalizedHead, snapshot }
 }
 
 async function run() {
@@ -306,17 +385,21 @@ async function run() {
     usedBrowser = true
 
     for (const route of allRoutes) {
-      const { html: rendered, hasLocalizedHead } = await renderRoute(
+      const { html: rendered, hasLocalizedHead, snapshot } = await renderRoute(
         page,
         serverHandle.origin,
         { path: route.url },
       )
       // 앱이 언어에 맞는 head를 심었으면 그대로 둔다. 못 심었을 때만(스크립트 실패 등)
       // 한국어 메타로라도 채워서 빈 shell이 나가지 않게 한다.
-      const html =
+      let html =
         hasLocalizedHead || !route.meta
           ? rebaseNoscriptLinks(rendered)
           : applyRouteMeta(rendered, route.meta)
+      // shell의 한국어 <noscript>를 그 화면의 언어로 갈아끼운다.
+      if (snapshot.h1 || snapshot.description) {
+        html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, buildNoscript(route.lang, snapshot))
+      }
 
       const outDir = route.url === '/' ? OUT : join(OUT, route.url)
       await mkdir(outDir, { recursive: true })
