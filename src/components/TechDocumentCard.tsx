@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { BookCover } from 'book-cover-3d'
 import { usePdfThumbnail } from '@/hooks/usePdfThumbnail'
 import { getTechCover } from '@/assets/images/tech'
+import { toDownloadUrl } from '@/lib/openPdf'
 import type { TechDocument } from '@/types/techDocument'
 
 /** Thinner than the catalog booklets — these are reports, not bound catalogues. */
@@ -86,9 +87,7 @@ export default function TechDocumentCard({
       {document.fileUrl ? (
         <a
           className="tech-doc__download"
-          href={document.fileUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          href={toDownloadUrl(document.fileUrl)}
           download
         >
           <span className="tech-doc__download-text">{t('download')}</span>

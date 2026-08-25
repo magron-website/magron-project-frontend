@@ -3,15 +3,13 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { BookCover } from 'book-cover-3d'
 import { homeImages } from '@/assets/images/homeImages'
-import BookFlipViewer from '@/components/BookFlipViewer'
 import HeroCarousel from '@/components/HeroCarousel'
 import TechDocumentCard from '@/components/TechDocumentCard'
 import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
-import { isDesktopViewport, openPdfInNewTab } from '@/lib/openPdf'
+import { openPdfInNewTab, toDownloadUrl } from '@/lib/openPdf'
 import { useTechDocuments } from '@/hooks/useTechDocuments'
-import type { TechDocument } from '@/types/techDocument'
 import '@/assets/design/animation.css'
 import '@/assets/design/tech.css'
 
@@ -43,9 +41,6 @@ function HomeProducts() {
 function HomeCatalog() {
   const { t } = useTranslation('home')
   const { books, isLoading, error } = useBooks()
-  /* The viewer header shows the catalog label, so carry it with the PDF —
-     the book row itself no longer holds any text. */
-  const [viewer, setViewer] = useState<{ title: string; pdfUrl: string } | null>(null)
   const { ref, inView } = useInView<HTMLElement>({ threshold: 0.08, once: false })
 
   const booksBySortOrder = useMemo(
@@ -59,12 +54,6 @@ function HomeCatalog() {
       ref={ref}
       className={`home-catalog${inView ? ' is-revealed' : ''}`}
     >
-      <BookFlipViewer
-        isOpen={viewer !== null}
-        title={viewer?.title ?? ''}
-        pdfUrl={viewer?.pdfUrl ?? ''}
-        onClose={() => setViewer(null)}
-      />
       <div className="home-catalog__inner">
         <div className="home-catalog__header">
           <h2 className="home-catalog__title">{t('catalog.heading')}</h2>
@@ -96,13 +85,7 @@ function HomeCatalog() {
                 <button
                   type="button"
                   className="home-catalog__book-button"
-                  onClick={() => {
-                    if (!book?.pdfUrl) return
-                    // PC는 다운로드 버튼과 같은 화면(브라우저 PDF 뷰어)으로 —
-                    // 책넘김 뷰어는 글자가 작아 안 보인다는 피드백.
-                    if (isDesktopViewport()) openPdfInNewTab(book.pdfUrl)
-                    else setViewer({ title, pdfUrl: book.pdfUrl })
-                  }}
+                  onClick={() => book?.pdfUrl && openPdfInNewTab(book.pdfUrl)}
                   disabled={!book?.pdfUrl}
                   aria-label={t('catalog.viewPdfAria', { title })}
                 >
@@ -129,9 +112,7 @@ function HomeCatalog() {
                 {book?.pdfUrl ? (
                   <a
                     className="home-catalog__download"
-                    href={book.pdfUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={toDownloadUrl(book.pdfUrl)}
                     download
                   >
                     <span className="home-catalog__download-text">{t('catalog.download')}</span>
@@ -159,7 +140,6 @@ function HomeCatalog() {
 function HomeTech() {
   const { t } = useTranslation('tech')
   const { documents, error } = useTechDocuments()
-  const [viewerDocument, setViewerDocument] = useState<TechDocument | null>(null)
   const { ref, inView } = useInView<HTMLElement>({ threshold: 0.08, once: false })
 
   // The reveal re-runs on every pass (once: false), but a cover only needs
@@ -177,12 +157,6 @@ function HomeTech() {
 
   return (
     <section id="tech" ref={ref} className={`home-tech${inView ? ' is-revealed' : ''}`}>
-      <BookFlipViewer
-        isOpen={viewerDocument !== null}
-        title={viewerDocument?.title ?? ''}
-        pdfUrl={viewerDocument?.fileUrl ?? ''}
-        onClose={() => setViewerDocument(null)}
-      />
       <div className="home-tech__inner">
         <div className="home-tech__header">
           <h2 className="home-tech__title">{t('heading')}</h2>
@@ -199,10 +173,7 @@ function HomeTech() {
               key={document.id}
               document={document}
               isVisible={hasBeenInView}
-              onOpen={(doc) => {
-                if (isDesktopViewport() && doc.fileUrl) openPdfInNewTab(doc.fileUrl)
-                else setViewerDocument(doc)
-              }}
+              onOpen={(doc) => doc.fileUrl && openPdfInNewTab(doc.fileUrl)}
             />
           ))}
         </div>

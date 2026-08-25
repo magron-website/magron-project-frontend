@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import { useBooks } from '@/hooks/useBooks'
+import { toDownloadUrl } from '@/lib/openPdf'
 import { PRODUCT_SORT_ORDER, type ProductPageKey } from '@/pages/products/productRoutes'
 
 type CatalogDownloadButtonProps = {
@@ -27,9 +28,7 @@ export default function CatalogDownloadButton({
     return (
       <a
         className={className}
-        href={pdfUrl}
-        target="_blank"
-        rel="noopener noreferrer"
+        href={toDownloadUrl(pdfUrl)}
         download
       >
         {children}
