@@ -7,7 +7,6 @@ import {
   internalCrossSection,
   internalCutaway,
   sealPrincipleDiagram,
-  sealPrincipleReel,
 } from '@/pages/products/magoil/content'
 import { Figure, Section, YouTubeEmbed } from '@/pages/products/magoil/components'
 import '@/assets/design/products/magoil.css'
@@ -89,10 +88,11 @@ export default function Magoil() {
               <p key={para}>{para}</p>
             ))}
           </div>
-          <div className="mg-figure-grid mg-figure-grid--principle">
-            <Figure src={sealPrincipleDiagram} caption={t('waterproof.diagramCaption', { ns: 'magoil' })} />
-            <Figure src={sealPrincipleReel} caption={t('waterproof.reelCaption', { ns: 'magoil' })} />
-          </div>
+          <Figure
+            className="mg-figure--solo"
+            src={sealPrincipleDiagram}
+            caption={t('waterproof.diagramCaption', { ns: 'magoil' })}
+          />
 
           <h3 className="mg-subheading">{t('waterproof.stepsHeading', { ns: 'magoil' })}</h3>
           <div className="mg-step-grid">

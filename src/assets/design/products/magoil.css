@@ -538,7 +538,7 @@
 }
 
 .mg-cta-banner__inner {
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
   text-align: center;
 }
@@ -653,9 +653,19 @@
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.mg-figure-grid--principle {
-  grid-template-columns: 1.4fr 1fr;
-  align-items: start;
+/* The principle diagram already contains the reel photo, so it stands alone. */
+.mg-figure--solo {
+  max-width: 680px;
+  margin: 24px auto 0;
+}
+
+/* Product shots are square with wide white margins — cap the height so the two
+   cards do not tower over the copy above them. object-fit contain keeps the whole box
+   visible and the white letterbox matches the photo background. */
+.mg-figure-grid--2 .mg-figure img {
+  height: 300px;
+  object-fit: contain;
+  background: #fff;
 }
 
 .mg-figure-grid--internal {
@@ -757,7 +767,7 @@
 .mg-video__frame {
   position: relative;
   width: 100%;
-  max-width: 720px;
+  max-width: 680px;
   margin: 0 auto;
   aspect-ratio: 16 / 9;
   border-radius: 12px;

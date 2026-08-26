@@ -5,10 +5,9 @@
    ========================================================================== */
 
 import heroReel from '@/assets/images/magoil/magoil_1.avif'
-import productPackage from '@/assets/images/magoil/crops/product-package.png'
-import productBottle from '@/assets/images/magoil/crops/product-bottle.png'
+import premiumDisplayCase from '@/assets/images/magoil/crops/premium-display-case.jpg'
+import premiumGiftBox from '@/assets/images/magoil/crops/premium-gift-box.jpg'
 import sealPrincipleDiagram from '@/assets/images/magoil/crops/seal-principle-diagram.png'
-import sealPrincipleReel from '@/assets/images/magoil/crops/seal-principle-reel.png'
 import sealStep1 from '@/assets/images/magoil/crops/seal-step-1.png'
 import sealStep2 from '@/assets/images/magoil/crops/seal-step-2.png'
 import sealStep3 from '@/assets/images/magoil/crops/seal-step-3.png'
@@ -18,11 +17,10 @@ import internalCutaway from '@/assets/images/magoil/crops/internal-cutaway.png'
 export {
   heroReel,
   sealPrincipleDiagram,
-  sealPrincipleReel,
   internalCrossSection,
   internalCutaway,
 }
 
 /** Image lists — captions/text live in the `magoil` i18n namespace, zipped by index. */
-export const PACKAGE_IMAGES = [productPackage, productBottle] as const
+export const PACKAGE_IMAGES = [premiumDisplayCase, premiumGiftBox] as const
 export const SEAL_STEP_IMAGES = [sealStep1, sealStep2, sealStep3] as const

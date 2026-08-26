@@ -14,15 +14,15 @@ const magoil = {
       { title: '부드러운 회전감 유지', description: '내부 부품의 오염과 부식을 줄여 릴의 회전감을 안정적으로 유지합니다.' },
     ],
     metal: {
-      title: '금속 병 타입',
-      prose: '메탈 케이스에 자성유체 병과 설명서를 함께 구성한 릴 수리용 자성유체 패키지입니다. 소량 구매가 가능하며, 대량 구매를 원하실 경우 본사로 문의해 주시기 바랍니다.',
+      title: '프리미엄 패키지',
+      prose: 'MAG OIL은 블랙 & 코퍼 컬러의 프리미엄 기프트 박스에 담겨 제공됩니다. 투명 디스플레이 케이스가 자성유체 병을 부양된 형태로 고정하며, 플렉서블 보틀로 한 방울씩 정밀하게 주입할 수 있습니다. 소량 구매가 가능하며, 대량 구매를 원하실 경우 본사로 문의해 주시기 바랍니다.',
       points: [
-        '메탈 케이스 + 자성유체 병 + 설명서 첨부',
+        '프리미엄 기프트 박스 + 플로팅 디스플레이 케이스 + 플렉서블 보틀',
         '소량 구매 가능, 대량 구매 시 본사로 문의 주십시오.',
       ],
-      capacityTitle: '맥오일 0.7ml로 약 45회 수리 가능',
-      capacityDetail: '0.7ml = 가로 7 × 세로 7 × 높이 7(mm) = 7mm³ 의 체적 용량',
-      imageCaptions: ['MF SEALED 자성유체 튜브 · 패키지', '메탈 케이스 + 자성유체 병'],
+      capacityTitle: 'NET 1ml / 1.2g · 고효율 실리콘 페로플루이드',
+      capacityDetail: '소량으로도 여러 차례 오버홀이 가능합니다.',
+      imageCaptions: ['기프트 박스 + 디스플레이 케이스 + 플렉서블 보틀', 'MAG OIL 프리미엄 기프트 박스 · NET 1ml / 1.2g'],
     },
     waterproof: {
       title: '방수 원리',
@@ -31,7 +31,6 @@ const magoil = {
         '바깥에서 바닷물(Seawater)과 염분이 들어오더라도 Magnet 주변에 형성된 자성유체 층이 MAG SHIELD 역할을 하여 내부 부품으로의 침투를 줄이고, 기어·베어링·회전축의 부식과 오염을 예방하는 데 도움을 줍니다.',
       ],
       diagramCaption: 'Magnet · MAG SHIELD 씰링 구조 단면',
-      reelCaption: '릴 내 자성유체 씰 적용 위치',
       stepsHeading: '자성유체가 물을 차단하는 과정',
       steps: [
         '자석을 조금씩 가깝게 하면 자성유체가 서로 끌어당겨 접근합니다.',
@@ -81,15 +80,15 @@ const magoil = {
       { title: 'Keeps rotation smooth', description: "Reduces contamination and corrosion of internal parts to keep the reel's rotation smooth." },
     ],
     metal: {
-      title: 'Metal Bottle Type',
-      prose: 'A reel-maintenance ferrofluid package with a ferrofluid bottle and instructions in a metal case. Small-quantity purchases are available; for bulk orders, please contact our head office.',
+      title: 'Premium Packages',
+      prose: 'MAG OIL comes in a premium gift box in black and copper. A transparent display case holds the ferrofluid bottle in a suspended position, and the flexible bottle allows precise, drop-by-drop injection. Small-quantity purchases are available; for bulk orders, please contact our head office.',
       points: [
-        'Metal case + ferrofluid bottle + instructions included',
+        'Premium gift box + floating display case + flexible bottle',
         'Small-quantity purchase available; for bulk orders, please contact the head office.',
       ],
-      capacityTitle: 'About 45 repairs with 0.7 ml of Mag-oil',
-      capacityDetail: '0.7 ml = 7 (W) × 7 (D) × 7 (H) mm — a volume of 7 mm³',
-      imageCaptions: ['MF SEALED ferrofluid tube · package', 'Metal case + ferrofluid bottle'],
+      capacityTitle: 'NET 1 ml / 1.2 g · A high-efficiency silicone ferrofluid',
+      capacityDetail: 'Even a small amount allows multiple overhauls.',
+      imageCaptions: ['Gift box + display case + flexible bottle', 'MAG OIL premium gift box · NET 1 ml / 1.2 g'],
     },
     waterproof: {
       title: 'Waterproofing Principle',
@@ -98,7 +97,6 @@ const magoil = {
         'Even if seawater and salt enter from outside, the ferrofluid layer formed around the Magnet acts as a MAG SHIELD, reducing penetration to internal parts and helping prevent corrosion and contamination of gears, bearings, and the rotating shaft.',
       ],
       diagramCaption: 'Cross-section of the Magnet · MAG SHIELD sealing structure',
-      reelCaption: 'Location of the ferrofluid seal inside the reel',
       stepsHeading: 'How ferrofluid blocks water',
       steps: [
         'As the magnets are brought closer bit by bit, the ferrofluid attracts and draws together.',
@@ -148,15 +146,15 @@ const magoil = {
       { title: '保持顺滑手感', description: '减少内部部件的污染与腐蚀，稳定保持渔轮的旋转手感。' },
     ],
     metal: {
-      title: '金属瓶型',
-      prose: '在金属外壳中配有磁流体瓶与说明书的渔轮维修用磁流体套装。可小批量购买，如需大批量采购请联系总公司。',
+      title: '高级包装',
+      prose: 'MAG OIL 采用黑色与铜色的高级礼盒包装。透明展示盒将磁流体瓶以悬浮方式固定，软瓶可逐滴精准注入。支持小批量购买，如需批量订购，请联系本公司总部。',
       points: [
-        '金属外壳 + 磁流体瓶 + 附说明书',
-        '可小批量购买，大批量采购请联系总公司。',
+        '高级礼盒 + 悬浮展示盒 + 软瓶',
+        '支持小批量购买，批量订购请联系本公司总部。',
       ],
-      capacityTitle: '0.7ml Mag-oil 约可维修 45 次',
-      capacityDetail: '0.7ml = 宽7 × 长7 × 高7(mm) = 7mm³ 的体积容量',
-      imageCaptions: ['MF SEALED 磁流体管·套装', '金属外壳 + 磁流体瓶'],
+      capacityTitle: '净含量 1 ml / 1.2 g · 高效硅基磁流体',
+      capacityDetail: '少量即可完成多次保养。',
+      imageCaptions: ['礼盒 + 展示盒 + 软瓶', 'MAG OIL 高级礼盒 · 净含量 1 ml / 1.2 g'],
     },
     waterproof: {
       title: '防水原理',
@@ -165,7 +163,6 @@ const magoil = {
         '即使外部有海水（Seawater）与盐分进入，Magnet 周围形成的磁流体层也会起到 MAG SHIELD 的作用，减少其向内部部件的渗透，有助于预防齿轮·轴承·旋转轴的腐蚀与污染。',
       ],
       diagramCaption: 'Magnet · MAG SHIELD 密封结构剖面',
-      reelCaption: '渔轮内磁流体密封的应用位置',
       stepsHeading: '磁流体阻隔水的过程',
       steps: [
         '将磁铁逐渐靠近时，磁流体相互吸引并靠拢。',
