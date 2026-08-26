@@ -39,12 +39,12 @@ export const PORTFOLIO_VIDEOS = [
     thumbnailSrc: '/images/large-ferrofluid-display/portfolio-04.png',
   },
   {
-    title: 'Non-flammable Base Liquid',
+    title: 'Non-flammable Ferrofluid Base Liquid',
     placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_05',
     thumbnailSrc: '/images/large-ferrofluid-display/portfolio-05.png',
   },
   {
-    title: 'Non-flammable Flame Test',
+    title: 'Ferrofluid Non-flammable Flame Test',
     placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_06',
     thumbnailSrc: '/images/large-ferrofluid-display/portfolio-06.png',
   },
