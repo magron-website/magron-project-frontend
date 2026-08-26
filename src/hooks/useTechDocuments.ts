@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import i18n, { type Language } from '@/i18n'
+import { localize } from '@/lib/localizeRow'
 import { supabase } from '@/lib/supabase'
 import type { TechDocument, TechDocumentRow } from '@/types/techDocument'
 
@@ -22,7 +23,9 @@ function mapRow(row: TechDocumentRow, lang: Language): TechDocument {
     title: text('title', row.title),
     titleSub: text('titleSub', null),
     description: text('description', row.description),
-    fileUrl: row.file_url,
+    /* 카탈로그와 같은 규칙: file_url_en / file_url_zh 가 채워져 있으면 그걸 쓰고,
+       비어 있으면 기본(한국어) file_url 로 돌아간다. */
+    fileUrl: localize(row, 'file_url', lang) ?? row.file_url,
     sortOrder: row.sort_order,
   }
 }

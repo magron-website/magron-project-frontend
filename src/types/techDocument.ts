@@ -7,6 +7,8 @@ export type TechDocumentRow = {
   title_zh: string | null
   description_zh: string | null
   file_url: string
+  file_url_en: string | null
+  file_url_zh: string | null
   sort_order: number
   is_active: boolean
 }

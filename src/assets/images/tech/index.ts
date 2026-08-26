@@ -4,6 +4,9 @@ import koptriVaporPressureReport from './koptri-vapor-pressure-report.jpg'
 import mffMOverview from './mff-m-overview.jpg'
 import productBrochure from './product-brochure.jpg'
 import vaporPressureNote from './vapor-pressure-note.jpg'
+import whatIsFerrofluidEn from './what-is-ferrofluid-en.jpg'
+import whatIsFerrofluidKr from './what-is-ferrofluid-kr.jpg'
+import whatIsFerrofluidZh from './what-is-ferrofluid-zh.jpg'
 
 /**
  * Covers pre-rendered from each PDF's first page by
@@ -21,6 +24,9 @@ const techCovers: Record<string, string> = {
   'mff-m-overview': mffMOverview,
   'product-brochure': productBrochure,
   'vapor-pressure-note': vaporPressureNote,
+  'what-is-ferrofluid-kr': whatIsFerrofluidKr,
+  'what-is-ferrofluid-en': whatIsFerrofluidEn,
+  'what-is-ferrofluid-zh': whatIsFerrofluidZh,
 }
 
 /** "…/Active%20Gas%20TGA%20Data.pdf" -> "active-gas-tga-data" */

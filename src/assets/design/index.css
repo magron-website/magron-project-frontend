@@ -214,7 +214,7 @@ html[lang='en'] body {
        --contact-offset  = 1701 + --catalog-height */
   body .home {
     --catalog-height: 1817px;
-    --tech-height: 2005px;
+    --tech-height: 2020px;
     --contact-offset: 3518px;
   }
 
