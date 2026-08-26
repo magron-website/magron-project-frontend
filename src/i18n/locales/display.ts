@@ -16,6 +16,8 @@ const display = {
         '사용자 조작 또는 외부 자극에 따라 자성유체가 반응하는 전시형 데모 영상입니다.',
         '수직형 투명 디스플레이 구조에서 자성유체가 움직이는 모습을 보여주는 영상입니다.',
         '자성유체가 자기장에 의해 뾰족한 스파이크 형태를 만들며 움직이는 영상입니다.',
+        '자성유체 키트에 쓰이는 불연성 베이스 오일을 보여주는 영상입니다.',
+        '자성유체에 직접 불을 대어 타지 않는 것을 확인한 시험 영상입니다.',
       ],
     },
     application: {
@@ -63,6 +65,8 @@ const display = {
         'An exhibition demo video of ferrofluid reacting to user control or external stimuli.',
         'A video showing ferrofluid moving in a vertical transparent display structure.',
         'A video of ferrofluid moving while forming pointed spike shapes under a magnetic field.',
+        'A look at the non-flammable base oil used in the ferrofluid kit.',
+        'A flame test confirming that the ferrofluid does not catch fire.',
       ],
     },
     application: {
@@ -110,6 +114,8 @@ const display = {
         '磁流体根据用户操作或外部刺激作出反应的展览型演示视频。',
         '展示磁流体在垂直透明显示结构中运动的视频。',
         '磁流体在磁场作用下形成尖峰形态并运动的视频。',
+        '展示磁流体套件所用不燃性基础油的视频。',
+        '直接用火焰测试、确认磁流体不会燃烧的视频。',
       ],
     },
     application: {

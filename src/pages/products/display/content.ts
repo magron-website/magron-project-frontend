@@ -38,4 +38,14 @@ export const PORTFOLIO_VIDEOS = [
     placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_04',
     thumbnailSrc: '/images/large-ferrofluid-display/portfolio-04.png',
   },
+  {
+    title: 'Non-flammable Base Liquid',
+    placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_05',
+    thumbnailSrc: '/images/large-ferrofluid-display/portfolio-05.png',
+  },
+  {
+    title: 'Non-flammable Flame Test',
+    placeholderId: 'VIDEO_PLACEHOLDER_PORTFOLIO_06',
+    thumbnailSrc: '/images/large-ferrofluid-display/portfolio-06.png',
+  },
 ] as const
