@@ -253,7 +253,7 @@ function HomeContact() {
                 </div>
                 <div className="home-contact__block">
                   <span className="home-contact__label">FAX</span>
-                  <p className="home-contact__text">82-31-500-4631</p>
+                  <p className="home-contact__text">031-500-4631</p>
                 </div>
               </div>
             </div>
