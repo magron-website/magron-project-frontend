@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import AnswerBlock from '@/components/AnswerBlock'
 import { CATEGORIES, IN_MOLD_ADVANTAGES, IN_MOLD_STEPS } from '@/pages/products/piezoInk/content'
 import { ProductCard } from '@/pages/products/piezoInk/components'
 import '@/assets/design/products/piezo-ink.css'
@@ -54,6 +55,9 @@ export default function PiezoInk() {
           </div>
         </div>
       </header>
+
+      {/* 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
+      <AnswerBlock routePath="/piezo-ink" />
 
       <div className="pi-page__body">
         {/* 1. In-Mold Electronics — application overview, shown first */}

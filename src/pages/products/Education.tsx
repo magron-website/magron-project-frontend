@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
 import {
   COMPONENT_DETAIL_MEDIA,
@@ -104,6 +105,9 @@ export default function Education() {
           </div>
         </div>
       </header>
+
+      {/* 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
+      <AnswerBlock routePath="/education" />
 
       <div className="ed-page__body">
         {/* 2. 제품 구성 */}

@@ -813,6 +813,20 @@
   line-height: 1.6;
 }
 
+/* 카탈로그 표를 HTML <table> 로 옮긴 경우 — 이미지 액자 대신 표가 그대로 놓인다.
+   모서리 둥글기는 표를 감싼 스크롤 박스가 이어받는다. */
+.mn-mat-table__data .spec-table__scroll {
+  border-radius: 12px;
+}
+
+.mn-mat-table__note {
+  margin: 10px 0 0;
+  color: var(--mn-muted);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
 /* Bottom CTA */
 .mn-cta-banner {
   margin-top: 80px;

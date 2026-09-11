@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
 import { useDisplayVideos } from '@/hooks/useDisplayVideos'
 import { MAIN_VIDEO, PORTFOLIO_VIDEOS } from '@/pages/products/display/content'
@@ -28,6 +29,9 @@ export default function Display() {
           <p className="dp-hero__lead">{t('hero.lead', { ns: 'display' })}</p>
         </div>
       </header>
+
+      {/* 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
+      <AnswerBlock routePath="/display" />
 
       <div className="dp-main-video">
         <div className="dp-main-video__inner">

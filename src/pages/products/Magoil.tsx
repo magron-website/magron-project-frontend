@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
 import {
   PACKAGE_IMAGES,
@@ -55,6 +56,9 @@ export default function Magoil() {
           </div>
         </div>
       </header>
+
+      {/* 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
+      <AnswerBlock routePath="/magoil" />
 
       <div className="mg-page__body">
         {/* 2. 금속 병 타입 (magoil_2) */}

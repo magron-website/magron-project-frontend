@@ -83,7 +83,7 @@ export type Category = {
 // --- shared spec-row helpers --------------------------------------------
 const LEAK = { label: 'Leakage rate [He] (Pa·m³/sec)', cells: ['<10⁻¹²'] }
 const LEAK_T = { label: '(Torr·ℓ/sec)', cells: ['<10⁻¹¹'] }
-const TEMP = { label: 'Temperature range (°C)', cells: ['0 – 80'] }
+const TEMP = { label: 'Temperature range (°C)', cells: ['0 – 150'] }
 
 // ==========================================================================
 // 1. STANDARD ROTARY

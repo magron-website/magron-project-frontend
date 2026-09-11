@@ -1,0 +1,108 @@
+@import './font.css';
+
+/* ==========================================================================
+   Answer Block — 화면 상단 직답 + FAQ
+   AI 검색이 문단 단위로 꺼내 쓰는 자리라, 눈에 띄되 본문을 밀어내지 않도록
+   한 화면에 얇게 얹히는 밴드 형태로 둔다.
+   ========================================================================== */
+
+.answer-block {
+  --ab-navy: #0b1f3a;
+  --ab-text: #1e293b;
+  --ab-muted: #475569;
+  --ab-bg: #f8fafc;
+  --ab-border: #dbe4f0;
+  --ab-accent: #0891b2;
+  --ab-max: 1180px;
+
+  width: 100%;
+  background: var(--ab-bg);
+  border-top: 1px solid var(--ab-border);
+  border-bottom: 1px solid var(--ab-border);
+  color: var(--ab-text);
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+.answer-block__inner {
+  width: 100%;
+  max-width: var(--ab-max);
+  margin: 0 auto;
+  padding: 40px 24px 44px;
+}
+
+.answer-block__question {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--ab-navy);
+}
+
+/* 액센트 선은 "여기가 이 화면의 답"이라는 신호. 장식이 아니라 읽는 순서 표시다. */
+.answer-block__question::before {
+  content: '';
+  display: block;
+  width: 32px;
+  height: 3px;
+  margin: 0 0 14px;
+  background: var(--ab-accent);
+}
+
+.answer-block__answer {
+  max-width: 72ch;
+  margin: 14px 0 0;
+  font-size: 1.02rem;
+  font-weight: 400;
+  line-height: 1.8;
+  color: var(--ab-text);
+}
+
+/* FAQ -------------------------------------------------------------------- */
+
+.answer-block__faq {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 22px 36px;
+  margin: 30px 0 0;
+  padding: 26px 0 0;
+  border-top: 1px solid var(--ab-border);
+}
+
+.answer-block__faq-item dt {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--ab-navy);
+}
+
+.answer-block__faq-item dd {
+  max-width: 62ch;
+  margin: 8px 0 0;
+  font-size: 0.92rem;
+  font-weight: 400;
+  line-height: 1.75;
+  color: var(--ab-muted);
+}
+
+@media (max-width: 768px) {
+  .answer-block__inner {
+    padding: 30px 18px 32px;
+  }
+
+  .answer-block__question {
+    font-size: 1.12rem;
+  }
+
+  .answer-block__answer {
+    font-size: 0.97rem;
+  }
+
+  .answer-block__faq {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 24px;
+    padding-top: 22px;
+  }
+}

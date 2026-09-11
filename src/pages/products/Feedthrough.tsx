@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
 import { CATEGORIES, heroMontage } from '@/pages/products/feedthrough/content'
 import { ProductCard } from '@/pages/products/feedthrough/components'
@@ -61,6 +62,9 @@ export default function Feedthrough() {
           </div>
         </div>
       </header>
+
+      {/* 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
+      <AnswerBlock routePath="/feedthrough" />
 
       <div className="ft-page__body">
         {/* Category quick-nav */}

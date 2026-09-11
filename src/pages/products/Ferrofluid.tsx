@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
 import { CompanyTable, Figure, PointList, Section } from '@/pages/products/ferrofluid/components'
 import {
@@ -7,22 +8,29 @@ import {
   imgApplicationGrid,
   imgCompanyBuilding,
   imgCorrosiveProduct,
-  imgCorrosiveSpec,
   imgLeakM4251,
   imgLeakM5070,
-  imgNonCorrosiveSpec,
   imgProduct,
   imgSealSection,
   imgTgaMff,
   imgTgaMfsMfh,
 } from '@/pages/products/ferrofluid/content'
+import SpecTable from '@/components/SpecTable'
+import { LANGUAGES, type Language } from '@/i18n'
+import {
+  corrosiveSpecTable,
+  nonCorrosiveSpecTable,
+} from '@/pages/products/ferrofluid/specTables'
 import '@/assets/design/products/ferrofluid.css'
 
 type Card = { title: string; description: string }
 type Point = { label: string; value: string }
 
 export default function Ferrofluid() {
-  const { t } = useTranslation(['ferrofluid', 'product'])
+  const { t, i18n } = useTranslation(['ferrofluid', 'product'])
+  const lang: Language = (LANGUAGES as readonly string[]).includes(i18n.language)
+    ? (i18n.language as Language)
+    : 'ko'
   const opts = { returnObjects: true, ns: 'ferrofluid' } as const
   const heroCardsList = t('heroCards', opts) as unknown as Card[]
   const corrosivePoints = t('corrosive.points', opts) as unknown as Point[]
@@ -60,6 +68,9 @@ export default function Ferrofluid() {
         </div>
       </header>
 
+      {/* 1-1. 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
+      <AnswerBlock routePath="/ferrofluid" />
+
       <div className="ff-page__body">
         {/* 2. Corrosive Gas */}
         <Section
@@ -79,11 +90,11 @@ export default function Ferrofluid() {
           </div>
 
           <h3 className="ff-subheading">{t('corrosive.specHeading', { ns: 'ferrofluid' })}</h3>
-          <Figure
-            src={imgCorrosiveSpec}
-            alt={t('corrosive.specAlt', { ns: 'ferrofluid' })}
-            scroll
-            caption={t('corrosive.specCaption', { ns: 'ferrofluid' })}
+          {/* 사양표는 이미지가 아니라 HTML 표다 — 숫자가 검색·복사·AI 인용 대상이 된다 */}
+          <SpecTable
+            data={corrosiveSpecTable(lang)}
+            caption={t('corrosive.specHeading', { ns: 'ferrofluid' })}
+            hideCaption
           />
 
           <h3 className="ff-subheading">{t('corrosive.leakHeading', { ns: 'ferrofluid' })}</h3>
@@ -112,11 +123,10 @@ export default function Ferrofluid() {
             <PointList points={nonCorrosivePoints} />
           </div>
           <h3 className="ff-subheading">{t('nonCorrosive.specHeading', { ns: 'ferrofluid' })}</h3>
-          <Figure
-            src={imgNonCorrosiveSpec}
-            alt={t('nonCorrosive.specAlt', { ns: 'ferrofluid' })}
-            scroll
-            caption={t('nonCorrosive.specCaption', { ns: 'ferrofluid' })}
+          <SpecTable
+            data={nonCorrosiveSpecTable(lang)}
+            caption={t('nonCorrosive.specHeading', { ns: 'ferrofluid' })}
+            hideCaption
           />
         </Section>
 

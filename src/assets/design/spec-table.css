@@ -1,0 +1,169 @@
+@import './font.css';
+
+/* ==========================================================================
+   Spec Table — 카탈로그 사양표(이미지 대체)
+   원본 카탈로그의 짙은 남색 헤더 / 줄무늬 본문을 그대로 따라간다.
+   ========================================================================== */
+
+.spec-table {
+  --st-head: #2f3a4a;
+  --st-head-text: #ffffff;
+  --st-border: #c9d3df;
+  --st-border-strong: #94a3b8;
+  --st-stripe: #eef2f7;
+  --st-text: #1e293b;
+  --st-muted: #64748b;
+  --st-section: #dbe4f0;
+  --st-highlight: #fff7e6;
+  --st-highlight-line: #e0a01e;
+
+  width: 100%;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  color: var(--st-text);
+}
+
+/* 표가 넓어도 페이지가 가로로 밀리지 않게 표 자체만 스크롤시킨다.
+   tabIndex 가 붙어 있어 키보드로도 스크롤할 수 있다. */
+.spec-table__scroll {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--st-border-strong);
+  background: #fff;
+  -webkit-overflow-scrolling: touch;
+}
+
+.spec-table__scroll:focus-visible {
+  outline: 2px solid var(--st-highlight-line);
+  outline-offset: 2px;
+}
+
+.spec-table table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.45;
+}
+
+.spec-table__caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0 0 10px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--st-text);
+}
+
+/* 바로 위 제목과 겹칠 때 — 화면에서만 감추고 낭독기·검색엔진에는 남긴다 */
+.spec-table__caption--hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.spec-table thead th {
+  background: var(--st-head);
+  color: var(--st-head-text);
+  font-weight: 500;
+  text-align: center;
+  padding: 9px 12px;
+  border: 1px solid var(--st-border-strong);
+  white-space: nowrap;
+}
+
+.spec-table thead th.spec-table__unit {
+  font-weight: 400;
+  font-size: 0.76rem;
+  opacity: 0.92;
+}
+
+.spec-table__corner {
+  text-align: left !important;
+  min-width: 96px;
+}
+
+.spec-table tbody th {
+  text-align: left;
+  font-weight: 600;
+  white-space: nowrap;
+  padding: 8px 12px;
+  border: 1px solid var(--st-border);
+  background: #fff;
+}
+
+.spec-table tbody td {
+  text-align: center;
+  padding: 8px 12px;
+  border: 1px solid var(--st-border);
+  white-space: nowrap;
+}
+
+.spec-table tbody tr:nth-child(odd) td,
+.spec-table tbody tr:nth-child(odd) th {
+  background: var(--st-stripe);
+}
+
+/* 소재 구분행 (Sm1Co5 / Anisotropic 등) — 원본에서 세로 병합된 칸을 대신한다 */
+.spec-table tbody tr.spec-table__section th {
+  background: var(--st-section);
+  color: var(--st-text);
+  font-weight: 700;
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  padding: 7px 12px;
+}
+
+/* 카탈로그에서 주황 테두리로 강조된 대표 모델 */
+.spec-table tbody tr.spec-table__row--highlight th,
+.spec-table tbody tr.spec-table__row--highlight td {
+  background: var(--st-highlight);
+  font-weight: 600;
+  border-top: 1px solid var(--st-highlight-line);
+  border-bottom: 1px solid var(--st-highlight-line);
+}
+
+.spec-table__notes {
+  margin: 12px 0 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.8rem;
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--st-muted);
+}
+
+.spec-table__notes li {
+  padding-left: 14px;
+  position: relative;
+}
+
+.spec-table__notes li::before {
+  content: '※';
+  position: absolute;
+  left: 0;
+  font-size: 0.72rem;
+}
+
+@media (max-width: 768px) {
+  .spec-table table {
+    font-size: 0.76rem;
+  }
+
+  .spec-table thead th,
+  .spec-table tbody th,
+  .spec-table tbody td {
+    padding: 7px 9px;
+  }
+
+  .spec-table__caption {
+    font-size: 0.9rem;
+  }
+}

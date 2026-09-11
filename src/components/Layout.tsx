@@ -8,6 +8,7 @@ import Footer from '@/components/Footer'
 import ChatbotFloater from '@/components/ChatbotFloater'
 import InstallPrompt from '@/components/InstallPrompt'
 import { useSeoMeta } from '@/seo/useSeoMeta'
+import { useJsonLd } from '@/seo/useJsonLd'
 
 export default function Layout() {
   const { pathname, hash } = useLocation()
@@ -22,6 +23,9 @@ export default function Layout() {
   }, [lang, i18n])
 
   useSeoMeta(path, lang)
+  /* 화면별 Product·FAQPage·BreadcrumbList. index.html 의 Organization·WebSite 는
+     사이트 전체 정보라 그대로 두고, 화면마다 달라야 하는 것만 여기서 갈아끼운다. */
+  useJsonLd(path, lang)
 
   useEffect(() => {
     if (hash) {

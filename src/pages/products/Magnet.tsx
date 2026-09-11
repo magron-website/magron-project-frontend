@@ -1,7 +1,10 @@
 import { useTranslation } from 'react-i18next'
+import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
+import { LANGUAGES, type Language } from '@/i18n'
 import { MAGNET_TABLE_IMAGES, heroMagnets } from '@/pages/products/magnet/content'
 import { Section, TableFigure } from '@/pages/products/magnet/components'
+import { getMagnetSpecTable } from '@/pages/products/magnet/specTables'
 import '@/assets/design/products/magnet.css'
 
 type Card = { title: string; description: string }
@@ -10,7 +13,10 @@ type FamilyTable = { id: string; title: string; description: string; note?: stri
 type Family = { id: string; name: string; nameKr: string; intro: string; tables: FamilyTable[] }
 
 export default function Magnet() {
-  const { t } = useTranslation(['magnet', 'product'])
+  const { t, i18n } = useTranslation(['magnet', 'product'])
+  const lang: Language = (LANGUAGES as readonly string[]).includes(i18n.language)
+    ? (i18n.language as Language)
+    : 'ko'
   const opts = { returnObjects: true, ns: 'magnet' } as const
   const heroCards = t('heroCards', opts) as unknown as Card[]
   const glossary = t('glossary', opts) as unknown as GlossaryItem[]
@@ -48,6 +54,9 @@ export default function Magnet() {
           </div>
         </div>
       </header>
+
+      {/* 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
+      <AnswerBlock routePath="/magnet" />
 
       <div className="mn-page__body">
         {/* 소재 quick-nav */}
@@ -95,6 +104,7 @@ export default function Magnet() {
                   description={table.description}
                   image={MAGNET_TABLE_IMAGES[table.id]}
                   note={table.note}
+                  table={getMagnetSpecTable(table.id, lang)}
                 />
               ))}
             </div>
