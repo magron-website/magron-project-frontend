@@ -27,3 +27,6 @@ Thumbs.db
 .env
 .env.*
 !.env.example
+
+# 이미지 교체 전 원본 백업 (로컬 보관용)
+_bak-*/

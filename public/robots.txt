@@ -4,6 +4,10 @@
 User-agent: *
 Allow: /
 
+# 네이버 검색 로봇 — 국내 검색 유입 경로. 서치어드바이저 등록과 함께 필요하다.
+User-agent: Yeti
+Allow: /
+
 # Explicitly welcome AI search / RAG crawlers
 User-agent: GPTBot
 Allow: /

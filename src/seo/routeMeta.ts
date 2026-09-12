@@ -44,9 +44,9 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       zh: `技术信息 · 磁流体技术资料与检测报告 | ${BRAND}`,
     },
     description: {
-      ko: 'MFF-M 자성유체의 내열성·증기압·진공 안정성을 뒷받침하는 기술자료입니다. 증기압 기술노트, KOPTRI 공인시험 성적서, TGA 원자료를 PDF로 열람·다운로드할 수 있습니다.',
+      ko: 'MFF-M 자성유체의 내열성·증기압·진공 안정성을 뒷받침하는 기술자료입니다. 증기압 기술노트, KOPTRI(한국고분자시험연구원) 측정 결과, TGA 원자료를 PDF로 열람·다운로드할 수 있습니다.',
       en: 'Technical documents backing the heat resistance, vapor pressure, and vacuum stability of MFF-M ferrofluid — vapor pressure notes, KOPTRI accredited test reports, and TGA raw data, viewable and downloadable as PDF.',
-      zh: '支持 MFF-M 磁流体耐热性、蒸气压与真空稳定性的技术资料。可在线阅览并下载蒸气压技术说明、KOPTRI 权威检测报告及 TGA 原始数据 PDF。',
+      zh: '支持 MFF-M 磁流体耐热性、蒸气压与真空稳定性的技术资料。可在线阅览并下载蒸气压技术说明、KOPTRI 测定结果及 TGA 原始数据 PDF。',
     },
   },
   '/ferrofluid': {

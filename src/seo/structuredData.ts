@@ -2,6 +2,7 @@ import type { Language } from '@/i18n'
 import { toCanonicalPath } from '@/i18n/routing'
 import { ROUTE_META, SITE_URL } from '@/seo/routeMeta'
 import { PAGE_ANSWERS } from '@/seo/answers'
+import { getProductImage } from '@/seo/productImages'
 import { PRODUCT_PAGE_PATHS } from '@/pages/products/productRoutes'
 
 /**
@@ -68,17 +69,18 @@ function buildBreadcrumb(routePath: string, lang: Language) {
 
 function buildProduct(routePath: string, lang: Language) {
   const url = absolute(lang, routePath)
+  const image = getProductImage(routePath, SITE_URL)
 
   return {
     '@type': 'Product',
     name: productName(routePath, lang),
     description: ROUTE_META[routePath]?.description[lang] ?? '',
     url,
+    // 대표 이미지가 있어야 검색 결과와 AI 답변에 썸네일이 함께 잡힌다.
+    // 값이 없으면 빈 문자열을 넣지 말고 필드째 빼야 한다 — 빈 image 는 오류로 읽힌다.
+    ...(image ? { image } : {}),
     brand: { '@type': 'Brand', name: 'MAGRON' },
     manufacturer: ORGANIZATION,
-    // TODO: 제품별 대표 이미지 URL(Supabase product_explanations.imageUrl)을 여기에
-    // 넣으면 검색·AI 답변에 썸네일이 함께 잡힌다. 값이 없는 채로 image 를 비워두는
-    // 것보다 아예 빼는 편이 안전해서 지금은 생략한다.
     // 가격을 공개하지 않는 B2B 품목이라 offers 는 넣지 않는다. offers 없이도
     // Product 는 유효하며, AI 검색은 사양·용도 설명을 읽는다.
   }

@@ -34,6 +34,124 @@ export type PageAnswers = {
 }
 
 export const PAGE_ANSWERS: Record<string, PageAnswers> = {
+  '/tech': {
+    summary: {
+      question: {
+        ko: '어떤 기술자료를 제공하나요?',
+        en: 'What technical documents are available?',
+        zh: '提供哪些技术资料？',
+      },
+      answer: {
+        ko: 'MFF-M PFPE 자성유체의 내열성·증기압·진공 안정성을 뒷받침하는 자료를 PDF로 공개합니다. 증기압은 한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로, 내열성은 한국생산기술연구원(KITECH)에서 TGA로 측정했습니다. 종합자료·기술 브로슈어·증기압 기술노트·시험 결과·활성 및 불활성 가스 TGA 원자료를 열람하고 내려받을 수 있습니다.',
+        en: 'Documents backing the heat resistance, vapor pressure, and vacuum stability of MFF-M PFPE ferrofluid are published as PDFs. Vapor pressure was measured at KOPTRI (Korea Polymer Testing & Research Institute) by the OECD TG 104 effusion method, and heat resistance at KITECH (Korea Institute of Industrial Technology) by TGA. Overview decks, brochures, vapor-pressure notes, test results, and raw TGA data for active and inert gases are all available.',
+        zh: '以 PDF 形式公开支持 MFF-M PFPE 磁流体耐热性、蒸气压与真空稳定性的资料。蒸气压由韩国高分子试验研究院（KOPTRI）依据 OECD TG 104 逸出法测定，耐热性由韩国生产技术研究院（KITECH）以 TGA 测定。可阅览并下载综合资料、技术手册、蒸气压技术说明、试验结果以及活性与惰性气体的 TGA 原始数据。',
+      },
+    },
+    faqs: [
+      {
+        question: {
+          ko: '증기압은 어떤 방법으로 측정하나요?',
+          en: 'How is vapor pressure measured?',
+          zh: '蒸气压采用什么方法测定？',
+        },
+        answer: {
+          ko: '증기압이 매우 낮은 소재는 일반 압력계로 직접 잴 수 없습니다. 진공 TGA로 등온 조건에서 무게 손실을 관찰해 증발 속도를 구한 뒤, 회귀분석으로 상온 증기압을 산출합니다. OECD TG 104 유출법이 이 절차를 규정한 시험법입니다.',
+          en: 'Materials with very low vapor pressure cannot be measured directly with a pressure gauge. Weight loss is observed under isothermal conditions in a vacuum TGA to obtain an evaporation rate, which is then regressed to give the vapor pressure at room temperature. The OECD TG 104 effusion method defines this procedure.',
+          zh: '蒸气压极低的材料无法用普通压力计直接测量。需在真空 TGA 中于等温条件下观察失重以求得蒸发速率，再通过回归分析推算常温蒸气压。OECD TG 104 逸出法即规定了该流程。',
+        },
+      },
+      {
+        question: {
+          ko: '내열성은 어떻게 확인하나요?',
+          en: 'How is heat resistance verified?',
+          zh: '耐热性如何确认？',
+        },
+        answer: {
+          ko: 'TGA(열중량분석)로 분당 10℃씩 승온하며 온도별 무게 손실을 측정하고, DTA로 흡열·발열 반응을 함께 봅니다. 무게가 1wt% 줄어드는 온도를 사용 가능 온도의 기준으로 삼습니다. 실제 사용 온도는 회전 속도, 축 지름, 운전 시간에 따라 달라집니다.',
+          en: 'TGA measures weight loss against temperature at a 10℃/min ramp, and DTA shows endothermic and exothermic behaviour alongside it. The temperature at which 1 wt% is lost is used as the reference for the usable range. The actual operating temperature depends on rotational speed, shaft diameter, and running time.',
+          zh: '以 TGA（热重分析）按每分钟 10℃ 升温测定各温度下的失重，并以 DTA 同步观察吸热与放热行为。以失重 1wt% 的温度作为可用温度的基准。实际使用温度会随转速、轴径与运行时间而变化。',
+        },
+      },
+      {
+        question: {
+          ko: '왜 증기압 데이터가 중요한가요?',
+          en: 'Why does vapor pressure data matter?',
+          zh: '为什么蒸气压数据很重要？',
+        },
+        answer: {
+          ko: '반도체 공정은 통상 10⁻⁶ Pa 이하 초고진공에서 진행됩니다. 챔버 안의 소재가 스스로 기화하면 달성 가능한 진공도가 제한되고, 파티클 성장·패턴 오염·박막 불균일로 이어져 수율에 직접 영향을 줍니다. 그래서 정성적인 "저증기압"이 아니라 정량적인 합격 기준이 필요합니다.',
+          en: 'Semiconductor processes typically run below 10⁻⁶ Pa. If a material inside the chamber outgasses, it caps the attainable vacuum and leads to particle growth, pattern contamination, and film non-uniformity — all of which hit yield directly. That is why a quantitative acceptance figure is needed, not a qualitative claim of "low vapor pressure".',
+          zh: '半导体工艺通常在 10⁻⁶ Pa 以下进行。若腔体内材料自身气化，将限制可达真空度，并导致颗粒生长、图形污染与薄膜不均，直接影响良率。因此需要的是定量的合格判据，而非笼统的"低蒸气压"说法。',
+        },
+      },
+      {
+        question: {
+          ko: '자료를 바로 받을 수 있나요?',
+          en: 'Can the documents be downloaded directly?',
+          zh: '资料可以直接下载吗？',
+        },
+        answer: {
+          ko: '이 페이지의 자료는 회원가입 없이 바로 열람하고 내려받을 수 있습니다. 특정 공정 조건에 대한 검토나 추가 데이터가 필요하시면 문의해 주시기 바랍니다.',
+          en: 'Everything on this page can be viewed and downloaded without registration. For a review against specific process conditions, or for additional data, please contact us.',
+          zh: '本页资料无需注册即可直接阅览与下载。如需针对特定工艺条件的评估或补充数据，请与我们联系。',
+        },
+      },
+    ],
+  },
+
+  '/company': {
+    summary: {
+      question: {
+        ko: '(주)마그론은 어떤 회사인가요?',
+        en: 'What kind of company is MAGRON?',
+        zh: 'MAGRON 是一家什么样的公司？',
+      },
+      answer: {
+        ko: '2004년에 설립된 자성유체(Ferrofluid) 전문 제조기업입니다. 활성·비활성 가스와 분진을 차폐하는 씰링 부품과 센서용 자성유체를 만들어 반도체·태양전지·디스플레이 장비·전자제품·자동차 산업에 공급합니다. 경기도 안산 경기테크노파크에 있습니다.',
+        en: 'MAGRON is a ferrofluid manufacturer founded in 2004. It makes sealing components that shield active and inactive gases and dust, along with ferrofluid for sensors, supplying the semiconductor, solar cell, display equipment, electronics, and automotive industries. The company is based at Gyeonggi Technopark in Ansan, Korea.',
+        zh: 'MAGRON 成立于 2004 年，是一家磁流体专业制造企业。生产用于屏蔽活性与非活性气体及粉尘的密封部件以及传感器用磁流体，供应半导体、太阳能电池、显示设备、电子产品与汽车行业。公司位于韩国安山京畿科技园。',
+      },
+    },
+    faqs: [
+      {
+        question: {
+          ko: '주력 제품은 무엇인가요?',
+          en: 'What are the main products?',
+          zh: '主要产品是什么？',
+        },
+        answer: {
+          ko: '자성유체(Ferrofluid), 자성유체 씰이 적용된 진공 피드스루, 자성유체 씰이 적용된 진공 OLED 증착 로봇입니다. 이 밖에도 용도와 규격에 맞춘 주문 제작이 가능합니다.',
+          en: 'Ferrofluid, ferrofluid-sealed vacuum feedthroughs, and ferrofluid-sealed vacuum OLED deposition robots. Beyond these, made-to-order products to your application and specification are available.',
+          zh: '磁流体、采用磁流体密封的真空馈通，以及采用磁流体密封的真空 OLED 蒸镀机器人。此外亦可按用途与规格进行定制生产。',
+        },
+      },
+      {
+        question: {
+          ko: '어떤 장비와 공정에 쓰이나요?',
+          en: 'Which equipment and processes use them?',
+          zh: '应用于哪些设备与工艺？',
+        },
+        answer: {
+          ko: 'CVD, PVD, 스퍼터링, 이온 주입기, 박막 공정, 진공 이송 로봇, 단결정 성장 장비 등에 적용됩니다. 항공우주, 원자력, 핵융합 분야에서도 사용됩니다.',
+          en: 'CVD, PVD, sputtering, ion implanters, thin-film processes, in-vacuum transfer robots, and single-crystal growth equipment. They are also used in aerospace, nuclear power, and nuclear fusion.',
+          zh: '应用于 CVD、PVD、溅射、离子注入机、薄膜工艺、真空传送机器人及单晶生长设备等，亦用于航空航天、核能与核聚变领域。',
+        },
+      },
+      {
+        question: {
+          ko: '해외에서도 문의할 수 있나요?',
+          en: 'Can overseas customers get in touch?',
+          zh: '海外客户可以咨询吗？',
+        },
+        answer: {
+          ko: '가능합니다. 영어와 중국어로 응대하며, 전 세계 어디서든 화상 회의를 요청하실 수 있습니다. 수출 문의는 +82-31-500-4632, 이메일은 magron@magron.co.kr 입니다.',
+          en: 'Yes. We respond in English and Chinese, and you can request a video conference from anywhere in the world. For export enquiries call +82-31-500-4632 or email magron@magron.co.kr.',
+          zh: '可以。我们提供英语与中文服务，您可在全球任何地点申请视频会议。出口咨询电话 +82-31-500-4632，邮箱 magron@magron.co.kr。',
+        },
+      },
+    ],
+  },
+
   '/ferrofluid': {
     summary: {
       question: {
@@ -42,9 +160,9 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
         zh: '磁流体密封解决什么问题？',
       },
       answer: {
-        ko: '자성유체 씰은 회전축 둘레에 자기장으로 붙잡힌 액체 O-ring을 만들어, 축이 도는 동안에도 유해가스 누출과 분진 유입, 진공도 저하를 막습니다. (주)마그론은 부식성 가스용 MFF·MFF-M(PFPE 계열)과 비부식성 가스용 MFS(실리콘)·MFH(하이드로카본) 시리즈를 공급합니다.',
-        en: 'A ferrofluid seal forms a liquid O-ring held in place by a magnetic field around a rotating shaft, blocking corrosive-gas leakage, dust ingress, and vacuum loss while the shaft keeps turning. MAGRON supplies the MFF/MFF-M series (PFPE) for corrosive gases and the MFS (silicone) and MFH (hydrocarbon) series for non-corrosive gases.',
-        zh: '磁流体密封在旋转轴周围形成由磁场固定的液态 O 型圈，即使轴持续旋转也能阻隔有害气体泄漏、粉尘侵入与真空度下降。MAGRON 提供腐蚀性气体用 MFF·MFF-M（PFPE 系列）与非腐蚀性气体用 MFS（硅系）·MFH（碳氢系）系列。',
+        ko: '자성유체 씰은 회전축 둘레에 자기장으로 붙잡힌 액체 O-ring을 만들어, 축이 도는 동안에도 유해가스 누출과 분진 유입, 진공도 저하를 막습니다. 부식성 가스용 MFF·MFF-M(PFPE 계열)은 20℃ 증기압 1.5×10⁻¹⁰ Pa 이하, 1wt% 중량손실 온도 280℃ 이상이며, 비부식성 가스용으로는 MFS(실리콘)·MFH(하이드로카본) 시리즈를 공급합니다.',
+        en: 'A ferrofluid seal forms a liquid O-ring held in place by a magnetic field around a rotating shaft, blocking corrosive-gas leakage, dust ingress, and vacuum loss while the shaft keeps turning. The MFF/MFF-M series (PFPE) for corrosive gases holds a vapor pressure of 1.5×10⁻¹⁰ Pa or lower at 20℃ and a 1 wt% weight-loss temperature above 280℃; the MFS (silicone) and MFH (hydrocarbon) series cover non-corrosive gases.',
+        zh: '磁流体密封在旋转轴周围形成由磁场固定的液态 O 型圈，即使轴持续旋转也能阻隔有害气体泄漏、粉尘侵入与真空度下降。腐蚀性气体用 MFF·MFF-M（PFPE 系列）在 20℃ 下蒸气压低于 1.5×10⁻¹⁰ Pa、1wt% 失重温度高于 280℃；非腐蚀性气体则提供 MFS（硅系）·MFH（碳氢系）系列。',
       },
     },
     faqs: [
@@ -79,9 +197,21 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
           zh: '耐热性与蒸气压是如何验证的？',
         },
         answer: {
-          ko: 'TGA(열중량분석)와 DTA로 온도에 따른 중량 손실과 열적 거동을 측정했고, 증기압은 KOPTRI(한국고분자시험연구소)에서 OECD TG 104 방법으로 공인시험을 받았습니다. 성적서와 원자료는 기술정보 페이지에서 PDF로 열람할 수 있습니다.',
-          en: 'Weight loss and thermal behavior across temperature were measured by TGA and DTA, and vapor pressure was certified by KOPTRI (Korea Polymer Testing & Research Institute) under OECD TG 104. The reports and raw data are available as PDFs on the Technical Information page.',
-          zh: '通过 TGA（热重分析）与 DTA 测定随温度变化的重量损失与热行为，蒸气压则由 KOPTRI（韩国高分子试验研究所）依据 OECD TG 104 方法完成权威检测。报告与原始数据可在技术信息页面以 PDF 阅览。',
+          ko: '내열성은 한국생산기술연구원(KITECH)에서 TGA·DTA로 분당 10℃ 승온 조건으로 측정했고, 증기압은 한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로 측정했습니다. 측정 자료와 시험 결과는 기술정보 페이지에서 PDF로 열람할 수 있습니다.',
+          en: 'Heat resistance was measured at KITECH (Korea Institute of Industrial Technology) by TGA and DTA at a 10℃/min ramp, and vapor pressure was measured at KOPTRI (Korea Polymer Testing & Research Institute) using the OECD TG 104 effusion method. The measurement data and test results are available as PDFs on the Technical Information page.',
+          zh: '耐热性由韩国生产技术研究院（KITECH）以 TGA·DTA 在每分钟升温 10℃ 的条件下测定，蒸气压由韩国高分子试验研究院（KOPTRI）依据 OECD TG 104 逸出法测定。测定资料与试验结果可在技术信息页面以 PDF 阅览。',
+        },
+      },
+      {
+        question: {
+          ko: '경쟁 제품과 비교하면 어떤가요?',
+          en: 'How does it compare with competing products?',
+          zh: '与竞争产品相比如何？',
+        },
+        answer: {
+          ko: '활성 가스용 PFPE 기준으로 당사 MFF-M 시리즈는 1wt% 중량손실 도달 온도가 280℃ 이상입니다. 같은 TGA 조건에서 일본 S사(F-310)·일본 M사(MFF-03)·영국 L사(F-9)는 158~185℃로 약 100℃ 차이가 납니다. 다만 타사 수치는 베이스오일 기준, 당사는 완제품 기준 측정값이라 측정 조건이 동일하지는 않습니다.',
+          en: 'For active-gas PFPE, our MFF-M series reaches 1 wt% weight loss above 280℃. Under the same TGA conditions, S-company (Japan, F-310), M-company (Japan, MFF-03) and L-company (UK, F-9) fall between 158℃ and 185℃ — a gap of roughly 100℃. Note that the competing figures are measured on base oil while ours are measured on the finished ferrofluid, so the conditions are not identical.',
+          zh: '以活性气体用 PFPE 为准，本公司 MFF-M 系列的 1wt% 失重温度在 280℃ 以上。在相同 TGA 条件下，日本 S 公司（F-310）、日本 M 公司（MFF-03）、英国 L 公司（F-9）为 158~185℃，相差约 100℃。需说明的是，他社数值为基础油测定值，本公司为成品测定值，测定条件并不完全一致。',
         },
       },
     ],
@@ -132,9 +262,9 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
           zh: '是否提供泄漏性能数据？',
         },
         answer: {
-          ko: 'MFF-M4251과 MFF-M5070에 대한 헬륨 리크 테스트 데이터를 공개하고 있으며, 진공 배기 시간과 유지되는 진공도를 함께 확인할 수 있습니다.',
-          en: 'Helium leak test data for MFF-M4251 and MFF-M5070 is published, showing both the pump-down time and the vacuum level that is maintained.',
-          zh: '公开 MFF-M4251 与 MFF-M5070 的氦气检漏数据，可同时确认抽真空时间与所维持的真空度。',
+          ko: '헬륨 누설율은 10⁻¹² Pa·m³/s(10⁻¹¹ Torr·ℓ/s) 미만이고 도달 진공도는 10⁻⁶ Pa(10⁻⁸ Torr) 수준이며, 사용 온도 범위는 0~150℃입니다. 모델별 토크 용량과 베어링·하우징·샤프트 재질은 제품 페이지 사양표에서 확인할 수 있습니다.',
+          en: 'Helium leakage is below 10⁻¹² Pa·m³/s (10⁻¹¹ Torr·ℓ/s), the attainable vacuum is on the order of 10⁻⁶ Pa (10⁻⁸ Torr), and the operating temperature range is 0–150℃. Torque capacity and bearing, housing and shaft materials are listed per model in the specification tables on this page.',
+          zh: '氦气泄漏率低于 10⁻¹² Pa·m³/s（10⁻¹¹ Torr·ℓ/s），可达真空度约为 10⁻⁶ Pa（10⁻⁸ Torr），使用温度范围为 0~150℃。各型号的扭矩容量与轴承·壳体·轴材质可在本页规格表中查看。',
         },
       },
     ],
@@ -148,9 +278,9 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
         zh: 'Mag-oil 适用于哪些渔轮？',
       },
       answer: {
-        ko: 'MAGSEALED 구조가 적용된 낚시 릴의 수리·보충용 자성유체입니다. 릴 내부 마그넷 주변에 자기력으로 머무르면서 물·염분·먼지·이물질의 유입을 줄여, 방수·방진 성능과 부드러운 회전감을 유지하는 데 도움을 줍니다.',
-        en: 'Mag-oil is a repair and refill ferrofluid for fishing reels built with a MAGSEALED structure. Held magnetically around the magnet inside the reel, it reduces the ingress of water, salt, dust, and debris, helping maintain waterproof and dustproof performance and a smooth rotational feel.',
-        zh: 'Mag-oil 是用于采用 MAGSEALED 结构渔轮的维修·补充用磁流体。它依靠磁力停留在渔轮内部磁铁周围，减少水、盐分、灰尘与异物侵入，有助于维持防水防尘性能与顺滑的旋转手感。',
+        ko: 'MAGSEALED 구조가 적용된 낚시 릴의 방수막을 보충하는 실리콘 자성유체입니다. 약 10나노미터 자성 입자가 릴 내부 자석 주위에 오일 링을 만들어, 회전 중에도 해수·염분·먼지의 침투를 막습니다. 실리콘 베이스 자성유체를 양산하는 곳은 당사가 유일하며 1ml(1.2g) 점적 보틀로 공급합니다.',
+        en: 'Mag-oil is a silicone ferrofluid that replenishes the waterproof film in fishing reels built with a MAGSEALED structure. Magnetic particles about 10 nanometres across form an oil ring around the magnet inside the reel, blocking seawater, salt and dust even while it spins. MAGRON is the only manufacturer producing silicone-based ferrofluid, supplied in a 1 ml (1.2 g) dropper bottle.',
+        zh: 'Mag-oil 是为采用 MAGSEALED 结构的渔轮补充防水膜的硅系磁流体。约 10 纳米的磁性粒子在渔轮内部磁铁周围形成油环，即使旋转中也能阻隔海水、盐分与灰尘。量产硅基磁流体的厂商目前仅有 MAGRON，以 1ml（1.2g）点滴瓶供应。',
       },
     },
     faqs: [
@@ -161,9 +291,9 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
           zh: '与普通润滑油或润滑脂有何不同？',
         },
         answer: {
-          ko: '맥오일은 자성 입자가 분산된 자성유체라 자석 주변에 자기력으로 붙잡혀 있습니다. 일반 오일처럼 흘러내리지 않고 그 자리에 남아 밀봉막 역할을 하는 점이 다릅니다.',
-          en: 'Mag-oil is a ferrofluid with magnetic particles dispersed in it, so it is held in place magnetically around the magnet. Unlike ordinary oil it does not run off — it stays put and acts as a sealing film.',
-          zh: 'Mag-oil 是分散有磁性粒子的磁流体，因此会被磁力固定在磁铁周围。与普通润滑油不同，它不会流失，而是停留在原位起到密封膜的作用。',
+          ko: '맥오일은 자성 입자가 분산된 자성유체라 자석 주변에 자기력으로 붙잡혀 있습니다. 일반 오일처럼 흘러내리지 않고 그 자리에 남아 밀봉막 역할을 합니다. 또 일반 자성유체가 광유 계열을 쓰는 것과 달리 실리콘 베이스라 발수성이 높고 열·산화·세척에 강합니다.',
+          en: 'Mag-oil is a ferrofluid with magnetic particles dispersed in it, so it is held in place magnetically around the magnet — it does not run off like ordinary oil but stays put and acts as a sealing film. It is also silicone-based rather than the mineral oil used in typical ferrofluids, giving it higher water repellency and better resistance to heat, oxidation and washing.',
+          zh: 'Mag-oil 是分散有磁性粒子的磁流体，会被磁力固定在磁铁周围，不像普通润滑油那样流失，而是停留在原位起到密封膜的作用。此外，一般磁流体多采用矿物油，而本产品以硅为基底，具有更高的拒水性，并更耐热、耐氧化与耐清洗。',
         },
       },
       {
@@ -188,6 +318,18 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
           ko: 'MAGSEALED(마그실드) 구조를 채택한 릴을 기준으로 안내하고 있습니다. 밀봉 방식이 다른 구조의 릴은 적용 여부를 먼저 확인해 주시기 바랍니다.',
           en: 'Guidance is based on reels that use the MAGSEALED structure. For reels with a different sealing design, please check applicability first.',
           zh: '以采用 MAGSEALED（磁密封）结构的渔轮为准进行说明。密封方式不同的渔轮，请先确认是否适用。',
+        },
+      },
+      {
+        question: {
+          ko: '어떻게 도포하나요?',
+          en: 'How is it applied?',
+          zh: '如何涂布？',
+        },
+        answer: {
+          ko: '릴을 분해해 마그실드 부위를 연 뒤, 기존 자성유체와 이물질을 깨끗이 닦아내고, 자석 부위에 한 방울씩 소량 정밀 도포한 다음 재조립합니다. 자성유체가 오일 링을 형성하면 완료이며, 사용법 영상도 함께 제공합니다.',
+          en: 'Disassemble the reel to reach the MAGSEALED section, wipe away the old ferrofluid and any debris, apply Mag-oil one drop at a time onto the magnet area, then reassemble. It is done once the ferrofluid forms an oil ring; a how-to video is also provided.',
+          zh: '拆解渔轮并打开磁密封部位，擦净原有磁流体与异物，在磁铁部位逐滴精准涂布，然后重新组装。磁流体形成油环即完成，同时提供使用方法视频。',
         },
       },
     ],
@@ -254,22 +396,22 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
         zh: '磁流体套件可以做什么？',
       },
       answer: {
-        ko: '자석에 반응해 뿔 모양으로 솟아오르는 자성유체의 움직임을 직접 관찰하고, 구성품으로 자성유체를 만들어 다루는 과정까지 체험할 수 있는 교육용 키트입니다. 과학 교육, 전시 체험, 콘텐츠 제작, 연구 데모에 활용됩니다.',
-        en: 'An education kit for observing first-hand how ferrofluid spikes in response to a magnet, and for experiencing the process of making and handling ferrofluid with the supplied components. It is used in science teaching, exhibition activities, content production, and research demonstrations.',
-        zh: '可亲眼观察磁流体在磁铁作用下形成尖峰的动态，并通过配件亲手制作与操作磁流体的教育套件。适用于科学教学、展览体验、内容制作与科研演示。',
+        ko: '자성유체·베이스액·코팅제·에칭제 4종으로 구성된 키트로, 유리 용기에 직접 자성유체 디스플레이를 만들고 자석에 반응해 뿔 모양으로 솟아오르는 움직임을 관찰할 수 있습니다. 학교와 과학관 수업, 전시 체험, 콘텐츠 제작, 연구 데모에 활용됩니다.',
+        en: 'The kit contains four liquids — ferrofluid, clear base liquid, coating agent and etching agent — so you can build a ferrofluid display in a glass vessel yourself and watch the fluid spike in response to a magnet. It is used in school and science-museum classes, exhibition activities, content production and research demonstrations.',
+        zh: '套件由磁流体、基础液、涂层剂、蚀刻剂四种液体组成，可在玻璃容器中亲手制作磁流体展示装置，观察磁流体在磁铁作用下形成尖峰的动态。适用于学校与科学馆课程、展览体验、内容制作与科研演示。',
       },
     },
     faqs: [
       {
         question: {
-          ko: '주로 누가 사용하나요?',
-          en: 'Who typically uses it?',
-          zh: '主要由谁使用？',
+          ko: '구성품 4종은 각각 어떤 역할인가요?',
+          en: 'What does each of the four components do?',
+          zh: '四种配件各有什么作用？',
         },
         answer: {
-          ko: '학교와 과학관의 수업·체험 프로그램, 기업 전시 부스, 영상 콘텐츠 제작 현장, 연구실 데모 등에서 사용합니다.',
-          en: 'Classes and hands-on programs at schools and science museums, corporate exhibition booths, video content production, and laboratory demonstrations.',
-          zh: '用于学校与科学馆的课程·体验项目、企业展位、影像内容制作现场以及实验室演示等场景。',
+          ko: '자성유체는 자석에 반응하는 검은색 유체이고, 베이스액은 그 자성유체를 담는 투명 액체입니다. 코팅제는 유리 벽면에 자성유체가 묻는 얼룩(stain)을 막고, 에칭제는 유리 내부 표면의 거칠기를 줄여 얼룩이 생길 확률을 낮춥니다.',
+          en: 'The ferrofluid is the black fluid that responds to a magnet, and the clear base liquid is what holds it. The coating agent prevents the ferrofluid from staining the glass wall, and the etching agent smooths the inner glass surface so staining is less likely.',
+          zh: '磁流体是响应磁铁的黑色流体，基础液则是盛装磁流体的透明液体。涂层剂可防止磁流体在玻璃壁面留下污渍（stain），蚀刻剂通过降低玻璃内表面粗糙度来减少污渍产生的概率。',
         },
       },
       {
@@ -286,14 +428,26 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
       },
       {
         question: {
-          ko: '구성품은 어떻게 되나요?',
-          en: 'What is included?',
-          zh: '包含哪些配件？',
+          ko: '만들어 두면 오래 가나요?',
+          en: 'Does the finished display last?',
+          zh: '制作完成后能保持多久？',
         },
         answer: {
-          ko: '구성품과 수량은 제품 페이지의 제품 구성 항목에서 확인할 수 있습니다. 단체 수업용 수량이 필요하시면 별도로 문의해 주세요.',
-          en: 'The component list and quantities are shown in the product composition section of this page. For classroom-scale quantities, please contact us separately.',
-          zh: '配件清单与数量请参见本页的产品构成部分。如需团体教学用数量，请另行咨询。',
+          ko: '자성유체와 베이스액 모두 휘발성 용제를 쓰지 않아 상온(25℃ 이내)에서는 증발이 거의 없습니다. 자성유체는 RoHS 인증을 받았으며, 500rpm으로 1,000시간 구동한 내구성 시험에서도 형상 변화와 화학 반응이 거의 없었습니다.',
+          en: 'Neither the ferrofluid nor the base liquid contains volatile solvents, so there is virtually no evaporation at room temperature (up to 25℃). The ferrofluid holds RoHS certification, and a durability test running 1,000 hours at 500 rpm showed almost no change in shape or chemical reaction.',
+          zh: '磁流体与基础液均不含挥发性溶剂，在常温（25℃ 以内）下几乎不会蒸发。磁流体已取得 RoHS 认证，在 500rpm 运行 1,000 小时的耐久试验中，形状变化与化学反应也极小。',
+        },
+      },
+      {
+        question: {
+          ko: '어떤 용기를 써야 하나요?',
+          en: 'What kind of vessel should be used?',
+          zh: '应使用什么样的容器？',
+        },
+        answer: {
+          ko: '유리 용기만 사용할 수 있습니다. 다른 재질은 시험 결과 모두 얼룩이 생겼습니다. 유리 표면의 거칠기가 낮을수록 얼룩 확률이 낮아집니다. 용기는 별도로 준비하셔야 하며 당사는 공급하지 않습니다.',
+          en: 'Glass only. Every other material tested produced staining. The smoother the inner glass surface, the lower the chance of staining. The vessel must be sourced separately — MAGRON does not supply it.',
+          zh: '仅可使用玻璃容器。试验表明其他材质均会产生污渍。玻璃表面越光滑，产生污渍的概率越低。容器需另行准备，本公司不提供。',
         },
       },
     ],

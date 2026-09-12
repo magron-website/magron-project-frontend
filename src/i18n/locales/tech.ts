@@ -12,7 +12,7 @@ const tech = {
       2: {
         title: 'PFPE Ferrofluid TDS',
         titleSub: '내열성, 증기압 요약 자료',
-        description: '6대 핵심 강점과 제품 라인업, 공인시험 검증 데이터를 담은 기술 브로슈어',
+        description: '6대 핵심 강점과 제품 라인업, 시험 검증 데이터를 담은 기술 브로슈어',
       },
       3: {
         title: '증기압 기술노트',
@@ -20,7 +20,7 @@ const tech = {
       },
       4: {
         title: 'KOPTRI 증기압 성적서',
-        description: 'KOPTRI에서 OECD TG 104로 측정한 증기압 공인시험 성적서',
+        description: '한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로 측정한 증기압 시험 결과',
       },
       5: {
         title: 'TGA 데이터 Active Gas',
@@ -36,7 +36,7 @@ const tech = {
       },
     },
     heading: '기술정보',
-    lead: '공인시험기관 검증 데이터와 기술노트를 확인하실 수 있습니다.',
+    lead: '시험기관 측정 데이터와 기술노트를 확인하실 수 있습니다.',
     bookHint: '클릭시 자료를 열람할수 있습니다.',
     viewPdfAria: '{{title}} PDF 보기',
     download: 'Download',
@@ -44,7 +44,7 @@ const tech = {
     viewMoreAria: '기술정보 전체 자료 보기',
     pageTitle: '기술정보',
     pageLead:
-      'MFF-M 자성유체의 내열성·증기압·진공 안정성을 뒷받침하는 기술자료와 공인시험 성적서입니다.',
+      'MFF-M 자성유체의 내열성·증기압·진공 안정성을 뒷받침하는 기술자료와 시험 결과입니다.',
   },
   en: {
     documents: {
@@ -122,14 +122,14 @@ const tech = {
       },
     },
     heading: '技术信息',
-    lead: '权威检测机构验证数据与技术说明资料。',
+    lead: '检测机构测定数据与技术说明资料。',
     bookHint: '点击即可阅览资料。',
     viewPdfAria: '查看 {{title}} PDF',
     download: '下载',
     viewMore: '查看更多',
     viewMoreAria: '查看全部技术资料',
     pageTitle: '技术信息',
-    pageLead: '支持 MFF-M 磁性流体耐热性、蒸气压与真空稳定性的技术资料及权威检测报告。',
+    pageLead: '支持 MFF-M 磁性流体耐热性、蒸气压与真空稳定性的技术资料及检测结果。',
   },
 }
 

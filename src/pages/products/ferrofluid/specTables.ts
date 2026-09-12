@@ -38,15 +38,15 @@ const CAPTIONS = {
 const NOTES = {
   ko: [
     '측정 조건은 각 열의 단위 표기를 따릅니다 (점도 27℃, 증기압 20℃ 기준).',
-    '증기압은 KOPTRI(한국고분자시험연구소)에서 OECD TG 104 방법으로 측정한 공인시험 성적서를 기술정보 페이지에서 확인할 수 있습니다.',
+    '증기압은 한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로 측정했으며, 측정 자료는 기술정보 페이지에서 확인할 수 있습니다.',
   ],
   en: [
     'Measurement conditions follow the unit notation in each column (viscosity at 27℃, vapor pressure at 20℃).',
-    'Vapor pressure is certified by KOPTRI under OECD TG 104; the report is available on the Technical Information page.',
+    'Vapor pressure was measured at KOPTRI (Korea Polymer Testing & Research Institute) using the OECD TG 104 effusion method; the data is available on the Technical Information page.',
   ],
   zh: [
     '测量条件依据各列的单位标注（粘度 27℃、蒸气压 20℃）。',
-    '蒸气压由 KOPTRI（韩国高分子试验研究所）依据 OECD TG 104 方法测定，检测报告可在技术信息页面查阅。',
+    '蒸气压由韩国高分子试验研究院（KOPTRI）依据 OECD TG 104 逸出法测定，测定资料可在技术信息页面查阅。',
   ],
 } satisfies Record<Language, string[]>
 
@@ -66,6 +66,72 @@ export function corrosiveSpecTable(lang: Language): SpecTableData {
       { grade: 'MFF-R4020', cells: ['400', '2,000', '<1.5E-10', '<1.2E-12', 'Ok', '>140', '<-40', '2.14'] },
     ],
     notes: NOTES[lang],
+  }
+}
+
+/**
+ * 리크 테스트 결과 — 차트 이미지가 담고 있는 내용을 표로 옮긴 것.
+ *
+ * 차트는 측정기 화면 캡처라 해상도가 낮아 확대하면 읽기 어렵고, 그림이라
+ * 검색·AI·낭독기 어디에서도 읽히지 않는다. 실제 정보량은 아래 표가 전부이므로
+ * 표를 본문으로 두고 차트는 근거 이미지로 아래에 남긴다.
+ */
+const LEAK_CAPTIONS = {
+  ko: '리크 테스트 결과 (Helium)',
+  en: 'Helium Leak Test Results',
+  zh: '氦气检漏测试结果',
+} satisfies Record<Language, string>
+
+const LEAK_COLUMNS: Record<Language, { group: string; unit: string }[]> = {
+  ko: [
+    { group: '측정일', unit: '' },
+    { group: 'Setpoint 1', unit: 'Pa·m³/s' },
+    { group: 'Setpoint 2', unit: 'Pa·m³/s' },
+    { group: '수렴까지 걸린 시간', unit: '분 (약)' },
+    { group: '수렴 리크율', unit: 'Pa·m³/s' },
+  ],
+  en: [
+    { group: 'Test date', unit: '' },
+    { group: 'Setpoint 1', unit: 'Pa·m³/s' },
+    { group: 'Setpoint 2', unit: 'Pa·m³/s' },
+    { group: 'Time to settle', unit: 'min (approx.)' },
+    { group: 'Settled leak rate', unit: 'Pa·m³/s' },
+  ],
+  zh: [
+    { group: '测定日期', unit: '' },
+    { group: 'Setpoint 1', unit: 'Pa·m³/s' },
+    { group: 'Setpoint 2', unit: 'Pa·m³/s' },
+    { group: '达到稳定所需时间', unit: '分钟（约）' },
+    { group: '稳定泄漏率', unit: 'Pa·m³/s' },
+  ],
+}
+
+const LEAK_NOTES: Record<Language, string[]> = {
+  ko: [
+    '리크헌팅 없이 안정적으로 수렴하며, 수렴 후에는 진공도가 일정하게 유지됩니다.',
+    '아래 차트는 위 표의 근거가 되는 측정기 원본 기록입니다.',
+  ],
+  en: [
+    'The rate settles without leak hunting, and the vacuum level stays constant afterwards.',
+    'The charts below are the original instrument records behind this table.',
+  ],
+  zh: [
+    '无检漏波动，稳定收敛，收敛后真空度保持恒定。',
+    '下方图表为本表所依据的仪器原始记录。',
+  ],
+}
+
+/** 리크 테스트 결과표 — 차트 이미지를 대신하는 본문. */
+export function leakTestTable(lang: Language): SpecTableData {
+  return {
+    caption: LEAK_CAPTIONS[lang],
+    cornerLabel: 'Model',
+    columns: LEAK_COLUMNS[lang],
+    rows: [
+      { grade: 'MFF-M4251', cells: ['2024-07-03', '1.0E-07', '1.0E-12', '38', '1E-10 ~ 1E-11'] },
+      { grade: 'MFF-M5070', cells: ['2024-09-11', '1.0E-07', '1.0E-12', '53', '1E-10 ~ 1E-11'] },
+    ],
+    notes: LEAK_NOTES[lang],
   }
 }
 

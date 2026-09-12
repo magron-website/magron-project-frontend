@@ -1,4 +1,5 @@
 import { Trans, useTranslation } from 'react-i18next'
+import AnswerBlock from '@/components/AnswerBlock'
 import '@/assets/design/company.css'
 
 export default function Company() {
@@ -8,6 +9,8 @@ export default function Company() {
 
   return (
     <article className="cp-page">
+      {/* 직답 블록 — 이 화면이 무엇에 답하는지를 맨 위에 텍스트로 둔다 */}
+      <AnswerBlock routePath="/company" />
       <div className="cp-hero">
         <span className="cp-hero__glow cp-hero__glow--one" aria-hidden="true" />
         <span className="cp-hero__glow cp-hero__glow--two" aria-hidden="true" />

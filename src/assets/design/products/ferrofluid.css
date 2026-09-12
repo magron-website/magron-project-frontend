@@ -1004,3 +1004,16 @@
     padding-top: 48px;
   }
 }
+
+/* 원본 해상도가 낮은 측정기 캡처용 — 절대 확대하지 않는다.
+   폭을 100%로 잡으면 600px 원본이 900px 로 늘어나 글자가 뭉개진다. */
+.ff-figure-pair--native .ff-figure > img {
+  width: auto;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.ff-figure-pair--native .ff-figure {
+  max-width: 840px;
+  margin-inline: auto;
+}

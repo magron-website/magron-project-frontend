@@ -19,6 +19,7 @@ import SpecTable from '@/components/SpecTable'
 import { LANGUAGES, type Language } from '@/i18n'
 import {
   corrosiveSpecTable,
+  leakTestTable,
   nonCorrosiveSpecTable,
 } from '@/pages/products/ferrofluid/specTables'
 import '@/assets/design/products/ferrofluid.css'
@@ -99,7 +100,10 @@ export default function Ferrofluid() {
 
           <h3 className="ff-subheading">{t('corrosive.leakHeading', { ns: 'ferrofluid' })}</h3>
           <p className="ff-highlight">{t('corrosive.leakHighlight', { ns: 'ferrofluid' })}</p>
-          <div className="ff-figure-pair">
+          {/* 차트가 담고 있는 내용을 표로 먼저 제시한다 — 확대해도 안 흐리고 검색·AI가 읽는다 */}
+          <SpecTable data={leakTestTable(lang)} />
+          {/* 측정기 캡처라 원본이 600px 남짓이다. 늘려 쓰면 뭉개지므로 원본 크기를 넘기지 않는다 */}
+          <div className="ff-figure-pair ff-figure-pair--native">
             <Figure
               src={imgLeakM4251}
               alt={t('corrosive.leakM4251', { ns: 'ferrofluid' })}
