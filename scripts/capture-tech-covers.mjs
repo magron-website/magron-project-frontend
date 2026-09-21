@@ -17,7 +17,7 @@ const outDir = path.join(root, 'src/assets/images/tech')
 
 /** Matches THUMBNAIL_WIDTH in src/hooks/usePdfThumbnail.ts — 2x the ~230px card. */
 const THUMBNAIL_WIDTH = 460
-const JPEG_QUALITY = 0.92
+const WEBP_QUALITY = 0.85
 
 function readEnv() {
   return readFile(path.join(root, '.env'), 'utf8').then((raw) =>
@@ -133,14 +133,14 @@ for (const doc of documents) {
       const context = canvas.getContext('2d')
 
       await pdfPage.render({ canvasContext: context, viewport, canvas }).promise
-      return canvas.toDataURL('image/jpeg', quality)
+      return canvas.toDataURL('image/webp', quality)
     },
-    { slug, width: THUMBNAIL_WIDTH, quality: JPEG_QUALITY },
+    { slug, width: THUMBNAIL_WIDTH, quality: WEBP_QUALITY },
   )
 
   const bytes = Buffer.from(dataUrl.split(',')[1], 'base64')
-  await writeFile(path.join(outDir, `${slug}.jpg`), bytes)
-  console.log(`  ${slug}.jpg  (${Math.round(bytes.length / 1024)} KB)  ${doc.title}`)
+  await writeFile(path.join(outDir, `${slug}.webp`), bytes)
+  console.log(`  ${slug}.webp  (${Math.round(bytes.length / 1024)} KB)  ${doc.title}`)
 }
 
 await browser.close()

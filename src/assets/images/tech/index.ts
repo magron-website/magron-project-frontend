@@ -1,12 +1,12 @@
-import activeGasTgaData from './active-gas-tga-data.jpg'
-import inertGasTgaData from './inert-gas-tga-data.jpg'
-import koptriVaporPressureReport from './koptri-vapor-pressure-report.jpg'
-import mffMOverview from './mff-m-overview.jpg'
-import productBrochure from './product-brochure.jpg'
-import vaporPressureNote from './vapor-pressure-note.jpg'
-import whatIsFerrofluidEn from './what-is-ferrofluid-en.jpg'
-import whatIsFerrofluidKr from './what-is-ferrofluid-kr.jpg'
-import whatIsFerrofluidZh from './what-is-ferrofluid-zh.jpg'
+import activeGasTgaData from './active-gas-tga-data.webp'
+import inertGasTgaData from './inert-gas-tga-data.webp'
+import koptriVaporPressureReport from './koptri-vapor-pressure-report.webp'
+import mffMOverview from './mff-m-overview.webp'
+import productBrochure from './product-brochure.webp'
+import vaporPressureNote from './vapor-pressure-note.webp'
+import whatIsFerrofluidEn from './what-is-ferrofluid-en.webp'
+import whatIsFerrofluidKr from './what-is-ferrofluid-kr.webp'
+import whatIsFerrofluidZh from './what-is-ferrofluid-zh.webp'
 
 /**
  * Covers pre-rendered from each PDF's first page by

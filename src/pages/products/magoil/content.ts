@@ -5,8 +5,8 @@
    ========================================================================== */
 
 import heroReel from '@/assets/images/magoil/magoil_1.avif'
-import premiumDisplayCase from '@/assets/images/magoil/crops/premium-display-case.jpg'
-import premiumGiftBox from '@/assets/images/magoil/crops/premium-gift-box.jpg'
+import premiumDisplayCase from '@/assets/images/magoil/crops/premium-display-case.webp'
+import premiumGiftBox from '@/assets/images/magoil/crops/premium-gift-box.webp'
 import sealPrincipleDiagram from '@/assets/images/magoil/crops/seal-principle-diagram.png'
 import sealStep1 from '@/assets/images/magoil/crops/seal-step-1.png'
 import sealStep2 from '@/assets/images/magoil/crops/seal-step-2.png'
