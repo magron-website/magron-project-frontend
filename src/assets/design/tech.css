@@ -469,7 +469,7 @@
     font-size: 11px;
     line-height: 1.3;
     /* Two lines' worth of space so the books below stay on one baseline. */
-    min-height: calc(2 * 1.3 * 11px);
+    min-height: calc(4 * 1.3 * 11px);
     /* Brackets flank the wrapped caption rather than sitting on line one. */
     display: flex;
     align-items: center;
@@ -488,9 +488,12 @@
   .tech-doc__title-text {
     min-width: 0;
     text-align: center;
-    /* Two lines keeps every caption inside the bracket pair's height. */
+    /* The phone track is ~72px wide. The desktop titles carry a hard newline to
+       control where the brand prefix ends, but at this width that split wastes a
+       line — let the browser pack the words instead. */
+    white-space: normal;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
   }

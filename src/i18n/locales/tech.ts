@@ -19,15 +19,15 @@ const tech = {
         description: '증기압 데이터가 중요한 이유와 검증 방법을 설명한 기술노트',
       },
       4: {
-        title: 'Ferrofluid KOPTRI 증기압 성적서',
+        title: 'Ferrofluid KOPTRI\n증기압 성적서',
         description: '한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로 측정한 증기압 시험 결과',
       },
       5: {
-        title: 'Ferrofluid TGA 데이터 Active Gas',
+        title: 'Ferrofluid TGA 데이터\nActive Gas',
         description: '활성 가스용 MFF-M4251/M5070의 TGA 및 리크 테스트 전체 원자료',
       },
       6: {
-        title: 'Ferrofluid TGA 데이터 Inert Gas',
+        title: 'Ferrofluid TGA 데이터\nInert Gas',
         description: '불활성 가스용 MFS/MFH 시리즈의 TGA 시험 결과 전체 원자료 모음',
       },
       7: {
@@ -62,15 +62,15 @@ const tech = {
         description: 'Why vapor pressure data matters, and how it is verified in practice.',
       },
       4: {
-        title: 'Ferrofluid Vapor Pressure Report (KOPTRI)',
+        title: 'Ferrofluid KOPTRI\nVapor Pressure Report',
         description: 'Official KOPTRI report on MFF-M4251 vapor pressure (OECD TG 104).',
       },
       5: {
-        title: 'Ferrofluid TGA Data Active Gas',
+        title: 'Ferrofluid TGA Data\nActive Gas',
         description: 'TGA and leak-test raw data for MFF-M4251/M5070 in active gas.',
       },
       6: {
-        title: 'Ferrofluid TGA Data Inert Gas',
+        title: 'Ferrofluid TGA Data\nInert Gas',
         description: 'TGA raw data for the MFS/MFH series in inert gas lines.',
       },
       7: {
@@ -105,15 +105,15 @@ const tech = {
         description: '说明真空环境下蒸气压数据的重要性与验证方法的技术资料。',
       },
       4: {
-        title: 'Ferrofluid KOPTRI 蒸气压检测报告',
+        title: 'Ferrofluid KOPTRI\n蒸气压检测报告',
         description: 'KOPTRI 依据 OECD TG 104（有效扩散法）测定的蒸气压正式检测报告。',
       },
       5: {
-        title: 'Ferrofluid TGA 数据 活性气体',
+        title: 'Ferrofluid TGA 数据\n活性气体',
         description: '活性气体用 MFF-M4251/M5070 的 TGA 及泄漏测试完整原始数据。',
       },
       6: {
-        title: 'Ferrofluid TGA 数据 惰性气体',
+        title: 'Ferrofluid TGA 数据\n惰性气体',
         description: '惰性气体用 MFS/MFH 系列的 TGA 试验完整原始数据。',
       },
       7: {
