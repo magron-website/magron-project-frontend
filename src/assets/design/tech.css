@@ -61,6 +61,9 @@
 
 .tech-doc__title-text {
   min-width: 0;
+  /* Titles carry an explicit newline so the brand prefix and the document name
+     land on their own lines instead of breaking mid-token (PFPE Ferrofluid MFF- / M). */
+  white-space: pre-line;
 }
 
 .tech-doc__book-button {
