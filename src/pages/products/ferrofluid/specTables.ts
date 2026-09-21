@@ -33,6 +33,11 @@ const CAPTIONS = {
     en: 'Ferrofluid for Non-Corrosive Gas — Specifications (MFS / MFH Series)',
     zh: '非腐蚀性气体用磁流体规格 (MFS / MFH 系列)',
   },
+  grease: {
+    ko: '그리스 타입 사양 (MFG Series)',
+    en: 'Grease Type — Specifications (MFG Series)',
+    zh: '润滑脂型规格 (MFG 系列)',
+  },
 } satisfies Record<string, Record<Language, string>>
 
 const NOTES = {
@@ -48,6 +53,12 @@ const NOTES = {
     '测量条件依据各列的单位标注（粘度 27℃、蒸气压 20℃）。',
     '蒸气压由韩国高分子试验研究院（KOPTRI）依据 OECD TG 104 逸出法测定，测定资料可在技术信息页面查阅。',
   ],
+} satisfies Record<Language, string[]>
+
+const GREASE_NOTES = {
+  ko: ['액상이 아니며, 그리스와 동일한 형태입니다.'],
+  en: ['It is not a liquid — it has the same consistency as grease.'],
+  zh: ['非液态，形态与润滑脂相同。'],
 } satisfies Record<Language, string[]>
 
 /** 부식성 가스용 — MFF / MFF-M 시리즈. */
@@ -133,6 +144,29 @@ export function leakTestTable(lang: Language): SpecTableData {
 }
 
 /** 비부식성 가스용 — MFS(Silicon) / MFH(Hydrocarbon) 시리즈. */
+/* 그리스 타입은 액상이 아니라 점도(mPa·s) 항목이 없다. 그래서 위 두 표와
+   컬럼을 공유하지 않고 별도로 정의한다. */
+const GREASE_COLUMNS = [
+  { group: 'Saturation Magnetization', unit: 'Gauss' },
+  { group: 'Vapor Pressure', unit: 'Pa at 20℃' },
+  { group: 'Vapor Pressure', unit: 'Torr (mmHg) at 20℃' },
+  { group: 'Helium gas leak (Torr·L/s)', unit: 'Less than 1E-11' },
+  { group: '1 wt% loss Temp. (TGA)', unit: '℃' },
+  { group: 'Pour point', unit: '℃' },
+  { group: 'Density', unit: 'g/cm³' },
+]
+
+/** 비부식성 가스·분진 실링 + 윤활용 그리스. */
+export function greaseSpecTable(lang: Language): SpecTableData {
+  return {
+    caption: CAPTIONS.grease[lang],
+    cornerLabel: 'Model',
+    columns: GREASE_COLUMNS,
+    rows: [{ grade: 'MFG-50', cells: ['500', '1E-10', '7.5E-13', 'Ok', '140', '-90', '1.4'] }],
+    notes: GREASE_NOTES[lang],
+  }
+}
+
 export function nonCorrosiveSpecTable(lang: Language): SpecTableData {
   return {
     caption: CAPTIONS.nonCorrosive[lang],

@@ -1017,3 +1017,10 @@
   max-width: 840px;
   margin-inline: auto;
 }
+
+/* 그리스 표 위의 한 줄 설명 — 소제목 바로 아래 붙는다. */
+.ff-subheading-note {
+  margin: -8px 0 12px;
+  color: #52525b;
+  font-size: 14px;
+}

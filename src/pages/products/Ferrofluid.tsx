@@ -19,6 +19,7 @@ import SpecTable from '@/components/SpecTable'
 import { LANGUAGES, type Language } from '@/i18n'
 import {
   corrosiveSpecTable,
+  greaseSpecTable,
   leakTestTable,
   nonCorrosiveSpecTable,
 } from '@/pages/products/ferrofluid/specTables'
@@ -130,6 +131,14 @@ export default function Ferrofluid() {
           <SpecTable
             data={nonCorrosiveSpecTable(lang)}
             caption={t('nonCorrosive.specHeading', { ns: 'ferrofluid' })}
+            hideCaption
+          />
+
+          <h3 className="ff-subheading">{t('nonCorrosive.greaseHeading', { ns: 'ferrofluid' })}</h3>
+          <p className="ff-subheading-note">{t('nonCorrosive.greaseSub', { ns: 'ferrofluid' })}</p>
+          <SpecTable
+            data={greaseSpecTable(lang)}
+            caption={t('nonCorrosive.greaseHeading', { ns: 'ferrofluid' })}
             hideCaption
           />
         </Section>
