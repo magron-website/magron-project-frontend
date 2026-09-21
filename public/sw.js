@@ -44,7 +44,7 @@ const PRECACHE_URLS = [
 ]
 
 /** Third-party hosts that only ever serve immutable images and fonts. */
-const CDN_HOSTS = ['static.wixstatic.com', 'fonts.googleapis.com', 'fonts.gstatic.com']
+const CDN_HOSTS = ['fonts.googleapis.com', 'fonts.gstatic.com']
 
 /** Keeps the CDN cache from growing without bound across a long browsing session. */
 const CDN_MAX_ENTRIES = 120

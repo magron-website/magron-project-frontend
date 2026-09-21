@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
-import chatbotImage from '@/assets/images/chatbot.png'
+import chatbotImage from '@/assets/images/chatbot.webp'
 import { useChat } from '@/hooks/useChat'
 import '@/assets/design/chatbot-panel.css'
 

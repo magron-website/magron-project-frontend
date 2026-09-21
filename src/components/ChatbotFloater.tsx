@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
-import chatbotImage from '@/assets/images/chatbot.png'
+import chatbotImage from '@/assets/images/chatbot.webp'
 import ChatbotPanel from '@/components/ChatbotPanel'
 import '@/assets/design/chatbot-floater.css'
 
