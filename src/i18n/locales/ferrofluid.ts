@@ -75,7 +75,7 @@ const ferrofluid = {
         { label: '주소', value: '(15588) 경기도 안산시 상록구 해안로 705 경기테크노파크 3동 403호' },
         { label: '연락처', value: 'TEL) 031-500-4633   FAX) 031-500-4631' },
         { label: '이메일', value: 'magron@magron.co.kr' },
-        { label: '웹사이트', value: '(KO) www.ferrofluidmagron.co.kr   (EN) www.ferrofluidmagron.com' },
+        { label: '웹사이트', value: '(KO) www.magron.kr   (EN) www.magron.kr/en   (CN) www.magron.kr/zh' },
       ],
     },
     cta: {
@@ -166,7 +166,7 @@ const ferrofluid = {
         { label: 'Address', value: '#403, Bldg 3, Gyeonggi Technopark, 705 Haean-ro, Sangnok-gu, Ansan-si, Gyeonggi-do, Korea (15588)' },
         { label: 'Contact', value: 'TEL) 031-500-4633   FAX) 031-500-4631' },
         { label: 'E-mail', value: 'magron@magron.co.kr' },
-        { label: 'Website', value: '(KO) www.ferrofluidmagron.co.kr   (EN) www.ferrofluidmagron.com' },
+        { label: 'Website', value: '(EN) www.magron.kr/en   (KO) www.magron.kr   (CN) www.magron.kr/zh' },
       ],
     },
     cta: {
@@ -257,7 +257,7 @@ const ferrofluid = {
         { label: '地址', value: '(15588) 韩国京畿道安山市常绿区海岸路705 京畿科技园3栋403号' },
         { label: '联系方式', value: 'TEL) 031-500-4633   FAX) 031-500-4631' },
         { label: '电子邮箱', value: 'magron@magron.co.kr' },
-        { label: '网站', value: '(KO) www.ferrofluidmagron.co.kr   (EN) www.ferrofluidmagron.com' },
+        { label: '网站', value: '(CN) www.magron.kr/zh   (KO) www.magron.kr   (EN) www.magron.kr/en' },
       ],
     },
     cta: {

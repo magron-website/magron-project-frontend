@@ -196,13 +196,15 @@ function HomeContact() {
       flag: homeImages.contactFlagKor,
       url: 'www.magron.kr, (www.magron.co.kr)',
     },
+    /* 영문·중문도 이제 magron.kr 안의 언어별 주소다. 예전 ferrofluidmagron.com 은
+       magron.kr 한국어 홈으로 넘어가고 .cn 은 404 라 적어 두면 안 된다. */
     {
       flag: homeImages.contactFlagEng,
-      url: 'www.ferrofluidmagron.com',
+      url: 'www.magron.kr/en',
     },
     {
       flag: homeImages.contactFlagChn,
-      url: 'www.ferrofluidmagron.cn',
+      url: 'www.magron.kr/zh',
     },
   ]
 
