@@ -4,6 +4,9 @@ import '@/assets/design/index.css'
 import '@/i18n'
 import App from './App'
 import { registerServiceWorker } from '@/pwa/registerServiceWorker'
+import { initAnalytics } from '@/lib/analytics'
+
+initAnalytics()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

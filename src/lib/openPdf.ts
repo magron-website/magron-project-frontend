@@ -1,3 +1,5 @@
+import { trackEvent } from '@/lib/analytics'
+
 /**
  * 카탈로그·기술자료 PDF를 여는 방법 두 가지.
  *
@@ -15,6 +17,8 @@
  * 넘겨버려서 PDF 창이 두 개가 됐다.
  */
 export function openPdfInNewTab(pdfUrl: string): void {
+  // 카탈로그·기술자료·시험성적서를 연 것. 구매 검토 중인 방문자의 가장 강한 신호다.
+  trackEvent('pdf_open', { file_url: pdfUrl })
   clickTempLink((link) => {
     link.href = pdfUrl
     link.target = '_blank'

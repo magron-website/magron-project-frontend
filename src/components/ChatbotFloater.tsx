@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
 import chatbotImage from '@/assets/images/chatbot.webp'
 import ChatbotPanel from '@/components/ChatbotPanel'
+import { trackEvent } from '@/lib/analytics'
 import '@/assets/design/chatbot-floater.css'
 
 const HERO_MARGIN = 24
@@ -100,7 +101,10 @@ export default function ChatbotFloater() {
           type="button"
           className="chatbot-floater__button"
           aria-label={t('open')}
-          onClick={() => setIsChatOpen(true)}
+          onClick={() => {
+            setIsChatOpen(true)
+            trackEvent('chat_open')
+          }}
         >
           <img className="chatbot-floater__icon" src={chatbotImage} alt="" />
         </button>

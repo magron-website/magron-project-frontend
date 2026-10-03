@@ -1,6 +1,7 @@
 import { useCallback, useRef, useState } from 'react'
 import i18n from '@/i18n'
 import type { ChatMessage, ChatResponse } from '@/types/chat'
+import { trackEvent } from '@/lib/analytics'
 
 /**
  * The deployed chatbot backend. `.env` is gitignored, so a host that forgets to
@@ -45,6 +46,8 @@ export function useChat() {
     }
 
     setMessages((prev) => [...prev, userMessage])
+    // 질문 내용은 보내지 않는다(개인정보가 섞일 수 있다). 횟수만 센다.
+    trackEvent('chat_message')
     setIsLoading(true)
     setError(null)
 

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import { useBooks } from '@/hooks/useBooks'
 import { toDownloadUrl } from '@/lib/openPdf'
 import { useLangPath } from '@/i18n/routing'
+import { trackEvent } from '@/lib/analytics'
 import { PRODUCT_SORT_ORDER, type ProductPageKey } from '@/pages/products/productRoutes'
 
 type CatalogDownloadButtonProps = {
@@ -32,6 +33,7 @@ export default function CatalogDownloadButton({
         className={className}
         href={toDownloadUrl(pdfUrl)}
         download
+        onClick={() => trackEvent('catalog_download', { product, file_url: pdfUrl })}
       >
         {children}
       </a>
