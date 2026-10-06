@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { BookCover } from 'book-cover-3d'
 import { usePdfThumbnail } from '@/hooks/usePdfThumbnail'
 import { getTechCover } from '@/assets/images/tech'
+import { trackEvent } from '@/lib/analytics'
 import { toDownloadUrl } from '@/lib/openPdf'
 import type { TechDocument } from '@/types/techDocument'
 
@@ -94,6 +95,14 @@ export default function TechDocumentCard({
           className="tech-doc__download"
           href={toDownloadUrl(document.fileUrl)}
           download
+          /* 표지를 눌러 여는 쪽(openPdf)만 잡히고 있어서 내려받기는 집계에서
+             빠져 있었다. 성적서·원자료를 받아가는 건 가장 강한 구매 신호다. */
+          onClick={() =>
+            trackEvent('tech_download', {
+              document_title: document.title,
+              file_url: document.fileUrl,
+            })
+          }
         >
           <span className="tech-doc__download-text">{t('download')}</span>
         </a>
