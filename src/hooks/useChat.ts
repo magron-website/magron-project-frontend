@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import i18n from '@/i18n'
 import type { ChatMessage, ChatResponse } from '@/types/chat'
 import { trackEvent } from '@/lib/analytics'
@@ -35,6 +35,18 @@ export function useChat() {
   const [error, setError] = useState<string | null>(null)
   const sessionIdRef = useRef<string>(`chat-${createId()}`)
 
+  // 첫 인사말은 처음 그릴 때의 언어로 고정돼서, KOR→ENG 로 바꿔도 한국어로 남았다.
+  // PC 에선 창이 늘 열려 있어 바로 보이므로 언어가 바뀌면 인사말만 다시 쓴다.
+  useEffect(() => {
+    const refreshWelcome = () =>
+      setMessages((prev) =>
+        prev.map((m) => (m.id === 'welcome' ? { ...m, text: i18n.t('messages:chatWelcome') } : m)),
+      )
+    refreshWelcome()
+    i18n.on('languageChanged', refreshWelcome)
+    return () => i18n.off('languageChanged', refreshWelcome)
+  }, [])
+
   const sendMessage = useCallback(async (rawText: string) => {
     const text = rawText.trim()
     if (!text) return
@@ -58,6 +70,8 @@ export function useChat() {
         body: JSON.stringify({
           message: text,
           session_id: sessionIdRef.current,
+          // 챗봇이 질문 언어가 애매할 때 따를 화면 언어(ko/en/zh). 서버가 모르는 필드면 무시된다.
+          lang: i18n.language,
         }),
       })
 
