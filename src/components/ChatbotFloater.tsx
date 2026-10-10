@@ -247,7 +247,8 @@ export default function ChatbotFloater() {
         onClose={closeChat}
         docked={!isMobile}
         dockStyle={dockStyle}
-        autoFocus={!openedAutomatically}
+        // 휴대폰에선 열자마자 자판을 띄우지 않는다 — 자판이 화면 절반을 덮어 인사말이 안 보였다.
+        autoFocus={!openedAutomatically && !isMobile}
       />
     </>,
     document.body,

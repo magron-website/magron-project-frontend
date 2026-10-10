@@ -35,12 +35,45 @@ export default function ChatbotPanel({
   const listRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
+  /*
+   * 휴대폰 전체 화면 창: 자판이 올라오면 브라우저(특히 iOS)가 화면을 통째로 위로 밀어
+   * 창 제목과 인사말이 화면 밖으로 사라졌다(2026-10-10 지적). 실제로 보이는 영역
+   * (visualViewport)의 높이·위치에 창을 맞춰, 자판 위 남은 공간 안에서만 줄어들게 한다.
+   */
+  // React 상태로 높이를 넘기면 매 이벤트마다 다시 그려 열림 애니메이션이 중간에 멈췄다
+  // (창이 옆에서 들어오다 걸림). 그래서 DOM 스타일을 직접 바꾼다.
+  const panelRef = useRef<HTMLElement>(null)
+  const scrollToFit = () => {
+    if (!listRef.current) return
+    // 인사말만 있을 땐 맨 위부터 — 인사말이 길어져(B안) 맨 아래로 내리면 첫 줄이 가려졌다.
+    const onlyWelcome = messages.length <= 1 && !isLoading
+    listRef.current.scrollTop = onlyWelcome ? 0 : listRef.current.scrollHeight
+  }
+  const scrollToFitRef = useRef(scrollToFit)
+  scrollToFitRef.current = scrollToFit
+
   useEffect(() => {
-    if (listRef.current) {
-      // 인사말만 있을 땐 맨 위부터 — 인사말이 길어져(B안) 맨 아래로 내리면 첫 줄이 가려졌다.
-      const onlyWelcome = messages.length <= 1 && !isLoading
-      listRef.current.scrollTop = onlyWelcome ? 0 : listRef.current.scrollHeight
+    const viewport = window.visualViewport
+    if (!isOpen || docked || !viewport) return
+    const update = () => {
+      const panel = panelRef.current
+      if (!panel) return
+      panel.style.height = `${viewport.height}px`
+      panel.style.top = `${viewport.offsetTop}px`
+      scrollToFitRef.current()
     }
+    update()
+    viewport.addEventListener('resize', update)
+    viewport.addEventListener('scroll', update)
+    return () => {
+      viewport.removeEventListener('resize', update)
+      viewport.removeEventListener('scroll', update)
+    }
+  }, [isOpen, docked])
+
+  useEffect(() => {
+    scrollToFit()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messages, isLoading])
 
   useEffect(() => {
@@ -87,6 +120,7 @@ export default function ChatbotPanel({
           )}
           <motion.aside
             className={`chat-panel${docked ? ' chat-panel--docked' : ''}`}
+            ref={panelRef}
             style={docked ? dockStyle : undefined}
             role="dialog"
             aria-modal={docked ? 'false' : 'true'}
