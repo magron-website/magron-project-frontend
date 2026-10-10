@@ -22,6 +22,7 @@ const header = {
       display: 'Large Ferrofluid Display',
     },
     shop: '쇼핑몰',
+    langMenuClose: '언어 목록 닫기',
   },
   en: {
     ariaHome: 'Go to home',
@@ -46,6 +47,7 @@ const header = {
       display: 'Large Ferrofluid Display',
     },
     shop: 'Shop',
+    langMenuClose: 'Close language list',
   },
   zh: {
     ariaHome: '返回首页',
@@ -70,6 +72,7 @@ const header = {
       display: '大型磁流体展示',
     },
     shop: '商城',
+    langMenuClose: '关闭语言列表',
   },
 }
 

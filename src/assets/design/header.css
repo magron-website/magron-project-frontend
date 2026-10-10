@@ -255,14 +255,13 @@
   opacity: 1;
 }
 
+/* 국기는 절대 잘리면 안 된다. 예전엔 중국 국기만 폭을 20px 로 좁히고 cover 로 채워서
+   2:1 이미지의 양옆이 잘리며 왼쪽 위 별이 잘려 나갔다(2026-10-10 지적). 세 국기 모두
+   같은 2:1 칸에 contain 으로 이미지 전체를 보인다. */
 .home-header__lang-flag {
   width: 30px;
   height: 15px;
-  object-fit: cover;
-}
-
-.home-header__lang-flag--chn {
-  width: 20px;
+  object-fit: contain;
 }
 
 .home-header__lang-label {
@@ -589,8 +588,174 @@
     width: 24px;
     height: 12px;
   }
+}
 
-  .home-header__lang .home-header__lang-flag--chn {
-    width: 16px;
+/* --------------------------------------------------------------------------
+   언어 선택 — 국기 없이 글자만 (2026-10-10). 이제 글자가 유일한 표시라
+   1000px 이하에서 글자를 숨기던 규칙을 되돌리고, 사이에 얇은 구분선을 둔다.
+   -------------------------------------------------------------------------- */
+
+.home-header__lang-label {
+  display: inline;
+  padding: 0;
+  background: none;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.home-header__lang .home-header__lang-group + .home-header__lang-group {
+  padding-left: var(--header-lang-gap);
+  border-left: 1px solid #c9c9cf;
+}
+
+.home-header__lang-group--active .home-header__lang-label {
+  color: #16299c;
+  font-weight: 800;
+}
+
+@media (max-width: 1000px) {
+  .home-header__lang-label {
+    display: inline;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 900px) {
+  .home-header__lang {
+    --header-lang-gap: 10px;
+  }
+
+  .home-header__lang .home-header__lang-label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .home-header__lang {
+    --header-lang-gap: 8px;
+    gap: 8px;
+  }
+
+  .home-header__lang .home-header__lang-label {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-header__lang {
+    --header-lang-gap: 6px;
+    gap: 6px;
+  }
+
+  .home-header__lang .home-header__lang-label {
+    font-size: 12px;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   휴대폰 언어 버튼 "🌐 현재 언어 ▾" + 펼침 목록. PC 에선 숨기고 글자 셋을 나열한다.
+   -------------------------------------------------------------------------- */
+
+.home-header__lang-mobile {
+  display: none;
+  position: relative;
+}
+
+.home-header__lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 7px 10px;
+  border: 1px solid #d4d4d8;
+  border-radius: 999px;
+  background: #fff;
+  color: #16299c;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.home-header__lang-menu-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 109;
+  border: 0;
+  background: transparent;
+}
+
+.home-header__lang-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 110;
+  min-width: 128px;
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid #e4e4e7;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.16);
+}
+
+.home-header__lang-menu-item {
+  display: block;
+  width: 100%;
+  padding: 11px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: none;
+  color: #404040;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.home-header__lang-menu-item--active {
+  background: #eef3ff;
+  color: #16299c;
+  font-weight: 800;
+}
+
+@media (max-width: 900px) {
+  .home-header__right .home-header__lang {
+    display: none;
+  }
+
+  .home-header__lang-mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 360px) {
+  .home-header__lang-toggle {
+    gap: 4px;
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+}
+
+/* 노트북 폭(901~1280px)에서도 글자 셋 + 쇼핑몰이 메뉴와 겹쳐 화면 밖으로 넘쳤다
+   (1009px 에서 147px 초과). 이 폭까지는 휴대폰과 같은 "🌐 언어 ▾" 버튼을 쓴다. */
+@media (max-width: 1280px) {
+  .home-header__right .home-header__lang {
+    display: none;
+  }
+
+  .home-header__lang-mobile {
+    display: block;
+  }
+}
+
+/* 901~1100px: 쇼핑몰 버튼이 오른쪽 밖으로 약 50px 넘쳤다 — 칸·메뉴 간격만 좁힌다 */
+@media (min-width: 901px) and (max-width: 1100px) {
+  .home-header {
+    --header-column-gap: 20px;
+    --header-nav-gap: 24px;
   }
 }

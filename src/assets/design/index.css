@@ -267,10 +267,6 @@ html[lang='en'] body {
     height: 20px;
   }
 
-  body .home-header__lang-flag--chn {
-    width: 27px;
-  }
-
   body .home-header__shop {
     min-width: 96px;
     height: 45px;

@@ -19,10 +19,13 @@ const PRODUCT_SUB_ITEMS = [
   { key: 'display', to: PRODUCT_PAGE_PATHS.display },
 ] as const
 
-const LANG_META: Record<Language, { flag: string; label: string; alt: string; chn?: boolean }> = {
-  ko: { flag: homeImages.flagKor, label: 'KOR', alt: '한국어' },
-  en: { flag: homeImages.flagEng, label: 'ENG', alt: 'English' },
-  zh: { flag: homeImages.flagChn, label: 'CHN', alt: '中文', chn: true },
+/* 2026-10-10: 국기 대신 각 언어 이름(글자)으로. 국기는 나라 표시라 언어와 맞지 않고,
+   중국어에 중화인민공화국 국기를 쓰면 대만 고객(대만 광고 운영 중)에게 민감하다.
+   예전엔 중국 국기가 cover 로 잘려 별이 안 보이는 문제도 있었다. */
+const LANG_META: Record<Language, { label: string }> = {
+  ko: { label: '한국어' },
+  en: { label: 'English' },
+  zh: { label: '中文' },
 }
 
 const PRODUCT_PAGE_PATH_LIST = Object.values(PRODUCT_PAGE_PATHS)
@@ -34,6 +37,7 @@ export default function Header() {
   const [companyOpen, setCompanyOpen] = useState(false)
   const [productsOpen, setProductsOpen] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const [langMenuOpen, setLangMenuOpen] = useState(false)
   const lp = useLangPath()
   const { path: barePath } = splitLangPath(pathname)
   const isProductPage = PRODUCT_PAGE_PATH_LIST.includes(barePath)
@@ -195,20 +199,68 @@ export default function Header() {
                   onClick={() => changeLanguage(lang)}
                   aria-pressed={currentLang === lang}
                 >
-                  <img
-                    className={`home-header__lang-flag${meta.chn ? ' home-header__lang-flag--chn' : ''}`}
-                    src={meta.flag}
-                    alt={meta.alt}
-                  />
-                  <span
-                    className={`home-header__lang-label${meta.chn ? ' home-header__lang-label--chn' : ''}`}
-                  >
+                  <span className="home-header__lang-label" lang={lang}>
                     {meta.label}
                   </span>
                 </button>
               )
             })}
           </div>
+
+          {/* 휴대폰 전용: 글자 셋을 나열하면 375px 헤더에 안 들어가서(메뉴 버튼이 화면 밖으로
+              밀림) "🌐 현재 언어 ▾" 버튼 하나만 두고 누르면 목록을 펼친다. */}
+          <div className="home-header__lang-mobile">
+            <button
+              type="button"
+              className="home-header__lang-toggle"
+              aria-haspopup="true"
+              aria-expanded={langMenuOpen}
+              onClick={() => setLangMenuOpen((open) => !open)}
+            >
+              <svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true">
+                <circle cx="8" cy="8" r="6.5" stroke="currentColor" strokeWidth="1.3" />
+                <path
+                  d="M1.5 8h13M8 1.5c1.8 2 2.6 4.1 2.6 6.5S9.8 12.5 8 14.5M8 1.5C6.2 3.5 5.4 5.6 5.4 8s.8 4.5 2.6 6.5"
+                  stroke="currentColor"
+                  strokeWidth="1.3"
+                />
+              </svg>
+              <span lang={currentLang}>{LANG_META[currentLang]?.label ?? LANG_META.ko.label}</span>
+              <svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true">
+                <path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" strokeWidth="1.4" />
+              </svg>
+            </button>
+            {langMenuOpen && (
+              <>
+                <button
+                  type="button"
+                  className="home-header__lang-menu-backdrop"
+                  aria-label={t('langMenuClose')}
+                  onClick={() => setLangMenuOpen(false)}
+                />
+                <ul className="home-header__lang-menu" role="menu">
+                  {LANGUAGES.map((lang) => (
+                    <li key={lang} role="none">
+                      <button
+                        type="button"
+                        role="menuitemradio"
+                        aria-checked={currentLang === lang}
+                        className={`home-header__lang-menu-item${currentLang === lang ? ' home-header__lang-menu-item--active' : ''}`}
+                        lang={lang}
+                        onClick={() => {
+                          setLangMenuOpen(false)
+                          changeLanguage(lang)
+                        }}
+                      >
+                        {LANG_META[lang].label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </>
+            )}
+          </div>
+
           <a
             className="home-header__shop"
             href="https://www.ferrofluidshop.com/"
@@ -296,14 +348,7 @@ export default function Header() {
                     onClick={() => changeLanguage(lang)}
                     aria-pressed={currentLang === lang}
                   >
-                    <img
-                      className={`home-header__lang-flag${meta.chn ? ' home-header__lang-flag--chn' : ''}`}
-                      src={meta.flag}
-                      alt={meta.alt}
-                    />
-                    <span
-                      className={`home-header__lang-label${meta.chn ? ' home-header__lang-label--chn' : ''}`}
-                    >
+                    <span className="home-header__lang-label" lang={lang}>
                       {meta.label}
                     </span>
                   </button>
