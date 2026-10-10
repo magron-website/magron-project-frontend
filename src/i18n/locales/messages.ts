@@ -1,6 +1,6 @@
 const messages = {
   ko: {
-    chatWelcome: '안녕하세요! MAGRON 챗봇입니다. 제품이나 회사에 대해 궁금한 점을 물어보세요.',
+    chatWelcome: '안녕하세요! MAGRON 챗봇입니다.  \n제품이나 회사에 대해 궁금한 점을 물어보세요.',
     chatServerError: '서버 오류 ({{status}})',
     chatNoReply: '답변을 가져오지 못했습니다.',
     chatSendFailed: '메시지를 전송하지 못했습니다.',
@@ -19,7 +19,7 @@ const messages = {
   },
   en: {
     chatWelcome:
-      'Hello! This is the MAGRON chatbot. Ask me anything about our products or company.',
+      'Hello! This is the MAGRON chatbot.  \nAsk me anything about our products or company.',
     chatServerError: 'Server error ({{status}})',
     chatNoReply: 'Could not get a reply.',
     chatSendFailed: 'Failed to send the message.',
@@ -38,7 +38,7 @@ const messages = {
     techLoadFailed: 'Failed to load the technical documents.',
   },
   zh: {
-    chatWelcome: '您好！我是 MAGRON 聊天机器人。有关产品或公司的任何问题，欢迎向我提问。',
+    chatWelcome: '您好！我是 MAGRON 聊天机器人。  \n有关产品或公司的任何问题，欢迎向我提问。',
     chatServerError: '服务器错误（{{status}}）',
     chatNoReply: '未能获取回复。',
     chatSendFailed: '消息发送失败。',
