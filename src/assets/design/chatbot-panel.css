@@ -419,3 +419,123 @@
   border-top: 0;
   padding-top: 4px;
 }
+
+/* "담당자에게 답변 받기" 열기 버튼 — 입력창 위 */
+.chat-panel__contact-open {
+  margin: 0;
+  padding: 10px 16px;
+  border: 0;
+  border-top: 1px solid #e6e8ef;
+  background: #eef3ff;
+  color: #1a4fd6;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.chat-panel__contact-open:hover {
+  background: #e2eaff;
+}
+
+.chat-panel__contact-open + .chat-panel__notice {
+  border-top: 0;
+}
+
+/* "담당자에게 답변 받기" 입력칸 */
+.chat-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px 16px 16px;
+  background: #fff;
+  border-top: 1px solid #e6e8ef;
+}
+
+.chat-contact__title {
+  margin: 0 0 2px;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.chat-contact__input {
+  width: 100%;
+  padding: 9px 12px;
+  border: 1px solid #d6dae3;
+  border-radius: 8px;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.chat-contact__input:focus {
+  outline: 2px solid #1a4fd6;
+  outline-offset: -1px;
+}
+
+.chat-contact__consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: #4b5563;
+  font-size: 12px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+
+.chat-contact__consent input {
+  flex: 0 0 auto;
+  margin-top: 2px;
+}
+
+.chat-contact__error {
+  margin: 0;
+  color: #c62828;
+  font-size: 12px;
+}
+
+.chat-contact__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.chat-contact__cancel,
+.chat-contact__submit {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chat-contact__cancel {
+  border: 1px solid #d6dae3;
+  background: #fff;
+  color: #4b5563;
+}
+
+.chat-contact__submit {
+  border: 0;
+  background: #1a4fd6;
+  color: #fff;
+}
+
+.chat-contact__submit:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* PC 붙박이 창은 zoom 0.75 때문에 한 단계 크게 */
+.chat-panel--docked .chat-panel__contact-open,
+.chat-panel--docked .chat-contact__title,
+.chat-panel--docked .chat-contact__input,
+.chat-panel--docked .chat-contact__cancel,
+.chat-panel--docked .chat-contact__submit {
+  font-size: 16px;
+}
+
+.chat-panel--docked .chat-contact__consent,
+.chat-panel--docked .chat-contact__error {
+  font-size: 14px;
+}

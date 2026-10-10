@@ -113,5 +113,52 @@ export function useChat() {
     }
   }, [])
 
-  return { messages, isLoading, error, sendMessage }
+  /**
+   * "담당자에게 답변 받기" — 챗봇은 익명이라 회신하려면 방문자가 연락처를 남겨야 한다.
+   * 지금까지의 대화를 함께 보내서 담당자가 맥락을 보고 답장할 수 있게 한다.
+   * 실패하면 서버가 준 사유(또는 기본 문구)를 돌려준다 — 접수됐다고 착각하게 두지 않는다.
+   */
+  const messagesRef = useRef(messages)
+  messagesRef.current = messages
+
+  const submitContact = useCallback(
+    async (contact: { email: string; name: string }): Promise<{ ok: true } | { ok: false; message: string }> => {
+      const transcript = messagesRef.current
+        .filter((m) => m.id !== 'welcome')
+        .map((m) => ({ role: m.role, text: m.text.slice(0, 6000) }))
+        .slice(-60)
+      try {
+        const response = await fetch(`${API_BASE}/api/contact`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: contact.email.trim(),
+            name: contact.name.trim() || null,
+            consent: true,
+            session_id: sessionIdRef.current,
+            lang: i18n.language,
+            page: window.location.pathname,
+            transcript,
+          }),
+        })
+        if (!response.ok) {
+          // 서버 오류 문구는 한국어뿐이라 화면 언어로 바꿔 보여준다.
+          const key = response.status === 429 ? 'chatbot:contactLimit' : 'chatbot:contactFailed'
+          return { ok: false, message: i18n.t(key) }
+        }
+        // 연락처는 GA 로 보내지 않는다. 접수 건수만 센다.
+        trackEvent('chat_contact_submit')
+        setMessages((prev) => [
+          ...prev,
+          { id: createId(), role: 'bot', text: i18n.t('chatbot:contactDone', { email: contact.email.trim() }) },
+        ])
+        return { ok: true }
+      } catch {
+        return { ok: false, message: i18n.t('chatbot:contactFailed') }
+      }
+    },
+    [],
+  )
+
+  return { messages, isLoading, error, sendMessage, submitContact }
 }

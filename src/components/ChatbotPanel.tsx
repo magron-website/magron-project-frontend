@@ -29,8 +29,9 @@ export default function ChatbotPanel({
   autoFocus = true,
 }: ChatbotPanelProps) {
   const { t } = useTranslation('chatbot')
-  const { messages, isLoading, sendMessage } = useChat()
+  const { messages, isLoading, sendMessage, submitContact } = useChat()
   const [input, setInput] = useState('')
+  const [isContactOpen, setIsContactOpen] = useState(false)
   const listRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -143,6 +144,25 @@ export default function ChatbotPanel({
               )}
             </div>
 
+            {isContactOpen ? (
+              <ContactForm
+                onCancel={() => setIsContactOpen(false)}
+                onSubmit={async (contact) => {
+                  const result = await submitContact(contact)
+                  if (result.ok) setIsContactOpen(false)
+                  return result
+                }}
+              />
+            ) : (
+            <>
+            <button
+              type="button"
+              className="chat-panel__contact-open"
+              onClick={() => setIsContactOpen(true)}
+            >
+              {t('contactButton')}
+            </button>
+
             {/* 질문·답변이 회사 메일로 전달되므로(백엔드 notifier) 방문자에게 미리 알린다. */}
             <p className="chat-panel__notice">{t('notice')}</p>
 
@@ -171,9 +191,91 @@ export default function ChatbotPanel({
                 </svg>
               </button>
             </div>
+            </>
+            )}
           </motion.aside>
         </>
       )}
     </AnimatePresence>
+  )
+}
+
+type ContactResult = { ok: true } | { ok: false; message: string }
+
+/**
+ * "담당자에게 답변 받기" 입력칸. 이메일(필수)·이름/회사(선택)·개인정보 동의(필수, 보유 1년).
+ * 접수되면 대화 전체가 회사 메일로 가고, 답장 주소가 방문자 이메일로 잡힌다(백엔드 /api/contact).
+ */
+function ContactForm({
+  onCancel,
+  onSubmit,
+}: {
+  onCancel: () => void
+  onSubmit: (contact: { email: string; name: string }) => Promise<ContactResult>
+}) {
+  const { t } = useTranslation('chatbot')
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [consent, setConsent] = useState(false)
+  const [isSending, setIsSending] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const isEmailValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    if (!isEmailValid || !consent || isSending) return
+    setIsSending(true)
+    setErrorMessage(null)
+    const result = await onSubmit({ email, name })
+    setIsSending(false)
+    if (!result.ok) setErrorMessage(result.message)
+  }
+
+  return (
+    <form className="chat-contact" onSubmit={handleSubmit}>
+      <p className="chat-contact__title">{t('contactTitle')}</p>
+      <input
+        className="chat-contact__input"
+        type="email"
+        required
+        autoComplete="email"
+        placeholder={t('contactEmail')}
+        value={email}
+        onChange={(event) => setEmail(event.target.value)}
+      />
+      <input
+        className="chat-contact__input"
+        type="text"
+        autoComplete="organization"
+        placeholder={t('contactName')}
+        value={name}
+        onChange={(event) => setName(event.target.value)}
+      />
+      <label className="chat-contact__consent">
+        <input
+          type="checkbox"
+          checked={consent}
+          onChange={(event) => setConsent(event.target.checked)}
+        />
+        <span>
+          <b>{t('contactConsent')}</b>
+          <br />
+          {t('contactConsentDetail')}
+        </span>
+      </label>
+      {errorMessage && <p className="chat-contact__error">{errorMessage}</p>}
+      <div className="chat-contact__actions">
+        <button type="button" className="chat-contact__cancel" onClick={onCancel}>
+          {t('contactCancel')}
+        </button>
+        <button
+          type="submit"
+          className="chat-contact__submit"
+          disabled={!isEmailValid || !consent || isSending}
+        >
+          {isSending ? t('contactSending') : t('contactSubmit')}
+        </button>
+      </div>
+    </form>
   )
 }
