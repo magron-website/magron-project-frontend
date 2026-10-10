@@ -399,3 +399,23 @@
   word-break: keep-all;
   overflow-wrap: anywhere;
 }
+
+/* 질문이 회사 메일로 전달된다는 안내 — 입력창 바로 위 한 줄 */
+.chat-panel__notice {
+  margin: 0;
+  padding: 8px 16px;
+  background: #fff;
+  border-top: 1px solid #e6e8ef;
+  color: #6b7280;
+  font-size: 11px;
+  line-height: 1.4;
+}
+
+.chat-panel--docked .chat-panel__notice {
+  font-size: 13px;
+}
+
+.chat-panel__notice + .chat-panel__composer {
+  border-top: 0;
+  padding-top: 4px;
+}

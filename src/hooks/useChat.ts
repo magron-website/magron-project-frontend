@@ -72,6 +72,8 @@ export function useChat() {
           session_id: sessionIdRef.current,
           // 챗봇이 질문 언어가 애매할 때 따를 화면 언어(ko/en/zh). 서버가 모르는 필드면 무시된다.
           lang: i18n.language,
+          // 서버가 질문·답변을 회사 메일로 알릴 때 "어느 페이지에서 물었는지" 표시용.
+          page: window.location.pathname,
         }),
       })
 

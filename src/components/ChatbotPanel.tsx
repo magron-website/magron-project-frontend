@@ -143,6 +143,9 @@ export default function ChatbotPanel({
               )}
             </div>
 
+            {/* 질문·답변이 회사 메일로 전달되므로(백엔드 notifier) 방문자에게 미리 알린다. */}
+            <p className="chat-panel__notice">{t('notice')}</p>
+
             <div className="chat-panel__composer">
               <textarea
                 ref={inputRef}
