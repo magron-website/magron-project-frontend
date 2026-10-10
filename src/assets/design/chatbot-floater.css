@@ -194,3 +194,8 @@
     padding-bottom: calc(80px + env(safe-area-inset-bottom, 0px));
   }
 }
+
+/* 320px 휴대폰에서 안내 문구(nowrap) 때문에 챗봇 버튼이 줄지 않아 메일 버튼이 화면 밖으로 밀렸다 */
+.chat-mobile-bar__btn--chat {
+  min-width: 0;
+}

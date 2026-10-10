@@ -497,3 +497,100 @@
     text-decoration: none;
   }
 }
+
+/* --------------------------------------------------------------------------
+   Mobile — 언어 선택을 헤더에 바로 노출 (2026-10-10 요청: "휴대폰에서 언어 선택이
+   바로 안 보임"). 예전엔 오른쪽 묶음(언어·쇼핑몰)을 통째로 숨기고 햄버거 메뉴 안에만
+   두었다. 국기 3개만 로고와 메뉴 버튼 사이에 두고, 쇼핑몰은 메뉴 안에 그대로 둔다.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 900px) {
+  .home-header__inner {
+    grid-template-columns: 1fr auto auto;
+  }
+
+  /* PC 레이아웃이 오른쪽 묶음을 3번째 칸에 고정해 둬서, 그대로 두면 메뉴 버튼이 둘째 줄로 밀린다 */
+  .home-header__right {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+    justify-self: end;
+  }
+
+  .home-header__burger {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .home-header__shop {
+    display: none;
+  }
+
+  .home-header__lang {
+    gap: 12px;
+  }
+
+  /* 손가락으로 누르기 쉽게 국기 주변에 누를 자리를 넓힌다 */
+  .home-header__lang-group {
+    padding: 10px 2px;
+  }
+}
+
+/* 375px 휴대폰에 로고·언어·메뉴가 한 줄로 들어가게 로고와 글자를 줄인다 */
+@media (max-width: 480px) {
+  .home-header {
+    --header-side-padding: 16px;
+    --header-group-gap: 8px;
+  }
+
+  .home-header__inner {
+    column-gap: 8px;
+  }
+
+  .home-header__logo-img {
+    width: 44px;
+    height: 44px;
+  }
+
+  .home-header__brand-name {
+    font-size: 26px;
+  }
+
+  .home-header__lang {
+    gap: 8px;
+  }
+}
+
+/* 320~360px 소형 휴대폰 — 위 크기로는 메뉴 버튼이 화면 밖(오른쪽)으로 밀렸다 */
+@media (max-width: 360px) {
+  .home-header {
+    --header-side-padding: 12px;
+    --header-group-gap: 6px;
+  }
+
+  .home-header__inner {
+    column-gap: 6px;
+  }
+
+  .home-header__logo-img {
+    width: 36px;
+    height: 36px;
+  }
+
+  .home-header__brand-name {
+    font-size: 20px;
+  }
+
+  .home-header__lang {
+    gap: 6px;
+  }
+
+  .home-header__lang .home-header__lang-flag {
+    width: 24px;
+    height: 12px;
+  }
+
+  .home-header__lang .home-header__lang-flag--chn {
+    width: 16px;
+  }
+}
