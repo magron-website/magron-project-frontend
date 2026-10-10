@@ -191,7 +191,10 @@ export default function ChatbotFloater() {
             onClick={() => openChat('mobile_bar')}
           >
             <img className="chat-mobile-bar__icon" src={chatbotImage} alt="" />
-            {t('mobileBarChat')}
+            <span className="chat-mobile-bar__text">
+              <span className="chat-mobile-bar__title">{t('mobileBarChat')}</span>
+              <span className="chat-mobile-bar__sub">{t('mobileBarChatSub')}</span>
+            </span>
           </button>
           {/* mailto 클릭은 analytics.ts 의 전역 리스너가 contact_email 로 잡는다. */}
           <a className="chat-mobile-bar__btn chat-mobile-bar__btn--mail" href="mailto:magron@magron.co.kr">

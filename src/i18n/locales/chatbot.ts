@@ -9,6 +9,7 @@ const chatbot = {
     floaterLines: ['궁금한건', '챗봇에게', '물어보세요!'],
     mobileBarLabel: '문의하기',
     mobileBarChat: '챗봇 문의',
+    mobileBarChatSub: '제품·사양 등 궁금한 점을 바로 물어보세요',
     mobileBarMail: '메일 문의',
   },
   en: {
@@ -21,6 +22,7 @@ const chatbot = {
     floaterLines: ['Curious?', 'Ask the', 'chatbot!'],
     mobileBarLabel: 'Contact',
     mobileBarChat: 'Ask chatbot',
+    mobileBarChatSub: 'Products, specs — ask anything now',
     mobileBarMail: 'Email us',
   },
   zh: {
@@ -33,6 +35,7 @@ const chatbot = {
     floaterLines: ['有疑问？', '就问', '聊天机器人！'],
     mobileBarLabel: '咨询',
     mobileBarChat: '机器人咨询',
+    mobileBarChatSub: '产品、规格等问题，立即咨询',
     mobileBarMail: '邮件咨询',
   },
 }
