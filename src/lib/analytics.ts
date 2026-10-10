@@ -24,10 +24,19 @@ declare global {
  * - 프리렌더(Playwright)는 navigator.webdriver 가 true 다. 여기서 gtag를 심으면
  *   빌드할 때마다 가짜 방문 30건이 찍히고, 정적 HTML에 스크립트 태그까지 박힌다.
  * - 로컬 개발 서버.
+ * - 헤드리스 크롬 봇. 2026-10-10 GA4 실측(9/12~10/9)에서 Direct 202세션 중 137세션이
+ *   화면 800x600(헤드리스 크롬 기본값)·참여 0·이벤트 3개(page_view/session_start/first_visit)
+ *   ·도시 (not set)/Council Bluffs/Singapore 였다. webdriver 를 숨기고 들어오는 봇이라
+ *   위 조건에 안 걸린다. 지금 800x600 모니터를 쓰는 실제 방문자는 사실상 없다.
  */
+function isHeadlessBot(): boolean {
+  if (/HeadlessChrome/i.test(navigator.userAgent)) return true
+  return window.screen.width === 800 && window.screen.height === 600
+}
+
 function shouldTrack(): boolean {
   if (!GA4_ID || typeof window === 'undefined') return false
-  if (navigator.webdriver) return false
+  if (navigator.webdriver || isHeadlessBot()) return false
   const host = window.location.hostname
   return host !== 'localhost' && host !== '127.0.0.1'
 }
