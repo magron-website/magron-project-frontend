@@ -13,29 +13,20 @@ const HEADER_OFFSET = 96
 /*
  * 2026-10-10 요청: "챗봇이 작게 있지 말고 들어가면 대화창이 바로 열려 있게", "휴대폰에서도
  * 문의할 수 있는 게 바로 보이게".
- * - PC: 첫 방문 때 화면을 덮지 않는 붙박이 창으로 자동으로 연다. 닫으면 그 방문(탭) 동안은
- *   다시 안 연다 — 페이지를 옮길 때마다 다시 뜨면 성가시다.
+ * - PC: 들어오는 즉시 화면을 덮지 않는 붙박이 창으로 열려 있다("항상 열려 있게"). 닫으면
+ *   사이트 안에서 페이지를 옮기는 동안은 접혀 있고, 새로 들어오거나 새로고침하면 다시 열린다.
  * - 휴대폰: 화면을 덮는 자동 팝업은 쓰기 불편하고 구글이 검색 순위에서 감점한다(intrusive
  *   interstitial). 대신 아래쪽에 늘 보이는 "챗봇 문의 | 메일 문의" 바를 둔다.
  */
 const MOBILE_QUERY = '(max-width: 767px)'
-const AUTO_OPEN_DELAY_MS = 1200
-const AUTO_DISMISSED_KEY = 'magron-chat-auto-dismissed'
 
-function readDismissed(): boolean {
-  try {
-    return sessionStorage.getItem(AUTO_DISMISSED_KEY) === '1'
-  } catch {
-    return false
-  }
-}
-
-function writeDismissed(): void {
-  try {
-    sessionStorage.setItem(AUTO_DISMISSED_KEY, '1')
-  } catch {
-    // 사파리 개인정보 보호 모드 등에서는 저장이 막힌다. 그러면 새로고침 때 다시 열릴 뿐이다.
-  }
+/** 프리렌더(Playwright)에서 열면 정적 HTML에 열린 창이 박힌다. */
+function shouldAutoOpen(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    !navigator.webdriver &&
+    !window.matchMedia(MOBILE_QUERY).matches
+  )
 }
 
 function useIsMobile(): boolean {
@@ -61,21 +52,16 @@ export default function ChatbotFloater() {
   const [mode, setMode] = useState<FloaterMode>('hero')
   const [heroCoords, setHeroCoords] = useState({ top: 0, right: HERO_MARGIN })
   const [isVisible, setIsVisible] = useState(false)
-  const [isChatOpen, setIsChatOpen] = useState(false)
-  const [openedAutomatically, setOpenedAutomatically] = useState(false)
+  // createRoot 로 그리므로(하이드레이션 없음) 첫 렌더부터 열어 두어도 어긋나지 않는다.
+  const [isChatOpen, setIsChatOpen] = useState(shouldAutoOpen)
+  const [openedAutomatically, setOpenedAutomatically] = useState(shouldAutoOpen)
   const isMobile = useIsMobile()
 
   useEffect(() => {
-    // 프리렌더(Playwright)에서 열면 정적 HTML에 열린 창이 박힌다.
-    if (navigator.webdriver || window.matchMedia(MOBILE_QUERY).matches || readDismissed()) return
-    const timer = window.setTimeout(() => {
-      if (window.matchMedia(MOBILE_QUERY).matches) return
-      setOpenedAutomatically(true)
-      setIsChatOpen(true)
-      // chat_open 은 "사람이 직접 눌러 연 것"만 세야 의미가 있어서 이름을 나눈다.
-      trackEvent('chat_auto_open')
-    }, AUTO_OPEN_DELAY_MS)
-    return () => window.clearTimeout(timer)
+    // chat_open 은 "사람이 직접 눌러 연 것"만 세야 의미가 있어서 이름을 나눈다.
+    if (openedAutomatically) trackEvent('chat_auto_open')
+    // 첫 진입 한 번만
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // PC 크기에서 자동으로 열린 뒤 창을 좁히면(태블릿 회전·창 줄이기·개발자도구 기기 모드)
@@ -93,10 +79,7 @@ export default function ChatbotFloater() {
     trackEvent('chat_open', { source })
   }
 
-  const closeChat = () => {
-    setIsChatOpen(false)
-    if (!isMobile) writeDismissed()
-  }
+  const closeChat = () => setIsChatOpen(false)
 
   useLayoutEffect(() => {
     const updatePosition = () => {
