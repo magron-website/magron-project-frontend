@@ -7,6 +7,9 @@ const chatbot = {
     placeholder: '메시지를 입력하세요...',
     send: '전송',
     floaterLines: ['궁금한건', '챗봇에게', '물어보세요!'],
+    mobileBarLabel: '문의하기',
+    mobileBarChat: '챗봇 문의',
+    mobileBarMail: '메일 문의',
   },
   en: {
     title: 'MAGRON Chatbot',
@@ -16,6 +19,9 @@ const chatbot = {
     placeholder: 'Type a message...',
     send: 'Send',
     floaterLines: ['Curious?', 'Ask the', 'chatbot!'],
+    mobileBarLabel: 'Contact',
+    mobileBarChat: 'Ask chatbot',
+    mobileBarMail: 'Email us',
   },
   zh: {
     title: 'MAGRON 聊天机器人',
@@ -25,6 +31,9 @@ const chatbot = {
     placeholder: '请输入消息...',
     send: '发送',
     floaterLines: ['有疑问？', '就问', '聊天机器人！'],
+    mobileBarLabel: '咨询',
+    mobileBarChat: '机器人咨询',
+    mobileBarMail: '邮件咨询',
   },
 }
 

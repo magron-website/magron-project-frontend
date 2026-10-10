@@ -10,9 +10,21 @@ import '@/assets/design/chatbot-panel.css'
 type ChatbotPanelProps = {
   isOpen: boolean
   onClose: () => void
+  /**
+   * PC: 화면을 덮지 않고 오른쪽에 붙는 창(배경 어둡게 X, 페이지 계속 스크롤·클릭 가능).
+   * 휴대폰: 기존처럼 화면 전체를 덮는 서랍.
+   */
+  docked?: boolean
+  /** 자동으로 열릴 때는 입력창에 포커스를 주지 않는다(휴대폰 키보드·스크롤 튐 방지). */
+  autoFocus?: boolean
 }
 
-export default function ChatbotPanel({ isOpen, onClose }: ChatbotPanelProps) {
+export default function ChatbotPanel({
+  isOpen,
+  onClose,
+  docked = false,
+  autoFocus = true,
+}: ChatbotPanelProps) {
   const { t } = useTranslation('chatbot')
   const { messages, isLoading, sendMessage } = useChat()
   const [input, setInput] = useState('')
@@ -26,10 +38,10 @@ export default function ChatbotPanel({ isOpen, onClose }: ChatbotPanelProps) {
   }, [messages, isLoading])
 
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && autoFocus) {
       inputRef.current?.focus()
     }
-  }, [isOpen])
+  }, [isOpen, autoFocus])
 
   useEffect(() => {
     if (!isOpen) return
@@ -57,23 +69,25 @@ export default function ChatbotPanel({ isOpen, onClose }: ChatbotPanelProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-          <motion.div
-            className="chat-panel__overlay"
-            onClick={onClose}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          />
+          {!docked && (
+            <motion.div
+              className="chat-panel__overlay"
+              onClick={onClose}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+          )}
           <motion.aside
-            className="chat-panel"
+            className={`chat-panel${docked ? ' chat-panel--docked' : ''}`}
             role="dialog"
-            aria-modal="true"
+            aria-modal={docked ? 'false' : 'true'}
             aria-label={t('title')}
-            initial={{ x: '100%' }}
-            animate={{ x: 0 }}
-            exit={{ x: '100%' }}
-            transition={{ type: 'tween', ease: [0.4, 0, 0.2, 1], duration: 0.32 }}
+            initial={docked ? { opacity: 0, y: 16 } : { x: '100%' }}
+            animate={docked ? { opacity: 1, y: 0 } : { x: 0 }}
+            exit={docked ? { opacity: 0, y: 16 } : { x: '100%' }}
+            transition={{ type: 'tween', ease: [0.4, 0, 0.2, 1], duration: docked ? 0.24 : 0.32 }}
           >
             <header className="chat-panel__header">
               <div className="chat-panel__brand">

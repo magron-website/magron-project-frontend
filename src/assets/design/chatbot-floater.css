@@ -97,3 +97,61 @@
     height: 50px;
   }
 }
+
+/* 휴대폰 하단 문의 바 — 오른쪽 위 작은 챗봇 버튼 대신, 늘 보이는 큰 버튼 두 개 */
+.chat-mobile-bar {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 90;
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom, 0px));
+  background: rgba(255, 255, 255, 0.96);
+  border-top: 1px solid #e4e4e7;
+  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.chat-mobile-bar__btn {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 46px;
+  border-radius: 10px;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.chat-mobile-bar__btn--chat {
+  border: 0;
+  background: #1a4fd6;
+  color: #fff;
+}
+
+.chat-mobile-bar__btn--mail {
+  border: 1px solid #1a4fd6;
+  background: #fff;
+  color: #1a4fd6;
+}
+
+.chat-mobile-bar__icon {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #fff;
+  object-fit: contain;
+}
+
+/* 바에 가려지지 않도록 페이지 끝(푸터)에 그만큼 여백 */
+@media (max-width: 767px) {
+  body:has(.chat-mobile-bar) {
+    padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px));
+  }
+}

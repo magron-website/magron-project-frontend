@@ -349,3 +349,16 @@
     max-width: 100vw;
   }
 }
+
+/* PC 붙박이 창 — 화면을 덮지 않고 헤더 아래 오른쪽에 붙는다(배경 어둡게 X). */
+.chat-panel--docked {
+  top: 112px;
+  right: 24px;
+  z-index: 99; /* 헤더(100)·메뉴 드롭다운보다 아래 */
+  width: 380px;
+  max-width: calc(100vw - 48px);
+  height: min(600px, calc(100dvh - 136px));
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+}

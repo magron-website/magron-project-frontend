@@ -135,3 +135,10 @@
     font-size: 12px;
   }
 }
+
+/* 휴대폰에선 하단 문의 바(약 62px) 위로 올린다 */
+@media (max-width: 767px) {
+  .install-prompt {
+    bottom: 78px;
+  }
+}
