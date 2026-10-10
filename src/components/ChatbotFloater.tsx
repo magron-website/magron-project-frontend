@@ -69,6 +69,7 @@ export default function ChatbotFloater() {
     // 프리렌더(Playwright)에서 열면 정적 HTML에 열린 창이 박힌다.
     if (navigator.webdriver || window.matchMedia(MOBILE_QUERY).matches || readDismissed()) return
     const timer = window.setTimeout(() => {
+      if (window.matchMedia(MOBILE_QUERY).matches) return
       setOpenedAutomatically(true)
       setIsChatOpen(true)
       // chat_open 은 "사람이 직접 눌러 연 것"만 세야 의미가 있어서 이름을 나눈다.
@@ -76,6 +77,15 @@ export default function ChatbotFloater() {
     }, AUTO_OPEN_DELAY_MS)
     return () => window.clearTimeout(timer)
   }, [])
+
+  // PC 크기에서 자동으로 열린 뒤 창을 좁히면(태블릿 회전·창 줄이기·개발자도구 기기 모드)
+  // 붙박이 창이 휴대폰용 전체 화면 창으로 바뀌어 화면을 덮는다. 사람이 연 게 아니면 닫는다.
+  useEffect(() => {
+    if (isMobile && isChatOpen && openedAutomatically) {
+      setIsChatOpen(false)
+      setOpenedAutomatically(false)
+    }
+  }, [isMobile, isChatOpen, openedAutomatically])
 
   const openChat = (source: 'floater' | 'mobile_bar') => {
     setOpenedAutomatically(false)
