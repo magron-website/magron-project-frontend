@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, type CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
@@ -15,6 +15,8 @@ type ChatbotPanelProps = {
    * 휴대폰: 기존처럼 화면 전체를 덮는 서랍.
    */
   docked?: boolean
+  /** 붙박이 창 위치·크기 — 본문과 겹치지 않게 ChatbotFloater 가 재서 넘긴다. */
+  dockStyle?: CSSProperties
   /** 자동으로 열릴 때는 입력창에 포커스를 주지 않는다(휴대폰 키보드·스크롤 튐 방지). */
   autoFocus?: boolean
 }
@@ -23,6 +25,7 @@ export default function ChatbotPanel({
   isOpen,
   onClose,
   docked = false,
+  dockStyle,
   autoFocus = true,
 }: ChatbotPanelProps) {
   const { t } = useTranslation('chatbot')
@@ -81,6 +84,7 @@ export default function ChatbotPanel({
           )}
           <motion.aside
             className={`chat-panel${docked ? ' chat-panel--docked' : ''}`}
+            style={docked ? dockStyle : undefined}
             role="dialog"
             aria-modal={docked ? 'false' : 'true'}
             aria-label={t('title')}

@@ -357,8 +357,45 @@
   z-index: 99; /* 헤더(100)·메뉴 드롭다운보다 아래 */
   width: 380px;
   max-width: calc(100vw - 48px);
-  height: min(600px, calc(100dvh - 136px));
+  height: min(720px, calc(100dvh - 136px));
   border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.22);
+}
+
+/* PC 붙박이 창 글씨 — 사이트 전체 zoom(1920 화면 0.75) 때문에 14px 가 화면에선 약 10px 로
+   보여 작다는 요청(2026-10-10). 붙박이 창에서만 키운다. */
+.chat-panel--docked .chat-panel__title {
+  font-size: 19px;
+}
+
+.chat-panel--docked .chat-panel__subtitle {
+  font-size: 14px;
+}
+
+.chat-panel--docked .chat-message__bubble,
+.chat-panel--docked .chat-panel__input {
+  font-size: 17px;
+}
+
+.chat-panel--docked .chat-markdown h4 {
+  font-size: 18px;
+}
+
+.chat-panel--docked .chat-markdown table {
+  font-size: 15px;
+}
+
+.chat-panel--docked .chat-markdown code {
+  font-size: 15px;
+}
+
+.chat-panel--docked .chat-message__source {
+  font-size: 13px;
+}
+
+/* 폭이 좁아져(본문과 안 겹치게 맞춘 결과) "챗/봇입니다"처럼 어절 중간에서 줄이 바뀌었다 */
+.chat-panel--docked .chat-message__bubble {
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 }

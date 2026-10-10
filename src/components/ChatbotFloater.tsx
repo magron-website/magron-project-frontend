@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import { createPortal } from 'react-dom'
 import { useLocation } from 'react-router-dom'
@@ -43,6 +43,58 @@ function useIsMobile(): boolean {
   return isMobile
 }
 
+/*
+ * PC 붙박이 창이 본문을 덮지 않게, 본문(.home__content) 오른쪽 바깥 여백에 맞춰 폭을 정한다.
+ * 사이트 전체에 화면 폭별 zoom(index.css, 1920 화면에서 0.75)이 걸려 있어서 CSS 고정값
+ * (top 112px·폭 380px)으로는 화면마다 어긋났다 — 1920 화면에서 본문을 70px 덮고 헤더 밑에 깔렸다.
+ * getBoundingClientRect 는 확대·축소가 반영된 화면 픽셀이고, style 에 넣는 px 은 zoom 이
+ * 곱해지므로 zoom 으로 나눠 넣는다.
+ */
+const DOCK_GAP = 16
+const DOCK_MIN_WIDTH = 280 // 이보다 여백이 좁으면(노트북 등) 이 폭을 지키고 본문 끝을 조금 덮는다
+const DOCK_MAX_WIDTH = 380
+const DOCK_MAX_HEIGHT = 720
+
+function useDockStyle(active: boolean, pathname: string): CSSProperties | undefined {
+  const [style, setStyle] = useState<CSSProperties>()
+
+  useLayoutEffect(() => {
+    if (!active) return
+    const update = () => {
+      const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1
+      const gap = DOCK_GAP * zoom
+      const content = document.querySelector('.home__content')
+      const header = document.querySelector('.home-header')
+      // innerWidth 는 세로 스크롤바까지 포함해서 그만큼(약 15px) 본문을 덮었다
+      const viewportWidth = document.documentElement.clientWidth
+      const contentRight = content?.getBoundingClientRect().right ?? viewportWidth
+      const free = viewportWidth - contentRight - gap * 2
+      const width = Math.min(Math.max(free, DOCK_MIN_WIDTH * zoom), DOCK_MAX_WIDTH * zoom)
+      const top = (header?.getBoundingClientRect().bottom ?? 0) + gap
+      const height = Math.min(DOCK_MAX_HEIGHT * zoom, window.innerHeight - top - gap)
+      setStyle({
+        top: top / zoom,
+        right: gap / zoom,
+        width: width / zoom,
+        maxWidth: 'none',
+        height: height / zoom,
+      })
+    }
+    update()
+    window.addEventListener('resize', update)
+    const content = document.querySelector('.home__content')
+    const observer =
+      typeof ResizeObserver !== 'undefined' && content ? new ResizeObserver(update) : null
+    if (content) observer?.observe(content)
+    return () => {
+      window.removeEventListener('resize', update)
+      observer?.disconnect()
+    }
+  }, [active, pathname])
+
+  return active ? style : undefined
+}
+
 type FloaterMode = 'hero' | 'top'
 
 export default function ChatbotFloater() {
@@ -56,6 +108,7 @@ export default function ChatbotFloater() {
   const [isChatOpen, setIsChatOpen] = useState(shouldAutoOpen)
   const [openedAutomatically, setOpenedAutomatically] = useState(shouldAutoOpen)
   const isMobile = useIsMobile()
+  const dockStyle = useDockStyle(!isMobile && isChatOpen, pathname)
 
   useEffect(() => {
     // chat_open 은 "사람이 직접 눌러 연 것"만 세야 의미가 있어서 이름을 나눈다.
@@ -193,6 +246,7 @@ export default function ChatbotFloater() {
         isOpen={isChatOpen}
         onClose={closeChat}
         docked={!isMobile}
+        dockStyle={dockStyle}
         autoFocus={!openedAutomatically}
       />
     </>,
