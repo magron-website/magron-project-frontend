@@ -539,3 +539,9 @@
 .chat-panel--docked .chat-contact__error {
   font-size: 14px;
 }
+
+/* 붙박이 창 폭이 좁을 땐(최소 280px) 입력칸 17px 이면 안내 문구가 두 줄로 넘쳐 스크롤바가 생겼다 */
+.chat-panel--docked .chat-panel__input {
+  padding: 10px;
+  font-size: 15px;
+}

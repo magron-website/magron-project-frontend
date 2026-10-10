@@ -37,7 +37,9 @@ export default function ChatbotPanel({
 
   useEffect(() => {
     if (listRef.current) {
-      listRef.current.scrollTop = listRef.current.scrollHeight
+      // 인사말만 있을 땐 맨 위부터 — 인사말이 길어져(B안) 맨 아래로 내리면 첫 줄이 가려졌다.
+      const onlyWelcome = messages.length <= 1 && !isLoading
+      listRef.current.scrollTop = onlyWelcome ? 0 : listRef.current.scrollHeight
     }
   }, [messages, isLoading])
 

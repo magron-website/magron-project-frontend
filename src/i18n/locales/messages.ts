@@ -1,6 +1,13 @@
 const messages = {
   ko: {
-    chatWelcome: '안녕하세요! MAGRON 챗봇입니다.  \n제품이나 회사에 대해 궁금한 점을 물어보세요.',
+    // 챗봇 메시지는 마크다운으로 그린다(목록·굵게). 견적은 챗봇에 가격 자료가 없어
+    // '담당자에게 답변 받기'(chatbot:contactButton)로 넘긴다 — 2026-10-10 B안 확정.
+    chatWelcome:
+      '안녕하세요! MAGRON 챗봇입니다. 이런 걸 물어보실 수 있어요.\n\n' +
+      '- 자성유체(페로플루이드) 종류·사양·용도\n' +
+      '- 간단한 견적·납기 문의\n' +
+      '- 그 밖에 회사·제품에 대해 궁금한 점 무엇이든\n\n' +
+      "정확한 견적이 필요하시면 아래 '**담당자에게 답변 받기**'를 눌러 주세요.",
     chatServerError: '서버 오류 ({{status}})',
     chatNoReply: '답변을 가져오지 못했습니다.',
     chatSendFailed: '메시지를 전송하지 못했습니다.',
@@ -19,7 +26,11 @@ const messages = {
   },
   en: {
     chatWelcome:
-      'Hello! This is the MAGRON chatbot.  \nAsk me anything about our products or company.',
+      'Hello! This is the MAGRON chatbot. You can ask me about:\n\n' +
+      '- Ferrofluid types, specs and applications\n' +
+      '- Quick quotes and lead times\n' +
+      '- Anything else about our company or products\n\n' +
+      "For an exact quote, click **'Get a reply from our team'** below.",
     chatServerError: 'Server error ({{status}})',
     chatNoReply: 'Could not get a reply.',
     chatSendFailed: 'Failed to send the message.',
@@ -38,7 +49,12 @@ const messages = {
     techLoadFailed: 'Failed to load the technical documents.',
   },
   zh: {
-    chatWelcome: '您好！我是 MAGRON 聊天机器人。  \n有关产品或公司的任何问题，欢迎向我提问。',
+    chatWelcome:
+      '您好！我是 MAGRON 聊天机器人。您可以咨询：\n\n' +
+      '- 磁性流体的种类、规格与用途\n' +
+      '- 简单报价与交期\n' +
+      '- 关于公司和产品的其他任何问题\n\n' +
+      '如需准确报价，请点击下方的“**请工作人员回复**”。',
     chatServerError: '服务器错误（{{status}}）',
     chatNoReply: '未能获取回复。',
     chatSendFailed: '消息发送失败。',
