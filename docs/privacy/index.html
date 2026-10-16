@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/icons/favicon-32.png" type="image/png">
+
+    <!-- PWA: installable to a phone or desktop home screen ("홈 화면에 추가").
+         / is Vite's deploy base, so these keep resolving if the site
+         ever moves back under a GitHub Pages project path. -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#f4f4f5">
+    <meta name="application-name" content="마그론">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <!-- iOS has no manifest support: these are what make a home-screen launch
+         open full screen with the right name instead of inside Safari. -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="마그론">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- 본문 폰트 IBM Plex Sans KR (2026-08-24 조선일보명조에서 교체).
+         CSS의 @import보다 여기서 link로 먼저 잡아야 첫 화면 글자 깜빡임이 줄어든다. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=IBM+Plex+Sans+KR:wght@400;500;700&amp;display=swap">
+
+    <title>개인정보처리방침 | MAGRON (주)마그론</title>
+    <meta name="description" content="(주)마그론 홈페이지(magron.kr)가 처리하는 개인정보의 항목·목적·보유 기간, 처리 위탁과 국외 이전, 정보주체의 권리와 문의처를 안내합니다.">
+    <meta name="keywords" content="자성유체, ferrofluid, magnetic fluid, 마그론, MAGRON, 자성유체 씰, ferrofluidic seal, ferro seal, magnetic fluid seal, 진공 피드스루, vacuum feedthrough, 맥오일, Mag oil, Daiwa reel, 자석, magnet, 자성소재">
+    <meta name="author" content="MAGRON Co., Ltd. (주)마그론">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <!-- 네이버 서치어드바이저 소유확인. 지우면 사이트 소유권이 풀린다. -->
+    <meta name="naver-site-verification" content="c4a49a09a4bb91dfd7067aa8c067447490e748e6">
+    <link rel="canonical" href="https://magron.kr/privacy/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MAGRON (주)마그론">
+    <meta property="og:title" content="개인정보처리방침 | MAGRON (주)마그론">
+    <meta property="og:description" content="(주)마그론 홈페이지(magron.kr)가 처리하는 개인정보의 항목·목적·보유 기간, 처리 위탁과 국외 이전, 정보주체의 권리와 문의처를 안내합니다.">
+    <meta property="og:url" content="https://magron.kr/privacy/">
+    <meta property="og:image" content="https://magron.kr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MAGRON — 자성유체 · 진공 피드스루 · 자성소재">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="zh_CN">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="자성유체 | 자성소재 전문회사 (주)마그론">
+    <meta name="twitter:description" content="2004년 설립된 자성유체(Ferrofluid)·자성소재 전문 기업 (주)마그론.">
+    <meta name="twitter:image" content="https://magron.kr/og-image.png">
+
+    <!-- Structured data: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MAGRON Co., Ltd.",
+        "alternateName": ["(주)마그론", "마그론", "MAGRON"],
+        "url": "https://magron.kr/",
+        "logo": "https://magron.kr/icons/icon-512.png",
+        "foundingDate": "2004",
+        "description": "(주)마그론(MAGRON)은 2004년 설립된 자성유체(Ferrofluid) 및 자성소재 전문 제조기업으로, 유해가스·분진 차단용 자성유체 씰, 진공 피드스루(Feedthrough), 릴 수리용 맥오일, 자석, 자성유체 키트, 대형 자성유체 디스플레이를 반도체·디스플레이·태양전지·전자·자동차 산업에 공급합니다.",
+        "email": "magron@magron.co.kr",
+        "telephone": "+82-31-500-4633",
+        "faxNumber": "031-500-4631",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "해안로 705 경기테크노파크 3동 403호, 상록구",
+          "addressLocality": "안산시",
+          "addressRegion": "경기도",
+          "postalCode": "15588",
+          "addressCountry": "KR"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+82-31-500-4633",
+            "contactType": "sales",
+            "areaServed": "KR",
+            "availableLanguage": ["Korean", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+82-31-500-4632",
+            "contactType": "sales",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["English", "Korean", "Chinese"]
+          }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/company/ferrofluid",
+          "https://www.instagram.com/ferrofluidmagron/",
+          "https://www.youtube.com/@magronkorea7396",
+          "https://www.ferrofluidshop.com/"
+        ],
+        "knowsAbout": [
+          "Ferrofluid",
+          "Magnetic fluid seal",
+          "Vacuum feedthrough",
+          "Ferrofluid sealing",
+          "Semiconductor equipment",
+          "OLED deposition"
+        ]
+      }
+    </script>
+
+    <!-- Structured data: WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MAGRON (주)마그론",
+        "url": "https://magron.kr/",
+        "inLanguage": ["ko", "en", "zh"]
+      }
+    </script>
+
+    <!-- Structured data: Product catalogue -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "MAGRON 제품",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://magron.kr/ferrofluid/",
+            "name": "유해가스 및 분진 차단용 자성유체 (Ferrofluid for Corrosive Gas & Dust Blocking)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://magron.kr/feedthrough/",
+            "name": "Ferrofluid 진공 피드스루 (Feedthrough)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://magron.kr/magoil/",
+            "name": "릴 수리용 맥오일 (Reel Mag oil)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://magron.kr/magnet/",
+            "name": "자석 (Magnet)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://magron.kr/piezo-ink/",
+            "name": "PIEZO Ink · 압전/전도성 잉크"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://magron.kr/display/",
+            "name": "대형 자성유체 디스플레이 (Large Ferrofluid Display)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://magron.kr/education/",
+            "name": "자성유체 교육 키트 (Education kit)"
+          }
+        ]
+      }
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-BU3sujJ5.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-iRHVCpCG.css">
+  <style></style><style></style><link rel="alternate" hreflang="ko" href="https://magron.kr/privacy/"><link rel="alternate" hreflang="en" href="https://magron.kr/en/privacy/"><link rel="alternate" hreflang="zh" href="https://magron.kr/zh/privacy/"><link rel="alternate" hreflang="x-default" href="https://magron.kr/privacy/"><script id="magron-route-jsonld" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://magron.kr/"},{"@type":"ListItem","position":2,"name":"개인정보처리방침","item":"https://magron.kr/privacy/"}]}]}</script></head>
+  <body>
+    <div id="root"><div class="home home--page"><header class="home-header"><div class="home-header__border"></div><div class="home-header__bg"></div><div class="home-header__inner"><a class="home-header__left" aria-label="홈으로 이동" href="/" data-discover="true"><img class="home-header__logo-img" alt="MAGRON" src="/assets/logo-vdm95Mft.png"><div class="home-header__brand"><span class="home-header__brand-name">MAGRON</span><span class="home-header__brand-tagline">Ferrofluid</span></div></a><nav class="home-header__nav" aria-label="제품정보"><button type="button" class="home-header__nav-item home-header__nav-item--link">Home</button><div class="home-header__nav-dropdown"><button type="button" class="home-header__nav-item home-header__nav-item--trigger" aria-expanded="false" aria-haspopup="true">회사소개</button></div><div class="home-header__nav-dropdown"><button type="button" class="home-header__nav-item home-header__nav-item--trigger" aria-expanded="false" aria-haspopup="true">제품정보</button></div><button type="button" class="home-header__nav-item home-header__nav-item--link">카탈로그</button><a class="home-header__nav-item home-header__nav-item--link" href="/tech" data-discover="true">기술정보</a></nav><div class="home-header__right"><div class="home-header__lang"><button type="button" class="home-header__lang-group home-header__lang-group--active" aria-pressed="true"><span class="home-header__lang-label" lang="ko">한국어</span></button><button type="button" class="home-header__lang-group" aria-pressed="false"><span class="home-header__lang-label" lang="en">English</span></button><button type="button" class="home-header__lang-group" aria-pressed="false"><span class="home-header__lang-label" lang="zh">中文</span></button></div><div class="home-header__lang-mobile"><button type="button" class="home-header__lang-toggle" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"></circle><path d="M1.5 8h13M8 1.5c1.8 2 2.6 4.1 2.6 6.5S9.8 12.5 8 14.5M8 1.5C6.2 3.5 5.4 5.6 5.4 8s.8 4.5 2.6 6.5" stroke="currentColor" stroke-width="1.3"></path></svg><span lang="ko">한국어</span><svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"></path></svg></button></div><a class="home-header__shop" href="https://www.ferrofluidshop.com/" target="_blank" rel="noopener noreferrer"><span class="home-header__shop-text">쇼핑몰</span></a></div><button type="button" class="home-header__burger" aria-label="제품정보" aria-expanded="false"><span></span><span></span><span></span></button></div></header><div class="home__content"><article class="lg-page"><div class="lg-hero"><div class="lg-inner"><header class="lg-heading"><p class="lg-heading__eyebrow">Privacy</p><h1 class="lg-heading__title">개인정보처리방침</h1><p class="lg-heading__lead">(주)마그론(이하 "회사")은 「개인정보 보호법」에 따라 홈페이지(magron.kr) 이용자의 개인정보를 보호하고 관련 고충을 빠르게 처리하기 위해 이 방침을 둡니다. 온라인 쇼핑몰(ferrofluidshop.com)은 쇼핑몰의 개인정보처리방침을 따릅니다.</p><p class="lg-heading__meta">시행일: 2026년 10월 16일</p></header><section class="lg-section"><h2 class="lg-section__title">1. 처리하는 개인정보 항목, 목적, 보유 기간</h2><p>홈페이지에는 회원가입과 결제 기능이 없습니다. 회사는 아래 정보만 처리합니다.</p><div class="lg-table-wrap"><table class="lg-table"><thead><tr><th scope="col">구분</th><th scope="col">항목</th><th scope="col">목적</th><th scope="col">보유 기간</th></tr></thead><tbody><tr><td>챗봇 "담당자에게 답변 받기"</td><td>이메일(필수), 이름·회사명(선택), 대화 내용</td><td>문의 답변, 견적 상담</td><td>접수일로부터 1년</td></tr><tr><td>챗봇 질문</td><td>질문·답변 내용, 질문한 페이지, 화면 언어 (이름·연락처는 받지 않음)</td><td>답변 제공, 문의 내용 확인</td><td>1년</td></tr><tr><td>이메일·전화 문의</td><td>이메일 주소, 이름, 회사명, 전화번호 등 문의하며 보내주신 정보</td><td>문의 답변, 견적·거래 상담</td><td>문의 처리 후 1년 (거래가 이뤄지면 관계 법령에 따른 기간)</td></tr><tr><td>자동 수집</td><td>쿠키, 방문 기록(본 페이지, 유입 경로, 기기·브라우저 정보)</td><td>방문 통계, 홈페이지 개선</td><td>14개월</td></tr><tr><td>자동 수집</td><td>IP 주소 (챗봇 이용 시)</td><td>과도한 요청 방지</td><td>최대 1일</td></tr></tbody></table></div></section><section class="lg-section"><h2 class="lg-section__title">2. 개인정보의 파기</h2><ul class="lg-list"><li>보유 기간이 끝나거나 처리 목적을 이루면 지체 없이 파기합니다.</li><li>전자 파일은 복구할 수 없는 방법으로 삭제하고, 종이 문서는 분쇄하거나 소각합니다.</li><li>관계 법령에 따라 보관해야 하는 정보는 다른 정보와 분리해 그 기간 동안만 보관합니다.</li></ul></section><section class="lg-section"><h2 class="lg-section__title">3. 개인정보의 제3자 제공</h2><p>회사는 개인정보를 제3자에게 제공하지 않습니다. 다만 정보주체가 동의하거나 법률에 특별한 규정이 있는 경우는 예외로 합니다.</p></section><section class="lg-section"><h2 class="lg-section__title">4. 처리 위탁과 국외 이전</h2><p>회사는 홈페이지 운영을 위해 아래 업체에 처리를 맡기며, 이 과정에서 개인정보가 국외로 이전됩니다.</p><div class="lg-table-wrap"><table class="lg-table"><thead><tr><th scope="col">수탁자</th><th scope="col">맡기는 업무</th><th scope="col">이전 국가</th><th scope="col">이전 항목</th><th scope="col">보유 기간</th></tr></thead><tbody><tr><td>OpenAI, L.L.C.</td><td>챗봇 답변 생성</td><td>미국</td><td>챗봇 질문 내용</td><td>수탁자 정책에 따름 (최대 30일)</td></tr><tr><td>Railway Corporation</td><td>챗봇 서버 운영</td><td>미국</td><td>챗봇 질문 내용, IP 주소</td><td>처리 즉시 삭제 (IP는 최대 1일)</td></tr><tr><td>Microsoft Corporation</td><td>회사 메일(Microsoft 365)로 문의 전달·보관</td><td>미국 등 Microsoft 데이터센터 소재국</td><td>문의 내용, 이메일, 이름·회사명</td><td>1번 표의 보유 기간</td></tr><tr><td>Google LLC</td><td>방문 통계 (Google Analytics)</td><td>미국</td><td>쿠키, 방문 기록</td><td>14개월</td></tr></tbody></table></div><p>이전 시기와 방법: 홈페이지·챗봇을 이용할 때 네트워크로 전송합니다.</p><p>국외 이전을 원하지 않으면 챗봇 대신 이메일·전화로 문의하시고, 브라우저에서 쿠키를 차단하실 수 있습니다.</p></section><section class="lg-section"><h2 class="lg-section__title">5. 정보주체의 권리와 행사 방법</h2><ul class="lg-list"><li>정보주체는 언제든지 개인정보의 열람, 정정, 삭제, 처리 정지를 요구할 수 있습니다.</li><li>아래 7번의 이메일·전화로 요청하시면 지체 없이 조치합니다. 법정대리인이나 위임받은 사람을 통해서도 요청할 수 있습니다.</li></ul></section><section class="lg-section"><h2 class="lg-section__title">6. 쿠키 등 자동 수집 장치</h2><ul class="lg-list"><li>회사는 방문 통계를 위해 Google Analytics 쿠키(_ga 등)를 사용합니다. 이름·연락처는 담지 않습니다.</li><li>브라우저 설정에서 쿠키를 거부할 수 있습니다. 예: Chrome 설정 &gt; 개인정보 보호 및 보안 &gt; 서드 파티 쿠키.</li><li>쿠키를 거부해도 홈페이지 이용에는 제한이 없습니다.</li></ul></section><section class="lg-section"><h2 class="lg-section__title">7. 개인정보 보호책임자와 문의처</h2><ul class="lg-list"><li>담당: (주)마그론 개인정보 보호 담당</li><li>전화: 031-500-4633</li><li>이메일: magron@magron.co.kr</li></ul></section><section class="lg-section"><h2 class="lg-section__title">8. 안전성 확보 조치</h2><ul class="lg-list"><li>개인정보에 접근하는 담당자를 최소화합니다.</li><li>홈페이지와 챗봇의 모든 통신은 HTTPS로 암호화합니다.</li><li>문의 메일함은 권한을 받은 담당자만 열 수 있습니다.</li></ul></section><section class="lg-section"><h2 class="lg-section__title">9. 권익 침해 구제</h2><p>개인정보 침해에 대한 신고나 상담은 아래 기관에 하실 수 있습니다.</p><ul class="lg-list"><li>개인정보침해신고센터: privacy.kisa.or.kr / 국번 없이 118</li><li>개인정보분쟁조정위원회: www.kopico.go.kr / 1833-6972</li><li>대검찰청: www.spo.go.kr / 국번 없이 1301</li><li>경찰청: ecrm.police.go.kr / 국번 없이 182</li></ul></section><section class="lg-section"><h2 class="lg-section__title">10. 방침의 변경</h2><p>이 방침은 2026년 10월 16일부터 적용합니다. 내용이 바뀌면 시행 7일 전에 이 페이지에 알립니다.</p></section></div></div></article></div><footer class="home-footer"><div class="home-footer__inner"><div class="home-footer__company"><p class="home-footer__company-name">㈜마그론 / MAGRON</p><p class="home-footer__company-detail">(15588) 경기도 안산시 상록구 해안로 705 경기테크노파크 3동 403호<br>대표 최경미 · 사업자등록번호 134-86-16662<br>copyright © 2026 MAGRON<br>All Rights Reserved.</p><nav class="home-footer__links"><a class="home-footer__link home-footer__link--privacy" href="/privacy" data-discover="true">개인정보처리방침</a><a class="home-footer__link" href="/contact" data-discover="true">문의·오시는 길</a></nav></div><div class="home-footer__meta"><div class="home-footer__contact"><svg class="home-footer__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 1.5h2.2l1.1 2.7a1 1 0 0 1-.24 1.02l-1.3 1.3a9.5 9.5 0 0 0 4.42 4.42l1.3-1.3a1 1 0 0 1 1.02-.24l2.7 1.1v2.2a1 1 0 0 1-1 1A12 12 0 0 1 2.5 2.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg><p class="home-footer__contact-text">TEL : (Domestic) 031-500-4633<br><span class="home-footer__contact-indent">(Overseas) +82-31-500-4632</span><br>FAX : 031-500-4631</p></div><div class="home-footer__divider" aria-hidden="true"></div><div class="home-footer__actions"><a class="home-footer__email" href="mailto:magron@magron.co.kr"><svg class="home-footer__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1" stroke="currentColor" stroke-width="1.2"></rect><path d="M2 5.5 8 9.5l6-4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg><span>magron@magron.co.kr</span></a><div class="home-footer__social"><a class="home-footer__social-link" href="#" aria-label="LinkedIn"><img class="home-footer__social-icon" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEoAAABKCAYAAAAc0MJxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUXSURBVHhe7ZpNiBxFFMdXEY1ExYP4AfEDRUQvQVATRfAmwUNOXjzoSQ+iePAjenIOggY3uzNV772q6vnq3cHVWQ9R8WYCCxuNnrLgUS9eAoJiVERUYkbeUgPDm9ntqpk1PczUD/707k7Vv6v/W91TVV0LC4lEaSil7rHWHiOiT40xZxHxC+fcuwDwqCw7txDRMefchZWVlV6r1eo1m83tI//unOsR0YpS6gZZb64AANfpdHpZlvUQcUjGmB5/TkSbzWbzell/LgCA57nXcBgyICkOS2vdkh4zz+Li4n6t9Q+NRmMolFGy1m7LGPOg9JppiOjJ0JD64t4HAO9Ir5lGa/1au90eCmM3+fKfS6+ZBgDeHCcoADgtvWYaAHhpnKAQsSu9ZhoAeMg/nIcC2Un8jELEl6XXTNPr9a4AgM08z4cCGaV6vc7H35RSB6TXzIOIh5xz//gQdhT3PO5NSqkXpcfcoLV+pl6v/8U9S96GRLQ9nfEP8fdl3blDKfWYtfY09xwOhUPjI/c059wWhynrzDU86rbWvgAAbxtjXiGiJyqVytWyXCKRSCQWFjY2Nq6q1+sHeBiDiI+zjDGHjTF3X9aFxGq1el+e50cQsVCNRuOIUuqw9BhEa30wxM85t33sdDr7pUelUrmSP7fWZsaYbxHxj/5QheV//hMRzxtjeLm6Yq09KH32FK11bX19fXusVKS1tTUeS21Jj0EA4JNutztUV4qHHnxUSj0g6h91zn3Dyz88ROFjf5o1KP4br8j2l6uNMReJ6LNqtXpo0G/PQMTjfv5WKL4wAPhKegyitf4oZErUH9gS0f1cr1Kp7DPGOD4HX3y/54SK/fi8WZb9DQCvy3ZNTGxQiPil9BgEAD6MCQoR78zzfB8RneKlZjkziBW/COHr0Vofl22biDKDAoCL1tq7AOADDkmWGVf92QUiPivbNzZlBoWIv2qtM54mxd5qRfKePy8vL98m2zgWZQXl9S8fJ73ddtLq6ureTeRLDmrPe9Kg+FsRAH6sVqs3ynZGU3ZQ/6f4n8DfoIj4tGxnNNMWFF8cP1/4Ydxf7uGL5Qe0LBsirk9EddnOaKYpKB5cckgA8D0inkTEDABaiHgKEX/n4GJvVf/e8pxsZzTTEpTvNVvGmKNLS0vXSl+e23HP4AuPCYvHVQBwARFvlZ5RTENQHJIxZiNkkgsAJ2JesfE3KhFdqtVqD0uvKMoOym8p+qVWq90hvUahlLoGEb8rehkyKN/up6RXFGUHxWW11kvSZzcQ8a2Yc3CP1Vo/J32iKDMoftZYay/F7ujTWj/C9UIHqv4N0qvSJ4oyg+IBodb6PCJeJ312o1ar3QIAP/FtKz1HyQc12YpCmUF5v6+lRxG8sMdDiNDnFAeltX5D+kRRZlB+1HxSeoQAAOdC93b58dd70iOKKQjqY+kRAu+Z8O0plA/qhPSIosygfLlMeoQAAGdigkLERekRRdlBAQBIjxDmLihEROkRQgoqkBRUICmoQFJQgaSgAklBBZKCCiQFFUgKKpAUVCApqEBSUIGkoAJJQQWSggrksgfF+4f6WwKL5E+468sAAOjyviRZd5T8/iUjPUJAxLPcHuk5Sr4jRL07HIIX3fM853drhWo0Gnw8Iz0GQcS1drs9VHeUuBwRjbvCuenbU6hWq8XnmWxDWZZlN7Xb7XuttYXickR0u/QYhDdDxPgZY26WHiFwO2LOw9cpPRKJRCKRSCQSiUQiMdv8B2hI4YEKoAjeAAAAAElFTkSuQmCC"></a><a class="home-footer__social-link home-footer__social-link--instagram" href="https://www.instagram.com/ferrofluidmagron/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><span class="home-footer__social-icon home-footer__social-icon--instagram" style="mask-image: url(&quot;data:image/png;base64,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&quot;);"></span></a><a class="home-footer__social-link home-footer__social-link--youtube" href="https://www.youtube.com/@magronkorea7396" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><span class="home-footer__social-icon home-footer__social-icon--youtube" style="mask-image: url(&quot;data:image/png;base64,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&quot;);"></span></a></div></div></div></div></footer></div></div>
+
+    <!-- Readable fallback for crawlers / AI search bots that do not execute JavaScript.
+         The React app replaces #root above; this content is only shown when JS is off. -->
+    <noscript>
+      <p><strong>개인정보처리방침</strong></p>
+      <p>(주)마그론 홈페이지(magron.kr)가 처리하는 개인정보의 항목·목적·보유 기간, 처리 위탁과 국외 이전, 정보주체의 권리와 문의처를 안내합니다.</p>
+      <h2>연락처</h2>
+      <p>
+        (15588) 경기도 안산시 상록구 해안로 705 경기테크노파크 3동 403호<br />
+        TEL : (Domestic) 031-500-4633 · (Overseas) +82-31-500-4632 · FAX : 031-500-4631<br />
+        E-mail: <a href="mailto:magron@magron.co.kr">magron@magron.co.kr</a>
+      </p>
+      <p><a href="/">MAGRON 홈으로</a></p>
+    </noscript>
+
+
+  
+
+</body></html>
