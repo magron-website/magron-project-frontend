@@ -1,0 +1,204 @@
+@import './font.css';
+
+/* ==========================================================================
+   문의·오시는 길 / 개인정보처리방침 — 글 위주 화면 공용
+   다른 화면(회사소개·기술정보)과 같은 어두운 배경을 쓰되, 긴 글을 읽기 편하게
+   글자 굵기는 보통으로 두고 폭을 좁힌다.
+   ========================================================================== */
+
+.lg-page {
+  width: 100%;
+  font-family: 'IBM Plex Sans KR', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+}
+
+.lg-hero {
+  background:
+    radial-gradient(120% 90% at 15% 10%, #0a1740 0%, #050a1f 45%, #02030a 100%),
+    #02030a;
+  color: #e9efff;
+}
+
+.lg-inner {
+  width: 100%;
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 72px 24px 96px;
+}
+
+.lg-heading {
+  margin-bottom: 40px;
+}
+
+.lg-heading__eyebrow {
+  margin: 0 0 10px;
+  color: #93b0ff;
+  font-size: 13px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+}
+
+.lg-heading__title {
+  margin: 0;
+  color: #cdd9ff;
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.lg-heading__lead {
+  margin: 18px 0 0;
+  color: rgba(233, 239, 255, 0.92);
+  font-size: clamp(15px, 1.5vw, 17px);
+  line-height: 1.75;
+}
+
+.lg-heading__meta {
+  margin: 12px 0 0;
+  color: #93b0ff;
+  font-size: 14px;
+}
+
+.lg-section {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(150, 180, 255, 0.16);
+}
+
+.lg-section__title {
+  margin: 0 0 14px;
+  color: #aec4ff;
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 700;
+}
+
+.lg-section p,
+.lg-list li {
+  color: rgba(233, 239, 255, 0.9);
+  font-size: 15px;
+  line-height: 1.75;
+}
+
+.lg-section p {
+  margin: 0 0 10px;
+}
+
+.lg-section a {
+  color: #9fb8ff;
+  text-underline-offset: 3px;
+}
+
+.lg-section a:hover {
+  color: #fff;
+}
+
+.lg-list {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.lg-list li + li {
+  margin-top: 4px;
+}
+
+/* 연락처 카드 */
+.lg-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 0;
+}
+
+.lg-card {
+  padding: 16px 18px;
+  border: 1px solid rgba(150, 180, 255, 0.16);
+  border-radius: 4px;
+  background: linear-gradient(135deg, rgba(220, 230, 255, 0.1) 0%, rgba(180, 200, 255, 0.04) 100%);
+}
+
+.lg-card__label {
+  margin: 0 0 6px;
+  color: #93b0ff;
+  font-size: 13px;
+}
+
+.lg-card__value {
+  margin: 0;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 700;
+  word-break: break-all;
+}
+
+.lg-card__value a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.lg-note {
+  margin-top: 14px !important;
+  color: rgba(233, 239, 255, 0.75) !important;
+  font-size: 14px !important;
+}
+
+.lg-address {
+  margin: 0 0 14px;
+  color: rgba(233, 239, 255, 0.92);
+  font-size: 15px;
+  font-style: normal;
+  line-height: 1.75;
+}
+
+.lg-maps {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+}
+
+.lg-maps__label {
+  color: #93b0ff;
+  font-size: 14px;
+}
+
+.lg-maps a {
+  padding: 6px 12px;
+  border: 1px solid rgba(150, 180, 255, 0.35);
+  border-radius: 4px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+/* 개인정보처리방침 표 — 좁은 화면에서는 표만 가로로 밀린다 */
+.lg-table-wrap {
+  overflow-x: auto;
+  margin: 4px 0 14px;
+}
+
+.lg-table {
+  width: 100%;
+  min-width: 560px;
+  border-collapse: collapse;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.lg-table th,
+.lg-table td {
+  padding: 10px 12px;
+  border: 1px solid rgba(150, 180, 255, 0.2);
+  color: rgba(233, 239, 255, 0.9);
+  text-align: left;
+  vertical-align: top;
+}
+
+.lg-table th {
+  background: rgba(150, 180, 255, 0.1);
+  color: #cdd9ff;
+  font-weight: 700;
+}
+
+@media (max-width: 640px) {
+  .lg-inner {
+    padding: 48px 16px 64px;
+  }
+}

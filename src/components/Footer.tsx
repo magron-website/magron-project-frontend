@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import '@/assets/design/footer.css'
 import { homeImages } from '@/assets/images/homeImages'
+import { useLangPath } from '@/i18n/routing'
 
 function PhoneIcon() {
   return (
@@ -79,6 +81,7 @@ const SOCIAL_LINKS: SocialLink[] = [
 
 export default function Footer() {
   const { t } = useTranslation('footer')
+  const lp = useLangPath()
 
   return (
     <footer className="home-footer">
@@ -88,10 +91,21 @@ export default function Footer() {
           <p className="home-footer__company-detail">
             {t('address')}
             <br />
+            {t('bizInfo')}
+            <br />
             copyright © 2026 MAGRON
             <br />
             All Rights Reserved.
           </p>
+          <nav className="home-footer__links">
+            {/* 개인정보처리방침은 법상 다른 링크보다 눈에 잘 띄게 둔다(굵게) */}
+            <Link className="home-footer__link home-footer__link--privacy" to={lp('/privacy')}>
+              {t('privacyLink')}
+            </Link>
+            <Link className="home-footer__link" to={lp('/contact')}>
+              {t('contactLink')}
+            </Link>
+          </nav>
         </div>
 
         <div className="home-footer__meta">

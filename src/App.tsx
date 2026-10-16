@@ -3,6 +3,8 @@ import Layout from '@/components/Layout'
 import Home from '@/pages/Home'
 import Company from '@/pages/Company'
 import Tech from '@/pages/Tech'
+import Contact from '@/pages/Contact'
+import Privacy from '@/pages/Privacy'
 import { LANG_PREFIX } from '@/i18n/routing'
 import {
   Display,
@@ -35,6 +37,8 @@ function pageRoutes() {
       <Route path="education" element={<Education />} />
       <Route path="piezo-ink" element={<PiezoInk />} />
       <Route path="display" element={<Display />} />
+      <Route path="contact" element={<Contact />} />
+      <Route path="privacy" element={<Privacy />} />
     </>
   )
 }

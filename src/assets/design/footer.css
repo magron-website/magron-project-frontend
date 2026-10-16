@@ -46,6 +46,29 @@
   font-weight: 400;
 }
 
+.home-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  margin-top: 8px;
+}
+
+.home-footer__link {
+  color: #d4d4d8;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.home-footer__link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.home-footer__link--privacy {
+  color: #fff;
+  font-weight: 700;
+}
+
 .home-footer__meta {
   display: flex;
   align-items: center;

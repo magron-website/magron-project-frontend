@@ -138,4 +138,28 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       zh: '利用磁流体动态运动的大型磁流体展示装置，随磁场变化呈现独特造型，适用于展览、企业宣传及艺术装置等场景。',
     },
   },
+  '/contact': {
+    title: {
+      ko: `문의·오시는 길 | ${BRAND.ko}`,
+      en: `Contact & Location | ${BRAND.en}`,
+      zh: `联系我们·交通指南 | ${BRAND.zh}`,
+    },
+    description: {
+      ko: '(주)마그론 견적·기술 문의는 이메일 magron@magron.co.kr, 전화 031-500-4633(해외 +82-31-500-4632)으로 받습니다. 경기도 안산시 경기테크노파크 3동 403호에 있습니다.',
+      en: 'Contact MAGRON for ferrofluid quotes and technical questions: magron@magron.co.kr, +82-31-500-4632. Gyeonggi Technopark, Ansan, Korea.',
+      zh: '磁流体报价及技术咨询请联系 MAGRON 玛格龙：magron@magron.co.kr，电话 +82-31-500-4632。公司位于韩国京畿道安山市京畿科技园3栋403号。',
+    },
+  },
+  '/privacy': {
+    title: {
+      ko: `개인정보처리방침 | ${BRAND.ko}`,
+      en: `Privacy Policy | ${BRAND.en}`,
+      zh: `个人信息处理方针 | ${BRAND.zh}`,
+    },
+    description: {
+      ko: '(주)마그론 홈페이지(magron.kr)가 처리하는 개인정보의 항목·목적·보유 기간, 처리 위탁과 국외 이전, 정보주체의 권리와 문의처를 안내합니다.',
+      en: 'How magron.kr handles personal information: what we collect, why, how long we keep it, processors and international transfers, and your rights.',
+      zh: 'magron.kr 处理个人信息的项目、目的、保存期限、委托处理及境外转移，以及您的权利与联系方式。',
+    },
+  },
 }
