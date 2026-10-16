@@ -2,11 +2,11 @@ const magoil = {
   ko: {
     hero: {
       label: 'Products',
-      title: 'DAWA MAGSEALED',
+      title: 'DAIWA MAGSEALED',
       subtitle: '릴 수리용 자성유체',
       titleEn: 'Ferrofluid for Fishing Reel Maintenance',
       lead: 'MAGSEALED 구조가 적용된 릴의 방수·방진 성능을 유지하기 위한 릴 수리용 자성유체입니다. 자성유체는 릴 내부의 Magnet 주변에 안정적으로 머물면서 물, 염분, 먼지, 이물질이 내부로 유입되는 것을 줄이고 릴의 회전 성능과 내구성을 유지하는 데 도움을 줍니다.',
-      heroAlt: 'DAWA MAGSEALED 릴과 자성유체',
+      heroAlt: 'DAIWA MAGSEALED 릴과 자성유체',
     },
     heroPoints: [
       { title: '방수 성능 유지', description: '물과 염분이 릴 내부로 침투하는 것을 줄여줍니다.' },
@@ -68,11 +68,11 @@ const magoil = {
   en: {
     hero: {
       label: 'Products',
-      title: 'DAWA MAGSEALED',
+      title: 'DAIWA MAGSEALED',
       subtitle: 'Ferrofluid for Reel Maintenance',
       titleEn: '',
       lead: "A reel-maintenance ferrofluid that preserves the waterproof/dustproof performance of MAGSEALED reels. The ferrofluid stays stably around the magnet inside the reel, reducing the ingress of water, salt, dust, and debris and helping maintain the reel's rotation performance and durability.",
-      heroAlt: 'DAWA MAGSEALED reel and ferrofluid',
+      heroAlt: 'DAIWA MAGSEALED reel and ferrofluid',
     },
     heroPoints: [
       { title: 'Maintains waterproofing', description: 'Reduces the penetration of water and salt into the reel.' },
@@ -134,11 +134,11 @@ const magoil = {
   zh: {
     hero: {
       label: '产品',
-      title: 'DAWA MAGSEALED',
+      title: 'DAIWA MAGSEALED',
       subtitle: '渔轮维修用磁流体',
       titleEn: 'Ferrofluid for Fishing Reel Maintenance',
       lead: '用于维持采用 MAGSEALED 结构渔轮的防水·防尘性能的渔轮维修用磁流体。磁流体稳定地保持在渔轮内部 Magnet 周围，减少水、盐分、灰尘及异物侵入内部，有助于保持渔轮的旋转性能与耐久性。',
-      heroAlt: 'DAWA MAGSEALED 渔轮与磁流体',
+      heroAlt: 'DAIWA MAGSEALED 渔轮与磁流体',
     },
     heroPoints: [
       { title: '保持防水性能', description: '减少水与盐分侵入渔轮内部。' },

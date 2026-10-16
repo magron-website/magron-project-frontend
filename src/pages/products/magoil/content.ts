@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DAWA MAGSEALED — 릴 수리용 자성유체 (MAG OIL)
+   DAIWA MAGSEALED — 릴 수리용 자성유체 (MAG OIL)
    Images cropped from the original catalogue (magoil_1 ~ magoil_4);
    descriptions are written separately from the images.
    ========================================================================== */

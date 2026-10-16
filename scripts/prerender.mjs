@@ -59,7 +59,8 @@ function buildNoscript(lang, snapshot) {
 
   return [
     '<noscript>',
-    `      <h1>${escHtml(snapshot.h1 || 'MAGRON')}</h1>`,
+    // 제목은 <h1>이 아닌 <p>로 — 크롤러가 #root의 본문 H1과 함께 읽어 H1이 2개로 잡힌다.
+    `      <p><strong>${escHtml(snapshot.h1 || 'MAGRON')}</strong></p>`,
     `      <p>${escHtml(snapshot.description)}</p>`,
     products ? `      <h2>${L.products}</h2>` : '',
     products ? '      <ul>' : '',
@@ -218,7 +219,7 @@ function applyRouteMeta(shell, route) {
   })}</script>`
   html = html.replace('</head>', `    ${jsonLd}\n  </head>`)
 
-  const noscript = `<noscript>\n      <h1>${escHtml(route.heading)}</h1>\n      <p>${escHtml(
+  const noscript = `<noscript>\n      <p><strong>${escHtml(route.heading)}</strong></p>\n      <p>${escHtml(
     route.body,
   )}</p>\n      <p><a href="${withBase('/')}">MAGRON 홈으로</a> · <a href="mailto:magron@magron.co.kr">magron@magron.co.kr</a></p>\n    </noscript>`
   html = html.replace(/<noscript>[\s\S]*?<\/noscript>/, noscript)
