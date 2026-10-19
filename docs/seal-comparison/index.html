@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/icons/favicon-32.png" type="image/png">
+
+    <!-- PWA: installable to a phone or desktop home screen ("홈 화면에 추가").
+         / is Vite's deploy base, so these keep resolving if the site
+         ever moves back under a GitHub Pages project path. -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#f4f4f5">
+    <meta name="application-name" content="마그론">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <!-- iOS has no manifest support: these are what make a home-screen launch
+         open full screen with the right name instead of inside Safari. -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="마그론">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- 본문 폰트 IBM Plex Sans KR (2026-08-24 조선일보명조에서 교체).
+         CSS의 @import보다 여기서 link로 먼저 잡아야 첫 화면 글자 깜빡임이 줄어든다. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=IBM+Plex+Sans+KR:wght@400;500;700&amp;display=swap">
+
+    <title>자성유체 씰 vs 오일씰 vs 기계식 씰 비교 | MAGRON (주)마그론</title>
+    <meta name="description" content="진공 회전축용 자성유체 씰을 오일씰(립씰)·기계식 씰과 비교합니다. 밀봉 원리, 진공 기밀(헬륨 누설 10⁻¹² Pa·m³/s 미만), 마찰, 수명, 맞지 않는 경우까지 한 표로 정리했습니다.">
+    <meta name="keywords" content="자성유체, ferrofluid, magnetic fluid, 마그론, MAGRON, 자성유체 씰, ferrofluidic seal, ferro seal, magnetic fluid seal, 진공 피드스루, vacuum feedthrough, 맥오일, Mag oil, Daiwa reel, 자석, magnet, 자성소재">
+    <meta name="author" content="MAGRON Co., Ltd. (주)마그론">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <!-- 네이버 서치어드바이저 소유확인. 지우면 사이트 소유권이 풀린다. -->
+    <meta name="naver-site-verification" content="c4a49a09a4bb91dfd7067aa8c067447490e748e6">
+    <link rel="canonical" href="https://magron.kr/seal-comparison/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MAGRON (주)마그론">
+    <meta property="og:title" content="자성유체 씰 vs 오일씰 vs 기계식 씰 비교 | MAGRON (주)마그론">
+    <meta property="og:description" content="진공 회전축용 자성유체 씰을 오일씰(립씰)·기계식 씰과 비교합니다. 밀봉 원리, 진공 기밀(헬륨 누설 10⁻¹² Pa·m³/s 미만), 마찰, 수명, 맞지 않는 경우까지 한 표로 정리했습니다.">
+    <meta property="og:url" content="https://magron.kr/seal-comparison/">
+    <meta property="og:image" content="https://magron.kr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MAGRON — 자성유체 · 진공 피드스루 · 자성소재">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="zh_CN">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="자성유체 | 자성소재 전문회사 (주)마그론">
+    <meta name="twitter:description" content="2004년 설립된 자성유체(Ferrofluid)·자성소재 전문 기업 (주)마그론.">
+    <meta name="twitter:image" content="https://magron.kr/og-image.png">
+
+    <!-- Structured data: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MAGRON Co., Ltd.",
+        "alternateName": ["(주)마그론", "마그론", "MAGRON"],
+        "url": "https://magron.kr/",
+        "logo": "https://magron.kr/icons/icon-512.png",
+        "foundingDate": "2004",
+        "description": "(주)마그론(MAGRON)은 2004년 설립된 자성유체(Ferrofluid) 및 자성소재 전문 제조기업으로, 유해가스·분진 차단용 자성유체 씰, 진공 피드스루(Feedthrough), 릴 수리용 맥오일, 자석, 자성유체 키트, 대형 자성유체 디스플레이를 반도체·디스플레이·태양전지·전자·자동차 산업에 공급합니다.",
+        "email": "magron@magron.co.kr",
+        "telephone": "+82-31-500-4633",
+        "faxNumber": "031-500-4631",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "해안로 705 경기테크노파크 3동 403호, 상록구",
+          "addressLocality": "안산시",
+          "addressRegion": "경기도",
+          "postalCode": "15588",
+          "addressCountry": "KR"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+82-31-500-4633",
+            "contactType": "sales",
+            "areaServed": "KR",
+            "availableLanguage": ["Korean", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+82-31-500-4632",
+            "contactType": "sales",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["English", "Korean", "Chinese"]
+          }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/company/ferrofluid",
+          "https://www.instagram.com/ferrofluidmagron/",
+          "https://www.youtube.com/@magronkorea7396",
+          "https://www.ferrofluidshop.com/"
+        ],
+        "knowsAbout": [
+          "Ferrofluid",
+          "Magnetic fluid seal",
+          "Vacuum feedthrough",
+          "Ferrofluid sealing",
+          "Semiconductor equipment",
+          "OLED deposition"
+        ]
+      }
+    </script>
+
+    <!-- Structured data: WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MAGRON (주)마그론",
+        "url": "https://magron.kr/",
+        "inLanguage": ["ko", "en", "zh"]
+      }
+    </script>
+
+    <!-- Structured data: Product catalogue -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "MAGRON 제품",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://magron.kr/ferrofluid/",
+            "name": "유해가스 및 분진 차단용 자성유체 (Ferrofluid for Corrosive Gas & Dust Blocking)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://magron.kr/feedthrough/",
+            "name": "Ferrofluid 진공 피드스루 (Feedthrough)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://magron.kr/magoil/",
+            "name": "릴 수리용 맥오일 (Reel Mag oil)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://magron.kr/magnet/",
+            "name": "자석 (Magnet)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://magron.kr/piezo-ink/",
+            "name": "PIEZO Ink · 압전/전도성 잉크"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://magron.kr/display/",
+            "name": "대형 자성유체 디스플레이 (Large Ferrofluid Display)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://magron.kr/education/",
+            "name": "자성유체 교육 키트 (Education kit)"
+          }
+        ]
+      }
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-BjR1uSJa.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-BFxxBkYz.css">
+  <style></style><script id="magron-route-jsonld" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://magron.kr/"},{"@type":"ListItem","position":2,"name":"자성유체 씰 vs 오일씰 vs 기계식 씰 비교","item":"https://magron.kr/seal-comparison/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"진공 회전축에는 자성유체 씰, 오일씰, 기계식 씰 중 무엇이 맞나요?","acceptedAnswer":{"@type":"Answer","text":"진공·청정 공정에는 자성유체 씰이 맞습니다. 오일씰과 기계식 씰은 고체가 축이나 마주 보는 면에 닿아 마모되고 파티클이 생기며, 주로 액체를 막는 용도로 설계됐습니다. 자성유체 씰은 자기장으로 붙잡힌 액체 링이라 닿는 부분이 없고, 당사 피드스루 기준 헬륨 누설율 10⁻¹² Pa·m³/s 미만입니다. 반대로 액체를 막거나 큰 압력차를 한 단으로 견뎌야 하면 기계식 씰이 맞습니다."}},{"@type":"Question","name":"진공용 회전 씰로서 자성유체 씰은 기계식 씰과 어떻게 다른가요?","acceptedAnswer":{"@type":"Answer","text":"기계식 씰은 두 면이 맞닿아 미끄러지며 윤활막으로 밀봉하므로 마모와 파티클이 생기고, 주로 액체용으로 설계됩니다. 자성유체 씰은 닿는 면이 없는 액체 링이라 파티클이 거의 없고 수명이 길며, 당사 피드스루는 헬륨 누설율 10⁻¹² Pa·m³/s 미만, 도달 진공도 10⁻⁶ Pa입니다."}},{"@type":"Question","name":"비접촉 회전 밀봉에서 자성유체 말고 다른 방법은 무엇이 있나요?","acceptedAnswer":{"@type":"Answer","text":"대표적으로 자기 커플링(밀폐 벽 너머로 회전을 전달하지만 토크와 강성이 제한됨), 벨로즈 밀봉형 피드스루(전 금속 밀봉이지만 속도·토크가 낮음), 차동 배기를 더한 립씰·O-ring(구조는 단순하지만 접촉식)이 있습니다. 자성유체 씰은 모터 토크를 그대로 전달하며 연속 회전과 진공 수준의 기밀을 함께 얻을 수 있습니다."}},{"@type":"Question","name":"자성유체 씰이 맞지 않는 경우는 언제인가요?","acceptedAnswer":{"@type":"Answer","text":"씰 면이 물이나 용제 같은 액체에 직접 잠기는 경우, 한 단으로 큰 압력차를 견뎌야 하는 경우에는 맞지 않습니다. 자성유체 씰은 여러 단을 겹쳐 압력을 나눠 받는 구조라 단수에 따라 견디는 압력이 정해집니다. 사용 온도도 유체 종류에 따라 정해지며, 당사 피드스루 기준 0~150℃입니다."}}]},{"@type":"WebPage","url":"https://magron.kr/seal-comparison/","name":"자성유체 씰 vs 오일씰 vs 기계식 씰 비교","dateModified":"2026-10-19"}]}</script><style></style><link rel="alternate" hreflang="ko" href="https://magron.kr/seal-comparison/"><link rel="alternate" hreflang="en" href="https://magron.kr/en/seal-comparison/"><link rel="alternate" hreflang="zh" href="https://magron.kr/zh/seal-comparison/"><link rel="alternate" hreflang="x-default" href="https://magron.kr/seal-comparison/"></head>
+  <body>
+    <div id="root"><div class="home home--page"><header class="home-header"><div class="home-header__border"></div><div class="home-header__bg"></div><div class="home-header__inner"><a class="home-header__left" aria-label="홈으로 이동" href="/" data-discover="true"><img class="home-header__logo-img" alt="MAGRON" src="/assets/logo-vdm95Mft.png"><div class="home-header__brand"><span class="home-header__brand-name">MAGRON</span><span class="home-header__brand-tagline">Ferrofluid</span></div></a><nav class="home-header__nav" aria-label="제품정보"><button type="button" class="home-header__nav-item home-header__nav-item--link">Home</button><div class="home-header__nav-dropdown"><button type="button" class="home-header__nav-item home-header__nav-item--trigger" aria-expanded="false" aria-haspopup="true">회사소개</button></div><div class="home-header__nav-dropdown"><button type="button" class="home-header__nav-item home-header__nav-item--trigger" aria-expanded="false" aria-haspopup="true">제품정보</button></div><button type="button" class="home-header__nav-item home-header__nav-item--link">카탈로그</button><a class="home-header__nav-item home-header__nav-item--link" href="/tech" data-discover="true">기술정보</a></nav><div class="home-header__right"><div class="home-header__lang"><button type="button" class="home-header__lang-group home-header__lang-group--active" aria-pressed="true"><span class="home-header__lang-label" lang="ko">한국어</span></button><button type="button" class="home-header__lang-group" aria-pressed="false"><span class="home-header__lang-label" lang="en">English</span></button><button type="button" class="home-header__lang-group" aria-pressed="false"><span class="home-header__lang-label" lang="zh">中文</span></button></div><div class="home-header__lang-mobile"><button type="button" class="home-header__lang-toggle" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"></circle><path d="M1.5 8h13M8 1.5c1.8 2 2.6 4.1 2.6 6.5S9.8 12.5 8 14.5M8 1.5C6.2 3.5 5.4 5.6 5.4 8s.8 4.5 2.6 6.5" stroke="currentColor" stroke-width="1.3"></path></svg><span lang="ko">한국어</span><svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"></path></svg></button></div><a class="home-header__shop" href="https://www.ferrofluidshop.com/" target="_blank" rel="noopener noreferrer"><span class="home-header__shop-text">쇼핑몰</span></a></div><button type="button" class="home-header__burger" aria-label="제품정보" aria-expanded="false"><span></span><span></span><span></span></button></div></header><div class="home__content"><article class="lg-page"><div class="lg-hero"><div class="lg-inner"><header class="lg-heading"><p class="lg-heading__eyebrow">Seal comparison</p><h1 class="lg-heading__title">자성유체 씰 vs 오일씰 vs 기계식 씰</h1><p class="lg-heading__lead">진공·청정 장비의 회전축에 어떤 씰이 맞는지, 밀봉 원리부터 진공 기밀·마찰·수명·한계까지 한 표로 비교했습니다.</p></header></div></div><section class="answer-block" aria-labelledby="answer-block__heading"><div class="answer-block__inner"><h2 class="answer-block__question" id="answer-block__heading">진공 회전축에는 자성유체 씰, 오일씰, 기계식 씰 중 무엇이 맞나요?</h2><p class="answer-block__answer">진공·청정 공정에는 자성유체 씰이 맞습니다. 오일씰과 기계식 씰은 고체가 축이나 마주 보는 면에 닿아 마모되고 파티클이 생기며, 주로 액체를 막는 용도로 설계됐습니다. 자성유체 씰은 자기장으로 붙잡힌 액체 링이라 닿는 부분이 없고, 당사 피드스루 기준 헬륨 누설율 10⁻¹² Pa·m³/s 미만입니다. 반대로 액체를 막거나 큰 압력차를 한 단으로 견뎌야 하면 기계식 씰이 맞습니다.</p><dl class="answer-block__faq"><div class="answer-block__faq-item"><dt>진공용 회전 씰로서 자성유체 씰은 기계식 씰과 어떻게 다른가요?</dt><dd>기계식 씰은 두 면이 맞닿아 미끄러지며 윤활막으로 밀봉하므로 마모와 파티클이 생기고, 주로 액체용으로 설계됩니다. 자성유체 씰은 닿는 면이 없는 액체 링이라 파티클이 거의 없고 수명이 길며, 당사 피드스루는 헬륨 누설율 10⁻¹² Pa·m³/s 미만, 도달 진공도 10⁻⁶ Pa입니다.</dd></div><div class="answer-block__faq-item"><dt>비접촉 회전 밀봉에서 자성유체 말고 다른 방법은 무엇이 있나요?</dt><dd>대표적으로 자기 커플링(밀폐 벽 너머로 회전을 전달하지만 토크와 강성이 제한됨), 벨로즈 밀봉형 피드스루(전 금속 밀봉이지만 속도·토크가 낮음), 차동 배기를 더한 립씰·O-ring(구조는 단순하지만 접촉식)이 있습니다. 자성유체 씰은 모터 토크를 그대로 전달하며 연속 회전과 진공 수준의 기밀을 함께 얻을 수 있습니다.</dd></div><div class="answer-block__faq-item"><dt>자성유체 씰이 맞지 않는 경우는 언제인가요?</dt><dd>씰 면이 물이나 용제 같은 액체에 직접 잠기는 경우, 한 단으로 큰 압력차를 견뎌야 하는 경우에는 맞지 않습니다. 자성유체 씰은 여러 단을 겹쳐 압력을 나눠 받는 구조라 단수에 따라 견디는 압력이 정해집니다. 사용 온도도 유체 종류에 따라 정해지며, 당사 피드스루 기준 0~150℃입니다.</dd></div></dl></div></section><section class="key-figures" aria-labelledby="seal-comparison__table"><div class="key-figures__inner"><h2 class="key-figures__heading" id="seal-comparison__table">회전축 씰 방식 비교</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">항목</th><th scope="col">자성유체 씰</th><th scope="col">오일씰(립씰)</th><th scope="col">기계식 씰</th></tr></thead><tbody><tr><th scope="row">밀봉 원리</th><td class="key-figures__strong">자석이 축 둘레 틈새에 자성유체 액체 링을 붙잡아 둠</td><td>고무 립이 스프링 힘으로 축 표면을 누름</td><td>회전면과 고정면 두 면이 맞닿아 미끄러짐, 윤활막으로 밀봉</td></tr><tr><th scope="row">축과의 고체 접촉</th><td class="key-figures__strong">없음</td><td>있음</td><td>있음(밀봉 면끼리)</td></tr><tr><th scope="row">마모 파티클</th><td class="key-figures__strong">거의 없음</td><td>립 마모로 발생</td><td>밀봉 면 마모로 발생</td></tr><tr><th scope="row">진공 기밀</th><td class="key-figures__strong">헬륨 누설율 10⁻¹² Pa·m³/s 미만, 도달 진공도 10⁻⁶ Pa (당사 피드스루)</td><td>고진공용으로 설계되지 않음</td><td>주로 액체용, 진공에는 별도 설계 필요</td></tr><tr><th scope="row">마찰 토크</th><td class="key-figures__strong">낮음(유체의 점성 저항만)</td><td>중간, 마모·조임에 따라 변함</td><td>중간~높음</td></tr><tr><th scope="row">수명·정비</th><td class="key-figures__strong">밀봉부에 마모 부품이 없어 수명이 김</td><td>립 주기 교체</td><td>밀봉 면 주기 교체</td></tr><tr><th scope="row">액체 밀봉</th><td class="key-figures__strong">맞지 않음(씰 면이 액체에 잠기면 안 됨)</td><td>적합(오일·그리스)</td><td>적합(주 용도)</td></tr><tr><th scope="row">압력차</th><td class="key-figures__strong">여러 단을 겹쳐 나눠 받음, 단수로 내압이 정해짐</td><td>낮음</td><td>높음</td></tr><tr><th scope="row">사용 온도</th><td class="key-figures__strong">0~150℃ (당사 피드스루), 유체 종류에 따라 다름</td><td>고무 재질에 따라 다름</td><td>면 재질·윤활에 따라 다름</td></tr><tr><th scope="row">대표 용도</th><td class="key-figures__strong">반도체·디스플레이 진공 장비, 증착·스퍼터링, 진공 이송 로봇</td><td>기어박스·모터의 오일 밀봉</td><td>펌프·교반기의 액체 밀봉</td></tr></tbody></table></div><p class="key-figures__lead">자성유체 씰의 수치는 (주)마그론 자성유체 진공 피드스루의 카탈로그 사양입니다. 다른 방식은 제품마다 사양이 달라 일반적인 구조 특성만 적었습니다.</p><h2 class="key-figures__subheading">시험법·시험기관</h2><ul class="key-figures__links"><li><a href="https://doi.org/10.1787/9789264069565-en" target="_blank" rel="noopener noreferrer">OECD 시험지침 104: 증기압 (Test No. 104: Vapour Pressure)</a></li><li><a href="https://www.koptri.re.kr/" target="_blank" rel="noopener noreferrer">한국고분자시험연구원 (KOPTRI) — 증기압 시험</a></li><li><a href="https://www.kitech.re.kr/" target="_blank" rel="noopener noreferrer">한국생산기술연구원 (KITECH) — TGA 내열성 시험</a></li></ul><h2 class="key-figures__subheading">관련 제품</h2><ul class="key-figures__links"><li><a href="/ferrofluid" data-discover="true">자성유체 (MFF·MFF-M·MFS·MFH)</a></li><li><a href="/feedthrough" data-discover="true">자성유체 진공 피드스루</a></li></ul></div></section></article><p class="page-updated">최종 수정 <time datetime="2026-10-19">2026-10-19</time></p></div><footer class="home-footer"><div class="home-footer__inner"><div class="home-footer__company"><p class="home-footer__company-name">㈜마그론 / MAGRON</p><p class="home-footer__company-detail">(15588) 경기도 안산시 상록구 해안로 705 경기테크노파크 3동 403호<br>대표 최경미 · 사업자등록번호 134-86-16662<br>copyright © 2026 MAGRON<br>All Rights Reserved.</p><nav class="home-footer__links"><a class="home-footer__link home-footer__link--privacy" href="/privacy" data-discover="true">개인정보처리방침</a><a class="home-footer__link" href="/contact" data-discover="true">문의·오시는 길</a></nav></div><div class="home-footer__meta"><div class="home-footer__contact"><svg class="home-footer__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 1.5h2.2l1.1 2.7a1 1 0 0 1-.24 1.02l-1.3 1.3a9.5 9.5 0 0 0 4.42 4.42l1.3-1.3a1 1 0 0 1 1.02-.24l2.7 1.1v2.2a1 1 0 0 1-1 1A12 12 0 0 1 2.5 2.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg><p class="home-footer__contact-text">TEL : (Domestic) 031-500-4633<br><span class="home-footer__contact-indent">(Overseas) +82-31-500-4632</span><br>FAX : 031-500-4631</p></div><div class="home-footer__divider" aria-hidden="true"></div><div class="home-footer__actions"><a class="home-footer__email" href="mailto:magron@magron.co.kr"><svg class="home-footer__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1" stroke="currentColor" stroke-width="1.2"></rect><path d="M2 5.5 8 9.5l6-4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg><span>magron@magron.co.kr</span></a><div class="home-footer__social"><a class="home-footer__social-link" href="#" aria-label="LinkedIn"><img class="home-footer__social-icon" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEoAAABKCAYAAAAc0MJxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUXSURBVHhe7ZpNiBxFFMdXEY1ExYP4AfEDRUQvQVATRfAmwUNOXjzoSQ+iePAjenIOggY3uzNV772q6vnq3cHVWQ9R8WYCCxuNnrLgUS9eAoJiVERUYkbeUgPDm9ntqpk1PczUD/707k7Vv6v/W91TVV0LC4lEaSil7rHWHiOiT40xZxHxC+fcuwDwqCw7txDRMefchZWVlV6r1eo1m83tI//unOsR0YpS6gZZb64AANfpdHpZlvUQcUjGmB5/TkSbzWbzell/LgCA57nXcBgyICkOS2vdkh4zz+Li4n6t9Q+NRmMolFGy1m7LGPOg9JppiOjJ0JD64t4HAO9Ir5lGa/1au90eCmM3+fKfS6+ZBgDeHCcoADgtvWYaAHhpnKAQsSu9ZhoAeMg/nIcC2Un8jELEl6XXTNPr9a4AgM08z4cCGaV6vc7H35RSB6TXzIOIh5xz//gQdhT3PO5NSqkXpcfcoLV+pl6v/8U9S96GRLQ9nfEP8fdl3blDKfWYtfY09xwOhUPjI/c059wWhynrzDU86rbWvgAAbxtjXiGiJyqVytWyXCKRSCQWFjY2Nq6q1+sHeBiDiI+zjDGHjTF3X9aFxGq1el+e50cQsVCNRuOIUuqw9BhEa30wxM85t33sdDr7pUelUrmSP7fWZsaYbxHxj/5QheV//hMRzxtjeLm6Yq09KH32FK11bX19fXusVKS1tTUeS21Jj0EA4JNutztUV4qHHnxUSj0g6h91zn3Dyz88ROFjf5o1KP4br8j2l6uNMReJ6LNqtXpo0G/PQMTjfv5WKL4wAPhKegyitf4oZErUH9gS0f1cr1Kp7DPGOD4HX3y/54SK/fi8WZb9DQCvy3ZNTGxQiPil9BgEAD6MCQoR78zzfB8RneKlZjkziBW/COHr0Vofl22biDKDAoCL1tq7AOADDkmWGVf92QUiPivbNzZlBoWIv2qtM54mxd5qRfKePy8vL98m2zgWZQXl9S8fJ73ddtLq6ureTeRLDmrPe9Kg+FsRAH6sVqs3ynZGU3ZQ/6f4n8DfoIj4tGxnNNMWFF8cP1/4Ydxf7uGL5Qe0LBsirk9EddnOaKYpKB5cckgA8D0inkTEDABaiHgKEX/n4GJvVf/e8pxsZzTTEpTvNVvGmKNLS0vXSl+e23HP4AuPCYvHVQBwARFvlZ5RTENQHJIxZiNkkgsAJ2JesfE3KhFdqtVqD0uvKMoOym8p+qVWq90hvUahlLoGEb8rehkyKN/up6RXFGUHxWW11kvSZzcQ8a2Yc3CP1Vo/J32iKDMoftZYay/F7ujTWj/C9UIHqv4N0qvSJ4oyg+IBodb6PCJeJ312o1ar3QIAP/FtKz1HyQc12YpCmUF5v6+lRxG8sMdDiNDnFAeltX5D+kRRZlB+1HxSeoQAAOdC93b58dd70iOKKQjqY+kRAu+Z8O0plA/qhPSIosygfLlMeoQAAGdigkLERekRRdlBAQBIjxDmLihEROkRQgoqkBRUICmoQFJQgaSgAklBBZKCCiQFFUgKKpAUVCApqEBSUIGkoAJJQQWSggrksgfF+4f6WwKL5E+468sAAOjyviRZd5T8/iUjPUJAxLPcHuk5Sr4jRL07HIIX3fM853drhWo0Gnw8Iz0GQcS1drs9VHeUuBwRjbvCuenbU6hWq8XnmWxDWZZlN7Xb7XuttYXickR0u/QYhDdDxPgZY26WHiFwO2LOw9cpPRKJRCKRSCQSiUQiMdv8B2hI4YEKoAjeAAAAAElFTkSuQmCC"></a><a class="home-footer__social-link home-footer__social-link--instagram" href="https://www.instagram.com/ferrofluidmagron/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><span class="home-footer__social-icon home-footer__social-icon--instagram" style="mask-image: url(&quot;data:image/png;base64,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&quot;);"></span></a><a class="home-footer__social-link home-footer__social-link--youtube" href="https://www.youtube.com/@magronkorea7396" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><span class="home-footer__social-icon home-footer__social-icon--youtube" style="mask-image: url(&quot;data:image/png;base64,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&quot;);"></span></a></div></div></div></div></footer></div></div>
+
+    <!-- Readable fallback for crawlers / AI search bots that do not execute JavaScript.
+         The React app replaces #root above; this content is only shown when JS is off. -->
+    <noscript>
+      <p><strong>자성유체 씰 vs 오일씰 vs 기계식 씰</strong></p>
+      <p>진공 회전축용 자성유체 씰을 오일씰(립씰)·기계식 씰과 비교합니다. 밀봉 원리, 진공 기밀(헬륨 누설 10⁻¹² Pa·m³/s 미만), 마찰, 수명, 맞지 않는 경우까지 한 표로 정리했습니다.</p>
+      <h2>연락처</h2>
+      <p>
+        (15588) 경기도 안산시 상록구 해안로 705 경기테크노파크 3동 403호<br />
+        TEL : (Domestic) 031-500-4633 · (Overseas) +82-31-500-4632 · FAX : 031-500-4631<br />
+        E-mail: <a href="mailto:magron@magron.co.kr">magron@magron.co.kr</a>
+      </p>
+      <p><a href="/">MAGRON 홈으로</a></p>
+    </noscript>
+
+
+  
+
+</body></html>

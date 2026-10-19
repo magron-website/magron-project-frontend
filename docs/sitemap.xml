@@ -52,7 +52,6 @@
   </url>
   <url>
     <loc>https://magron.kr/magoil/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/magoil/" />
@@ -62,7 +61,6 @@
   </url>
   <url>
     <loc>https://magron.kr/magnet/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/magnet/" />
@@ -72,7 +70,6 @@
   </url>
   <url>
     <loc>https://magron.kr/education/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/education/" />
@@ -92,7 +89,6 @@
   </url>
   <url>
     <loc>https://magron.kr/display/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/display/" />
@@ -102,7 +98,7 @@
   </url>
   <url>
     <loc>https://magron.kr/contact/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/contact/" />
@@ -112,13 +108,23 @@
   </url>
   <url>
     <loc>https://magron.kr/privacy/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://magron.kr/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://magron.kr/zh/privacy/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magron.kr/privacy/" />
+  </url>
+  <url>
+    <loc>https://magron.kr/seal-comparison/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://magron.kr/en/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://magron.kr/zh/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magron.kr/seal-comparison/" />
   </url>
   <url>
     <loc>https://magron.kr/en/</loc>
@@ -172,7 +178,6 @@
   </url>
   <url>
     <loc>https://magron.kr/en/magoil/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/magoil/" />
@@ -182,7 +187,6 @@
   </url>
   <url>
     <loc>https://magron.kr/en/magnet/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/magnet/" />
@@ -192,7 +196,6 @@
   </url>
   <url>
     <loc>https://magron.kr/en/education/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/education/" />
@@ -212,7 +215,6 @@
   </url>
   <url>
     <loc>https://magron.kr/en/display/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/display/" />
@@ -222,7 +224,7 @@
   </url>
   <url>
     <loc>https://magron.kr/en/contact/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/contact/" />
@@ -232,13 +234,23 @@
   </url>
   <url>
     <loc>https://magron.kr/en/privacy/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://magron.kr/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://magron.kr/zh/privacy/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magron.kr/privacy/" />
+  </url>
+  <url>
+    <loc>https://magron.kr/en/seal-comparison/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://magron.kr/en/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://magron.kr/zh/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magron.kr/seal-comparison/" />
   </url>
   <url>
     <loc>https://magron.kr/zh/</loc>
@@ -292,7 +304,6 @@
   </url>
   <url>
     <loc>https://magron.kr/zh/magoil/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/magoil/" />
@@ -302,7 +313,6 @@
   </url>
   <url>
     <loc>https://magron.kr/zh/magnet/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/magnet/" />
@@ -312,7 +322,6 @@
   </url>
   <url>
     <loc>https://magron.kr/zh/education/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/education/" />
@@ -332,7 +341,6 @@
   </url>
   <url>
     <loc>https://magron.kr/zh/display/</loc>
-    <lastmod>2026-10-19</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/display/" />
@@ -342,7 +350,7 @@
   </url>
   <url>
     <loc>https://magron.kr/zh/contact/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/contact/" />
@@ -352,12 +360,22 @@
   </url>
   <url>
     <loc>https://magron.kr/zh/privacy/</loc>
-    <lastmod>2026-10-19</lastmod>
+    <lastmod>2026-10-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/privacy/" />
     <xhtml:link rel="alternate" hreflang="en" href="https://magron.kr/en/privacy/" />
     <xhtml:link rel="alternate" hreflang="zh" href="https://magron.kr/zh/privacy/" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://magron.kr/privacy/" />
+  </url>
+  <url>
+    <loc>https://magron.kr/zh/seal-comparison/</loc>
+    <lastmod>2026-10-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="ko" href="https://magron.kr/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://magron.kr/en/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://magron.kr/zh/seal-comparison/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://magron.kr/seal-comparison/" />
   </url>
 </urlset>
