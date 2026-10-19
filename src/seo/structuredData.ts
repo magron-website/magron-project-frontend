@@ -4,6 +4,7 @@ import { ROUTE_META, SITE_URL } from '@/seo/routeMeta'
 import { PAGE_ANSWERS } from '@/seo/answers'
 import { getProductImage } from '@/seo/productImages'
 import { PRODUCT_PAGE_PATHS } from '@/pages/products/productRoutes'
+import { LAST_UPDATED } from '@/seo/lastUpdated'
 
 /**
  * 화면별 구조화 데이터(JSON-LD).
@@ -120,6 +121,17 @@ export function buildStructuredData(routePath: string, lang: Language): object[]
 
   const faq = buildFaqPage(routePath, lang)
   if (faq) nodes.push(faq)
+
+  // dateModified 는 Product 가 아니라 문서(WebPage)의 속성이다. 실제로 고친 화면만 싣는다.
+  const updated = LAST_UPDATED[routePath]
+  if (updated) {
+    nodes.push({
+      '@type': 'WebPage',
+      url: absolute(lang, routePath),
+      name: productName(routePath, lang),
+      dateModified: updated,
+    })
+  }
 
   return nodes
 }

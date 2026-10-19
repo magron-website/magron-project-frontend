@@ -2,6 +2,7 @@ const feedthrough = {
   ko: {
     hero: {
       label: 'Products',
+      title: '자성유체 진공 피드스루',
       titleEn: 'Magnetic Fluid Seal 기반 고신뢰성 Vacuum Feedthrough 솔루션',
       lead: 'Feedthrough는 진공 챔버 또는 밀폐 장비 내부로 회전 운동, 선형 운동, 가스, 전기 신호 등을 전달하면서도 내부 환경의 진공도와 청정성을 유지하기 위한 핵심 부품입니다.',
       body: 'Magnetic Fluid Seal 기반 Feedthrough는 회전축 주변에 형성된 자성유체 씰링 구조를 통해 가스 누설, 외부 오염물 유입, 분진 유입을 차단합니다. 반도체, 디스플레이, 진공 증착, 이온 주입, 로봇 이송, 항공우주 및 연구장비와 같이 높은 신뢰성과 긴 수명이 요구되는 장비에 적합합니다.',
@@ -49,6 +50,7 @@ const feedthrough = {
   en: {
     hero: {
       label: 'Products',
+      title: 'Ferrofluid Vacuum Feedthrough',
       titleEn: 'High-Reliability Vacuum Feedthrough Solutions Based on Magnetic Fluid Seal',
       lead: 'A feedthrough is a core component that transmits rotary motion, linear motion, gas, electrical signals, and more into a vacuum chamber or sealed equipment while maintaining the internal vacuum level and cleanliness.',
       body: 'A Magnetic Fluid Seal-based feedthrough blocks gas leakage, external contaminant ingress, and dust ingress through a ferrofluid sealing structure formed around the rotating shaft. It suits equipment requiring high reliability and long life, such as semiconductors, displays, vacuum deposition, ion implantation, robotic transfer, aerospace, and research equipment.',
@@ -96,6 +98,7 @@ const feedthrough = {
   zh: {
     hero: {
       label: '产品',
+      title: '磁流体真空馈通',
       titleEn: '基于 Magnetic Fluid Seal 的高可靠性真空 Feedthrough 解决方案',
       lead: 'Feedthrough 是在向真空腔室或密闭设备内部传递旋转运动、线性运动、气体、电信号等的同时，保持内部环境真空度与洁净度的核心部件。',
       body: '基于 Magnetic Fluid Seal 的 Feedthrough 通过在旋转轴周围形成的磁流体密封结构，阻断气体泄漏、外部污染物侵入及粉尘侵入。适用于半导体、显示、真空镀膜、离子注入、机器人传送、航空航天及研究设备等要求高可靠性与长寿命的设备。',

@@ -9,6 +9,7 @@ import ChatbotFloater from '@/components/ChatbotFloater'
 import InstallPrompt from '@/components/InstallPrompt'
 import { useSeoMeta } from '@/seo/useSeoMeta'
 import { useJsonLd } from '@/seo/useJsonLd'
+import { LAST_UPDATED, LAST_UPDATED_LABEL } from '@/seo/lastUpdated'
 import { trackPageView } from '@/lib/analytics'
 
 export default function Layout() {
@@ -51,6 +52,11 @@ export default function Layout() {
       <Header />
       <div className="home__content">
         <Outlet />
+        {LAST_UPDATED[path] && (
+          <p className="page-updated">
+            {LAST_UPDATED_LABEL[lang]} <time dateTime={LAST_UPDATED[path]}>{LAST_UPDATED[path]}</time>
+          </p>
+        )}
       </div>
       <ChatbotFloater />
       <InstallPrompt />

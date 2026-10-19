@@ -607,3 +607,13 @@
     padding: 10px 20px;
   }
 }
+
+/* 화면 하단 "최종 수정" 표시 — src/seo/lastUpdated.ts 에 날짜가 있는 화면에만 나온다 */
+.page-updated {
+  max-width: 1200px;
+  margin: 32px auto 0;
+  padding: 0 20px;
+  color: #6b7280;
+  font-size: 13px;
+  text-align: left; /* 오른쪽은 PC 상시 열림 챗봇 창에 가려진다 */
+}

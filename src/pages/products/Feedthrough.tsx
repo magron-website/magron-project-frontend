@@ -38,7 +38,7 @@ export default function Feedthrough() {
         <div className="ft-hero__inner">
           <div className="ft-hero__content">
             <p className="ft-hero__label">{t('hero.label', { ns: 'feedthrough' })}</p>
-            <h1 className="ft-hero__title">Feedthrough</h1>
+            <h1 className="ft-hero__title">{t('hero.title', { ns: 'feedthrough' })}</h1>
             <p className="ft-hero__title-en">{t('hero.titleEn', { ns: 'feedthrough' })}</p>
             <p className="ft-hero__lead">{t('hero.lead', { ns: 'feedthrough' })}</p>
             <div className="ft-hero__body">
