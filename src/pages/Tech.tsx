@@ -11,7 +11,7 @@ export default function Tech() {
   return (
     <article className="tech-page">
       {/* 직답 블록 — 이 화면이 무엇에 답하는지를 맨 위에 텍스트로 둔다 */}
-      <AnswerBlock routePath="/tech" />
+      <AnswerBlock routePath="/tech" sources />
       <div className="tech-page__hero">
         <span className="tech-page__glow tech-page__glow--one" aria-hidden="true" />
         <span className="tech-page__glow tech-page__glow--two" aria-hidden="true" />

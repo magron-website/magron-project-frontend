@@ -106,3 +106,42 @@
     padding-top: 22px;
   }
 }
+
+/* 씰 비교 페이지로 가는 링크 (자성유체·피드스루 화면) */
+.answer-block__compare {
+  display: inline-block;
+  margin: 24px 0 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--ab-accent);
+  text-decoration: none;
+}
+
+.answer-block__compare:hover {
+  text-decoration: underline;
+}
+
+/* 시험법·시험기관 외부 링크 */
+.answer-block__sources {
+  margin: 26px 0 0;
+  padding: 18px 0 0;
+  border-top: 1px solid var(--ab-border);
+}
+
+.answer-block__sources-title {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--ab-navy);
+}
+
+.answer-block__sources ul {
+  margin: 0;
+  padding-left: 1.2em;
+  line-height: 1.9;
+  font-size: 0.92rem;
+}
+
+.answer-block__sources a {
+  color: var(--ab-accent);
+}

@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { BookCover } from 'book-cover-3d'
 import { homeImages } from '@/assets/images/homeImages'
 import HeroCarousel from '@/components/HeroCarousel'
+import AnswerBlock from '@/components/AnswerBlock'
+import KeyFigures from '@/components/KeyFigures'
 import TechDocumentCard from '@/components/TechDocumentCard'
 import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
@@ -280,6 +282,10 @@ export default function Home() {
       <h1 className="sr-only">{t('pageHeading')}</h1>
       <HomeHero />
       <HomeProducts />
+      {/* 홈에는 사진과 카탈로그 표지뿐이라 AI 검색이 인용할 문장·수치가 없었다
+          (10/17 진단: 영어 홈 단위 수치 0개). 직답 + 핵심 사양 표로 그 자리를 채운다. */}
+      <AnswerBlock routePath="/" />
+      <KeyFigures />
       <HomeCatalog />
       <HomeTech />
       <HomeContact />

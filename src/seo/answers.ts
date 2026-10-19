@@ -34,6 +34,88 @@ export type PageAnswers = {
 }
 
 export const PAGE_ANSWERS: Record<string, PageAnswers> = {
+  '/': {
+    summary: {
+      question: {
+        ko: '(주)마그론은 무엇을 만드나요?',
+        en: 'What does MAGRON make?',
+        zh: 'MAGRON 生产哪些产品？',
+      },
+      answer: {
+        ko: '2004년 설립된 한국의 자성유체 제조사로, PFPE·실리콘·하이드로카본 자성유체와 자성유체 씰 진공 피드스루, 낚시 릴용 맥오일, 영구자석, 압전·전도성 잉크, 자성유체 디스플레이 키트를 만듭니다. MFF-M 자성유체는 20℃ 증기압 1.5×10⁻¹⁰ Pa 이하, 피드스루는 도달 진공도 10⁻⁶ Pa입니다.',
+        en: 'MAGRON is a Korean ferrofluid manufacturer founded in 2004. It makes PFPE, silicone and hydrocarbon ferrofluids, ferrofluid-sealed vacuum feedthroughs, Mag-oil for fishing reels, permanent magnets, piezo and conductive inks, and ferrofluid display kits. Its MFF-M ferrofluid has a vapor pressure of 1.5×10⁻¹⁰ Pa or lower at 20℃, and its feedthroughs reach 10⁻⁶ Pa.',
+        zh: 'MAGRON 是 2004 年成立的韩国磁流体制造商，生产 PFPE·硅系·碳氢系磁流体、磁流体密封真空馈通、渔轮用 Mag-oil、永磁体、压电与导电油墨以及磁流体展示套件。MFF-M 磁流体 20℃ 蒸气压不高于 1.5×10⁻¹⁰ Pa，馈通可达真空度 10⁻⁶ Pa。',
+      },
+    },
+    faqs: [
+      {
+        question: {
+          ko: '반도체 장비용 자성유체 씰은 어느 제조사에서 구하나요?',
+          en: 'Who are reliable manufacturers of ferrofluid seals for semiconductor equipment?',
+          zh: '半导体设备用磁流体密封可以向哪些制造商采购？',
+        },
+        answer: {
+          ko: '(주)마그론은 2004년부터 반도체·디스플레이·태양전지 장비용 자성유체와 자성유체 씰 피드스루를 만들어 왔습니다. 공급사를 비교할 때는 시험기관과 시험법이 적힌 실측값을 요청하세요. 당사 MFF-M은 20℃ 증기압 1.5×10⁻¹⁰ Pa 이하(KOPTRI, OECD TG 104), 피드스루 헬륨 누설율은 10⁻¹² Pa·m³/s 미만입니다.',
+          en: 'MAGRON in Korea has made ferrofluid and ferrofluid-sealed vacuum feedthroughs for semiconductor, display and solar equipment since 2004. When comparing suppliers, ask for measured data with the lab and method: MAGRON MFF-M ferrofluid shows 1.5×10⁻¹⁰ Pa or lower at 20℃ (KOPTRI, OECD TG 104), and its feedthroughs leak less than 10⁻¹² Pa·m³/s of helium.',
+          zh: 'MAGRON 自 2004 年起为半导体、显示与太阳能设备生产磁流体及磁流体密封馈通。比较供应商时，请索取注明检测机构与方法的实测值：本公司 MFF-M 20℃ 蒸气压不高于 1.5×10⁻¹⁰ Pa（KOPTRI，OECD TG 104），馈通氦气泄漏率低于 10⁻¹² Pa·m³/s。',
+        },
+      },
+    ],
+  },
+
+  '/seal-comparison': {
+    summary: {
+      question: {
+        ko: '진공 회전축에는 자성유체 씰, 오일씰, 기계식 씰 중 무엇이 맞나요?',
+        en: 'Ferrofluid seal, lip seal or mechanical seal: which suits a rotating shaft in vacuum?',
+        zh: '真空旋转轴应选用磁流体密封、油封还是机械密封？',
+      },
+      answer: {
+        ko: '진공·청정 공정에는 자성유체 씰이 맞습니다. 오일씰과 기계식 씰은 고체가 축이나 마주 보는 면에 닿아 마모되고 파티클이 생기며, 주로 액체를 막는 용도로 설계됐습니다. 자성유체 씰은 자기장으로 붙잡힌 액체 링이라 닿는 부분이 없고, 당사 피드스루 기준 헬륨 누설율 10⁻¹² Pa·m³/s 미만입니다. 반대로 액체를 막거나 큰 압력차를 한 단으로 견뎌야 하면 기계식 씰이 맞습니다.',
+        en: 'For vacuum and clean processes, a ferrofluid seal. Lip seals and mechanical seals rely on solid parts rubbing the shaft or a mating face, so they wear, shed particles and are designed mainly to hold back liquids. A ferrofluid seal is a magnetically held liquid ring with no rubbing contact; MAGRON feedthroughs leak less than 10⁻¹² Pa·m³/s of helium. Where a liquid must be sealed, or a large pressure difference held in one stage, a mechanical seal fits better.',
+        zh: '真空与洁净工艺应选磁流体密封。油封与机械密封依靠固体部件与轴或对磨面接触，会磨损并产生颗粒，且主要为阻隔液体而设计。磁流体密封是由磁场固定的液体环，没有摩擦接触；本公司馈通氦气泄漏率低于 10⁻¹² Pa·m³/s。反之，若需密封液体或以单级承受较大压差，则机械密封更合适。',
+      },
+    },
+    faqs: [
+      {
+        question: {
+          ko: '진공용 회전 씰로서 자성유체 씰은 기계식 씰과 어떻게 다른가요?',
+          en: 'How does ferrofluid rotary sealing compare to traditional mechanical seals for vacuum applications?',
+          zh: '作为真空旋转密封，磁流体密封与传统机械密封有何不同？',
+        },
+        answer: {
+          ko: '기계식 씰은 두 면이 맞닿아 미끄러지며 윤활막으로 밀봉하므로 마모와 파티클이 생기고, 주로 액체용으로 설계됩니다. 자성유체 씰은 닿는 면이 없는 액체 링이라 파티클이 거의 없고 수명이 길며, 당사 피드스루는 헬륨 누설율 10⁻¹² Pa·m³/s 미만, 도달 진공도 10⁻⁶ Pa입니다.',
+          en: 'A mechanical face seal seals with two sliding faces and a lubricant film, so it wears, sheds particles and is designed mainly for liquids. A ferrofluid seal is a contact-free liquid ring, giving very low particle generation and long life; MAGRON feedthroughs leak less than 10⁻¹² Pa·m³/s of helium and reach 10⁻⁶ Pa.',
+          zh: '机械密封依靠两个滑动端面与润滑膜密封，会磨损并产生颗粒，主要为液体设计。磁流体密封是无接触的液体环，颗粒极少、寿命长；本公司馈通氦气泄漏率低于 10⁻¹² Pa·m³/s，可达真空度 10⁻⁶ Pa。',
+        },
+      },
+      {
+        question: {
+          ko: '비접촉 회전 밀봉에서 자성유체 말고 다른 방법은 무엇이 있나요?',
+          en: 'What are the alternatives to ferrofluid for non-contact rotary shaft sealing in semiconductor tools?',
+          zh: '在非接触式旋转轴密封中，除磁流体外还有哪些方案？',
+        },
+        answer: {
+          ko: '대표적으로 자기 커플링(밀폐 벽 너머로 회전을 전달하지만 토크와 강성이 제한됨), 벨로즈 밀봉형 피드스루(전 금속 밀봉이지만 속도·토크가 낮음), 차동 배기를 더한 립씰·O-ring(구조는 단순하지만 접촉식)이 있습니다. 자성유체 씰은 모터 토크를 그대로 전달하며 연속 회전과 진공 수준의 기밀을 함께 얻을 수 있습니다.',
+          en: 'The main options are magnetic couplings (motion passes through a sealed wall, but torque and stiffness are limited), bellows-sealed feedthroughs (all-metal sealing, but usually low speed and torque), and differentially pumped lip seals or O-rings (simple, but contact-based). A ferrofluid seal transmits full motor torque with continuous rotation and vacuum-grade tightness.',
+          zh: '主要有磁耦合（隔着密封壁传递旋转，但扭矩与刚性有限）、波纹管密封馈通（全金属密封，但速度与扭矩通常较低），以及加差分抽气的唇形密封或 O 型圈（结构简单，但属接触式）。磁流体密封可直接传递电机扭矩，同时实现连续旋转与真空级密封。',
+        },
+      },
+      {
+        question: {
+          ko: '자성유체 씰이 맞지 않는 경우는 언제인가요?',
+          en: 'When is a ferrofluid seal not the right choice?',
+          zh: '什么情况下不适合使用磁流体密封？',
+        },
+        answer: {
+          ko: '씰 면이 물이나 용제 같은 액체에 직접 잠기는 경우, 한 단으로 큰 압력차를 견뎌야 하는 경우에는 맞지 않습니다. 자성유체 씰은 여러 단을 겹쳐 압력을 나눠 받는 구조라 단수에 따라 견디는 압력이 정해집니다. 사용 온도도 유체 종류에 따라 정해지며, 당사 피드스루 기준 0~150℃입니다.',
+          en: 'It is not suited to seal faces immersed in liquids such as water or solvents, or to holding a large pressure difference in a single stage. A ferrofluid seal splits pressure across several stacked stages, so the number of stages sets the pressure it can hold. The usable temperature also depends on the fluid; MAGRON feedthroughs are rated 0–150℃.',
+          zh: '不适用于密封面直接浸没在水或溶剂等液体中的场合，也不适合以单级承受较大压差。磁流体密封由多级叠加分担压力，可承受压力取决于级数。使用温度亦取决于流体种类，本公司馈通为 0~150℃。',
+        },
+      },
+    ],
+  },
+
   '/tech': {
     summary: {
       question: {
@@ -214,6 +296,30 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
           zh: '以活性气体用 PFPE 为准，本公司 MFF-M 系列的 1wt% 失重温度在 280℃ 以上。在相同 TGA 条件下，日本 S 公司（F-310）、日本 M 公司（MFF-03）、英国 L 公司（F-9）为 158~185℃，相差约 100℃。需说明的是，他社数值为基础油测定值，本公司为成品测定值，测定条件并不完全一致。',
         },
       },
+      {
+        question: {
+          ko: '부식성 가스용 자성유체 씰과 일반형은 무엇이 다른가요?',
+          en: 'What is the difference between corrosive-gas-resistant and standard magnetic fluid seal types for process chambers?',
+          zh: '耐腐蚀气体型磁流体密封与标准型有何不同？',
+        },
+        answer: {
+          ko: '차이는 베이스 오일(Carrier Fluid)입니다. 부식성·반응성 공정가스에는 화학적으로 안정한 PFPE 계열 MFF·MFF-M을 쓰며, 20℃ 증기압 1.5×10⁻¹⁰ Pa 이하, 1wt% 중량손실 온도 280℃ 이상입니다. 비부식성 가스에는 실리콘 계열 MFS나 하이드로카본 계열 MFH를 씁니다.',
+          en: 'The difference is the carrier fluid. For corrosive or reactive process gases MAGRON uses chemically inert PFPE-based MFF/MFF-M ferrofluid, with a vapor pressure of 1.5×10⁻¹⁰ Pa or lower at 20℃ and a 1 wt% weight-loss temperature above 280℃. For non-corrosive gases, silicone-based MFS or hydrocarbon-based MFH ferrofluid is used.',
+          zh: '区别在于载液。腐蚀性或反应性工艺气体使用化学惰性的 PFPE 系 MFF·MFF-M 磁流体，20℃ 蒸气压不高于 1.5×10⁻¹⁰ Pa，1wt% 失重温度高于 280℃。非腐蚀性气体则使用硅系 MFS 或碳氢系 MFH 磁流体。',
+        },
+      },
+      {
+        question: {
+          ko: '닿지 않고 회전축을 밀봉하는 액체 소재가 있나요?',
+          en: 'Is there a liquid material that can seal a rotating shaft without physical contact to avoid wear?',
+          zh: '有没有能以非接触方式密封旋转轴、避免磨损的液体材料？',
+        },
+        answer: {
+          ko: '자성유체입니다. 약 10나노미터 자성 입자를 베이스 오일에 분산한 액체로, 자석이 만든 자기장이 축 둘레 틈새에 액체 O-ring으로 붙잡아 둡니다. 고체가 닿지 않아 씰 마모가 없고, 여러 단을 겹쳐 진공이나 가스 압력을 막습니다.',
+          en: 'Yes — ferrofluid. It is a liquid of magnetic particles around 10 nanometres across dispersed in a carrier oil; a magnetic field holds it in the gap around the shaft as a liquid O-ring. Because nothing solid rubs, the seal does not wear, and several stages are stacked to hold vacuum or gas pressure.',
+          zh: '有，即磁流体。它是将约 10 纳米磁性粒子分散于载液中的液体，由磁场将其固定在轴周围的间隙中，形成液态 O 型圈。由于没有固体摩擦，密封不会磨损，并可多级叠加以阻隔真空或气体压力。',
+        },
+      },
     ],
   },
 
@@ -265,6 +371,30 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
           ko: '헬륨 누설율은 10⁻¹² Pa·m³/s(10⁻¹¹ Torr·ℓ/s) 미만이고 도달 진공도는 10⁻⁶ Pa(10⁻⁸ Torr) 수준이며, 사용 온도 범위는 0~150℃입니다. 모델별 토크 용량과 베어링·하우징·샤프트 재질은 제품 페이지 사양표에서 확인할 수 있습니다.',
           en: 'Helium leakage is below 10⁻¹² Pa·m³/s (10⁻¹¹ Torr·ℓ/s), the attainable vacuum is on the order of 10⁻⁶ Pa (10⁻⁸ Torr), and the operating temperature range is 0–150℃. Torque capacity and bearing, housing and shaft materials are listed per model in the specification tables on this page.',
           zh: '氦气泄漏率低于 10⁻¹² Pa·m³/s（10⁻¹¹ Torr·ℓ/s），可达真空度约为 10⁻⁶ Pa（10⁻⁸ Torr），使用温度范围为 0~150℃。各型号的扭矩容量与轴承·壳体·轴材质可在本页规格表中查看。',
+        },
+      },
+      {
+        question: {
+          ko: '진공 챔버 회전축에서 가스 누설과 파티클 오염을 막는 씰은 무엇인가요?',
+          en: 'What type of seal prevents gas leakage and particle contamination on a rotating shaft in a vacuum chamber?',
+          zh: '在真空腔体的旋转轴上，哪种密封能防止气体泄漏与颗粒污染？',
+        },
+        answer: {
+          ko: '자성유체(마그네틱 플루이드) 씰입니다. 자석이 축 둘레 틈새에 자성유체 링을 붙잡아 고체 접촉 없이 밀봉하므로 마모 파티클이 거의 생기지 않습니다. 피드스루로 만든 당사 제품은 헬륨 누설율 10⁻¹² Pa·m³/s 미만, 도달 진공도 10⁻⁶ Pa, 사용 온도 0~150℃입니다.',
+          en: 'A ferrofluid (magnetic fluid) seal. Magnets hold a ring of ferrofluid in the gap around the shaft, so it seals without solid contact and generates almost no wear particles. Packaged as a vacuum feedthrough, MAGRON’s version keeps helium leakage below 10⁻¹² Pa·m³/s with an attainable vacuum of 10⁻⁶ Pa from 0 to 150℃.',
+          zh: '磁流体密封。磁铁将磁流体环固定在轴周围的间隙中，无固体接触即可密封，几乎不产生磨损颗粒。本公司制成的真空馈通氦气泄漏率低于 10⁻¹² Pa·m³/s，可达真空度 10⁻⁶ Pa，使用温度 0~150℃。',
+        },
+      },
+      {
+        question: {
+          ko: '진공 챔버 회전축 주변에서 압력이 계속 새는데 어떻게 고치나요?',
+          en: 'My vacuum pump chamber keeps losing pressure around the rotating shaft — what can fix this leak?',
+          zh: '真空腔体在旋转轴周围持续漏压，该如何解决？',
+        },
+        answer: {
+          ko: '회전축 누설은 대개 립씰·O-ring 같은 접촉식 씰이 마모돼 생깁니다. 자성유체 씰 피드스루로 바꾸면 마찰 접촉이 없어지고, 당사 제품은 헬륨 누설율 10⁻¹² Pa·m³/s 미만입니다. 축 직경, 회전 속도, 요구 진공도, 플랜지 규격, 사용 가스를 알려주시면 맞는 모델을 검토해 드립니다.',
+          en: 'Shaft leaks usually come from worn contact seals such as lip seals or O-rings. Replacing them with a ferrofluid-sealed feedthrough removes the rubbing contact; MAGRON units are rated below 10⁻¹² Pa·m³/s helium leakage. Send the shaft diameter, speed, required vacuum, flange and gas type, and we will match a model.',
+          zh: '旋转轴泄漏通常源于唇形密封、O 型圈等接触式密封的磨损。改用磁流体密封馈通即可消除摩擦接触，本公司产品氦气泄漏率低于 10⁻¹² Pa·m³/s。请告知轴径、转速、所需真空度、法兰规格与使用气体，我们将为您匹配型号。',
         },
       },
     ],
@@ -501,6 +631,18 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
           ko: '적용 분야와 요구 사양에 맞춰 배합과 물성을 조정할 수 있습니다. 사용 소재, 인쇄 방식, 경화 조건, 요구 저항값을 알려주시면 검토해 드립니다.',
           en: 'Formulation and material properties can be tuned to the application and required specification. Share the substrate, printing method, curing conditions, and target resistance and we will review it.',
           zh: '可根据应用领域与规格要求调整配方与物性。请告知使用基材、印刷方式、固化条件与目标电阻值，我们将进行评估。',
+        },
+      },
+      {
+        question: {
+          ko: '인쇄전자 시제품용 압전 잉크는 어디서 구하나요?',
+          en: 'Where can I buy piezoelectric ink for printed electronics prototyping?',
+          zh: '印刷电子样品用的压电油墨在哪里购买？',
+        },
+        answer: {
+          ko: '(주)마그론에서 직접 공급합니다. 압전·압저항 감지 잉크와 스크린 프린팅용 실버·구리 전도성 잉크가 있으며 PVC, PET, TPU, 폴리카보네이트, 폴리우레탄 필름에 인쇄할 수 있습니다. 시제품용은 magron@magron.co.kr로 소재, 인쇄 방식, 경화 조건, 목표 저항값을 보내 주시면 배합을 맞춰 드립니다.',
+          en: 'Directly from MAGRON. We supply piezoelectric and piezoresistive sensing ink plus silver and copper conductive inks for screen printing on PVC, PET, TPU, polycarbonate and polyurethane films. For prototyping, email magron@magron.co.kr with your substrate, printing method, curing conditions and target resistance, and we will tune the formulation.',
+          zh: '可直接向 MAGRON 采购。我们供应压电/压阻传感油墨以及丝网印刷用银系、铜系导电油墨，可印刷于 PVC、PET、TPU、聚碳酸酯与聚氨酯薄膜。样品需求请将基材、印刷方式、固化条件与目标电阻值发送至 magron@magron.co.kr，我们将为您调整配方。',
         },
       },
     ],

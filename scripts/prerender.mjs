@@ -190,7 +190,22 @@ const ROUTES = [
     heading: '개인정보처리방침',
     body: '(주)마그론 홈페이지(magron.kr)가 처리하는 개인정보의 항목·목적·보유 기간, 처리 위탁과 국외 이전, 정보주체의 권리와 문의처를 안내합니다.',
   },
+  {
+    path: '/seal-comparison',
+    title: '자성유체 씰 vs 오일씰 vs 기계식 씰 비교 | MAGRON (주)마그론',
+    description:
+      '진공 회전축용 자성유체 씰을 오일씰(립씰)·기계식 씰과 비교합니다. 밀봉 원리, 진공 기밀(헬륨 누설 10⁻¹² Pa·m³/s 미만), 마찰, 수명, 맞지 않는 경우까지 한 표로 정리했습니다.',
+    heading: '자성유체 씰 vs 오일씰 vs 기계식 씰',
+    body: '진공·청정 장비의 회전축에 어떤 씰이 맞는지, 밀봉 원리부터 진공 기밀·마찰·수명·한계까지 한 표로 비교했습니다.',
+  },
 ]
+
+// 화면별 실제 수정일 — src/seo/lastUpdated.ts 를 그대로 읽는다(한 곳에서만 관리).
+// sitemap 의 lastmod 를 빌드 날짜로 일괄 찍으면 "날짜만 바뀐 갱신"이 되어 검색엔진이 값을 믿지 않는다.
+const LAST_UPDATED = await (async () => {
+  const src = await readFile(join(dirname(fileURLToPath(import.meta.url)), '../src/seo/lastUpdated.ts'), 'utf8')
+  return Object.fromEntries([...src.matchAll(/'(\/[^']*)':\s*'(\d{4}-\d{2}-\d{2})'/g)].map((m) => [m[1], m[2]]))
+})()
 
 const escAttr = (s) =>
   s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
@@ -462,7 +477,6 @@ async function run() {
   // sitemap도 여기서 만든다. public/sitemap.xml을 손으로 관리하면 라우트가 늘 때마다
   // 잊어버리기 때문. 각 URL에 세 언어판 위치(hreflang)를 함께 적어 준다.
   const sitemapPaths = ['/', ...ROUTES.map((r) => r.path)]
-  const today = new Date().toISOString().slice(0, 10)
   const entries = LANGS.flatMap((lang) =>
     sitemapPaths.map((path) => {
       const alternates = [...LANGS.map((l) => [l, l]), ['ko', 'x-default']]
@@ -474,7 +488,7 @@ async function run() {
       return [
         '  <url>',
         `    <loc>${SITE_URL}${canonicalPath(lang, path)}</loc>`,
-        `    <lastmod>${today}</lastmod>`,
+        ...(LAST_UPDATED[path] ? [`    <lastmod>${LAST_UPDATED[path]}</lastmod>`] : []),
         `    <changefreq>${path === '/' ? 'weekly' : 'monthly'}</changefreq>`,
         `    <priority>${path === '/' ? '1.0' : '0.8'}</priority>`,
         alternates,

@@ -71,7 +71,7 @@ export default function Ferrofluid() {
       </header>
 
       {/* 1-1. 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
-      <AnswerBlock routePath="/ferrofluid" />
+      <AnswerBlock routePath="/ferrofluid" compareLink sources />
 
       <div className="ff-page__body">
         {/* 2. Corrosive Gas */}

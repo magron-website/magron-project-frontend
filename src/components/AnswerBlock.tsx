@@ -1,11 +1,25 @@
+import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { LANGUAGES, type Language } from '@/i18n'
+import { useLangPath } from '@/i18n/routing'
 import { getPageAnswers } from '@/seo/answers'
+import { KEY_FIGURES_TEXT } from '@/seo/keyFigures'
+import { SOURCE_LINKS } from '@/seo/sources'
+
+const SOURCES_HEADING: Record<Language, string> = {
+  ko: '시험법·시험기관',
+  en: 'Test methods and laboratories',
+  zh: '测试方法与检测机构',
+}
 import '@/assets/design/answer-block.css'
 
 type Props = {
   /** 언어 접두어를 뗀 경로. 예: '/ferrofluid' */
   routePath: string
+  /** FAQ 아래에 씰 비교 페이지(/seal-comparison) 링크를 붙인다 — 씰 관련 제품 화면용 */
+  compareLink?: boolean
+  /** FAQ 아래에 시험법·시험기관 외부 링크(OECD TG 104, KITECH, KOPTRI)를 붙인다 */
+  sources?: boolean
 }
 
 /**
@@ -18,8 +32,9 @@ type Props = {
  * 여기 보이는 문장과 FAQPage 구조화 데이터의 문장은 answers.ts 라는 같은 출처를
  * 쓴다. 화면에 없는 FAQ 를 스키마에만 넣으면 검색엔진이 무시한다.
  */
-export default function AnswerBlock({ routePath }: Props) {
+export default function AnswerBlock({ routePath, compareLink = false, sources = false }: Props) {
   const { i18n } = useTranslation()
+  const lp = useLangPath()
   const lang: Language = (LANGUAGES as readonly string[]).includes(i18n.language)
     ? (i18n.language as Language)
     : 'ko'
@@ -46,6 +61,27 @@ export default function AnswerBlock({ routePath }: Props) {
               </div>
             ))}
           </dl>
+        )}
+
+        {sources && (
+          <div className="answer-block__sources">
+            <p className="answer-block__sources-title">{SOURCES_HEADING[lang]}</p>
+            <ul>
+              {SOURCE_LINKS.map((source) => (
+                <li key={source.href}>
+                  <a href={source.href} target="_blank" rel="noopener noreferrer">
+                    {source.label[lang]}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {compareLink && (
+          <Link className="answer-block__compare" to={lp('/seal-comparison')}>
+            {KEY_FIGURES_TEXT[lang].compare} →
+          </Link>
         )}
       </div>
     </section>

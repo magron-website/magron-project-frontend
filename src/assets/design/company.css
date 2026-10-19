@@ -202,3 +202,56 @@
     bottom: 18px;
   }
 }
+
+/* 회사 개요 — 소개 패널 아래, 같은 어두운 배경 위의 정의 목록 */
+.cp-facts {
+  position: relative;
+  max-width: 960px;
+  margin: 32px auto 0;
+  padding: 36px clamp(28px, 6vw, 88px) 40px;
+  border: 1px solid rgba(150, 180, 255, 0.16);
+  border-radius: 4px;
+  background: rgba(220, 230, 255, 0.06);
+}
+
+.cp-facts__title {
+  margin: 0 0 18px;
+  color: #aec4ff;
+  font-size: clamp(17px, 2vw, 20px);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.cp-facts__list {
+  margin: 0;
+}
+
+.cp-facts__row {
+  display: grid;
+  grid-template-columns: minmax(140px, 220px) 1fr;
+  gap: 16px;
+  padding: 10px 0;
+  border-top: 1px solid rgba(150, 180, 255, 0.14);
+}
+
+.cp-facts__row dt {
+  color: #aec4ff;
+  font-weight: 600;
+}
+
+.cp-facts__row dd {
+  margin: 0;
+  color: rgba(233, 239, 255, 0.92);
+  line-height: 1.6;
+}
+
+@media (max-width: 640px) {
+  .cp-facts {
+    padding: 28px 22px 32px;
+  }
+
+  .cp-facts__row {
+    grid-template-columns: 1fr;
+    gap: 4px;
+  }
+}

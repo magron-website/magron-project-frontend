@@ -162,4 +162,16 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       zh: 'magron.kr 处理个人信息的项目、目的、保存期限、委托处理及境外转移，以及您的权利与联系方式。',
     },
   },
+  '/seal-comparison': {
+    title: {
+      ko: `자성유체 씰 vs 오일씰 vs 기계식 씰 비교 | ${BRAND.ko}`,
+      en: `Ferrofluid Seal vs Lip Seal vs Mechanical Seal | ${BRAND.en}`,
+      zh: `磁流体密封 vs 油封 vs 机械密封 比较 | ${BRAND.zh}`,
+    },
+    description: {
+      ko: '진공 회전축용 자성유체 씰을 오일씰(립씰)·기계식 씰과 비교합니다. 밀봉 원리, 진공 기밀(헬륨 누설 10⁻¹² Pa·m³/s 미만), 마찰, 수명, 맞지 않는 경우까지 한 표로 정리했습니다.',
+      en: 'Ferrofluid seals compared with lip and mechanical seals for rotating shafts in vacuum: sealing principle, vacuum tightness (helium leak below 10⁻¹² Pa·m³/s), friction, life and limitations.',
+      zh: '比较真空旋转轴用磁流体密封与油封（唇形密封）、机械密封：密封原理、真空密封性（氦气泄漏低于 10⁻¹² Pa·m³/s）、摩擦、寿命及不适用情形。',
+    },
+  },
 }

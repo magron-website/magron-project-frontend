@@ -64,7 +64,7 @@ export default function Feedthrough() {
       </header>
 
       {/* 직답 블록 — 히어로 바로 아래가 AI 검색이 가장 먼저 읽는 자리다 */}
-      <AnswerBlock routePath="/feedthrough" />
+      <AnswerBlock routePath="/feedthrough" compareLink />
 
       <div className="ft-page__body">
         {/* Category quick-nav */}

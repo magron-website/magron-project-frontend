@@ -8,7 +8,13 @@ import type { Language } from '@/i18n'
  * 이 값 하나가 화면 하단 "최종 수정" 표시와 WebPage 스키마의 dateModified 에 같이 쓰인다.
  */
 export const LAST_UPDATED: Record<string, string> = {
+  '/': '2026-10-19',
+  '/company': '2026-10-19',
+  '/ferrofluid': '2026-10-19',
   '/feedthrough': '2026-10-19',
+  '/piezo-ink': '2026-10-19',
+  '/tech': '2026-10-19',
+  '/seal-comparison': '2026-10-19',
   '/contact': '2026-10-16',
   '/privacy': '2026-10-16',
 }

@@ -1,11 +1,15 @@
 import { Trans, useTranslation } from 'react-i18next'
 import AnswerBlock from '@/components/AnswerBlock'
+import KeyFigures from '@/components/KeyFigures'
 import '@/assets/design/company.css'
+
+type Fact = { label: string; value: string }
 
 export default function Company() {
   const { t } = useTranslation('company')
   const paragraphs = t('paragraphs', { returnObjects: true }) as string[]
   const products = t('products', { returnObjects: true }) as string[]
+  const facts = t('facts', { returnObjects: true }) as Fact[]
 
   return (
     <article className="cp-page">
@@ -43,8 +47,22 @@ export default function Company() {
               </ul>
             </div>
           </section>
+
+          {/* 회사 개요 — 소개 문단만으로는 AI가 꺼내 쓸 사실(연도·위치·제품 수·시험기관)이 흩어져 있었다 */}
+          <section className="cp-facts">
+            <h2 className="cp-facts__title">{t('factsTitle')}</h2>
+            <dl className="cp-facts__list">
+              {facts.map((fact) => (
+                <div className="cp-facts__row" key={fact.label}>
+                  <dt>{fact.label}</dt>
+                  <dd>{fact.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
         </div>
       </div>
+      <KeyFigures />
     </article>
   )
 }

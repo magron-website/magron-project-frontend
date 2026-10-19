@@ -6,7 +6,6 @@ import '@/assets/design/home.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ChatbotFloater from '@/components/ChatbotFloater'
-import InstallPrompt from '@/components/InstallPrompt'
 import { useSeoMeta } from '@/seo/useSeoMeta'
 import { useJsonLd } from '@/seo/useJsonLd'
 import { LAST_UPDATED, LAST_UPDATED_LABEL } from '@/seo/lastUpdated'
@@ -59,7 +58,9 @@ export default function Layout() {
         )}
       </div>
       <ChatbotFloater />
-      <InstallPrompt />
+      {/* "마그론 앱 설치" 팝업은 2026-10-19 사용자 결정으로 뺐다. B2B 방문자가 앱으로 설치할 일이
+          거의 없고 첫 방문 때 사양 표·문의 버튼을 가린다. PWA 자체(manifest·아이콘)는 그대로라
+          브라우저 메뉴의 "앱 설치"는 여전히 된다. 되살리려면 InstallPrompt 를 여기 다시 넣으면 된다. */}
       <Footer />
     </div>
   )
