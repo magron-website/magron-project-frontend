@@ -29,7 +29,7 @@ export default function SealComparison() {
 
       <AnswerBlock routePath="/seal-comparison" />
 
-      <section className="key-figures" aria-labelledby="seal-comparison__table">
+      <section className="key-figures key-figures--stack" aria-labelledby="seal-comparison__table">
         <div className="key-figures__inner">
           <h2 className="key-figures__heading" id="seal-comparison__table">
             {text.tableHeading}
@@ -47,10 +47,10 @@ export default function SealComparison() {
               <tbody>
                 {COMPARISON_ROWS.map((row) => (
                   <tr key={row.criterion.en}>
-                    <th scope="row">{row.criterion[lang]}</th>
-                    <td className="key-figures__strong">{row.ferrofluid[lang]}</td>
-                    <td>{row.lip[lang]}</td>
-                    <td>{row.mechanical[lang]}</td>
+                    <th scope="row" data-label={text.criterion}>{row.criterion[lang]}</th>
+                    <td className="key-figures__strong" data-label={text.ferrofluid}>{row.ferrofluid[lang]}</td>
+                    <td data-label={text.lip}>{row.lip[lang]}</td>
+                    <td data-label={text.mechanical}>{row.mechanical[lang]}</td>
                   </tr>
                 ))}
               </tbody>

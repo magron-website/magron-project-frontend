@@ -4,7 +4,7 @@
 
 .home-footer {
   position: absolute;
-  top: calc(var(--content-end) + var(--header-height));
+  top: calc(var(--content-end) + var(--header-height) + var(--geo-height, 0px));
   left: 50%;
   width: 100vw;
   min-height: var(--footer-height);

@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { BookCover } from 'book-cover-3d'
@@ -6,6 +6,8 @@ import { homeImages } from '@/assets/images/homeImages'
 import HeroCarousel from '@/components/HeroCarousel'
 import AnswerBlock from '@/components/AnswerBlock'
 import KeyFigures from '@/components/KeyFigures'
+import { LANGUAGES, type Language } from '@/i18n'
+import { LAST_UPDATED, LAST_UPDATED_LABEL } from '@/seo/lastUpdated'
 import TechDocumentCard from '@/components/TechDocumentCard'
 import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
@@ -131,8 +133,8 @@ function HomeCatalog() {
         </div>
       </div>
       <div className="home-catalog__keywords">
-        ferrofluid, magnetic fluid, ferofluidic seal, ferro seal, magnetic fluid seal, ferro vaccum
-        seal, 방수용 자성유체, waterprrof ferrofluid, Daiwa mag oil, Daiwa reel,
+        ferrofluid, magnetic fluid, ferrofluidic seal, ferro seal, magnetic fluid seal, ferro vacuum
+        seal, 방수용 자성유체, waterproof ferrofluid, Daiwa mag oil, Daiwa reel,
         <br />
         feedthrough
       </div>
@@ -272,6 +274,45 @@ function HomeContact() {
   )
 }
 
+/**
+ * 홈의 직답 + 핵심 사양 표.
+ *
+ * 홈은 PC 화면에서 카탈로그·기술자료·연락처를 absolute + 고정 좌표로 쌓는다(home.css).
+ * 그 사이에 일반 흐름으로 끼우면 고정 좌표 섹션과 겹치므로(2026-10-19 실제로 겹쳤음),
+ * 연락처 아래(푸터 자리)에 두고 실제 높이를 --geo-height 로 .home 에 알려 푸터를 그만큼 내린다.
+ * 900px 이하에서는 모든 섹션이 일반 흐름이라 그대로 맨 아래에 붙는다.
+ */
+function HomeGeo() {
+  const ref = useRef<HTMLElement>(null)
+  const { i18n } = useTranslation()
+  const lang: Language = (LANGUAGES as readonly string[]).includes(i18n.language)
+    ? (i18n.language as Language)
+    : 'ko'
+
+  useEffect(() => {
+    const el = ref.current
+    const home = el?.closest<HTMLElement>('.home')
+    if (!el || !home) return
+    const sync = () => home.style.setProperty('--geo-height', `${el.offsetHeight}px`)
+    sync()
+    const observer = new ResizeObserver(sync)
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  return (
+    <section ref={ref} className="home-geo">
+      <AnswerBlock routePath="/" />
+      <KeyFigures />
+      {LAST_UPDATED['/'] && (
+        <p className="page-updated">
+          {LAST_UPDATED_LABEL[lang]} <time dateTime={LAST_UPDATED['/']}>{LAST_UPDATED['/']}</time>
+        </p>
+      )}
+    </section>
+  )
+}
+
 export default function Home() {
   const { t } = useTranslation('home')
 
@@ -282,13 +323,10 @@ export default function Home() {
       <h1 className="sr-only">{t('pageHeading')}</h1>
       <HomeHero />
       <HomeProducts />
-      {/* 홈에는 사진과 카탈로그 표지뿐이라 AI 검색이 인용할 문장·수치가 없었다
-          (10/17 진단: 영어 홈 단위 수치 0개). 직답 + 핵심 사양 표로 그 자리를 채운다. */}
-      <AnswerBlock routePath="/" />
-      <KeyFigures />
       <HomeCatalog />
       <HomeTech />
       <HomeContact />
+      <HomeGeo />
     </div>
   )
 }

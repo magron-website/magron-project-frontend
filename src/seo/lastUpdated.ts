@@ -15,6 +15,8 @@ export const LAST_UPDATED: Record<string, string> = {
   '/piezo-ink': '2026-10-19',
   '/tech': '2026-10-19',
   '/seal-comparison': '2026-10-19',
+  '/tech-data': '2026-10-19',
+  '/magnet': '2026-10-19',
   '/contact': '2026-10-16',
   '/privacy': '2026-10-16',
 }

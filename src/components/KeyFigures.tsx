@@ -18,7 +18,7 @@ export default function KeyFigures() {
   const text = KEY_FIGURES_TEXT[lang]
 
   return (
-    <section className="key-figures" aria-labelledby="key-figures__heading">
+    <section className="key-figures key-figures--stack" aria-labelledby="key-figures__heading">
       <div className="key-figures__inner">
         <h2 className="key-figures__heading" id="key-figures__heading">
           {text.heading}
@@ -38,12 +38,12 @@ export default function KeyFigures() {
             <tbody>
               {KEY_FIGURES.map((row) => (
                 <tr key={`${row.path}-${row.item.en}`}>
-                  <th scope="row">
+                  <th scope="row" data-label={text.product}>
                     <Link to={lp(row.path)}>{row.product[lang]}</Link>
                   </th>
-                  <td>{row.item[lang]}</td>
-                  <td className="key-figures__value">{row.value}</td>
-                  <td>{row.basis[lang]}</td>
+                  <td data-label={text.item}>{row.item[lang]}</td>
+                  <td className="key-figures__value" data-label={text.value}>{row.value}</td>
+                  <td data-label={text.basis}>{row.basis[lang]}</td>
                 </tr>
               ))}
             </tbody>

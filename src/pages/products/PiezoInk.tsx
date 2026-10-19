@@ -38,7 +38,7 @@ export default function PiezoInk() {
         <div className="pi-hero__inner">
           <div className="pi-hero__content">
             <p className="pi-hero__label">{t('hero.label', { ns: 'piezoInk' })}</p>
-            <h1 className="pi-hero__title">{t('hero.titleEn', { ns: 'piezoInk' })}</h1>
+            <h1 className="pi-hero__title">{t('hero.heading', { ns: 'piezoInk' })}</h1>
             <div className="pi-hero__lead">
               {heroLead.map((para) => (
                 <p key={para}>{para}</p>

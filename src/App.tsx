@@ -6,6 +6,7 @@ import Tech from '@/pages/Tech'
 import Contact from '@/pages/Contact'
 import Privacy from '@/pages/Privacy'
 import SealComparison from '@/pages/SealComparison'
+import TechData from '@/pages/TechData'
 import { LANG_PREFIX } from '@/i18n/routing'
 import {
   Display,
@@ -41,6 +42,7 @@ function pageRoutes() {
       <Route path="contact" element={<Contact />} />
       <Route path="privacy" element={<Privacy />} />
       <Route path="seal-comparison" element={<SealComparison />} />
+      <Route path="tech-data" element={<TechData />} />
     </>
   )
 }

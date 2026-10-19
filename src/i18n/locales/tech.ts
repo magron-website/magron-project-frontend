@@ -20,7 +20,7 @@ const tech = {
       },
       4: {
         title: 'Ferrofluid KOPTRI\n증기압 성적서',
-        description: '한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로 측정한 증기압 시험 결과',
+        description: '한국고분자시험연구소(KOPTRI)에서 OECD TG 104 유출법으로 측정한 증기압 시험 결과',
       },
       5: {
         title: 'Ferrofluid TGA 데이터\nActive Gas',

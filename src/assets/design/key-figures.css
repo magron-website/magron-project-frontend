@@ -138,3 +138,71 @@
 .key-figures__links a {
   color: var(--kf-accent);
 }
+
+/* /tech-data — 표가 여러 개 이어질 때 간격 */
+.key-figures__block + .key-figures__block {
+  margin-top: 36px;
+}
+
+.key-figures__block .key-figures__subheading {
+  margin-top: 0;
+}
+
+/* 휴대폰: 표를 행마다 카드로 쌓는다. 가로 스크롤 표는 오른쪽 칸(값·근거·타 방식)이
+   잘려 보여서 "없는 것처럼" 읽혔다(2026-10-19 캡처 점검). 각 칸의 data-label 이 머리글을 대신한다. */
+@media (max-width: 640px) {
+  .key-figures--stack .key-figures__scroll {
+    overflow: visible;
+    border: 0;
+  }
+
+  .key-figures--stack table {
+    min-width: 0;
+  }
+
+  .key-figures--stack thead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+  }
+
+  .key-figures--stack tbody tr {
+    display: block;
+    margin: 0 0 12px;
+    border: 1px solid var(--kf-border);
+    border-radius: 6px;
+    background: #fff;
+  }
+
+  .key-figures--stack tbody tr:nth-child(even) {
+    background: #fff;
+  }
+
+  .key-figures--stack tbody th,
+  .key-figures--stack tbody td {
+    display: grid;
+    grid-template-columns: 38% 1fr;
+    gap: 10px;
+    padding: 8px 12px;
+    border-top: 1px solid var(--kf-border);
+  }
+
+  .key-figures--stack tbody th {
+    border-top: 0;
+    background: var(--kf-stripe);
+  }
+
+  .key-figures--stack tbody th::before,
+  .key-figures--stack tbody td::before {
+    content: attr(data-label);
+    color: var(--kf-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  .key-figures--stack .key-figures__value {
+    white-space: normal;
+  }
+}

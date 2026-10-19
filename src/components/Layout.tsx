@@ -51,7 +51,8 @@ export default function Layout() {
       <Header />
       <div className="home__content">
         <Outlet />
-        {LAST_UPDATED[path] && (
+        {/* 홈은 섹션이 고정 좌표라 여기 두면 카탈로그와 겹친다 → 홈은 Home.tsx 의 HomeGeo 안에서 그린다 */}
+        {!isHome && LAST_UPDATED[path] && (
           <p className="page-updated">
             {LAST_UPDATED_LABEL[lang]} <time dateTime={LAST_UPDATED[path]}>{LAST_UPDATED[path]}</time>
           </p>

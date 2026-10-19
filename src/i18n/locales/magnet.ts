@@ -2,7 +2,7 @@ const magnet = {
   ko: {
     hero: {
       label: 'Products',
-      title: '자석 Permanent MAGNET',
+      title: '영구자석 (Permanent Magnet)',
       titleEn: '산업용 영구자석 소재 및 등급별 Magnetic Properties',
       lead: 'Permanent Magnet은 모터, 센서, 발전기, 스피커, 자기 커플링, 자성유체 Seal, 의료기기, 전장부품, 자동화 장비 등 다양한 산업 분야에서 핵심 기능 부품으로 사용됩니다.',
       body: '사용 환경에 따라 요구되는 자속밀도, 보자력, 최대 에너지적, 내열성, 내식성, 가공성, 비용 조건이 다르기 때문에 적절한 자석 소재와 등급을 선택하는 것이 중요합니다.',
@@ -170,7 +170,7 @@ const magnet = {
   zh: {
     hero: {
       label: '产品',
-      title: '永久磁铁 Permanent Magnet',
+      title: '永久磁铁 (Permanent Magnet)',
       titleEn: '工业用永久磁铁材料及各等级磁性特性',
       lead: '永久磁铁作为核心功能部件，广泛用于电机、传感器、发电机、扬声器、磁耦合、磁流体密封（Seal）、医疗器械、汽车电子部件、自动化设备等众多工业领域。',
       body: '由于不同使用环境所需的磁通密度、矫顽力、最大磁能积、耐热性、耐腐蚀性、加工性及成本条件各不相同，因此选择合适的磁铁材料与等级至关重要。',

@@ -545,3 +545,20 @@
     font-size: 26px;
   }
 }
+
+/* 기술 데이터(/tech-data) 바로가기 */
+.tech-page__data-link {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 10px 18px;
+  border: 1px solid rgba(125, 211, 252, 0.6);
+  border-radius: 999px;
+  color: #7dd3fc;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.tech-page__data-link:hover {
+  background: rgba(125, 211, 252, 0.12);
+}

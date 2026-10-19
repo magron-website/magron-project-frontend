@@ -43,7 +43,7 @@ const CAPTIONS = {
 const NOTES = {
   ko: [
     '측정 조건은 각 열의 단위 표기를 따릅니다 (점도 27℃, 증기압 20℃ 기준).',
-    '증기압은 한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로 측정했으며, 측정 자료는 기술정보 페이지에서 확인할 수 있습니다.',
+    '증기압은 한국고분자시험연구소(KOPTRI)에서 OECD TG 104 유출법으로 측정했으며, 측정 자료는 기술정보 페이지에서 확인할 수 있습니다.',
   ],
   en: [
     'Measurement conditions follow the unit notation in each column (viscosity at 27℃, vapor pressure at 20℃).',
@@ -51,7 +51,7 @@ const NOTES = {
   ],
   zh: [
     '测量条件依据各列的单位标注（粘度 27℃、蒸气压 20℃）。',
-    '蒸气压由韩国高分子试验研究院（KOPTRI）依据 OECD TG 104 逸出法测定，测定资料可在技术信息页面查阅。',
+    '蒸气压由韩国高分子试验研究所（KOPTRI）依据 OECD TG 104 逸出法测定，测定资料可在技术信息页面查阅。',
   ],
 } satisfies Record<Language, string[]>
 

@@ -19,11 +19,11 @@ export const SOURCE_LINKS: SourceLink[] = [
   },
   {
     label: {
-      ko: '한국고분자시험연구원 (KOPTRI) — 증기압 시험',
+      ko: '한국고분자시험연구소 (KOPTRI) — 증기압 시험',
       en: 'Korea Polymer Testing & Research Institute (KOPTRI) — vapor pressure test',
-      zh: '韩国高分子试验研究院（KOPTRI）— 蒸气压试验',
+      zh: '韩国高分子试验研究所（KOPTRI）— 蒸气压试验',
     },
-    href: 'https://www.koptri.re.kr/',
+    href: 'https://www.polymer.co.kr/',
   },
   {
     label: {

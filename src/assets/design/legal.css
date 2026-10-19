@@ -103,7 +103,7 @@
 /* 연락처 카드 */
 .lg-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
   margin: 0;
 }
@@ -126,7 +126,8 @@
   color: #fff;
   font-size: 17px;
   font-weight: 700;
-  word-break: break-all;
+  /* 이메일이 "magron@magron.co." / "kr" 로 끊기지 않게 — 단어 단위로 두고 정말 넘칠 때만 자른다 */
+  overflow-wrap: anywhere;
 }
 
 .lg-card__value a {

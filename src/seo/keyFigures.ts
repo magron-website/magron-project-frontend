@@ -36,9 +36,9 @@ export const KEY_FIGURES: KeyFigure[] = [
     item: { ko: '증기압 (20℃)', en: 'Vapor pressure at 20℃', zh: '蒸气压（20℃）' },
     value: '≤ 1.5×10⁻¹⁰ Pa',
     basis: {
-      ko: '한국고분자시험연구원(KOPTRI), OECD TG 104 유출법',
+      ko: '한국고분자시험연구소(KOPTRI), OECD TG 104 유출법',
       en: 'KOPTRI, OECD TG 104 effusion method',
-      zh: '韩国高分子试验研究院（KOPTRI），OECD TG 104 逸出法',
+      zh: '韩国高分子试验研究所（KOPTRI），OECD TG 104 逸出法',
     },
   },
   {

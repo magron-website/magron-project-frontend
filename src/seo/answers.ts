@@ -116,6 +116,59 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
     ],
   },
 
+  '/tech-data': {
+    summary: {
+      question: {
+        ko: 'MFF-M 자성유체의 증기압과 내열성 시험값은 얼마인가요?',
+        en: 'What are the measured vapor pressure and heat resistance of MFF-M ferrofluid?',
+        zh: 'MFF-M 磁流体的蒸气压与耐热性实测值是多少？',
+      },
+      answer: {
+        ko: 'MFF-M4251 완제품의 증기압은 20℃ 1.51×10⁻¹⁰ Pa, 25℃ 4.20×10⁻¹⁰ Pa, 100℃ 7.57×10⁻⁵ Pa입니다(KOPTRI 시험성적서 No. 25-09458, OECD TG 104). KITECH TGA(10℃/min)에서 1%·2%·5% 중량손실 온도는 282·310·324℃, 헬륨 누설율은 1×10⁻¹¹ Torr·ℓ/s 미만입니다.',
+        en: 'The finished MFF-M4251 ferrofluid has a vapor pressure of 1.51×10⁻¹⁰ Pa at 20℃, 4.20×10⁻¹⁰ Pa at 25℃ and 7.57×10⁻⁵ Pa at 100℃ (KOPTRI Test Report No. 25-09458, OECD TG 104). In KITECH TGA at 10℃/min it loses 1%, 2% and 5% of its weight at 282, 310 and 324℃, and its helium leak rate is below 1×10⁻¹¹ Torr·L/s.',
+        zh: 'MFF-M4251 成品的蒸气压为 20℃ 1.51×10⁻¹⁰ Pa、25℃ 4.20×10⁻¹⁰ Pa、100℃ 7.57×10⁻⁵ Pa（KOPTRI 试验报告 No. 25-09458，OECD TG 104）。在 KITECH TGA（每分钟升温 10℃）中，失重 1%、2%、5% 的温度分别为 282、310、324℃，氦气泄漏率低于 1×10⁻¹¹ Torr·L/s。',
+      },
+    },
+    faqs: [
+      {
+        question: {
+          ko: '300℃에서 중량손실은 얼마인가요?',
+          en: 'How much weight does it lose at 300℃?',
+          zh: '300℃ 时失重多少？',
+        },
+        answer: {
+          ko: '같은 TGA 조건에서 MFF-M4251은 −1.450%, MFF-M5070은 −1.560%입니다. 같은 조건의 타사 PFPE 베이스오일은 −21.1~−34.6%였습니다. 타사 값은 베이스오일, 당사 값은 완제품 측정값입니다.',
+          en: 'Under the same TGA conditions MFF-M4251 loses 1.450% and MFF-M5070 1.560%. Competing PFPE base oils measured under the same conditions lost 21.1–34.6%. Competitor figures are on base oil; MAGRON figures are on the finished ferrofluid.',
+          zh: '在相同 TGA 条件下，MFF-M4251 失重 1.450%，MFF-M5070 失重 1.560%。相同条件下他社 PFPE 基础油失重 21.1~34.6%。他社为基础油测定值，本公司为成品测定值。',
+        },
+      },
+      {
+        question: {
+          ko: '비활성 가스용 자성유체의 내열성은 어떤가요?',
+          en: 'How heat-resistant are the inert-gas ferrofluids?',
+          zh: '惰性气体用磁流体的耐热性如何？',
+        },
+        answer: {
+          ko: 'KITECH TGA(10℃/min) 기준 1% 중량손실 온도는 실리콘 계열 MFS-4005 196℃, MFS-6022 199℃, 하이드로카본 계열 MFH-5002 168℃입니다. 5% 손실 온도는 각각 251℃, 236℃, 222℃입니다.',
+          en: 'In KITECH TGA at 10℃/min, the 1% weight-loss temperature is 196℃ for silicone MFS-4005, 199℃ for MFS-6022 and 168℃ for hydrocarbon MFH-5002; the 5% loss temperatures are 251℃, 236℃ and 222℃.',
+          zh: '以 KITECH TGA（每分钟升温 10℃）为准，1% 失重温度为硅系 MFS-4005 196℃、MFS-6022 199℃、碳氢系 MFH-5002 168℃；5% 失重温度分别为 251℃、236℃、222℃。',
+        },
+      },
+      {
+        question: {
+          ko: '반도체 공정에서는 어느 정도 진공도를 쓰나요?',
+          en: 'What vacuum levels do semiconductor processes use?',
+          zh: '半导体工艺使用多高的真空度？',
+        },
+        answer: {
+          ko: '일반적으로 스퍼터링 10⁻⁴~10⁻⁶ Pa, CVD 10⁻³~10⁻⁶ Pa, 식각 10⁻³~10⁻⁵ Pa, 이온 주입 10⁻⁶ Pa 이하, OLED 증착 10⁻⁵~10⁻⁷ Pa 범위입니다. 이온 주입과 OLED 증착은 증기압 관리가 특히 중요합니다.',
+          en: 'Typically sputtering runs at 10⁻⁴–10⁻⁶ Pa, CVD at 10⁻³–10⁻⁶ Pa, etching at 10⁻³–10⁻⁵ Pa, ion implantation at 10⁻⁶ Pa or below, and OLED deposition at 10⁻⁵–10⁻⁷ Pa. Vapor-pressure control matters most for ion implantation and OLED deposition.',
+          zh: '一般溅射为 10⁻⁴~10⁻⁶ Pa，CVD 为 10⁻³~10⁻⁶ Pa，刻蚀为 10⁻³~10⁻⁵ Pa，离子注入为 10⁻⁶ Pa 以下，OLED 蒸镀为 10⁻⁵~10⁻⁷ Pa。离子注入与 OLED 蒸镀对蒸气压控制要求最高。',
+        },
+      },
+    ],
+  },
+
   '/tech': {
     summary: {
       question: {
@@ -124,9 +177,9 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
         zh: '提供哪些技术资料？',
       },
       answer: {
-        ko: 'MFF-M PFPE 자성유체의 내열성·증기압·진공 안정성을 뒷받침하는 자료를 PDF로 공개합니다. 증기압은 한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로, 내열성은 한국생산기술연구원(KITECH)에서 TGA로 측정했습니다. 종합자료·기술 브로슈어·증기압 기술노트·시험 결과·활성 및 불활성 가스 TGA 원자료를 열람하고 내려받을 수 있습니다.',
+        ko: 'MFF-M PFPE 자성유체의 내열성·증기압·진공 안정성을 뒷받침하는 자료를 PDF로 공개합니다. 증기압은 한국고분자시험연구소(KOPTRI)에서 OECD TG 104 유출법으로, 내열성은 한국생산기술연구원(KITECH)에서 TGA로 측정했습니다. 종합자료·기술 브로슈어·증기압 기술노트·시험 결과·활성 및 불활성 가스 TGA 원자료를 열람하고 내려받을 수 있습니다.',
         en: 'Documents backing the heat resistance, vapor pressure, and vacuum stability of MFF-M PFPE ferrofluid are published as PDFs. Vapor pressure was measured at KOPTRI (Korea Polymer Testing & Research Institute) by the OECD TG 104 effusion method, and heat resistance at KITECH (Korea Institute of Industrial Technology) by TGA. Overview decks, brochures, vapor-pressure notes, test results, and raw TGA data for active and inert gases are all available.',
-        zh: '以 PDF 形式公开支持 MFF-M PFPE 磁流体耐热性、蒸气压与真空稳定性的资料。蒸气压由韩国高分子试验研究院（KOPTRI）依据 OECD TG 104 逸出法测定，耐热性由韩国生产技术研究院（KITECH）以 TGA 测定。可阅览并下载综合资料、技术手册、蒸气压技术说明、试验结果以及活性与惰性气体的 TGA 原始数据。',
+        zh: '以 PDF 形式公开支持 MFF-M PFPE 磁流体耐热性、蒸气压与真空稳定性的资料。蒸气压由韩国高分子试验研究所（KOPTRI）依据 OECD TG 104 逸出法测定，耐热性由韩国生产技术研究院（KITECH）以 TGA 测定。可阅览并下载综合资料、技术手册、蒸气压技术说明、试验结果以及活性与惰性气体的 TGA 原始数据。',
       },
     },
     faqs: [
@@ -279,9 +332,9 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
           zh: '耐热性与蒸气压是如何验证的？',
         },
         answer: {
-          ko: '내열성은 한국생산기술연구원(KITECH)에서 TGA·DTA로 분당 10℃ 승온 조건으로 측정했고, 증기압은 한국고분자시험연구원(KOPTRI)에서 OECD TG 104 유출법으로 측정했습니다. 측정 자료와 시험 결과는 기술정보 페이지에서 PDF로 열람할 수 있습니다.',
+          ko: '내열성은 한국생산기술연구원(KITECH)에서 TGA·DTA로 분당 10℃ 승온 조건으로 측정했고, 증기압은 한국고분자시험연구소(KOPTRI)에서 OECD TG 104 유출법으로 측정했습니다. 측정 자료와 시험 결과는 기술정보 페이지에서 PDF로 열람할 수 있습니다.',
           en: 'Heat resistance was measured at KITECH (Korea Institute of Industrial Technology) by TGA and DTA at a 10℃/min ramp, and vapor pressure was measured at KOPTRI (Korea Polymer Testing & Research Institute) using the OECD TG 104 effusion method. The measurement data and test results are available as PDFs on the Technical Information page.',
-          zh: '耐热性由韩国生产技术研究院（KITECH）以 TGA·DTA 在每分钟升温 10℃ 的条件下测定，蒸气压由韩国高分子试验研究院（KOPTRI）依据 OECD TG 104 逸出法测定。测定资料与试验结果可在技术信息页面以 PDF 阅览。',
+          zh: '耐热性由韩国生产技术研究院（KITECH）以 TGA·DTA 在每分钟升温 10℃ 的条件下测定，蒸气压由韩国高分子试验研究所（KOPTRI）依据 OECD TG 104 逸出法测定。测定资料与试验结果可在技术信息页面以 PDF 阅览。',
         },
       },
       {
