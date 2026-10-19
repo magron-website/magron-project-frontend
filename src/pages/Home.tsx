@@ -5,6 +5,8 @@ import { BookCover } from 'book-cover-3d'
 import { homeImages } from '@/assets/images/homeImages'
 import HeroCarousel from '@/components/HeroCarousel'
 import AnswerBlock from '@/components/AnswerBlock'
+import { getPageAnswers } from '@/seo/answers'
+import { KEY_FIGURES_VISIBLE } from '@/seo/keyFigures'
 import KeyFigures from '@/components/KeyFigures'
 import { LANGUAGES, type Language } from '@/i18n'
 import { LAST_UPDATED, LAST_UPDATED_LABEL } from '@/seo/lastUpdated'
@@ -326,7 +328,8 @@ export default function Home() {
       <HomeCatalog />
       <HomeTech />
       <HomeContact />
-      <HomeGeo />
+      {/* 직답·사양 표를 둘 다 숨기면 영역째 뺀다 — 빈 섹션이 남으면 --geo-height 만큼 푸터가 밀린다 */}
+      {(getPageAnswers('/') || KEY_FIGURES_VISIBLE) && <HomeGeo />}
     </div>
   )
 }

@@ -17,8 +17,9 @@
   --contact-offset: 3133px;
   --contact-height: 560px;
   --footer-height: 144px;
-  /* 직답·핵심 사양 표(.home-geo) 실제 높이. Home.tsx 가 측정해 덮어쓴다 — 이 값은 JS 전 기본값 */
-  --geo-height: 1100px;
+  /* 직답·핵심 사양 표(.home-geo) 실제 높이. Home.tsx 가 측정해 덮어쓴다.
+     영역이 없으면 0(숨김 상태에서 푸터 위 빈 공간 방지), 있으면 JS 전 기본값 1100px — 아래 :has 규칙 */
+  --geo-height: 0px;
   --layout-base: calc(var(--header-height) + var(--product-scroll-height) - 1011px);
   --content-end: calc(
     var(--contact-offset) + var(--tech-height) + var(--contact-height) + var(--layout-base)
@@ -621,6 +622,11 @@
 }
 
 /* 직답 + 핵심 사양 표 — 연락처 아래, 푸터 자리. 높이는 --geo-height 로 푸터에 전달 */
+/* 영역이 있을 때만 JS 전 기본 높이를 잡는다(직답·사양 표를 숨겨 .home-geo 가 없으면 0 유지) */
+.home:has(.home-geo) {
+  --geo-height: 1100px;
+}
+
 .home-geo {
   position: absolute;
   top: calc(var(--content-end) + var(--header-height));

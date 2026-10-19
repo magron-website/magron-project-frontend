@@ -33,6 +33,13 @@ export type PageAnswers = {
   faqs: QA[]
 }
 
+/**
+ * 직답·FAQ 블록을 숨긴 화면. 2026-10-19 사용자 요청으로 홈·회사소개에서 "일단" 뺐다.
+ * 다시 보이려면 여기서 경로만 지우면 된다 — 화면과 FAQPage 스키마가 같이 따라온다.
+ * 아래 PAGE_ANSWERS 의 문구는 지우지 않고 둔다.
+ */
+const HIDDEN_ANSWER_ROUTES: ReadonlySet<string> = new Set(['/', '/company'])
+
 export const PAGE_ANSWERS: Record<string, PageAnswers> = {
   '/': {
     summary: {
@@ -757,5 +764,6 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
 
 /** 언어 접두어를 뗀 경로(`/ferrofluid`)로 그 화면의 직답·FAQ를 꺼낸다. */
 export function getPageAnswers(routePath: string): PageAnswers | undefined {
+  if (HIDDEN_ANSWER_ROUTES.has(routePath)) return undefined
   return PAGE_ANSWERS[routePath]
 }

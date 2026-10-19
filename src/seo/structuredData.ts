@@ -1,7 +1,7 @@
 import type { Language } from '@/i18n'
 import { toCanonicalPath } from '@/i18n/routing'
 import { ROUTE_META, SITE_URL } from '@/seo/routeMeta'
-import { PAGE_ANSWERS } from '@/seo/answers'
+import { getPageAnswers } from '@/seo/answers'
 import { getProductImage } from '@/seo/productImages'
 import { PRODUCT_PAGE_PATHS } from '@/pages/products/productRoutes'
 import { LAST_UPDATED } from '@/seo/lastUpdated'
@@ -88,7 +88,8 @@ function buildProduct(routePath: string, lang: Language) {
 }
 
 function buildFaqPage(routePath: string, lang: Language) {
-  const answers = PAGE_ANSWERS[routePath]
+  // 화면(AnswerBlock)과 같은 함수로 꺼낸다 — 숨긴 화면은 스키마에서도 빠진다(화면에 없는 FAQ를 스키마에만 두면 지침 위반)
+  const answers = getPageAnswers(routePath)
   if (!answers) return null
 
   /* 화면에 보이는 질문과 스키마의 질문이 같아야 한다. summary(직답)까지 첫 질문으로

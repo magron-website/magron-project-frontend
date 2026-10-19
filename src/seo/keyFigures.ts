@@ -14,6 +14,12 @@ import type { Language } from '@/i18n'
 
 type Localized = Record<Language, string>
 
+/**
+ * 핵심 사양 표(홈·회사소개)와 "자성유체 씰과 오일씰·기계식 씰 비교 보기" 링크(표 아래·제품 화면 FAQ 아래)를 보일지.
+ * 2026-10-19 사용자 요청으로 "일단" 숨김. 다시 보이려면 true 로만 바꾸면 된다. /seal-comparison 화면 자체는 그대로 둔다.
+ */
+export const KEY_FIGURES_VISIBLE = false
+
 export type KeyFigure = {
   /** 제품 페이지 경로(언어 접두어 없음) */
   path: string

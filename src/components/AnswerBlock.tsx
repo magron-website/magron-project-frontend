@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { LANGUAGES, type Language } from '@/i18n'
 import { useLangPath } from '@/i18n/routing'
 import { getPageAnswers } from '@/seo/answers'
-import { KEY_FIGURES_TEXT } from '@/seo/keyFigures'
+import { KEY_FIGURES_TEXT, KEY_FIGURES_VISIBLE } from '@/seo/keyFigures'
 import { SOURCE_LINKS } from '@/seo/sources'
 
 const SOURCES_HEADING: Record<Language, string> = {
@@ -78,7 +78,7 @@ export default function AnswerBlock({ routePath, compareLink = false, sources = 
           </div>
         )}
 
-        {compareLink && (
+        {compareLink && KEY_FIGURES_VISIBLE && (
           <Link className="answer-block__compare" to={lp('/seal-comparison')}>
             {KEY_FIGURES_TEXT[lang].compare} →
           </Link>

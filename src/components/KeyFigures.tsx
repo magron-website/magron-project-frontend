@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import { LANGUAGES, type Language } from '@/i18n'
 import { useLangPath } from '@/i18n/routing'
-import { KEY_FIGURES, KEY_FIGURES_TEXT } from '@/seo/keyFigures'
+import { KEY_FIGURES, KEY_FIGURES_TEXT, KEY_FIGURES_VISIBLE } from '@/seo/keyFigures'
 import '@/assets/design/key-figures.css'
 
 /**
@@ -16,6 +16,8 @@ export default function KeyFigures() {
     ? (i18n.language as Language)
     : 'ko'
   const text = KEY_FIGURES_TEXT[lang]
+
+  if (!KEY_FIGURES_VISIBLE) return null
 
   return (
     <section className="key-figures key-figures--stack" aria-labelledby="key-figures__heading">
