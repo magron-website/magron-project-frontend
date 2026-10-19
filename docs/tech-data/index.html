@@ -1,0 +1,196 @@
+<!DOCTYPE html><html lang="ko"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/icons/favicon-32.png" type="image/png">
+
+    <!-- PWA: installable to a phone or desktop home screen ("홈 화면에 추가").
+         / is Vite's deploy base, so these keep resolving if the site
+         ever moves back under a GitHub Pages project path. -->
+    <link rel="manifest" href="/manifest.webmanifest">
+    <meta name="theme-color" content="#f4f4f5">
+    <meta name="application-name" content="마그론">
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png">
+    <!-- iOS has no manifest support: these are what make a home-screen launch
+         open full screen with the right name instead of inside Safari. -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="마그론">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- 본문 폰트 IBM Plex Sans KR (2026-08-24 조선일보명조에서 교체).
+         CSS의 @import보다 여기서 link로 먼저 잡아야 첫 화면 글자 깜빡임이 줄어든다. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;family=IBM+Plex+Sans+KR:wght@400;500;700&amp;display=swap">
+
+    <title>자성유체 기술 데이터: 증기압·TGA·누설 시험값 | MAGRON (주)마그론</title>
+    <meta name="description" content="MFF-M4251 자성유체 증기압 20℃ 1.51×10⁻¹⁰ Pa(KOPTRI No. 25-09458, OECD TG 104), 1% 중량손실 282℃(KITECH TGA), 헬륨 누설 1×10⁻¹¹ Torr·ℓ/s 미만 등 시험값을 표로 정리했습니다.">
+    <meta name="keywords" content="자성유체, ferrofluid, magnetic fluid, 마그론, MAGRON, 자성유체 씰, ferrofluidic seal, ferro seal, magnetic fluid seal, 진공 피드스루, vacuum feedthrough, 맥오일, Mag oil, Daiwa reel, 자석, magnet, 자성소재">
+    <meta name="author" content="MAGRON Co., Ltd. (주)마그론">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <!-- 네이버 서치어드바이저 소유확인. 지우면 사이트 소유권이 풀린다. -->
+    <meta name="naver-site-verification" content="c4a49a09a4bb91dfd7067aa8c067447490e748e6">
+    <link rel="canonical" href="https://magron.kr/tech-data/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MAGRON (주)마그론">
+    <meta property="og:title" content="자성유체 기술 데이터: 증기압·TGA·누설 시험값 | MAGRON (주)마그론">
+    <meta property="og:description" content="MFF-M4251 자성유체 증기압 20℃ 1.51×10⁻¹⁰ Pa(KOPTRI No. 25-09458, OECD TG 104), 1% 중량손실 282℃(KITECH TGA), 헬륨 누설 1×10⁻¹¹ Torr·ℓ/s 미만 등 시험값을 표로 정리했습니다.">
+    <meta property="og:url" content="https://magron.kr/tech-data/">
+    <meta property="og:image" content="https://magron.kr/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="MAGRON — 자성유체 · 진공 피드스루 · 자성소재">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:locale:alternate" content="en_US">
+    <meta property="og:locale:alternate" content="zh_CN">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="자성유체 | 자성소재 전문회사 (주)마그론">
+    <meta name="twitter:description" content="2004년 설립된 자성유체(Ferrofluid)·자성소재 전문 기업 (주)마그론.">
+    <meta name="twitter:image" content="https://magron.kr/og-image.png">
+
+    <!-- Structured data: Organization -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "MAGRON Co., Ltd.",
+        "alternateName": ["(주)마그론", "마그론", "MAGRON"],
+        "url": "https://magron.kr/",
+        "logo": "https://magron.kr/icons/icon-512.png",
+        "foundingDate": "2004",
+        "description": "(주)마그론(MAGRON)은 2004년 설립된 자성유체(Ferrofluid) 및 자성소재 전문 제조기업으로, 유해가스·분진 차단용 자성유체 씰, 진공 피드스루(Feedthrough), 릴 수리용 맥오일, 자석, 자성유체 키트, 대형 자성유체 디스플레이를 반도체·디스플레이·태양전지·전자·자동차 산업에 공급합니다.",
+        "email": "magron@magron.co.kr",
+        "telephone": "+82-31-500-4633",
+        "faxNumber": "031-500-4631",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "해안로 705 경기테크노파크 3동 403호, 상록구",
+          "addressLocality": "안산시",
+          "addressRegion": "경기도",
+          "postalCode": "15588",
+          "addressCountry": "KR"
+        },
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+82-31-500-4633",
+            "contactType": "sales",
+            "areaServed": "KR",
+            "availableLanguage": ["Korean", "English"]
+          },
+          {
+            "@type": "ContactPoint",
+            "telephone": "+82-31-500-4632",
+            "contactType": "sales",
+            "areaServed": "Worldwide",
+            "availableLanguage": ["English", "Korean", "Chinese"]
+          }
+        ],
+        "sameAs": [
+          "https://www.linkedin.com/company/ferrofluid",
+          "https://www.instagram.com/ferrofluidmagron/",
+          "https://www.youtube.com/@magronkorea7396",
+          "https://www.ferrofluidshop.com/"
+        ],
+        "knowsAbout": [
+          "Ferrofluid",
+          "Magnetic fluid seal",
+          "Vacuum feedthrough",
+          "Ferrofluid sealing",
+          "Semiconductor equipment",
+          "OLED deposition"
+        ]
+      }
+    </script>
+
+    <!-- Structured data: WebSite -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "MAGRON (주)마그론",
+        "url": "https://magron.kr/",
+        "inLanguage": ["ko", "en", "zh"]
+      }
+    </script>
+
+    <!-- Structured data: Product catalogue -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": "MAGRON 제품",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "url": "https://magron.kr/ferrofluid/",
+            "name": "유해가스 및 분진 차단용 자성유체 (Ferrofluid for Corrosive Gas & Dust Blocking)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "url": "https://magron.kr/feedthrough/",
+            "name": "Ferrofluid 진공 피드스루 (Feedthrough)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "url": "https://magron.kr/magoil/",
+            "name": "릴 수리용 맥오일 (Reel Mag oil)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "url": "https://magron.kr/magnet/",
+            "name": "자석 (Magnet)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "url": "https://magron.kr/piezo-ink/",
+            "name": "PIEZO Ink · 압전/전도성 잉크"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "url": "https://magron.kr/display/",
+            "name": "대형 자성유체 디스플레이 (Large Ferrofluid Display)"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "url": "https://magron.kr/education/",
+            "name": "자성유체 교육 키트 (Education kit)"
+          }
+        ]
+      }
+    </script>
+    <script type="module" crossorigin="" src="/assets/index-B2EzNdmI.js"></script>
+    <link rel="stylesheet" crossorigin="" href="/assets/index-CbLcmxLJ.css">
+  <style></style><script id="magron-route-jsonld" type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"홈","item":"https://magron.kr/"},{"@type":"ListItem","position":2,"name":"자성유체 기술 데이터: 증기압·TGA·누설 시험값","item":"https://magron.kr/tech-data/"}]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"MFF-M 자성유체의 증기압과 내열성 시험값은 얼마인가요?","acceptedAnswer":{"@type":"Answer","text":"MFF-M4251 완제품의 증기압은 20℃ 1.51×10⁻¹⁰ Pa, 25℃ 4.20×10⁻¹⁰ Pa, 100℃ 7.57×10⁻⁵ Pa입니다(KOPTRI 시험성적서 No. 25-09458, OECD TG 104). KITECH TGA(10℃/min)에서 1%·2%·5% 중량손실 온도는 282·310·324℃, 헬륨 누설율은 1×10⁻¹¹ Torr·ℓ/s 미만입니다."}},{"@type":"Question","name":"300℃에서 중량손실은 얼마인가요?","acceptedAnswer":{"@type":"Answer","text":"같은 TGA 조건에서 MFF-M4251은 −1.450%, MFF-M5070은 −1.560%입니다. 같은 조건의 타사 PFPE 베이스오일은 −21.1~−34.6%였습니다. 타사 값은 베이스오일, 당사 값은 완제품 측정값입니다."}},{"@type":"Question","name":"비활성 가스용 자성유체의 내열성은 어떤가요?","acceptedAnswer":{"@type":"Answer","text":"KITECH TGA(10℃/min) 기준 1% 중량손실 온도는 실리콘 계열 MFS-4005 196℃, MFS-6022 199℃, 하이드로카본 계열 MFH-5002 168℃입니다. 5% 손실 온도는 각각 251℃, 236℃, 222℃입니다."}},{"@type":"Question","name":"반도체 공정에서는 어느 정도 진공도를 쓰나요?","acceptedAnswer":{"@type":"Answer","text":"일반적으로 스퍼터링 10⁻⁴~10⁻⁶ Pa, CVD 10⁻³~10⁻⁶ Pa, 식각 10⁻³~10⁻⁵ Pa, 이온 주입 10⁻⁶ Pa 이하, OLED 증착 10⁻⁵~10⁻⁷ Pa 범위입니다. 이온 주입과 OLED 증착은 증기압 관리가 특히 중요합니다."}}]},{"@type":"WebPage","url":"https://magron.kr/tech-data/","name":"자성유체 기술 데이터: 증기압·TGA·누설 시험값","dateModified":"2026-10-19"}]}</script><style></style><link rel="alternate" hreflang="ko" href="https://magron.kr/tech-data/"><link rel="alternate" hreflang="en" href="https://magron.kr/en/tech-data/"><link rel="alternate" hreflang="zh" href="https://magron.kr/zh/tech-data/"><link rel="alternate" hreflang="x-default" href="https://magron.kr/tech-data/"></head>
+  <body>
+    <div id="root"><div class="home home--page"><header class="home-header"><div class="home-header__border"></div><div class="home-header__bg"></div><div class="home-header__inner"><a class="home-header__left" aria-label="홈으로 이동" href="/" data-discover="true"><img class="home-header__logo-img" alt="MAGRON" src="/assets/logo-vdm95Mft.png"><div class="home-header__brand"><span class="home-header__brand-name">MAGRON</span><span class="home-header__brand-tagline">Ferrofluid</span></div></a><nav class="home-header__nav" aria-label="제품정보"><button type="button" class="home-header__nav-item home-header__nav-item--link">Home</button><div class="home-header__nav-dropdown"><button type="button" class="home-header__nav-item home-header__nav-item--trigger" aria-expanded="false" aria-haspopup="true">회사소개</button></div><div class="home-header__nav-dropdown"><button type="button" class="home-header__nav-item home-header__nav-item--trigger" aria-expanded="false" aria-haspopup="true">제품정보</button></div><button type="button" class="home-header__nav-item home-header__nav-item--link">카탈로그</button><a class="home-header__nav-item home-header__nav-item--link" href="/tech" data-discover="true">기술정보</a></nav><div class="home-header__right"><div class="home-header__lang"><button type="button" class="home-header__lang-group home-header__lang-group--active" aria-pressed="true"><span class="home-header__lang-label" lang="ko">한국어</span></button><button type="button" class="home-header__lang-group" aria-pressed="false"><span class="home-header__lang-label" lang="en">English</span></button><button type="button" class="home-header__lang-group" aria-pressed="false"><span class="home-header__lang-label" lang="zh">中文</span></button></div><div class="home-header__lang-mobile"><button type="button" class="home-header__lang-toggle" aria-haspopup="true" aria-expanded="false"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.3"></circle><path d="M1.5 8h13M8 1.5c1.8 2 2.6 4.1 2.6 6.5S9.8 12.5 8 14.5M8 1.5C6.2 3.5 5.4 5.6 5.4 8s.8 4.5 2.6 6.5" stroke="currentColor" stroke-width="1.3"></path></svg><span lang="ko">한국어</span><svg viewBox="0 0 10 10" width="10" height="10" aria-hidden="true"><path d="M2 3.5 5 6.5 8 3.5" fill="none" stroke="currentColor" stroke-width="1.4"></path></svg></button></div><a class="home-header__shop" href="https://www.ferrofluidshop.com/" target="_blank" rel="noopener noreferrer"><span class="home-header__shop-text">쇼핑몰</span></a></div><button type="button" class="home-header__burger" aria-label="제품정보" aria-expanded="false"><span></span><span></span><span></span></button></div></header><div class="home__content"><article class="lg-page"><div class="lg-hero"><div class="lg-inner"><header class="lg-heading"><p class="lg-heading__eyebrow">Technical data</p><h1 class="lg-heading__title">자성유체 기술 데이터: 증기압·TGA·누설 시험값</h1><p class="lg-heading__lead">기술정보 PDF에 흩어져 있던 시험값을 한 화면에 표로 정리했습니다. 시험기관, 시험법, 측정 대상을 값마다 함께 적었습니다.</p></header></div></div><section class="answer-block" aria-labelledby="answer-block__heading"><div class="answer-block__inner"><h2 class="answer-block__question" id="answer-block__heading">MFF-M 자성유체의 증기압과 내열성 시험값은 얼마인가요?</h2><p class="answer-block__answer">MFF-M4251 완제품의 증기압은 20℃ 1.51×10⁻¹⁰ Pa, 25℃ 4.20×10⁻¹⁰ Pa, 100℃ 7.57×10⁻⁵ Pa입니다(KOPTRI 시험성적서 No. 25-09458, OECD TG 104). KITECH TGA(10℃/min)에서 1%·2%·5% 중량손실 온도는 282·310·324℃, 헬륨 누설율은 1×10⁻¹¹ Torr·ℓ/s 미만입니다.</p><dl class="answer-block__faq"><div class="answer-block__faq-item"><dt>300℃에서 중량손실은 얼마인가요?</dt><dd>같은 TGA 조건에서 MFF-M4251은 −1.450%, MFF-M5070은 −1.560%입니다. 같은 조건의 타사 PFPE 베이스오일은 −21.1~−34.6%였습니다. 타사 값은 베이스오일, 당사 값은 완제품 측정값입니다.</dd></div><div class="answer-block__faq-item"><dt>비활성 가스용 자성유체의 내열성은 어떤가요?</dt><dd>KITECH TGA(10℃/min) 기준 1% 중량손실 온도는 실리콘 계열 MFS-4005 196℃, MFS-6022 199℃, 하이드로카본 계열 MFH-5002 168℃입니다. 5% 손실 온도는 각각 251℃, 236℃, 222℃입니다.</dd></div><div class="answer-block__faq-item"><dt>반도체 공정에서는 어느 정도 진공도를 쓰나요?</dt><dd>일반적으로 스퍼터링 10⁻⁴~10⁻⁶ Pa, CVD 10⁻³~10⁻⁶ Pa, 식각 10⁻³~10⁻⁵ Pa, 이온 주입 10⁻⁶ Pa 이하, OLED 증착 10⁻⁵~10⁻⁷ Pa 범위입니다. 이온 주입과 OLED 증착은 증기압 관리가 특히 중요합니다.</dd></div></dl><div class="answer-block__sources"><p class="answer-block__sources-title">시험법·시험기관</p><ul><li><a href="https://doi.org/10.1787/9789264069565-en" target="_blank" rel="noopener noreferrer">OECD 시험지침 104: 증기압 (Test No. 104: Vapour Pressure)</a></li><li><a href="https://www.polymer.co.kr/" target="_blank" rel="noopener noreferrer">한국고분자시험연구소 (KOPTRI) — 증기압 시험</a></li><li><a href="https://www.kitech.re.kr/" target="_blank" rel="noopener noreferrer">한국생산기술연구원 (KITECH) — TGA 내열성 시험</a></li></ul></div></div></section><section class="key-figures key-figures--stack"><div class="key-figures__inner"><div class="key-figures__block" id="vapor-pressure"><h2 class="key-figures__subheading">MFF-M4251 온도별 증기압 (KOPTRI 시험성적서 No. 25-09458, OECD TG 104 유출법)</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">온도</th><th scope="col">증기압 (Pa)</th><th scope="col">증기압 (Torr)</th></tr></thead><tbody><tr><th scope="row" data-label="온도">20℃</th><td data-label="증기압 (Pa)" class="key-figures__strong">1.51 × 10⁻¹⁰ Pa</td><td data-label="증기압 (Torr)" class="key-figures__strong">1.13 × 10⁻¹² Torr</td></tr><tr><th scope="row" data-label="온도">25℃</th><td data-label="증기압 (Pa)">4.20 × 10⁻¹⁰ Pa</td><td data-label="증기압 (Torr)">—</td></tr><tr><th scope="row" data-label="온도">100℃</th><td data-label="증기압 (Pa)">7.57 × 10⁻⁵ Pa</td><td data-label="증기압 (Torr)">5.68 × 10⁻⁷ Torr</td></tr><tr><th scope="row" data-label="온도">200℃</th><td data-label="증기압 (Pa)">1.97 Pa</td><td data-label="증기압 (Torr)">1.48 × 10⁻² Torr</td></tr></tbody></table></div><p class="key-figures__lead">측정 대상: 완제품 자성유체</p></div><div class="key-figures__block" id="vapor-pressure-compare"><h2 class="key-figures__subheading">PFPE 자성유체 증기압 비교</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">제품</th><th scope="col">측정 대상</th><th scope="col">20℃</th><th scope="col">100℃</th></tr></thead><tbody><tr><th scope="row" data-label="제품">MAGRON MFF-M4251</th><td data-label="측정 대상" class="key-figures__strong">완제품</td><td data-label="20℃" class="key-figures__strong">1.51 × 10⁻¹⁰ Pa</td><td data-label="100℃" class="key-figures__strong">7.57 × 10⁻⁵ Pa</td></tr><tr><th scope="row" data-label="제품">일본 S사 F-310</th><td data-label="측정 대상">—</td><td data-label="20℃">7 × 10⁻⁸ Pa</td><td data-label="100℃">자료 없음</td></tr><tr><th scope="row" data-label="제품">일본 M사 MFF-03</th><td data-label="측정 대상">베이스오일만</td><td data-label="20℃">2 × 10⁻⁹ Pa</td><td data-label="100℃">5 × 10⁻³ Pa</td></tr><tr><th scope="row" data-label="제품">영국 L사 F-9</th><td data-label="측정 대상">베이스오일만</td><td data-label="20℃">7 × 10⁻⁸ Torr</td><td data-label="100℃">1 × 10⁻³ Torr</td></tr></tbody></table></div><p class="key-figures__lead">타사 수치는 각 사 공개 자료 기준이며, 일본 M사·영국 L사는 베이스오일만 측정한 값입니다. 당사는 완제품 측정값이라 측정 조건이 같지 않습니다.</p></div><div class="key-figures__block" id="tga-active"><h2 class="key-figures__subheading">활성 가스용 PFPE 자성유체 중량손실 온도 (KITECH TGA, 10℃/min 승온)</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">제품</th><th scope="col">자화 / 점도 (27℃)</th><th scope="col">1% 손실</th><th scope="col">2% 손실</th><th scope="col">5% 손실</th><th scope="col">300℃ 중량손실</th></tr></thead><tbody><tr><th scope="row" data-label="제품">MAGRON MFF-M4251</th><td data-label="자화 / 점도 (27℃)" class="key-figures__strong">420 G / 5,100 cP</td><td data-label="1% 손실" class="key-figures__strong">282℃</td><td data-label="2% 손실" class="key-figures__strong">310℃</td><td data-label="5% 손실" class="key-figures__strong">324℃</td><td data-label="300℃ 중량손실" class="key-figures__strong">−1.450 %</td></tr><tr><th scope="row" data-label="제품">MAGRON MFF-M5070</th><td data-label="자화 / 점도 (27℃)">500 G / 7,000 cP</td><td data-label="1% 손실">280℃</td><td data-label="2% 손실">305℃</td><td data-label="5% 손실">323℃</td><td data-label="300℃ 중량손실">−1.560 %</td></tr><tr><th scope="row" data-label="제품">영국 L사 F-9</th><td data-label="자화 / 점도 (27℃)">450 G / 5,000 cP</td><td data-label="1% 손실">176℃</td><td data-label="2% 손실">201℃</td><td data-label="5% 손실">233℃</td><td data-label="300℃ 중량손실">−21.856 %</td></tr><tr><th scope="row" data-label="제품">일본 M사 MFF-03</th><td data-label="자화 / 점도 (27℃)">550 G / 6,200 cP</td><td data-label="1% 손실">185℃</td><td data-label="2% 손실">210℃</td><td data-label="5% 손실">237℃</td><td data-label="300℃ 중량손실">−34.648 %</td></tr><tr><th scope="row" data-label="제품">일본 S사 F-310</th><td data-label="자화 / 점도 (27℃)">400 G / 3,500 cP</td><td data-label="1% 손실">158℃</td><td data-label="2% 손실">194℃</td><td data-label="5% 손실">241℃</td><td data-label="300℃ 중량손실">−21.148 %</td></tr></tbody></table></div><p class="key-figures__lead">같은 TGA 조건에서 측정했으며, 타사 수치는 베이스오일 기준입니다.</p></div><div class="key-figures__block" id="tga-curve"><h2 class="key-figures__subheading">온도별 중량손실 (KITECH TGA, 10℃/min)</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">제품</th><th scope="col">50℃</th><th scope="col">100℃</th><th scope="col">150℃</th><th scope="col">200℃</th><th scope="col">250℃</th><th scope="col">300℃</th></tr></thead><tbody><tr><th scope="row" data-label="제품">MFF-M4251</th><td data-label="50℃" class="key-figures__strong">−0.010 %</td><td data-label="100℃" class="key-figures__strong">−0.090 %</td><td data-label="150℃" class="key-figures__strong">−0.240 %</td><td data-label="200℃" class="key-figures__strong">−0.400 %</td><td data-label="250℃" class="key-figures__strong">−0.660 %</td><td data-label="300℃" class="key-figures__strong">−1.450 %</td></tr><tr><th scope="row" data-label="제품">MFF-M5070</th><td data-label="50℃">−0.020 %</td><td data-label="100℃">−0.400 %</td><td data-label="150℃">−0.360 %</td><td data-label="200℃">−0.650 %</td><td data-label="250℃">−0.880 %</td><td data-label="300℃">−1.560 %</td></tr></tbody></table></div></div><div class="key-figures__block" id="isothermal"><h2 class="key-figures__subheading">등온 시험 잔존 중량 (KITECH TGA, 100℃ 1시간 → 150℃ 1시간)</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">제품</th><th scope="col">100℃ × 1시간 후</th><th scope="col">150℃ × 1시간 후</th></tr></thead><tbody><tr><th scope="row" data-label="제품">MAGRON MFF-M4251</th><td data-label="100℃ × 1시간 후" class="key-figures__strong">99.84 %</td><td data-label="150℃ × 1시간 후" class="key-figures__strong">99.74 %</td></tr><tr><th scope="row" data-label="제품">영국 L사 F-9</th><td data-label="100℃ × 1시간 후">—</td><td data-label="150℃ × 1시간 후">96.53 %</td></tr></tbody></table></div></div><div class="key-figures__block" id="tga-inert"><h2 class="key-figures__subheading">비활성 가스용 자성유체 중량손실 온도 (KITECH TGA, 10℃/min, Ref. 240321-01)</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">제품</th><th scope="col">베이스 오일</th><th scope="col">자화 / 점도 (27℃)</th><th scope="col">1% 손실</th><th scope="col">2% 손실</th><th scope="col">5% 손실</th></tr></thead><tbody><tr><th scope="row" data-label="제품">MAGRON MFS-4005</th><td data-label="베이스 오일" class="key-figures__strong">실리콘</td><td data-label="자화 / 점도 (27℃)" class="key-figures__strong">400 G / 500 cP</td><td data-label="1% 손실" class="key-figures__strong">196℃</td><td data-label="2% 손실" class="key-figures__strong">220℃</td><td data-label="5% 손실" class="key-figures__strong">251℃</td></tr><tr><th scope="row" data-label="제품">MAGRON MFS-6022</th><td data-label="베이스 오일">실리콘</td><td data-label="자화 / 점도 (27℃)">600 G / 2,200 cP</td><td data-label="1% 손실">199℃</td><td data-label="2% 손실">214℃</td><td data-label="5% 손실">236℃</td></tr><tr><th scope="row" data-label="제품">MAGRON MFH-5002</th><td data-label="베이스 오일">하이드로카본</td><td data-label="자화 / 점도 (27℃)">500 G / 210 cP</td><td data-label="1% 손실">168℃</td><td data-label="2% 손실">192℃</td><td data-label="5% 손실">222℃</td></tr><tr><th scope="row" data-label="제품">일본 M사 MFA-06</th><td data-label="베이스 오일">알킬나프탈렌</td><td data-label="자화 / 점도 (27℃)">580 G / 300 cP</td><td data-label="1% 손실">148℃</td><td data-label="2% 손실">192℃</td><td data-label="5% 손실">232℃</td></tr><tr><th scope="row" data-label="제품">영국 L사 H9LT</th><td data-label="베이스 오일">하이드로카본</td><td data-label="자화 / 점도 (27℃)">400 G / 300 cP</td><td data-label="1% 손실">184℃</td><td data-label="2% 손실">216℃</td><td data-label="5% 손실">248℃</td></tr></tbody></table></div></div><div class="key-figures__block" id="spec"><h2 class="key-figures__subheading">MFF-M 시리즈 사양</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">항목</th><th scope="col">MFF-M4251</th><th scope="col">MFF-M5070</th></tr></thead><tbody><tr><th scope="row" data-label="항목">베이스 오일</th><td data-label="MFF-M4251" class="key-figures__strong">PFPE</td><td data-label="MFF-M5070" class="key-figures__strong">PFPE</td></tr><tr><th scope="row" data-label="항목">포화 자화</th><td data-label="MFF-M4251">420 G</td><td data-label="MFF-M5070">500 G</td></tr><tr><th scope="row" data-label="항목">점도 (27℃)</th><td data-label="MFF-M4251">5,100 cP</td><td data-label="MFF-M5070">7,000 cP</td></tr><tr><th scope="row" data-label="항목">밀도</th><td data-label="MFF-M4251">2.198 g/cm³</td><td data-label="MFF-M5070">2.240 g/cm³</td></tr><tr><th scope="row" data-label="항목">유동점</th><td data-label="MFF-M4251">&lt; −40℃</td><td data-label="MFF-M5070">&lt; −40℃</td></tr><tr><th scope="row" data-label="항목">1wt% 중량손실 온도</th><td data-label="MFF-M4251">&gt; 280℃</td><td data-label="MFF-M5070">&gt; 280℃</td></tr><tr><th scope="row" data-label="항목">헬륨 누설율 (KITECH)</th><td data-label="MFF-M4251">&lt; 1 × 10⁻¹¹ Torr·ℓ/s</td><td data-label="MFF-M5070">&lt; 1 × 10⁻¹¹ Torr·ℓ/s</td></tr><tr><th scope="row" data-label="항목">가스·분진 밀봉 시험</th><td data-label="MFF-M4251">통과</td><td data-label="MFF-M5070">통과</td></tr></tbody></table></div></div><div class="key-figures__block" id="process-vacuum"><h2 class="key-figures__subheading">공정별 운전 진공도와 증기압 관리 중요도</h2><div class="key-figures__scroll" tabindex="0"><table><thead><tr><th scope="col">공정</th><th scope="col">운전 진공도</th><th scope="col">증기압 관리 중요도</th></tr></thead><tbody><tr><th scope="row" data-label="공정">스퍼터링</th><td data-label="운전 진공도" class="key-figures__strong">10⁻⁴ – 10⁻⁶ Pa</td><td data-label="증기압 관리 중요도" class="key-figures__strong">높음</td></tr><tr><th scope="row" data-label="공정">CVD</th><td data-label="운전 진공도">10⁻³ – 10⁻⁶ Pa</td><td data-label="증기압 관리 중요도">높음</td></tr><tr><th scope="row" data-label="공정">식각</th><td data-label="운전 진공도">10⁻³ – 10⁻⁵ Pa</td><td data-label="증기압 관리 중요도">중간</td></tr><tr><th scope="row" data-label="공정">이온 주입</th><td data-label="운전 진공도">≤ 10⁻⁶ Pa</td><td data-label="증기압 관리 중요도">매우 높음</td></tr><tr><th scope="row" data-label="공정">OLED 증착</th><td data-label="운전 진공도">10⁻⁵ – 10⁻⁷ Pa</td><td data-label="증기압 관리 중요도">매우 높음</td></tr></tbody></table></div><p class="key-figures__lead">일반적인 공정 범위이며 장비·레시피에 따라 달라집니다.</p></div><h2 class="key-figures__subheading">측정·환산 방법</h2><ul class="key-figures__links"><li>증기압: 진공 TGA로 등온 조건의 증발 속도를 구한 뒤 Langmuir(Hertz–Knudsen) 식 P = (dm/dt)·(1/α)·(2πRT/M)^½ 로 환산하고, ln P = A − B/T(Arrhenius) 직선화로 사용 온도의 값을 외삽합니다.</li><li>내열성: TGA로 분당 10℃씩 승온하며 무게가 1%·2%·5% 줄어드는 온도를 측정합니다. 실제 사용 온도는 회전 속도, 축 지름, 운전 시간에 따라 달라집니다.</li><li>참고 기준: 미국 우주·반도체 분야의 아웃가싱 기준 ASTM E595는 125℃·24시간에서 TML 1.0% 이하, CVCM 0.10% 이하를 요구합니다.</li></ul><h2 class="key-figures__subheading">원본 자료 (PDF)</h2><p class="key-figures__lead">시험성적서와 TGA 원자료 그래프는 기술정보 화면에서 PDF로 열람·다운로드할 수 있습니다.</p><a class="key-figures__compare" href="/tech" data-discover="true">기술정보로 돌아가기 →</a></div></section></article><p class="page-updated">최종 수정 <time datetime="2026-10-19">2026-10-19</time></p></div><footer class="home-footer"><div class="home-footer__inner"><div class="home-footer__company"><p class="home-footer__company-name">㈜마그론 / MAGRON</p><p class="home-footer__company-detail">(15588) 경기도 안산시 상록구 해안로 705 경기테크노파크 3동 403호<br>대표 최경미 · 사업자등록번호 134-86-16662<br>copyright © 2026 MAGRON<br>All Rights Reserved.</p><nav class="home-footer__links"><a class="home-footer__link home-footer__link--privacy" href="/privacy" data-discover="true">개인정보처리방침</a><a class="home-footer__link" href="/contact" data-discover="true">문의·오시는 길</a></nav></div><div class="home-footer__meta"><div class="home-footer__contact"><svg class="home-footer__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3.5 1.5h2.2l1.1 2.7a1 1 0 0 1-.24 1.02l-1.3 1.3a9.5 9.5 0 0 0 4.42 4.42l1.3-1.3a1 1 0 0 1 1.02-.24l2.7 1.1v2.2a1 1 0 0 1-1 1A12 12 0 0 1 2.5 2.5a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg><p class="home-footer__contact-text">TEL : (Domestic) 031-500-4633<br><span class="home-footer__contact-indent">(Overseas) +82-31-500-4632</span><br>FAX : 031-500-4631</p></div><div class="home-footer__divider" aria-hidden="true"></div><div class="home-footer__actions"><a class="home-footer__email" href="mailto:magron@magron.co.kr"><svg class="home-footer__icon" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><rect x="1.5" y="3.5" width="13" height="9" rx="1" stroke="currentColor" stroke-width="1.2"></rect><path d="M2 5.5 8 9.5l6-4" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"></path></svg><span>magron@magron.co.kr</span></a><div class="home-footer__social"><a class="home-footer__social-link" href="#" aria-label="LinkedIn"><img class="home-footer__social-icon" alt="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEoAAABKCAYAAAAc0MJxAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAUXSURBVHhe7ZpNiBxFFMdXEY1ExYP4AfEDRUQvQVATRfAmwUNOXjzoSQ+iePAjenIOggY3uzNV772q6vnq3cHVWQ9R8WYCCxuNnrLgUS9eAoJiVERUYkbeUgPDm9ntqpk1PczUD/707k7Vv6v/W91TVV0LC4lEaSil7rHWHiOiT40xZxHxC+fcuwDwqCw7txDRMefchZWVlV6r1eo1m83tI//unOsR0YpS6gZZb64AANfpdHpZlvUQcUjGmB5/TkSbzWbzell/LgCA57nXcBgyICkOS2vdkh4zz+Li4n6t9Q+NRmMolFGy1m7LGPOg9JppiOjJ0JD64t4HAO9Ir5lGa/1au90eCmM3+fKfS6+ZBgDeHCcoADgtvWYaAHhpnKAQsSu9ZhoAeMg/nIcC2Un8jELEl6XXTNPr9a4AgM08z4cCGaV6vc7H35RSB6TXzIOIh5xz//gQdhT3PO5NSqkXpcfcoLV+pl6v/8U9S96GRLQ9nfEP8fdl3blDKfWYtfY09xwOhUPjI/c059wWhynrzDU86rbWvgAAbxtjXiGiJyqVytWyXCKRSCQWFjY2Nq6q1+sHeBiDiI+zjDGHjTF3X9aFxGq1el+e50cQsVCNRuOIUuqw9BhEa30wxM85t33sdDr7pUelUrmSP7fWZsaYbxHxj/5QheV//hMRzxtjeLm6Yq09KH32FK11bX19fXusVKS1tTUeS21Jj0EA4JNutztUV4qHHnxUSj0g6h91zn3Dyz88ROFjf5o1KP4br8j2l6uNMReJ6LNqtXpo0G/PQMTjfv5WKL4wAPhKegyitf4oZErUH9gS0f1cr1Kp7DPGOD4HX3y/54SK/fi8WZb9DQCvy3ZNTGxQiPil9BgEAD6MCQoR78zzfB8RneKlZjkziBW/COHr0Vofl22biDKDAoCL1tq7AOADDkmWGVf92QUiPivbNzZlBoWIv2qtM54mxd5qRfKePy8vL98m2zgWZQXl9S8fJ73ddtLq6ureTeRLDmrPe9Kg+FsRAH6sVqs3ynZGU3ZQ/6f4n8DfoIj4tGxnNNMWFF8cP1/4Ydxf7uGL5Qe0LBsirk9EddnOaKYpKB5cckgA8D0inkTEDABaiHgKEX/n4GJvVf/e8pxsZzTTEpTvNVvGmKNLS0vXSl+e23HP4AuPCYvHVQBwARFvlZ5RTENQHJIxZiNkkgsAJ2JesfE3KhFdqtVqD0uvKMoOym8p+qVWq90hvUahlLoGEb8rehkyKN/up6RXFGUHxWW11kvSZzcQ8a2Yc3CP1Vo/J32iKDMoftZYay/F7ujTWj/C9UIHqv4N0qvSJ4oyg+IBodb6PCJeJ312o1ar3QIAP/FtKz1HyQc12YpCmUF5v6+lRxG8sMdDiNDnFAeltX5D+kRRZlB+1HxSeoQAAOdC93b58dd70iOKKQjqY+kRAu+Z8O0plA/qhPSIosygfLlMeoQAAGdigkLERekRRdlBAQBIjxDmLihEROkRQgoqkBRUICmoQFJQgaSgAklBBZKCCiQFFUgKKpAUVCApqEBSUIGkoAJJQQWSggrksgfF+4f6WwKL5E+468sAAOjyviRZd5T8/iUjPUJAxLPcHuk5Sr4jRL07HIIX3fM853drhWo0Gnw8Iz0GQcS1drs9VHeUuBwRjbvCuenbU6hWq8XnmWxDWZZlN7Xb7XuttYXickR0u/QYhDdDxPgZY26WHiFwO2LOw9cpPRKJRCKRSCQSiUQiMdv8B2hI4YEKoAjeAAAAAElFTkSuQmCC"></a><a class="home-footer__social-link home-footer__social-link--instagram" href="https://www.instagram.com/ferrofluidmagron/" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><span class="home-footer__social-icon home-footer__social-icon--instagram" style="mask-image: url(&quot;data:image/png;base64,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&quot;);"></span></a><a class="home-footer__social-link home-footer__social-link--youtube" href="https://www.youtube.com/@magronkorea7396" aria-label="YouTube" target="_blank" rel="noopener noreferrer"><span class="home-footer__social-icon home-footer__social-icon--youtube" style="mask-image: url(&quot;data:image/png;base64,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&quot;);"></span></a></div></div></div></div></footer></div></div>
+
+    <!-- Readable fallback for crawlers / AI search bots that do not execute JavaScript.
+         The React app replaces #root above; this content is only shown when JS is off. -->
+    <noscript>
+      <p><strong>자성유체 기술 데이터: 증기압·TGA·누설 시험값</strong></p>
+      <p>MFF-M4251 자성유체 증기압 20℃ 1.51×10⁻¹⁰ Pa(KOPTRI No. 25-09458, OECD TG 104), 1% 중량손실 282℃(KITECH TGA), 헬륨 누설 1×10⁻¹¹ Torr·ℓ/s 미만 등 시험값을 표로 정리했습니다.</p>
+      <h2>연락처</h2>
+      <p>
+        (15588) 경기도 안산시 상록구 해안로 705 경기테크노파크 3동 403호<br />
+        TEL : (Domestic) 031-500-4633 · (Overseas) +82-31-500-4632 · FAX : 031-500-4631<br />
+        E-mail: <a href="mailto:magron@magron.co.kr">magron@magron.co.kr</a>
+      </p>
+      <p><a href="/">MAGRON 홈으로</a></p>
+    </noscript>
+
+
+  
+
+</body></html>
