@@ -21,8 +21,8 @@ export const ROUTE_META: Record<string, RouteMeta> = {
   '/': {
     title: {
       ko: '자성유체 | 자성소재 전문회사 (주)마그론 | 대한민국',
-      en: 'Ferrofluid & Magnetic Materials Specialist | MAGRON, Korea',
-      zh: '磁流体 · 磁性材料专业制造商 | MAGRON 玛格龙（韩国）',
+      en: `Ferrofluid & Magnetic Materials Specialist | ${BRAND.en}`,
+      zh: `磁流体 · 磁性材料专业制造商 | ${BRAND.zh}`,
     },
     description: {
       ko: '(주)마그론은 2004년 설립된 자성유체(Ferrofluid)·자성소재 전문 기업으로, 자성유체 씰, 진공 피드스루, 맥오일, 자석, 자성유체 디스플레이를 제조·공급합니다.',
