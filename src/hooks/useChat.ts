@@ -2,6 +2,8 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import i18n from '@/i18n'
 import type { ChatMessage, ChatResponse } from '@/types/chat'
 import { trackEvent } from '@/lib/analytics'
+import type { InquiryPayload, InquiryResult } from '@/components/InquiryForm'
+import { detectInquiryTarget } from '@/lib/inquiryDetect'
 
 /**
  * The deployed chatbot backend. `.env` is gitignored, so a host that forgets to
@@ -34,6 +36,7 @@ export function useChat() {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const sessionIdRef = useRef<string>(`chat-${createId()}`)
+  const suggestedRef = useRef<Set<string>>(new Set())
 
   // 첫 인사말은 처음 그릴 때의 언어로 고정돼서, KOR→ENG 로 바꿔도 한국어로 남았다.
   // PC 에선 창이 늘 열려 있어 바로 보이므로 언어가 바뀌면 인사말만 다시 쓴다.
@@ -57,7 +60,15 @@ export function useChat() {
       text,
     }
 
-    setMessages((prev) => [...prev, userMessage])
+    // 질문에 제품 이름이 있으면 그 제품 문의서를 바로 권한다(같은 문의서는 한 번만).
+    const target = detectInquiryTarget(text)
+    const suggest =
+      target && !suggestedRef.current.has(target)
+        ? [{ id: createId(), role: 'bot' as const, text: i18n.t('chatbot:inquirySuggest'), inquiryTarget: target }]
+        : []
+    if (target) suggestedRef.current.add(target)
+
+    setMessages((prev) => [...prev, userMessage, ...suggest])
     // 질문 내용은 보내지 않는다(개인정보가 섞일 수 있다). 횟수만 센다.
     trackEvent('chat_message')
     setIsLoading(true)
@@ -160,5 +171,43 @@ export function useChat() {
     [],
   )
 
-  return { messages, isLoading, error, sendMessage, submitContact }
+  /**
+   * 제품별 문의서 접수(2026-11-02). 답은 한국어 원문으로 모아 보내고(담당자 메일은 한국어),
+   * 서버가 회사 메일로 보내면서 답장 주소를 방문자 이메일로 잡는다(백엔드 /api/inquiry).
+   */
+  const submitInquiry = useCallback(async (payload: InquiryPayload): Promise<InquiryResult> => {
+    try {
+      const response = await fetch(`${API_BASE}/api/inquiry`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          form_id: payload.formId,
+          form_title: payload.formTitle,
+          contact: payload.contact,
+          answers: payload.answers,
+          missing: payload.missing,
+          files: payload.files,
+          consent: true,
+          session_id: sessionIdRef.current,
+          lang: i18n.language,
+          page: window.location.pathname,
+        }),
+      })
+      if (!response.ok) {
+        const key = response.status === 429 ? 'chatbot:inquiryLimit' : 'chatbot:inquiryFailed'
+        return { ok: false, message: i18n.t(key) }
+      }
+      // 연락처·답은 GA 로 보내지 않는다. 어느 문의서인지만 센다.
+      trackEvent('chat_inquiry_submit', { form: payload.formId })
+      setMessages((prev) => [
+        ...prev,
+        { id: createId(), role: 'bot', text: i18n.t('chatbot:inquiryDone', { email: payload.contact.email }) },
+      ])
+      return { ok: true }
+    } catch {
+      return { ok: false, message: i18n.t('chatbot:inquiryFailed') }
+    }
+  }, [])
+
+  return { messages, isLoading, error, sendMessage, submitContact, submitInquiry }
 }

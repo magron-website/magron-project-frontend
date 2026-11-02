@@ -28,4 +28,6 @@ export type ChatMessage = {
   role: ChatRole
   text: string
   sources?: ChatSource[]
+  /** 질문에 제품 이름이 있을 때 권하는 문의서 id('picker' = 제품 고르기) */
+  inquiryTarget?: string
 }

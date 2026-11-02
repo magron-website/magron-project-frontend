@@ -1,0 +1,528 @@
+/* 챗봇 문의서(2026-11-02) — 문의서를 열면 챗봇 창이 크게 펼쳐지고(.chat-panel--expanded) 이 화면이 대화 자리를 채운다. */
+
+/* .chat-panel--docked(z-index 99)보다 우선하도록 두 클래스로 지정 — css 로드 순서와 무관하게 */
+.chat-panel.chat-panel--expanded {
+  z-index: 131; /* 헤더(100)보다 위 — 펼친 창은 화면 가운데를 쓴다 */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.chat-panel__overlay.chat-panel__overlay--expanded {
+  z-index: 130;
+}
+
+/* PC 는 사이트 전체 zoom 0.75 라 글자가 작다 — 문의서 화면만 거의 원래 크기로 되돌린다(0.75 × 1.3 ≈ 0.98). */
+@media (min-width: 1025px) {
+  .chat-panel--expanded .inq {
+    zoom: 1.3;
+  }
+}
+
+@media (max-width: 767px) {
+  .chat-panel.chat-panel--expanded {
+    border-radius: 0;
+  }
+}
+
+/* 문의서 고르기 */
+.inq-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 16px 16px;
+  background: #fff;
+  border-top: 1px solid #e6e8ef;
+  max-height: 60%;
+  overflow-y: auto;
+}
+
+.inq-picker__title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.inq-picker__list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.inq-picker__item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border: 1px solid #d7ddf0;
+  border-radius: 10px;
+  background: #f6f8ff;
+  color: #1f2937;
+  font: inherit;
+  font-size: 14px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.inq-picker__item:hover,
+.inq-picker__item:focus-visible {
+  border-color: #1a4fd6;
+  background: #eef3ff;
+  outline: none;
+}
+
+.inq-picker__item b {
+  color: #1a4fd6;
+}
+
+.inq-picker__item small {
+  color: #6b7280;
+  font-size: 12px;
+}
+
+.inq-picker__group {
+  grid-column: 1 / -1;
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.inq-picker__cancel {
+  align-self: flex-end;
+  border: 0;
+  background: none;
+  color: #6b7280;
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+
+/* 문의서 본문 */
+.inq {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  background: #f6f7fb;
+  color: #1f2937;
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.inq__bar {
+  padding: 8px 16px;
+  background: #fff;
+  border-bottom: 1px solid #e6e8ef;
+}
+
+.inq__back {
+  border: 0;
+  background: none;
+  color: #1a4fd6;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.inq__scroll {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 18px 20px 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inq__title {
+  margin: 0;
+  font-size: 22px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+.inq__intro {
+  margin: 0;
+  color: #4b5563;
+}
+
+.inq__info {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fdf3e1;
+  font-size: 14px;
+}
+
+.inq__info b {
+  color: #8a5300;
+  font-size: 13px;
+}
+
+.inq__info ul {
+  margin: 4px 0 0;
+  padding-left: 1.2em;
+}
+
+.inq__figure {
+  margin: 0;
+  padding: 10px;
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 10px;
+}
+
+.inq__figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.inq__figure figcaption {
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.inq__example,
+.inq__more {
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 10px;
+  padding: 10px 14px;
+}
+
+.inq__example summary,
+.inq__more summary {
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.inq__example dl {
+  margin: 8px 0 0;
+  display: grid;
+  gap: 4px;
+}
+
+.inq__example dl > div {
+  display: grid;
+  grid-template-columns: minmax(110px, 30%) 1fr;
+  gap: 12px;
+}
+
+.inq__example dt {
+  color: #6b7280;
+}
+
+.inq__example dd {
+  margin: 0;
+}
+
+.inq__more .inq-q {
+  border: 0;
+  border-top: 1px solid #e6e8ef;
+  border-radius: 0;
+  padding: 12px 0 4px;
+}
+
+.inq__group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inq__group h3 {
+  margin: 8px 0 0;
+  font-size: 17px;
+}
+
+.inq__group > p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.inq-q {
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.inq-q--missing {
+  border-color: #c62828;
+}
+
+.inq-q__head {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.inq-q__num {
+  flex: 0 0 auto;
+  min-width: 2em;
+  color: #6b7280;
+  font-size: 13px;
+  font-family: ui-monospace, Consolas, monospace;
+}
+
+.inq-q__text {
+  flex: 1;
+  font-weight: 600;
+}
+
+.inq-badge {
+  flex: 0 0 auto;
+  padding: 0 8px;
+  border: 1px solid #1a4fd6;
+  border-radius: 999px;
+  color: #1a4fd6;
+  font-size: 12px;
+}
+
+.inq-badge--opt {
+  border-color: #9ca3af;
+  color: #6b7280;
+}
+
+.inq-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.inq-field__label {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.inq-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.inq-chip {
+  position: relative;
+  cursor: pointer;
+}
+
+.inq-chip input,
+.inq-picture input {
+  position: absolute;
+  opacity: 0;
+  width: 1px;
+  height: 1px;
+}
+
+.inq-chip span {
+  display: inline-block;
+  padding: 5px 11px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  background: #eef1f6;
+  font-size: 14px;
+}
+
+.inq-chip--on span {
+  border-color: #1a4fd6;
+  background: #e5edff;
+  font-weight: 600;
+}
+
+.inq-chip input:focus-visible + span,
+.inq-picture:focus-within {
+  outline: 2px solid #1a4fd6;
+  outline-offset: 2px;
+}
+
+.inq-pictures {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 8px;
+}
+
+.inq-picture {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 8px;
+  border: 1px solid #e6e8ef;
+  border-radius: 10px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.inq-picture img {
+  width: 100%;
+  height: 90px;
+  object-fit: contain;
+}
+
+.inq-picture small {
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.inq-picture--on {
+  border-color: #1a4fd6;
+  background: #eef3ff;
+  box-shadow: 0 0 0 1px #1a4fd6;
+}
+
+.inq-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid #d5dae3;
+  border-radius: 8px;
+  background: #fbfcfe;
+  color: inherit;
+  font: inherit;
+  font-size: 15px;
+}
+
+textarea.inq-input {
+  resize: vertical;
+}
+
+.inq-input:focus {
+  outline: none;
+  border-color: #1a4fd6;
+  box-shadow: 0 0 0 2px rgba(26, 79, 214, 0.15);
+}
+
+.inq-file {
+  font: inherit;
+  font-size: 14px;
+  color: #4b5563;
+  max-width: 100%;
+}
+
+.inq-notice {
+  margin: 10px 0 0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: #fdf3e1;
+  font-size: 14px;
+}
+
+.inq-jump {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  background: #e5edff;
+  font-size: 14px;
+}
+
+.inq-jump a {
+  color: #1a4fd6;
+  font-weight: 600;
+}
+
+.inq__contact {
+  background: #fff;
+  border: 1px solid #e6e8ef;
+  border-radius: 10px;
+  padding: 12px 14px;
+}
+
+.inq__contact h3 {
+  margin: 0;
+  font-size: 16px;
+}
+
+.inq__contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 14px;
+}
+
+.inq__consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 12px;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.inq__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 16px;
+  background: #fff;
+  border-top: 1px solid #e6e8ef;
+}
+
+.inq__error {
+  flex: 1 1 260px;
+  margin: 0;
+  color: #c62828;
+  font-size: 14px;
+}
+
+.inq__submit {
+  padding: 10px 22px;
+  border: 0;
+  border-radius: 10px;
+  background: #1a4fd6;
+  color: #fff;
+  font: inherit;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.inq__submit:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+@media (max-width: 560px) {
+  .inq__contact-grid,
+  .inq-picker__list {
+    grid-template-columns: 1fr;
+  }
+
+  .inq__example dl > div {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .inq__scroll {
+    padding: 14px 14px 20px;
+  }
+}
+
+/* 질문에 제품 이름이 나오면 답변 말풍선 안에 뜨는 문의서 열기 버튼 */
+.chat-message__inquiry {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 10px 12px;
+  border: 0;
+  border-radius: 10px;
+  background: #1a4fd6;
+  color: #fff;
+  font: inherit;
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+}
+
+.chat-message__inquiry:hover,
+.chat-message__inquiry:focus-visible {
+  background: #143fae;
+  outline: none;
+}

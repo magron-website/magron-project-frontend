@@ -5,6 +5,8 @@ import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import chatbotImage from '@/assets/images/chatbot.webp'
 import { useChat } from '@/hooks/useChat'
+import InquiryForm from '@/components/InquiryForm'
+import type { InquiryForm as Form } from '@/types/inquiry'
 import '@/assets/design/chatbot-panel.css'
 
 type ChatbotPanelProps = {
@@ -28,10 +30,17 @@ export default function ChatbotPanel({
   dockStyle,
   autoFocus = true,
 }: ChatbotPanelProps) {
-  const { t } = useTranslation('chatbot')
-  const { messages, isLoading, sendMessage, submitContact } = useChat()
+  const { t, i18n } = useTranslation('chatbot')
+  const { messages, isLoading, sendMessage, submitContact, submitInquiry } = useChat()
   const [input, setInput] = useState('')
   const [isContactOpen, setIsContactOpen] = useState(false)
+  // 문의서: 'picker' = 제품 고르기, 'form' = 문의서 작성(창이 크게 펼쳐짐)
+  const [inquiryMode, setInquiryMode] = useState<'off' | 'picker' | 'form'>('off')
+  const [formId, setFormId] = useState<string | null>(null)
+  const inquiry = useInquiryData(inquiryMode !== 'off', i18n.language)
+  const isExpanded = inquiryMode === 'form'
+  const expandedStyle = useExpandedStyle(isOpen && isExpanded)
+  const activeForm = inquiry.forms?.find((form) => form.id === formId) ?? null
   const listRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
 
@@ -85,11 +94,11 @@ export default function ChatbotPanel({
   useEffect(() => {
     if (!isOpen) return
     const handleKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose()
+      if (event.key === 'Escape' && inquiryMode !== 'form') onClose()
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
-  }, [isOpen, onClose])
+  }, [isOpen, onClose, inquiryMode])
 
   const handleSubmit = () => {
     if (isLoading || !input.trim()) return
@@ -108,10 +117,10 @@ export default function ChatbotPanel({
     <AnimatePresence>
       {isOpen && (
         <>
-          {!docked && (
+          {(!docked || isExpanded) && (
             <motion.div
-              className="chat-panel__overlay"
-              onClick={onClose}
+              className={`chat-panel__overlay${isExpanded ? ' chat-panel__overlay--expanded' : ''}`}
+              onClick={isExpanded ? undefined : onClose}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -119,9 +128,9 @@ export default function ChatbotPanel({
             />
           )}
           <motion.aside
-            className={`chat-panel${docked ? ' chat-panel--docked' : ''}`}
+            className={`chat-panel${docked ? ' chat-panel--docked' : ''}${isExpanded ? ' chat-panel--expanded' : ''}`}
             ref={panelRef}
-            style={docked ? dockStyle : undefined}
+            style={isExpanded ? expandedStyle : docked ? dockStyle : undefined}
             role="dialog"
             aria-modal={docked ? 'false' : 'true'}
             aria-label={t('title')}
@@ -149,6 +158,25 @@ export default function ChatbotPanel({
               </button>
             </header>
 
+            {isExpanded ? (
+              activeForm && inquiry.tr ? (
+                <InquiryForm
+                  key={activeForm.id}
+                  form={activeForm}
+                  tr={inquiry.tr}
+                  onSwitchForm={(id) => setFormId(id)}
+                  onBack={() => setInquiryMode('picker')}
+                  onSubmit={async (payload) => {
+                    const result = await submitInquiry(payload)
+                    if (result.ok) setInquiryMode('off')
+                    return result
+                  }}
+                />
+              ) : (
+                <p className="chat-panel__notice">{t('inquiryLoading')}</p>
+              )
+            ) : (
+            <>
             <div className="chat-panel__messages" ref={listRef}>
               {messages.map((message) => (
                 <div
@@ -161,6 +189,23 @@ export default function ChatbotPanel({
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
                           {message.text}
                         </ReactMarkdown>
+                        {message.inquiryTarget && (
+                          <button
+                            type="button"
+                            className="chat-message__inquiry"
+                            onClick={() => {
+                              const target = message.inquiryTarget!
+                              if (target === 'picker') {
+                                setInquiryMode('picker')
+                              } else {
+                                setFormId(target)
+                                setInquiryMode('form')
+                              }
+                            }}
+                          >
+                            {t(`inquiryOpen.${message.inquiryTarget}`)}
+                          </button>
+                        )}
                       </div>
                     ) : (
                       message.text
@@ -180,7 +225,17 @@ export default function ChatbotPanel({
               )}
             </div>
 
-            {isContactOpen ? (
+            {inquiryMode === 'picker' ? (
+              <InquiryPicker
+                forms={inquiry.forms}
+                tr={inquiry.tr}
+                onPick={(id) => {
+                  setFormId(id)
+                  setInquiryMode('form')
+                }}
+                onCancel={() => setInquiryMode('off')}
+              />
+            ) : isContactOpen ? (
               <ContactForm
                 onCancel={() => setIsContactOpen(false)}
                 onSubmit={async (contact) => {
@@ -191,6 +246,13 @@ export default function ChatbotPanel({
               />
             ) : (
             <>
+            <button
+              type="button"
+              className="chat-panel__contact-open chat-panel__inquiry-open"
+              onClick={() => setInquiryMode('picker')}
+            >
+              {t('inquiryButton')}
+            </button>
             <button
               type="button"
               className="chat-panel__contact-open"
@@ -227,6 +289,8 @@ export default function ChatbotPanel({
                 </svg>
               </button>
             </div>
+            </>
+            )}
             </>
             )}
           </motion.aside>
@@ -314,4 +378,118 @@ function ContactForm({
       </div>
     </form>
   )
+}
+
+/** 제품 고르기 — 자성유체는 용도별 문의서 4개를 한 묶음으로 보여 준다(2026-10-30 진입 흐름). */
+const PICKER_LAYOUT: (string | { group: string; ids: string[] })[] = [
+  'magnet',
+  'feedthrough',
+  { group: 'ferrofluid', ids: ['ff-semi', 'magoil', 'kit', 'ff-other'] },
+  'ink',
+]
+
+function InquiryPicker({
+  forms,
+  tr,
+  onPick,
+  onCancel,
+}: {
+  forms: Form[] | null
+  tr: ((ko: string) => string) | null
+  onPick: (id: string) => void
+  onCancel: () => void
+}) {
+  const { t } = useTranslation('chatbot')
+  if (!forms || !tr) return <p className="chat-panel__notice">{t('inquiryLoading')}</p>
+  const item = (id: string) => {
+    const form = forms.find((f) => f.id === id)
+    if (!form) return null
+    return (
+      <button key={id} type="button" className="inq-picker__item" onClick={() => onPick(id)}>
+        <b>{tr(form.tab)}</b>
+        <small>{tr(form.title)}</small>
+      </button>
+    )
+  }
+  return (
+    <div className="inq-picker">
+      <p className="inq-picker__title">{t('inquiryPickTitle')}</p>
+      <div className="inq-picker__list">
+        {PICKER_LAYOUT.map((entry) =>
+          typeof entry === 'string' ? (
+            item(entry)
+          ) : (
+            <div key={entry.group} style={{ display: 'contents' }}>
+              <p className="inq-picker__group">{t('inquiryPickFerrofluid')}</p>
+              {entry.ids.map(item)}
+            </div>
+          ),
+        )}
+      </div>
+      <button type="button" className="inq-picker__cancel" onClick={onCancel}>
+        {t('inquiryPickCancel')}
+      </button>
+    </div>
+  )
+}
+
+/**
+ * 문의서 데이터(약 100KB)와 번역 사전은 처음 문의서를 열 때만 불러온다 — 챗봇만 쓰는 방문자의
+ * 첫 화면 용량을 늘리지 않기 위해. 사전에 없는 문구는 한국어 원문 그대로 보인다.
+ */
+function useInquiryData(active: boolean, lang: string) {
+  const [forms, setForms] = useState<Form[] | null>(null)
+  const [dict, setDict] = useState<{ lang: string; map: Record<string, string> } | null>(null)
+
+  useEffect(() => {
+    if (!active || forms) return
+    void import('@/data/inquiryForms').then((mod) => setForms(mod.default))
+  }, [active, forms])
+
+  useEffect(() => {
+    if (!active || dict?.lang === lang) return
+    if (lang !== 'en' && lang !== 'zh') {
+      setDict({ lang, map: {} })
+      return
+    }
+    const load = lang === 'zh' ? import('@/data/inquiry-i18n/zh.json') : import('@/data/inquiry-i18n/en.json')
+    void load.then((mod) => setDict({ lang, map: mod.default as Record<string, string> }))
+  }, [active, lang, dict])
+
+  const tr = dict && dict.lang === lang ? (ko: string) => dict.map[ko] ?? ko : null
+  return { forms, tr }
+}
+
+/**
+ * 펼친 창 크기 — 화면 가운데 큰 창(최대 1100px). 사이트 전체 zoom(1920 화면 0.75) 때문에
+ * 화면 픽셀을 zoom 으로 나눠 넣는다(붙박이 창 useDockStyle 과 같은 방식). 휴대폰은 전체 화면.
+ */
+function useExpandedStyle(active: boolean): CSSProperties | undefined {
+  const [style, setStyle] = useState<CSSProperties>()
+  useEffect(() => {
+    if (!active) return
+    const update = () => {
+      const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1
+      const vw = document.documentElement.clientWidth
+      const vh = window.innerHeight
+      if (vw < 768) {
+        setStyle({ top: 0, left: 0, right: 'auto', width: vw / zoom, maxWidth: 'none', height: vh / zoom })
+        return
+      }
+      const width = Math.min(1100 * zoom, vw * 0.94)
+      const height = vh * 0.92
+      setStyle({
+        top: (vh - height) / 2 / zoom,
+        left: (vw - width) / 2 / zoom,
+        right: 'auto',
+        width: width / zoom,
+        maxWidth: 'none',
+        height: height / zoom,
+      })
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [active])
+  return active ? style : undefined
 }
