@@ -54,6 +54,7 @@ export default function InquiryForm({
   const [fileError, setFileError] = useState<string | null>(null)
   const [isSending, setIsSending] = useState(false)
   const [missingWarned, setMissingWarned] = useState(false)
+  const [badContact, setBadContact] = useState<Set<keyof InquiryContact>>(new Set())
   const imgLang = i18n.language === 'ko' ? 'ko' : 'en'
   const imgBase = `${import.meta.env.BASE_URL}inquiry/${imgLang}/`
 
@@ -121,9 +122,39 @@ export default function InquiryForm({
       })
     }
     setMissingIds(missingSet)
+    // 빈 연락처 칸·틀린 이메일은 빨간 테두리로 표시한다(어느 칸이 문제인지 보이게).
     const isEmailValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(contact.email.trim())
-    if (!contact.company.trim() || !contact.name.trim() || !isEmailValid || !contact.place.trim() || !consent) {
+    const bad = new Set<keyof InquiryContact>(
+      (['company', 'name', 'email', 'place'] as const).filter((key) => !contact[key].trim()),
+    )
+    if (contact.email.trim() && !isEmailValid) bad.add('email')
+    setBadContact(bad)
+    // 문제 칸이 화면 밖(아래쪽 연락처)에 있으면 안 보인다 — 그 칸으로 스크롤하고 커서를 둔다.
+    const formEl = event.currentTarget as HTMLFormElement
+    // 연락처 문제를 먼저 보여 주고(빈 칸·동의), 그다음 단계에서 빈 필수 질문으로 간다.
+    const goToProblem = (selector = '.inq-input--bad') =>
+      setTimeout(() => {
+        const target = formEl.querySelector<HTMLElement>(selector) ?? formEl.querySelector<HTMLElement>('.inq__consent')
+        const scroller = formEl.querySelector<HTMLElement>('.inq__scroll')
+        if (!target || !scroller) return
+        // scrollIntoView 는 사이트 zoom(0.75)·문의서 zoom(1.3)이 겹치면 움직이지 않아 offsetTop 으로 직접 계산한다
+        // (.inq__scroll 이 position:relative 라 offsetParent 기준점이 된다).
+        let y = 0
+        for (let el: HTMLElement | null = target; el && el !== scroller; el = el.offsetParent as HTMLElement | null) y += el.offsetTop
+        // 부드러운 스크롤은 바로 이어지는 focus·다시 그리기에 끊겨 제자리에 머물렀다 — 바로 이동한다.
+        scroller.scrollTop = Math.max(0, y - scroller.clientHeight / 2)
+        if (target instanceof HTMLInputElement) target.focus({ preventScroll: true })
+      }, 0)
+    const emptyContact = [...bad].some((key) => !contact[key].trim())
+    if (emptyContact || !consent) {
       setError(t('inquiryContactRequired'))
+      goToProblem()
+      return
+    }
+    // 이메일이 채워졌는데 형식이 틀리면 따로 알린다 — "* 항목을 채워 주세요"만 보이면 이유를 몰라 못 보낸다.
+    if (!isEmailValid) {
+      setError(t('inquiryEmailInvalid'))
+      goToProblem()
       return
     }
     // 필수 질문이 비면 한 번은 알려 주고, 그래도 보내면 받는다(모르는 항목이 있을 수 있음).
@@ -131,6 +162,7 @@ export default function InquiryForm({
     if (missing.length && !missingWarned) {
       setMissingWarned(true)
       setError(t('inquiryMissing', { count: missing.length }))
+      goToProblem('.inq-q--missing')
       return
     }
     setError(null)
@@ -275,10 +307,14 @@ export default function InquiryForm({
       </span>
       <input
         type={type}
-        className="inq-input"
+        className={`inq-input${badContact.has(key) ? ' inq-input--bad' : ''}`}
+        aria-invalid={badContact.has(key) || undefined}
         autoComplete={auto}
         value={contact[key]}
-        onChange={(event) => setContact((prev) => ({ ...prev, [key]: event.target.value }))}
+        onChange={(event) => {
+          setContact((prev) => ({ ...prev, [key]: event.target.value }))
+          if (badContact.has(key)) setBadContact((prev) => new Set([...prev].filter((k) => k !== key)))
+        }}
       />
     </label>
   )

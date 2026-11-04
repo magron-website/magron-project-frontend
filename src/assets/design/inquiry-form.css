@@ -128,6 +128,7 @@
 }
 
 .inq__scroll {
+  position: relative; /* 문제 칸으로 스크롤할 때 offsetTop 기준점 */
   flex: 1;
   min-height: 0;
   overflow-y: auto;
@@ -525,4 +526,10 @@ textarea.inq-input {
 .chat-message__inquiry:focus-visible {
   background: #143fae;
   outline: none;
+}
+
+/* 빈 연락처 칸·틀린 이메일 */
+.inq-input.inq-input--bad {
+  border-color: #c62828;
+  box-shadow: 0 0 0 2px rgba(198, 40, 40, 0.15);
 }
