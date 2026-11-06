@@ -170,7 +170,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     },
     description: {
       ko: '진공 회전축용 자성유체 씰을 오일씰(립씰)·기계식 씰과 비교합니다. 밀봉 원리, 진공 기밀(헬륨 누설 10⁻¹² Pa·m³/s 미만), 마찰, 수명, 맞지 않는 경우까지 한 표로 정리했습니다.',
-      en: 'Ferrofluid seals compared with lip and mechanical seals for rotating shafts in vacuum: sealing principle, vacuum tightness (helium leak below 10⁻¹² Pa·m³/s), friction, life and limitations.',
+      en: 'Ferrofluid seals vs lip and mechanical seals for vacuum rotating shafts: sealing principle, helium leak below 10⁻¹² Pa·m³/s, friction, life and limits.',
       zh: '比较真空旋转轴用磁流体密封与油封（唇形密封）、机械密封：密封原理、真空密封性（氦气泄漏低于 10⁻¹² Pa·m³/s）、摩擦、寿命及不适用情形。',
     },
   },
@@ -182,7 +182,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     },
     description: {
       ko: 'MFF-M4251 자성유체 증기압 20℃ 1.51×10⁻¹⁰ Pa(KOPTRI No. 25-09458, OECD TG 104), 1% 중량손실 282℃(KITECH TGA), 헬륨 누설 1×10⁻¹¹ Torr·ℓ/s 미만 등 시험값을 표로 정리했습니다.',
-      en: 'MFF-M4251 ferrofluid test data: vapor pressure 1.51×10⁻¹⁰ Pa at 20℃ (KOPTRI, OECD TG 104), 1% weight loss at 282℃ (KITECH TGA), helium leak below 1×10⁻¹¹ Torr·L/s.',
+      en: 'MFF-M4251 ferrofluid test data: vapor pressure 1.51×10⁻¹⁰ Pa at 20℃ (OECD TG 104), 1% weight loss at 282℃ (TGA), helium leak below 1×10⁻¹¹ Torr·L/s.',
       zh: 'MFF-M4251 磁流体试验数据：20℃ 蒸气压 1.51×10⁻¹⁰ Pa（KOPTRI，OECD TG 104），1% 失重温度 282℃（KITECH TGA），氦气泄漏低于 1×10⁻¹¹ Torr·L/s。',
     },
   },
