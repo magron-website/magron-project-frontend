@@ -5,6 +5,7 @@ import { useLocation } from 'react-router-dom'
 import chatbotImage from '@/assets/images/chatbot.webp'
 import ChatbotPanel from '@/components/ChatbotPanel'
 import { trackEvent } from '@/lib/analytics'
+import { OPEN_INQUIRY_EVENT, openInquiry, type InquiryRequest } from '@/lib/inquiryOpener'
 import '@/assets/design/chatbot-floater.css'
 
 const HERO_MARGIN = 24
@@ -97,6 +98,18 @@ function useDockStyle(active: boolean, pathname: string): CSSProperties | undefi
 
 type FloaterMode = 'hero' | 'top'
 
+/** 자석·피드스루·자성유체(씰용) 페이지면 그 문의서 id — 휴대폰 하단 바가 "견적 문의"를 앞세운다. */
+const PRODUCT_INQUIRY: Record<string, string> = {
+  magnet: 'magnet',
+  feedthrough: 'feedthrough',
+  ferrofluid: 'ff-semi',
+}
+
+function productInquiryFor(pathname: string): string | null {
+  const first = pathname.replace(/^\/(en|zh)(?=\/|$)/, '').split('/').filter(Boolean)[0] ?? ''
+  return PRODUCT_INQUIRY[first] ?? null
+}
+
 export default function ChatbotFloater() {
   const { t } = useTranslation('chatbot')
   const { pathname } = useLocation()
@@ -109,6 +122,20 @@ export default function ChatbotFloater() {
   const [openedAutomatically, setOpenedAutomatically] = useState(shouldAutoOpen)
   const isMobile = useIsMobile()
   const dockStyle = useDockStyle(!isMobile && isChatOpen, pathname)
+  // 제품 페이지 버튼(openInquiry)으로 들어온 문의 — 매번 새 객체라 같은 제품을 다시 눌러도 열린다.
+  const [inquiryRequest, setInquiryRequest] = useState<(InquiryRequest & { nonce: number }) | null>(null)
+  const productInquiry = productInquiryFor(pathname)
+
+  useEffect(() => {
+    const handle = (event: Event) => {
+      const detail = (event as CustomEvent<InquiryRequest>).detail
+      setOpenedAutomatically(false)
+      setIsChatOpen(true)
+      setInquiryRequest({ ...detail, nonce: Date.now() })
+    }
+    window.addEventListener(OPEN_INQUIRY_EVENT, handle)
+    return () => window.removeEventListener(OPEN_INQUIRY_EVENT, handle)
+  }, [])
 
   useEffect(() => {
     // chat_open 은 "사람이 직접 눌러 연 것"만 세야 의미가 있어서 이름을 나눈다.
@@ -221,6 +248,29 @@ export default function ChatbotFloater() {
       </div>
       {isMobile && !isChatOpen && (
         <nav className="chat-mobile-bar" aria-label={t('mobileBarLabel')}>
+          {productInquiry ? (
+            <>
+              {/* 제품 페이지: 견적 문의를 크게, 챗봇은 작게(11/7 — 챗봇을 거치면 아무도 문의서를 안 썼다) */}
+              <button
+                type="button"
+                className="chat-mobile-bar__btn chat-mobile-bar__btn--chat"
+                onClick={() => openInquiry({ target: productInquiry, source: 'mobile_bar' })}
+              >
+                <span className="chat-mobile-bar__text">
+                  <span className="chat-mobile-bar__title">{t('mobileBarInquiry')}</span>
+                  <span className="chat-mobile-bar__sub">{t('mobileBarInquirySub')}</span>
+                </span>
+              </button>
+              <button
+                type="button"
+                className="chat-mobile-bar__btn chat-mobile-bar__btn--mail"
+                onClick={() => openChat('mobile_bar')}
+              >
+                <img className="chat-mobile-bar__icon chat-mobile-bar__icon--small" src={chatbotImage} alt="" />
+                {t('mobileBarChatShort')}
+              </button>
+            </>
+          ) : (
           <button
             type="button"
             className="chat-mobile-bar__btn chat-mobile-bar__btn--chat"
@@ -232,6 +282,7 @@ export default function ChatbotFloater() {
               <span className="chat-mobile-bar__sub">{t('mobileBarChatSub')}</span>
             </span>
           </button>
+          )}
           {/* mailto 클릭은 analytics.ts 의 전역 리스너가 contact_email 로 잡는다. */}
           <a className="chat-mobile-bar__btn chat-mobile-bar__btn--mail" href="mailto:magron@magron.co.kr">
             <svg viewBox="0 0 16 16" width="18" height="18" fill="none" aria-hidden="true">
@@ -247,6 +298,7 @@ export default function ChatbotFloater() {
         onClose={closeChat}
         docked={!isMobile}
         dockStyle={dockStyle}
+        inquiryRequest={inquiryRequest}
         // 휴대폰에선 열자마자 자판을 띄우지 않는다 — 자판이 화면 절반을 덮어 인사말이 안 보였다.
         autoFocus={!openedAutomatically && !isMobile}
       />

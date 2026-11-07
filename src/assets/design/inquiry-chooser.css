@@ -1,0 +1,967 @@
+/* 문의 방법 고르기 · 인콰이어리 시트 보내기(2026-11-07). 큰 문의 창(.chat-panel--expanded) 안에 뜬다. */
+
+.inq-choose,
+.inq-sheet {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  padding: 18px 20px 24px;
+  background: #f6f7fb;
+  color: #1f2937;
+  font-size: 15px;
+  line-height: 1.55;
+  gap: 14px;
+}
+
+/* PC 는 사이트 전체 zoom 0.75 — 문의서(.inq)와 같이 원래 크기에 가깝게 되돌린다 */
+@media (min-width: 1025px) {
+  .chat-panel--expanded .inq-choose,
+  .chat-panel--expanded .inq-sheet {
+    zoom: 1.3;
+  }
+}
+
+.inq-choose__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 12px;
+}
+
+.inq-choose__title {
+  flex: 1 1 auto;
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.inq-choose__model {
+  order: 3;
+  flex-basis: 100%;
+  margin: 0;
+  font-size: 14px;
+  color: #1a4fd6;
+}
+
+.inq-choose__close {
+  border: 1px solid #d5d9e3;
+  background: #fff;
+  border-radius: 999px;
+  padding: 4px 12px;
+  font: inherit;
+  font-size: 13px;
+  color: #4b5563;
+  cursor: pointer;
+}
+
+.inq-choose__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1fr;
+  gap: 12px;
+  align-items: stretch;
+}
+
+.inq-choose__card {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 16px;
+  border: 1px solid #dfe3ec;
+  border-radius: 14px;
+  background: #fff;
+  color: inherit;
+  text-align: left;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button.inq-choose__card:hover,
+a.inq-choose__card:hover {
+  border-color: #1a4fd6;
+  box-shadow: 0 4px 16px rgba(26, 79, 214, 0.12);
+}
+
+.inq-choose__card b {
+  font-size: 17px;
+  color: #111827;
+}
+
+.inq-choose__card > span {
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.inq-choose__badge {
+  align-self: flex-start;
+  padding: 1px 9px;
+  border-radius: 999px;
+  background: #e8eefc;
+  color: #1a4fd6 !important;
+  font-size: 12px !important;
+  font-weight: 700;
+}
+
+.inq-choose__card--sheet {
+  cursor: default;
+  border-color: #1a4fd6;
+}
+
+.inq-choose__go {
+  margin-top: auto;
+  padding-top: 6px;
+  font-weight: 700;
+  color: #1a4fd6 !important;
+}
+
+.inq-choose__preview {
+  position: relative;
+  display: block;
+  height: 170px;
+  overflow: hidden;
+  padding: 0;
+  border: 1px solid #dfe3ec;
+  border-radius: 8px;
+  background: #fff;
+  cursor: zoom-in;
+}
+
+.inq-choose__preview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.inq-choose__preview span {
+  position: absolute;
+  inset: auto 0 0;
+  padding: 18px 0 6px;
+  background: linear-gradient(transparent, rgba(255, 255, 255, 0.95) 55%);
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a4fd6;
+  text-align: center;
+}
+
+.inq-choose__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.inq-choose__btn {
+  flex: 1 1 auto;
+  padding: 9px 12px;
+  border: 1px solid #1a4fd6;
+  border-radius: 10px;
+  background: #fff;
+  color: #1a4fd6;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.inq-choose__btn--primary {
+  background: #1a4fd6;
+  color: #fff;
+}
+
+.inq-choose__btn:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+/* 시트 크게 보기 */
+.inq-choose__zoom {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  padding: 16px;
+  background: rgba(17, 24, 39, 0.72);
+  cursor: zoom-out;
+}
+
+.inq-choose__zoom-bar {
+  position: sticky;
+  top: 0;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.inq-choose__zoom-bar a,
+.inq-choose__zoom-bar button {
+  padding: 7px 14px;
+  border: 0;
+  border-radius: 999px;
+  background: #fff;
+  color: #1a4fd6;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.inq-choose__zoom img {
+  width: min(820px, 100%);
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  cursor: default;
+}
+
+/* 시트 보내기 */
+.inq-sheet__steps {
+  margin: 0;
+  padding: 12px 16px 12px 34px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #dfe3ec;
+  font-size: 14px;
+}
+
+.inq-sheet__steps a {
+  color: #1a4fd6;
+  font-weight: 700;
+}
+
+.inq-sheet__file,
+.inq-sheet__field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: #374151;
+}
+
+.inq-sheet__file {
+  padding: 12px 14px;
+  border: 2px dashed #9db4ee;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.inq-sheet__file small {
+  color: #1a4fd6;
+}
+
+.inq-sheet__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px 12px;
+}
+
+.inq-sheet__field input,
+.inq-sheet__field textarea {
+  padding: 8px 10px;
+  border: 1px solid #cfd5e1;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 15px;
+  color: #111827;
+}
+
+.inq-sheet__consent {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.inq-sheet__error {
+  margin: 0;
+  color: #c62828;
+  font-size: 14px;
+}
+
+.inq-sheet__submit {
+  flex: 0 0 auto;
+  align-self: flex-end;
+  padding: 10px 24px;
+}
+
+@media (max-width: 860px) {
+  .inq-choose__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 560px) {
+  .inq-sheet__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* 제품 페이지 문의 버튼 — 히어로·하단 배너·모델 카드에서 쓴다(제품별 버튼 클래스와 함께) */
+.product-inquiry-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.product-inquiry-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 12px 22px;
+  border: 0;
+  border-radius: 999px;
+  background: #1a4fd6;
+  color: #fff;
+  font: inherit;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(26, 79, 214, 0.28);
+}
+
+.product-inquiry-btn:hover {
+  background: #153fae;
+}
+
+.product-inquiry-btn--ghost {
+  background: #fff;
+  color: #1a4fd6;
+  border: 1px solid #1a4fd6;
+  box-shadow: none;
+}
+
+.product-inquiry-btn--ghost:hover {
+  background: #eef3ff;
+}
+
+.product-inquiry-btn--small {
+  padding: 7px 14px;
+  font-size: 14px;
+  box-shadow: none;
+}
+
+.product-cta-note a {
+  color: inherit;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.ft-product__inquiry {
+  margin: 10px 0 16px;
+}
+
+.product-section-inquiry {
+  margin: 4px 0 18px;
+}
+
+/* 시트 카드: 웹 작성 버튼 크게, Word 내려받기·파일 보내기는 작은 글자 링크로 */
+.inq-choose__btn--wide {
+  width: 100%;
+  padding: 11px 12px;
+  font-size: 15px;
+}
+
+.inq-choose__actions--sub {
+  justify-content: center;
+  gap: 14px;
+}
+
+.inq-choose__actions--sub a,
+.inq-choose__actions--sub button {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: #1a4fd6;
+  font: inherit;
+  font-size: 13px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/* 간단 문의(이메일 + 궁금한 점) */
+form.inq-choose__card--mail {
+  cursor: default;
+}
+
+.inq-quick__input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 8px 10px;
+  border: 1px solid #cfd5e1;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 14px;
+  color: #111827;
+  resize: vertical;
+}
+
+.inq-quick__consent {
+  display: flex;
+  gap: 6px;
+  align-items: flex-start;
+  font-size: 12px;
+  color: #4b5563;
+}
+
+.inq-quick__mailto {
+  align-self: center;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* 웹 인콰이어리 시트 — Word 시트 모양 그대로 */
+.sheet-web__hint {
+  margin: 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.sheet-web__saved {
+  color: #15803d;
+}
+
+.sheet-web__paper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid #dfe3ec;
+  border-radius: 10px;
+  background: #fff;
+}
+
+.sheet-web__title {
+  margin: 0;
+  font-size: 20px;
+  color: #1f3864;
+}
+
+.sheet-web__p {
+  margin: 0;
+  font-size: 13px;
+  color: #4b5563;
+}
+
+.sheet-web__table-wrap {
+  overflow-x: auto;
+}
+
+.sheet-web__table {
+  width: 100%;
+  min-width: 640px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.sheet-web__table th,
+.sheet-web__table td {
+  padding: 5px 8px;
+  border: 1px solid #c9d1e0;
+  vertical-align: middle;
+  text-align: left;
+  line-height: 1.7;
+}
+
+.sheet-web__head {
+  background: #1f3864;
+  color: #fff;
+  font-weight: 700;
+}
+
+.sheet-web__label {
+  width: 16%;
+  background: #e8eef8;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.sheet-web__check {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  margin: 0 10px 0 0;
+  padding: 1px 4px;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.sheet-web__check input {
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  accent-color: #1a4fd6;
+}
+
+.sheet-web__check--on {
+  background: #e8eefc;
+  color: #1a4fd6;
+  font-weight: 700;
+}
+
+.sheet-web__blank {
+  margin: 0 4px;
+  padding: 1px 5px;
+  border: 0;
+  border-bottom: 1.5px solid #8ea3c9;
+  background: #f7f9fd;
+  font: inherit;
+  font-size: 13px;
+  color: #111827;
+}
+
+.sheet-web__blank:focus,
+.sheet-web__field:focus {
+  outline: 2px solid #1a4fd6;
+  outline-offset: 0;
+}
+
+.sheet-web__field {
+  width: 100%;
+  min-height: 30px;
+  box-sizing: border-box;
+  padding: 4px 6px;
+  border: 0;
+  background: #f7f9fd;
+  font: inherit;
+  font-size: 13px;
+  resize: vertical;
+}
+
+.sheet-web__img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 4px auto;
+}
+
+/* 휴대폰: 표를 위아래로 쌓는다(항목 이름 → 입력) — 옆으로 밀지 않아도 되게 */
+@media (max-width: 640px) {
+  .sheet-web__paper {
+    padding: 10px;
+  }
+
+  .sheet-web__table {
+    min-width: 0;
+  }
+
+  .sheet-web__table,
+  .sheet-web__table tbody,
+  .sheet-web__table tr,
+  .sheet-web__table th,
+  .sheet-web__table td {
+    display: block;
+    width: auto;
+  }
+
+  .sheet-web__table tr {
+    border-bottom: 1px solid #c9d1e0;
+  }
+
+  .sheet-web__table th,
+  .sheet-web__table td {
+    border: 0;
+    border-left: 1px solid #c9d1e0;
+    border-right: 1px solid #c9d1e0;
+  }
+
+  .sheet-web__label {
+    padding-bottom: 2px;
+  }
+
+  .sheet-web__check {
+    white-space: normal;
+  }
+}
+
+/* ───── 시인성 강화(11/7 "큼직큼직하고 딱 잘 보이게") — 위 기본값을 덮어쓴다 ───── */
+.inq-choose {
+  gap: 18px;
+  padding: 22px 24px 28px;
+  font-size: 16px;
+}
+
+.inq-choose__head {
+  align-items: flex-start;
+  gap: 8px 16px;
+}
+
+.inq-choose__headline {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.inq-choose__title {
+  font-size: 26px;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+}
+
+.inq-choose__sub {
+  margin: 4px 0 0;
+  font-size: 16px;
+  color: #4b5563;
+}
+
+.inq-choose__model {
+  order: 3;
+  flex-basis: 100%;
+  align-self: flex-start;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: #e8eefc;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.inq-choose__close {
+  padding: 8px 16px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.inq-choose__grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.inq-choose__card {
+  gap: 12px;
+  padding: 22px 20px;
+  border: 2px solid #dfe3ec;
+  border-radius: 16px;
+}
+
+.inq-choose__card--sheet {
+  border-color: #1a4fd6;
+  box-shadow: 0 8px 24px rgba(26, 79, 214, 0.14);
+}
+
+.inq-choose__cardhead {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.inq-choose__icon {
+  position: relative;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  background: #e8eefc;
+  color: #1a4fd6;
+}
+
+.inq-choose__icon--sheet {
+  background: #1a4fd6;
+  color: #fff;
+}
+
+.inq-choose__icon--mail {
+  background: #e7f6ee;
+  color: #15803d;
+}
+
+.inq-choose__icon em {
+  position: absolute;
+  top: -7px;
+  left: -7px;
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #111827;
+  color: #fff;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 800;
+}
+
+.inq-choose__cardtext {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.inq-choose__badge {
+  padding: 2px 10px;
+  font-size: 13px !important;
+}
+
+.inq-choose__card .inq-choose__cardtitle {
+  font-size: 21px;
+  line-height: 1.3;
+  color: #111827;
+}
+
+.inq-choose__desc {
+  font-size: 16px !important;
+  line-height: 1.6;
+  color: #374151 !important;
+}
+
+.inq-choose__btn {
+  min-height: 48px;
+  padding: 12px 16px;
+  border-width: 2px;
+  border-radius: 12px;
+  font-size: 17px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inq-choose__btn--wide {
+  width: 100%;
+  font-size: 18px;
+}
+
+/* 카드 높이가 달라도 버튼은 맨 아래에 줄 맞춤 */
+.inq-choose__btn--push {
+  margin-top: auto;
+}
+
+.inq-choose__preview {
+  height: 190px;
+  border-width: 2px;
+}
+
+.inq-choose__preview span {
+  font-size: 15px;
+}
+
+.inq-choose__actions--sub a,
+.inq-choose__actions--sub button {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.inq-quick__input {
+  min-height: 46px;
+  padding: 10px 12px;
+  border-width: 2px;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.inq-quick__consent {
+  font-size: 14px;
+  color: #374151;
+}
+
+.inq-quick__consent input,
+.inq-sheet__consent input {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  accent-color: #1a4fd6;
+}
+
+.inq-quick__mailto {
+  font-size: 14px;
+}
+
+.inq-sheet__error {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #fdecea;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+/* 시트 보내기·웹 시트 화면도 같은 크기로 */
+.inq-sheet {
+  gap: 16px;
+  padding: 22px 24px 28px;
+  font-size: 16px;
+}
+
+.inq-sheet__steps {
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.inq-sheet__field,
+.inq-sheet__file {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.inq-sheet__field input,
+.inq-sheet__field textarea {
+  min-height: 46px;
+  padding: 10px 12px;
+  border-width: 2px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.inq-sheet__consent {
+  font-size: 14px;
+}
+
+.inq-sheet__submit {
+  min-width: 220px;
+  min-height: 52px;
+  font-size: 18px;
+}
+
+.sheet-web__hint {
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: #eef3ff;
+  font-size: 15px;
+  color: #1f3864;
+}
+
+.sheet-web__title {
+  font-size: 24px;
+}
+
+.sheet-web__p {
+  font-size: 14px;
+}
+
+.sheet-web__table {
+  font-size: 15px;
+}
+
+.sheet-web__table th,
+.sheet-web__table td {
+  padding: 8px 10px;
+  line-height: 1.9;
+}
+
+.sheet-web__head {
+  font-size: 16px;
+}
+
+.sheet-web__check {
+  gap: 5px;
+  margin-right: 12px;
+  padding: 2px 6px;
+}
+
+.sheet-web__check input {
+  width: 18px;
+  height: 18px;
+}
+
+.sheet-web__blank {
+  padding: 3px 6px;
+  font-size: 15px;
+}
+
+.sheet-web__field {
+  min-height: 38px;
+  font-size: 15px;
+}
+
+@media (max-width: 860px) {
+  .inq-choose__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .inq-choose__title {
+    font-size: 23px;
+  }
+}
+
+@media (max-width: 560px) {
+  .inq-choose,
+  .inq-sheet {
+    padding: 18px 16px 24px;
+  }
+}
+
+/* 큰 버튼이 카드 세로로 늘어나지 않게, 카드 글자색 규칙(.inq-choose__card > span)보다 우선 */
+.inq-choose__btn--wide,
+.inq-choose__btn--push {
+  flex: 0 0 auto;
+}
+
+.inq-choose__card > .inq-choose__btn--primary {
+  color: #fff !important;
+  font-size: 18px !important;
+  font-weight: 700;
+}
+
+/* "이럴 때 고르세요" 띠 — 카드 맨 위에 꽉 차게, 크게 */
+.inq-choose__when {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: -22px -20px 2px;
+  padding: 13px 18px;
+  border-radius: 14px 14px 0 0;
+  font-size: 19px;
+  font-weight: 800;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+
+.inq-choose__when svg {
+  flex: 0 0 auto;
+}
+
+.inq-choose__when--form {
+  background: #e8eefc;
+  color: #1a4fd6;
+}
+
+.inq-choose__when--sheet {
+  background: #1a4fd6;
+  color: #fff;
+}
+
+.inq-choose__when--mail {
+  background: #e7f6ee;
+  color: #15803d;
+}
+
+/* 띠가 생겼으니 카드 머리는 아이콘 + 제목만 */
+.inq-choose__card .inq-choose__cardtitle {
+  font-size: 22px;
+}
+
+@media (max-width: 560px) {
+  .inq-choose__when {
+    margin: -22px -20px 2px;
+    font-size: 18px;
+  }
+}
+
+/* .inq-choose__card > span(14px·회색) 규칙보다 우선 */
+.inq-choose__card > .inq-choose__when {
+  font-size: 19px !important;
+  font-weight: 800;
+}
+
+.inq-choose__card > .inq-choose__when--form {
+  color: #1a4fd6 !important;
+}
+
+.inq-choose__card > .inq-choose__when--sheet {
+  color: #fff !important;
+}
+
+.inq-choose__card > .inq-choose__when--mail {
+  color: #15803d !important;
+}

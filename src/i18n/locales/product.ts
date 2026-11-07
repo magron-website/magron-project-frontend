@@ -34,6 +34,9 @@ const product = {
     catalogDownload: '카탈로그 다운로드',
     productInquiry: '제품문의',
     inquiryNote: '문의 시 전달하면 좋은 정보',
+    inquiryButton: "견적·사양 문의",
+    inquiryModelButton: "이 제품 문의",
+    contactMail: "메일로 문의하기",
     contactNote: '문의사항은 magron@magron.co.kr 로 해주시기 바랍니다.',
   },
   en: {
@@ -66,6 +69,9 @@ const product = {
     catalogDownload: 'Download Catalog',
     productInquiry: 'Product Inquiry',
     inquiryNote: 'Helpful information to include in your inquiry',
+    inquiryButton: "Request a quote",
+    inquiryModelButton: "Ask about this model",
+    contactMail: "Email us",
     contactNote: 'For inquiries, please contact magron@magron.co.kr.',
   },
   zh: {
@@ -98,6 +104,9 @@ const product = {
     catalogDownload: '下载产品目录',
     productInquiry: '产品咨询',
     inquiryNote: '咨询时建议提供的信息',
+    inquiryButton: "询价·规格咨询",
+    inquiryModelButton: "咨询此型号",
+    contactMail: "发邮件咨询",
     contactNote: '如有咨询，请联系 magron@magron.co.kr。',
   },
 }

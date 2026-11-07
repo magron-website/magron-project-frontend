@@ -199,3 +199,15 @@
 .chat-mobile-bar__btn--chat {
   min-width: 0;
 }
+
+/* 제품 페이지 하단 바(11/7): [견적·사양 문의] 크게 + [챗봇] [메일] 작게 — 버튼이 셋이라 작은 칸을 좁힌다 */
+.chat-mobile-bar__icon--small {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #d5deef;
+}
+
+.chat-mobile-bar:has(.chat-mobile-bar__icon--small) .chat-mobile-bar__btn--mail {
+  flex-basis: 64px;
+  font-size: 13px;
+}

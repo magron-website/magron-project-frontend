@@ -36,6 +36,7 @@ export default function InquiryForm({
   onSwitchForm,
   onBack,
   onSubmit,
+  prefill,
 }: {
   form: Form
   /** 한국어 원문 → 화면 언어 */
@@ -43,9 +44,11 @@ export default function InquiryForm({
   onSwitchForm: (formId: string) => void
   onBack: () => void
   onSubmit: (payload: InquiryPayload) => Promise<InquiryResult>
+  /** 제품 페이지 모델·재질 버튼에서 연 경우 미리 채울 값(필드 id → 한국어 값) */
+  prefill?: Values
 }) {
   const { t, i18n } = useTranslation('chatbot')
-  const [values, setValues] = useState<Values>({})
+  const [values, setValues] = useState<Values>(() => prefill ?? {})
   const [files, setFiles] = useState<Record<string, File[]>>({})
   const [contact, setContact] = useState<InquiryContact>({ company: '', name: '', email: '', place: '', tel: '' })
   const [consent, setConsent] = useState(false)

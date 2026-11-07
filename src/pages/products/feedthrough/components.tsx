@@ -1,3 +1,4 @@
+import ProductInquiryButton from '@/components/ProductInquiryButton'
 import type { Product, SpecTable, Variant } from '@/pages/products/feedthrough/content'
 
 /** Renders a spec/dimension matrix. A row with a single cell but multiple
@@ -92,6 +93,10 @@ export function ProductCard({ product }: { product: Product }) {
         ) : null}
       </header>
       <p className="ft-product__desc">{product.description}</p>
+      {/* 모델마다 바로 문의 — 문의서 '제조사·품번' 칸에 이 모델이 미리 들어간다 */}
+      <div className="ft-product__inquiry">
+        <ProductInquiryButton target="feedthrough" source="model" model={product.title} variant="ghost" size="small" />
+      </div>
       <div className="ft-product__body">
         {product.variants.map((variant, i) => (
           <VariantBlock key={variant.label ?? i} variant={variant} />

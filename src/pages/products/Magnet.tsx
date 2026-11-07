@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
+import ProductContactNote from '@/components/ProductContactNote'
+import ProductInquiryButton from '@/components/ProductInquiryButton'
 import { LANGUAGES, type Language } from '@/i18n'
 import { MAGNET_TABLE_IMAGES, heroMagnets } from '@/pages/products/magnet/content'
 import { Section, TableFigure } from '@/pages/products/magnet/components'
@@ -11,6 +13,13 @@ type Card = { title: string; description: string }
 type GlossaryItem = { term: string; desc: string }
 type FamilyTable = { id: string; title: string; description: string; note?: string }
 type Family = { id: string; name: string; nameKr: string; intro: string; tables: FamilyTable[] }
+
+/** 재질 섹션 문의 버튼 → 문의서 첫 질문(재질)에 미리 들어갈 값. NdFeB 는 소결·본드·분말이 섞여 있어 비워 둔다. */
+const FAMILY_MATERIAL: Record<string, string | undefined> = {
+  smco: 'SmCo',
+  alnico: 'AlNiCo',
+  ferrite: '페라이트',
+}
 
 export default function Magnet() {
   const { t, i18n } = useTranslation(['magnet', 'product'])
@@ -36,6 +45,12 @@ export default function Magnet() {
             <div className="mn-hero__body">
               <p>{t('hero.body', { ns: 'magnet' })}</p>
             </div>
+            <div className="product-inquiry-row">
+              <ProductInquiryButton target="magnet" source="hero" />
+              <CatalogDownloadButton product="magnet" className="mn-btn mn-btn--secondary">
+                {t('product:catalogDownload')}
+              </CatalogDownloadButton>
+            </div>
             <div className="mn-hero__cards">
               {heroCards.map((card) => (
                 <article key={card.title} className="mn-feature-card">
@@ -43,7 +58,7 @@ export default function Magnet() {
                   <p>{card.description}</p>
                 </article>
               ))}
-            </div>
+            </div>
           </div>
           <div className="mn-hero__visual">
             <img
@@ -95,6 +110,17 @@ export default function Magnet() {
             <div className="mn-prose">
               <p>{fam.intro}</p>
             </div>
+            <div className="product-section-inquiry">
+              <ProductInquiryButton
+                target="magnet"
+                source="section"
+                model={fam.name}
+                material={FAMILY_MATERIAL[fam.id]}
+                variant="ghost"
+                size="small"
+                label={`${t('product:inquiryButton')} · ${fam.name}`}
+              />
+            </div>
             <div className="mn-mat-tables">
               {fam.tables.map((table) => (
                 <TableFigure
@@ -117,11 +143,12 @@ export default function Magnet() {
             <h2>{t('cta.title', { ns: 'magnet' })}</h2>
             <p>{t('cta.desc', { ns: 'magnet' })}</p>
             <div className="mn-cta-group">
-              <CatalogDownloadButton product="magnet" className="mn-btn mn-btn--primary">
+              <ProductInquiryButton target="magnet" source="bottom" />
+              <CatalogDownloadButton product="magnet" className="mn-btn mn-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>
             </div>
-            <p className="product-cta-note">{t('product:contactNote')}</p>
+            <ProductContactNote target="magnet" />
             <div className="mn-inquiry-list">
               <p className="mn-cta-banner__note">{t('product:inquiryNote')}</p>
               <ul className="mn-check-list mn-check-list--light">

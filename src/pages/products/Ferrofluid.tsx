@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
+import ProductContactNote from '@/components/ProductContactNote'
+import ProductInquiryButton from '@/components/ProductInquiryButton'
 import { CompanyTable, Figure, PointList, Section } from '@/pages/products/ferrofluid/components'
 import {
   imgApplicationExtra,
@@ -51,6 +53,12 @@ export default function Ferrofluid() {
             <h1 className="ff-hero__title">{t('hero.title', { ns: 'ferrofluid' })}</h1>
             {titleEn ? <p className="ff-hero__title-en">{titleEn}</p> : null}
             <p className="ff-hero__lead">{t('hero.lead', { ns: 'ferrofluid' })}</p>
+            <div className="product-inquiry-row">
+              <ProductInquiryButton target="ff-semi" source="hero" />
+              <CatalogDownloadButton product="ferrofluid" className="ff-btn ff-btn--secondary">
+                {t('product:catalogDownload')}
+              </CatalogDownloadButton>
+            </div>
             <div className="ff-hero__cards">
               {heroCardsList.map((card) => (
                 <article key={card.title} className="ff-feature-card">
@@ -98,6 +106,9 @@ export default function Ferrofluid() {
             caption={t('corrosive.specHeading', { ns: 'ferrofluid' })}
             hideCaption
           />
+          <div className="product-section-inquiry">
+            <ProductInquiryButton target="ff-semi" source="section" model="MFF-M (PFPE)" variant="ghost" size="small" label={`${t('product:inquiryButton')} · MFF-M`} />
+          </div>
 
           <h3 className="ff-subheading">{t('corrosive.leakHeading', { ns: 'ferrofluid' })}</h3>
           <p className="ff-highlight">{t('corrosive.leakHighlight', { ns: 'ferrofluid' })}</p>
@@ -133,6 +144,9 @@ export default function Ferrofluid() {
             caption={t('nonCorrosive.specHeading', { ns: 'ferrofluid' })}
             hideCaption
           />
+          <div className="product-section-inquiry">
+            <ProductInquiryButton target="ff-semi" source="section" model="MFS / MFH" variant="ghost" size="small" label={`${t('product:inquiryButton')} · MFS / MFH`} />
+          </div>
 
           <h3 className="ff-subheading">{t('nonCorrosive.greaseHeading', { ns: 'ferrofluid' })}</h3>
           <p className="ff-subheading-note">{t('nonCorrosive.greaseSub', { ns: 'ferrofluid' })}</p>
@@ -227,11 +241,12 @@ export default function Ferrofluid() {
             <h2>{t('cta.title', { ns: 'ferrofluid' })}</h2>
             <p>{t('cta.desc', { ns: 'ferrofluid' })}</p>
             <div className="ff-cta-group">
-              <CatalogDownloadButton product="ferrofluid" className="ff-btn ff-btn--primary">
+              <ProductInquiryButton target="ff-semi" source="bottom" />
+              <CatalogDownloadButton product="ferrofluid" className="ff-btn ff-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>
             </div>
-            <p className="product-cta-note">{t('product:contactNote')}</p>
+            <ProductContactNote target="ff-semi" />
             <div className="ff-inquiry-list">
               <p className="ff-cta-banner__note">{t('product:inquiryNote')}</p>
               <ul className="ff-check-list ff-check-list--light">

@@ -6,6 +6,8 @@ import remarkGfm from 'remark-gfm'
 import chatbotImage from '@/assets/images/chatbot.webp'
 import { useChat } from '@/hooks/useChat'
 import InquiryForm from '@/components/InquiryForm'
+import InquiryChooser from '@/components/InquiryChooser'
+import { SHEET_PRODUCTS, type InquiryRequest } from '@/lib/inquiryOpener'
 import type { InquiryForm as Form } from '@/types/inquiry'
 import '@/assets/design/chatbot-panel.css'
 
@@ -21,6 +23,17 @@ type ChatbotPanelProps = {
   dockStyle?: CSSProperties
   /** 자동으로 열릴 때는 입력창에 포커스를 주지 않는다(휴대폰 키보드·스크롤 튐 방지). */
   autoFocus?: boolean
+  /** 제품 페이지 버튼으로 들어온 문의 — 바뀔 때마다 큰 문의 창을 그 제품으로 연다. */
+  inquiryRequest?: (InquiryRequest & { nonce: number }) | null
+}
+
+/** 모델·재질 버튼에서 연 경우 문의서 첫 질문을 미리 채운다(필드 id = 섹션-질문-칸). */
+function prefillFor(request: InquiryRequest | null | undefined, formId: string | null): Record<string, string> | undefined {
+  if (!request || request.target !== formId) return undefined
+  if (formId === 'magnet' && request.material) return { 'req-0-0': request.material }
+  if (formId === 'feedthrough' && request.model) return { 'req-0-1': `MAGRON ${request.model}` }
+  if (formId === 'ff-semi' && request.model) return { 'req-1-0': '마그론 모델', 'req-1-1': request.model }
+  return undefined
 }
 
 export default function ChatbotPanel({
@@ -29,16 +42,37 @@ export default function ChatbotPanel({
   docked = false,
   dockStyle,
   autoFocus = true,
+  inquiryRequest,
 }: ChatbotPanelProps) {
   const { t, i18n } = useTranslation('chatbot')
   const { messages, isLoading, sendMessage, submitContact, submitInquiry } = useChat()
   const [input, setInput] = useState('')
   const [isContactOpen, setIsContactOpen] = useState(false)
-  // 문의서: 'picker' = 제품 고르기, 'form' = 문의서 작성(창이 크게 펼쳐짐)
-  const [inquiryMode, setInquiryMode] = useState<'off' | 'picker' | 'form'>('off')
+  // 문의서: 'picker' = 제품 고르기, 'choose' = 문의 방법 고르기(웹 문의서·인콰이어리 시트·메일),
+  // 'form' = 문의서 작성. choose·form 은 창이 크게 펼쳐진다.
+  const [inquiryMode, setInquiryMode] = useState<'off' | 'picker' | 'choose' | 'form'>('off')
   const [formId, setFormId] = useState<string | null>(null)
   const inquiry = useInquiryData(inquiryMode !== 'off', i18n.language)
-  const isExpanded = inquiryMode === 'form'
+  const isExpanded = inquiryMode === 'form' || inquiryMode === 'choose'
+
+  // 시트가 있는 제품(자석·피드스루·자성유체 씰용)은 먼저 방법을 고르게 하고, 나머지는 문의서로 바로
+  const openForm = (id: string) => {
+    setFormId(id)
+    setInquiryMode(SHEET_PRODUCTS[id] ? 'choose' : 'form')
+  }
+
+  // 창을 닫으면 문의 화면도 접는다 — 다음에 챗봇을 열 때 큰 문의 창이 그대로 뜨지 않게
+  useEffect(() => {
+    if (!isOpen) setInquiryMode('off')
+  }, [isOpen])
+
+  useEffect(() => {
+    if (!inquiryRequest) return
+    setIsContactOpen(false)
+    if (inquiryRequest.target === 'picker') setInquiryMode('picker')
+    else openForm(inquiryRequest.target)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [inquiryRequest])
   const expandedStyle = useExpandedStyle(isOpen && isExpanded)
   const activeForm = inquiry.forms?.find((form) => form.id === formId) ?? null
   const listRef = useRef<HTMLDivElement>(null)
@@ -94,7 +128,8 @@ export default function ChatbotPanel({
   useEffect(() => {
     if (!isOpen) return
     const handleKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape' && inquiryMode !== 'form') onClose()
+      // 문의 방법 고르기·문의서 작성 중에는 Esc 로 창이 닫히지 않게(시트 크게 보기도 Esc 로 닫는다)
+      if (event.key === 'Escape' && inquiryMode !== 'form' && inquiryMode !== 'choose') onClose()
     }
     window.addEventListener('keydown', handleKey)
     return () => window.removeEventListener('keydown', handleKey)
@@ -159,13 +194,28 @@ export default function ChatbotPanel({
             </header>
 
             {isExpanded ? (
-              activeForm && inquiry.tr ? (
+              inquiryMode === 'choose' && formId ? (
+                <InquiryChooser
+                  key={`${formId}-${inquiryRequest?.nonce ?? 0}`}
+                  formId={formId}
+                  formTitle={activeForm?.title ?? formId}
+                  model={inquiryRequest?.target === formId ? inquiryRequest.model ?? inquiryRequest.material : undefined}
+                  onPickForm={() => setInquiryMode('form')}
+                  onClose={() => setInquiryMode('off')}
+                  onSubmitSheet={async (payload) => {
+                    const result = await submitInquiry(payload)
+                    if (result.ok) setInquiryMode('off')
+                    return result
+                  }}
+                />
+              ) : activeForm && inquiry.tr ? (
                 <InquiryForm
                   key={activeForm.id}
                   form={activeForm}
                   tr={inquiry.tr}
+                  prefill={prefillFor(inquiryRequest, activeForm.id)}
                   onSwitchForm={(id) => setFormId(id)}
-                  onBack={() => setInquiryMode('picker')}
+                  onBack={() => (SHEET_PRODUCTS[activeForm.id] ? setInquiryMode('choose') : setInquiryMode('picker'))}
                   onSubmit={async (payload) => {
                     const result = await submitInquiry(payload)
                     if (result.ok) setInquiryMode('off')
@@ -198,8 +248,7 @@ export default function ChatbotPanel({
                               if (target === 'picker') {
                                 setInquiryMode('picker')
                               } else {
-                                setFormId(target)
-                                setInquiryMode('form')
+                                openForm(target)
                               }
                             }}
                           >
@@ -229,10 +278,7 @@ export default function ChatbotPanel({
               <InquiryPicker
                 forms={inquiry.forms}
                 tr={inquiry.tr}
-                onPick={(id) => {
-                  setFormId(id)
-                  setInquiryMode('form')
-                }}
+                onPick={(id) => openForm(id)}
                 onCancel={() => setInquiryMode('off')}
               />
             ) : isContactOpen ? (
@@ -476,7 +522,7 @@ function useExpandedStyle(active: boolean): CSSProperties | undefined {
         setStyle({ top: 0, left: 0, right: 'auto', width: vw / zoom, maxWidth: 'none', height: vh / zoom })
         return
       }
-      const width = Math.min(1100 * zoom, vw * 0.94)
+      const width = Math.min(1320 * zoom, vw * 0.94) // 11/7: 문의 방법 세 칸이 넉넉히 들어가게 1100 → 1320
       const height = vh * 0.92
       setStyle({
         top: (vh - height) / 2 / zoom,

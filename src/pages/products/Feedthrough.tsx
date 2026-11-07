@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import AnswerBlock from '@/components/AnswerBlock'
 import CatalogDownloadButton from '@/components/CatalogDownloadButton'
+import ProductContactNote from '@/components/ProductContactNote'
+import ProductInquiryButton from '@/components/ProductInquiryButton'
 import { CATEGORIES, heroMontage } from '@/pages/products/feedthrough/content'
 import { ProductCard } from '@/pages/products/feedthrough/components'
 import '@/assets/design/products/feedthrough.css'
@@ -43,6 +45,12 @@ export default function Feedthrough() {
             <p className="ft-hero__lead">{t('hero.lead', { ns: 'feedthrough' })}</p>
             <div className="ft-hero__body">
               <p>{t('hero.body', { ns: 'feedthrough' })}</p>
+            </div>
+            <div className="product-inquiry-row">
+              <ProductInquiryButton target="feedthrough" source="hero" />
+              <CatalogDownloadButton product="feedthrough" className="ft-btn ft-btn--secondary">
+                {t('product:catalogDownload')}
+              </CatalogDownloadButton>
             </div>
             <div className="ft-hero__cards">
               {heroCards.map((card) => (
@@ -99,11 +107,12 @@ export default function Feedthrough() {
             <h2>{t('cta.title', { ns: 'feedthrough' })}</h2>
             <p>{t('cta.desc', { ns: 'feedthrough' })}</p>
             <div className="ft-cta-group">
-              <CatalogDownloadButton product="feedthrough" className="ft-btn ft-btn--primary">
+              <ProductInquiryButton target="feedthrough" source="bottom" />
+              <CatalogDownloadButton product="feedthrough" className="ft-btn ft-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>
             </div>
-            <p className="product-cta-note">{t('product:contactNote')}</p>
+            <ProductContactNote target="feedthrough" />
             <div className="ft-inquiry-list">
               <p className="ft-cta-banner__note">{t('product:inquiryNote')}</p>
               <ul className="ft-check-list ft-check-list--light">
