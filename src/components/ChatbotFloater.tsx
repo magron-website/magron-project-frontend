@@ -253,7 +253,7 @@ export default function ChatbotFloater() {
               {/* 제품 페이지: 견적 문의를 크게, 챗봇은 작게(11/7 — 챗봇을 거치면 아무도 문의서를 안 썼다) */}
               <button
                 type="button"
-                className="chat-mobile-bar__btn chat-mobile-bar__btn--chat"
+                className="chat-mobile-bar__btn chat-mobile-bar__btn--chat chat-mobile-bar__btn--inquiry"
                 onClick={() => openInquiry({ target: productInquiry, source: 'mobile_bar' })}
               >
                 <span className="chat-mobile-bar__text">

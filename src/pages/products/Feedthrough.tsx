@@ -47,7 +47,7 @@ export default function Feedthrough() {
               <p>{t('hero.body', { ns: 'feedthrough' })}</p>
             </div>
             <div className="product-inquiry-row">
-              <ProductInquiryButton target="feedthrough" source="hero" />
+              <ProductInquiryButton target="feedthrough" source="hero" variant="hero" />
               <CatalogDownloadButton product="feedthrough" className="ft-btn ft-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>
@@ -107,7 +107,7 @@ export default function Feedthrough() {
             <h2>{t('cta.title', { ns: 'feedthrough' })}</h2>
             <p>{t('cta.desc', { ns: 'feedthrough' })}</p>
             <div className="ft-cta-group">
-              <ProductInquiryButton target="feedthrough" source="bottom" />
+              <ProductInquiryButton target="feedthrough" source="bottom" variant="hero" />
               <CatalogDownloadButton product="feedthrough" className="ft-btn ft-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>

@@ -46,7 +46,7 @@ export default function Magnet() {
               <p>{t('hero.body', { ns: 'magnet' })}</p>
             </div>
             <div className="product-inquiry-row">
-              <ProductInquiryButton target="magnet" source="hero" />
+              <ProductInquiryButton target="magnet" source="hero" variant="hero" />
               <CatalogDownloadButton product="magnet" className="mn-btn mn-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>
@@ -143,7 +143,7 @@ export default function Magnet() {
             <h2>{t('cta.title', { ns: 'magnet' })}</h2>
             <p>{t('cta.desc', { ns: 'magnet' })}</p>
             <div className="mn-cta-group">
-              <ProductInquiryButton target="magnet" source="bottom" />
+              <ProductInquiryButton target="magnet" source="bottom" variant="hero" />
               <CatalogDownloadButton product="magnet" className="mn-btn mn-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>

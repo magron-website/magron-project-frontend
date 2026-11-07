@@ -54,7 +54,7 @@ export default function Ferrofluid() {
             {titleEn ? <p className="ff-hero__title-en">{titleEn}</p> : null}
             <p className="ff-hero__lead">{t('hero.lead', { ns: 'ferrofluid' })}</p>
             <div className="product-inquiry-row">
-              <ProductInquiryButton target="ff-semi" source="hero" />
+              <ProductInquiryButton target="ff-semi" source="hero" variant="hero" />
               <CatalogDownloadButton product="ferrofluid" className="ff-btn ff-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>
@@ -241,7 +241,7 @@ export default function Ferrofluid() {
             <h2>{t('cta.title', { ns: 'ferrofluid' })}</h2>
             <p>{t('cta.desc', { ns: 'ferrofluid' })}</p>
             <div className="ff-cta-group">
-              <ProductInquiryButton target="ff-semi" source="bottom" />
+              <ProductInquiryButton target="ff-semi" source="bottom" variant="hero" />
               <CatalogDownloadButton product="ferrofluid" className="ff-btn ff-btn--secondary">
                 {t('product:catalogDownload')}
               </CatalogDownloadButton>

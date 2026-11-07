@@ -965,3 +965,85 @@ form.inq-choose__card--mail {
 .inq-choose__card > .inq-choose__when--mail {
   color: #15803d !important;
 }
+
+/* 히어로·하단 배너 문의 버튼 — 남색 바탕에서 가장 먼저 눈에 띄는 주황(보색), 크게, 두 줄 */
+.product-inquiry-btn--hero {
+  position: relative;
+  gap: 14px;
+  padding: 16px 30px 16px 24px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #ff9a1f 0%, #ff5a1f 100%);
+  color: #fff;
+  text-align: left;
+  box-shadow:
+    0 10px 28px rgba(255, 106, 31, 0.45),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.product-inquiry-btn--hero:hover {
+  background: linear-gradient(135deg, #ffa733 0%, #ff6a2b 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 14px 34px rgba(255, 106, 31, 0.55),
+    inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.product-inquiry-btn--hero:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+/* 은은하게 숨 쉬는 빛 — 눈길을 끌되 거슬리지 않게(움직임 줄이기 설정이면 끔) */
+.product-inquiry-btn--hero::after {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 20px;
+  border: 2px solid rgba(255, 154, 31, 0.7);
+  animation: product-inquiry-pulse 2.4s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes product-inquiry-pulse {
+  0% { opacity: 0.9; transform: scale(1); }
+  70% { opacity: 0; transform: scale(1.08); }
+  100% { opacity: 0; transform: scale(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .product-inquiry-btn--hero::after {
+    animation: none;
+    opacity: 0;
+  }
+}
+
+.product-inquiry-btn__text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.product-inquiry-btn__main {
+  font-size: 21px;
+  font-weight: 800;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.product-inquiry-btn__sub {
+  font-size: 14px;
+  font-weight: 500;
+  opacity: 0.95;
+}
+
+.product-inquiry-row {
+  align-items: center;
+  gap: 14px;
+}
+
+@media (max-width: 560px) {
+  .product-inquiry-row .product-inquiry-btn--hero {
+    width: 100%;
+  }
+}
