@@ -1048,11 +1048,11 @@ form.inq-choose__card--mail {
   }
 }
 
-/* 넓은 PC 화면(1600px↑): 큰 창에 맞춰 안쪽 글씨도 한 단계 크게(사이트 zoom 0.75 × 1.5 ≈ 1.13) */
+/* 넓은 PC 화면(1600px↑): 큰 창에 맞춰 안쪽 글씨도 한 단계 크게(사이트 zoom 0.75 × 1.35 ≈ 1.01, 11/7 10% 줄임) */
 @media (min-width: 1600px) {
   .chat-panel--expanded .inq,
   .chat-panel--expanded .inq-choose,
   .chat-panel--expanded .inq-sheet {
-    zoom: 1.5;
+    zoom: 1.35;
   }
 }

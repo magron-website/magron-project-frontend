@@ -524,8 +524,8 @@ function useExpandedStyle(active: boolean): CSSProperties | undefined {
       }
       // 11/7 사용자: "컴퓨터 화면은 더 크게, 저만해지게" — 화면 거의 전체(가로 92%·세로 94%)를 쓴다.
       // 아주 넓은 모니터에서 줄이 너무 길어지지 않게 2200px(화면 픽셀)에서만 멈춘다.
-      const width = Math.min(vw * 0.92, 2200)
-      const height = vh * 0.94
+      const width = Math.min(vw * 0.83, 2000) // 11/7 "너무 큼, 10% 줄여" — 92% → 83%
+      const height = vh * 0.85
       setStyle({
         top: (vh - height) / 2 / zoom,
         left: (vw - width) / 2 / zoom,
