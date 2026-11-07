@@ -522,8 +522,10 @@ function useExpandedStyle(active: boolean): CSSProperties | undefined {
         setStyle({ top: 0, left: 0, right: 'auto', width: vw / zoom, maxWidth: 'none', height: vh / zoom })
         return
       }
-      const width = Math.min(1320 * zoom, vw * 0.94) // 11/7: 문의 방법 세 칸이 넉넉히 들어가게 1100 → 1320
-      const height = vh * 0.92
+      // 11/7 사용자: "컴퓨터 화면은 더 크게, 저만해지게" — 화면 거의 전체(가로 92%·세로 94%)를 쓴다.
+      // 아주 넓은 모니터에서 줄이 너무 길어지지 않게 2200px(화면 픽셀)에서만 멈춘다.
+      const width = Math.min(vw * 0.92, 2200)
+      const height = vh * 0.94
       setStyle({
         top: (vh - height) / 2 / zoom,
         left: (vw - width) / 2 / zoom,

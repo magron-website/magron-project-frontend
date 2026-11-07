@@ -1047,3 +1047,12 @@ form.inq-choose__card--mail {
     width: 100%;
   }
 }
+
+/* 넓은 PC 화면(1600px↑): 큰 창에 맞춰 안쪽 글씨도 한 단계 크게(사이트 zoom 0.75 × 1.5 ≈ 1.13) */
+@media (min-width: 1600px) {
+  .chat-panel--expanded .inq,
+  .chat-panel--expanded .inq-choose,
+  .chat-panel--expanded .inq-sheet {
+    zoom: 1.5;
+  }
+}
