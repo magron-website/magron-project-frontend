@@ -28,16 +28,29 @@ export function openInquiry(request: InquiryRequest) {
 }
 
 /** 인콰이어리 시트(Word)가 있는 제품 — 이 제품은 문의서와 시트 중에서 고르게 한다(이사님 지시 2026-11). */
-export const SHEET_PRODUCTS: Record<string, { file: string; mailTag: Record<string, string> }> = {
-  magnet: { file: 'magnet', mailTag: { ko: '[자석 문의]', en: '[Magnet inquiry]', zh: '[磁铁询价]' } },
+export const SHEET_PRODUCTS: Record<string, { file: string; name: string; mailTag: Record<string, string> }> = {
+  magnet: { file: 'magnet', name: 'Magnet', mailTag: { ko: '[자석 문의]', en: '[Magnet inquiry]', zh: '[磁铁询价]' } },
   feedthrough: {
     file: 'feedthrough',
+    name: 'Ferrofluid Feedthrough',
     mailTag: { ko: '[피드스루 문의]', en: '[Feedthrough inquiry]', zh: '[磁流体真空馈通询价]' },
   },
   'ff-semi': {
     file: 'ferrofluid',
+    name: 'Ferrofluid',
     mailTag: { ko: '[자성유체 문의]', en: '[Ferrofluid inquiry]', zh: '[磁流体询价]' },
   },
+}
+
+const SHEET_LANG_NAME = { ko: 'Korean', en: 'English', zh: 'Chinese' } as const
+
+/**
+ * 시트 파일 이름 — OneDrive 원본과 같은 'Magnet Inquiry Sheet Korean Version' 꼴, 밑줄 없이 띄어쓰기만
+ * (11/9 이사님: 밑줄이 있으면 파일 찾기가 힘들다). 내려받기·메일 첨부에 같이 쓴다.
+ */
+export function sheetFileName(formId: string, lang: string, suffix = ''): string {
+  const name = SHEET_PRODUCTS[formId]?.name ?? 'MAGRON'
+  return `${name} Inquiry Sheet ${SHEET_LANG_NAME[sheetLang(lang)]} Version${suffix}.docx`
 }
 
 export function sheetLang(lang: string): 'ko' | 'en' | 'zh' {

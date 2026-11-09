@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState, type FormEvent } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { InquiryContact, InquiryFile, InquiryPayload, InquiryResult } from '@/components/InquiryForm'
-import { sheetLang } from '@/lib/inquiryOpener'
+import { sheetFileName, sheetLang } from '@/lib/inquiryOpener'
 
 /**
  * 인콰이어리 시트를 웹에서 바로 채우기(2026-11-07 사용자 요청: "웹 문의서처럼 웹에서 다 가능하고 저장하면 우리한테 오도록").
@@ -167,15 +167,14 @@ export default function SheetWebForm({
       const { fillSheetDocx, mapValues } = await import('@/lib/fillSheetDocx')
       const base = `${import.meta.env.BASE_URL}inquiry-sheets/${FILE[formId]}-`
       const who = (contact.company || emailMatch[0]).replace(/[\\/:*?"<>|]/g, '').slice(0, 40)
-      const titleOf = (s: Sheet) => textOf((s.blocks.find((b) => b.type === 'p' && b.strong) as { tokens: Token[] } | undefined)?.tokens ?? [])
       if (lang !== 'ko') {
         const ko = (await loaders[`../data/inquiry-sheets/${FILE[formId]}-ko.json`]()).default
         const mapped = mapValues(sheet, ko, values)
-        if (mapped) sheetFiles.push(new File([await fillSheetDocx(`${base}ko.docx`, ko, mapped)], `${who} - ${titleOf(ko)} (한국어판).docx`))
+        if (mapped) sheetFiles.push(new File([await fillSheetDocx(`${base}ko.docx`, ko, mapped)], sheetFileName(formId, 'ko', ` - ${who}`)))
       }
       const own = await fillSheetDocx(`${base}${lang}.docx`, sheet, values)
-      const langTag = lang === 'en' ? ' (English)' : lang === 'zh' ? ' (中文)' : ''
-      sheetFiles.push(new File([own], `${who} - ${titleOf(sheet)}${langTag}.docx`))
+      // 파일 이름은 'Magnet Inquiry Sheet Chinese Version - 회사.docx' — 밑줄 없이(11/9 이사님 요청)
+      sheetFiles.push(new File([own], sheetFileName(formId, lang, ` - ${who}`)))
     } catch {
       // Word 를 못 만들어도 항목별 답은 메일 본문으로 간다
     }

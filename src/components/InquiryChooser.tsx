@@ -2,7 +2,7 @@ import { useEffect, useState, type FormEvent, type ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import type { InquiryContact, InquiryFile, InquiryPayload, InquiryResult } from '@/components/InquiryForm'
 import SheetWebForm from '@/components/SheetWebForm'
-import { SHEET_PRODUCTS, inquiryMailto, sheetLang } from '@/lib/inquiryOpener'
+import { SHEET_PRODUCTS, inquiryMailto, sheetFileName, sheetLang } from '@/lib/inquiryOpener'
 import { trackEvent } from '@/lib/analytics'
 import '@/assets/design/inquiry-chooser.css'
 
@@ -35,6 +35,7 @@ export default function InquiryChooser({
   const lang = sheetLang(i18n.language)
   const base = `${import.meta.env.BASE_URL}inquiry-sheets/${sheet?.file}-${lang}`
   const docUrl = `${base}.docx`
+  const docName = sheetFileName(formId, lang)
   const previewUrl = `${base}.jpg`
   const choice = (kind: 'form' | 'websheet' | 'sheet' | 'sheet_download' | 'mail') =>
     trackEvent('inquiry_choice', { product: formId, choice: kind })
@@ -67,6 +68,7 @@ export default function InquiryChooser({
         formTitle={formTitle}
         model={model}
         docUrl={docUrl}
+        docName={docName}
         onBack={() => setView('choose')}
         onSubmit={onSubmitSheet}
       />
@@ -127,7 +129,7 @@ export default function InquiryChooser({
               {t('chooseSheetWeb')} →
             </button>
             <div className="inq-choose__actions inq-choose__actions--sub">
-              <a href={docUrl} download onClick={() => choice('sheet_download')}>
+              <a href={docUrl} download={docName} onClick={() => choice('sheet_download')}>
                 {t('chooseSheetDownload')}
               </a>
               <button
@@ -155,7 +157,7 @@ export default function InquiryChooser({
       {zoomed ? (
         <div className="inq-choose__zoom" role="dialog" aria-label={t('chooseSheetPreviewAlt')} onClick={() => setZoomed(false)}>
           <div className="inq-choose__zoom-bar">
-            <a href={docUrl} download onClick={(event) => { event.stopPropagation(); choice('sheet_download') }}>
+            <a href={docUrl} download={docName} onClick={(event) => { event.stopPropagation(); choice('sheet_download') }}>
               {t('chooseSheetDownload')}
             </a>
             <button type="button" onClick={() => setZoomed(false)}>
@@ -303,6 +305,7 @@ function SheetUpload({
   formTitle,
   model,
   docUrl,
+  docName,
   onBack,
   onSubmit,
 }: {
@@ -310,6 +313,7 @@ function SheetUpload({
   formTitle: string
   model?: string
   docUrl: string
+  docName: string
   onBack: () => void
   onSubmit: (payload: InquiryPayload) => Promise<InquiryResult>
 }) {
@@ -393,7 +397,7 @@ function SheetUpload({
       <ol className="inq-sheet__steps">
         <li>
           {t('sheetStep1')}{' '}
-          <a href={docUrl} download>
+          <a href={docUrl} download={docName}>
             {t('chooseSheetDownload')}
           </a>
         </li>
