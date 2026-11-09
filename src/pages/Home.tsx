@@ -20,8 +20,6 @@ import '@/assets/design/tech.css'
 
 const catalogSortOrders = [1, 2, 3, 4, 5, 6] as const
 
-/** 홈에는 6개만 한 줄로 — View More 버튼은 2026-11-09 지시로 뺐다(전체 목록은 상단 메뉴 "기술정보"). */
-const HOME_TECH_LIMIT = 6
 
 const catalogBookProps = {
   width: 230,
@@ -155,10 +153,8 @@ function HomeTech() {
     if (inView) setHasBeenInView(true)
   }, [inView])
 
-  const teaserDocuments = useMemo(
-    () => documents.slice(0, HOME_TECH_LIMIT),
-    [documents],
-  )
+  // 홈에서도 기술자료 전부를 6개씩 줄 지어 보여 준다(2026-11-09 지시 — View More 없이 아래로 쭉)
+  const teaserDocuments = documents
 
   return (
     <section id="tech" ref={ref} className={`home-tech${inView ? ' is-revealed' : ''}`}>
