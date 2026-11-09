@@ -1124,3 +1124,42 @@
     font-size: 17px;
   }
 }
+
+/* 점검(2026-11-09): 칸이 좁아지면(1024px, 챗봇 열린 1280~1440px) "Feedthrough"·"Conductive" 가
+   단어 중간에서 끊겼다 — 카탈로그 제목 글자를 칸 폭에 맞춰 줄인다(넓은 화면은 그대로 17.8px). */
+@media (min-width: 901px) {
+  .home .home-catalog__item {
+    container-type: inline-size;
+  }
+
+  .home .home-catalog__item-text {
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1024px) {
+  .home .home-catalog__item-title {
+    font-size: clamp(11px, 8.6cqw, 22px);
+  }
+
+  .home .home-catalog__item-bracket {
+    font-size: clamp(15px, 11cqw, 32px);
+  }
+}
+
+@media (min-width: 1025px) {
+  .home .home-catalog__item-title {
+    font-size: clamp(12px, 8.6cqw, 17.8px);
+  }
+
+  .home .home-catalog__item-bracket {
+    font-size: clamp(15px, 11cqw, 26px);
+  }
+
+  /* 기술자료 설명: 2줄에서 잘려 문장이 끊겼다 — 홈에서는 3줄까지 */
+  .home .home-tech .tech-doc__desc {
+    -webkit-line-clamp: 3;
+    height: 72px;
+  }
+}

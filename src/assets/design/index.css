@@ -404,3 +404,16 @@ html.chat-split .home-visual {
   left: var(--chat-split-gutter);
   width: calc(100% - var(--chat-dock-w, 0px) - 2 * var(--chat-split-gutter));
 }
+
+/* 점검(2026-11-09): 챗봇이 열려 피드스루 상단 카드가 좁아지면 "Generation"·"Specification" 이 단어 중간에서 끊겼다 */
+@media (min-width: 1025px) {
+  html.chat-split body .ft-feature-card {
+    padding: 12px;
+  }
+
+  html.chat-split body .ft-feature-card h3 {
+    font-size: 13px;
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+}
