@@ -974,3 +974,73 @@
     font-size: 15px;
   }
 }
+
+/* PC 첫 화면에 제품 정보까지 보이게 히어로를 690px → 540px 로 줄이고 제목 여백도 줄인다(2026-11-09 지시) */
+@media (min-width: 901px) {
+  .home {
+    --hero-height: 540px;
+    --product-section-offset: calc(var(--hero-height) + var(--header-height));
+  }
+
+  .home .home-visual {
+    height: var(--hero-height);
+  }
+
+  .home .product-scroll {
+    margin-top: var(--hero-height);
+  }
+
+  .home .roll__inner {
+    padding-top: 24px;
+    padding-bottom: 92px; /* 아래 재생·페이지 표시(64px + 32px) 자리 */
+  }
+
+  .home .roll__title {
+    font-size: clamp(38px, 4vw, 56px);
+  }
+
+  .home .roll__ornament--top {
+    margin-bottom: 18px;
+  }
+
+  .home .roll__ornament--bottom {
+    margin-top: 20px;
+  }
+
+  .home .roll__subtitle {
+    margin-top: 14px;
+  }
+
+  .home .roll__description {
+    margin-top: 10px;
+  }
+
+  .home .roll__button {
+    margin-top: 18px;
+  }
+
+  .home .roll__image--natural {
+    max-height: 100%;
+  }
+
+  .home .product-scroll__heading {
+    padding: 28px 0 22px;
+    font-size: 36px;
+  }
+
+  .home .home-catalog__header,
+  .home .home-tech__header {
+    padding-top: 56px;
+  }
+}
+
+/* 챗봇 분할 모드에선 히어로 글자 칸이 좁아 줄이 늘어난다 — 제목을 줄이고 아래 장식선을 빼 재생 버튼과 겹치지 않게 */
+@media (min-width: 901px) {
+  html.chat-split .home .roll__title {
+    font-size: clamp(32px, 3.4vw, 56px);
+  }
+
+  html.chat-split .home .roll__ornament--bottom {
+    display: none;
+  }
+}
