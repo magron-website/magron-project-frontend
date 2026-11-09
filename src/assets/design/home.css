@@ -1044,3 +1044,29 @@
     display: none;
   }
 }
+
+/* 제품 카드: 사진을 칸에 꽉 채우고(여백 없이) 글자 칸 아래 빈 공간을 줄인다(2026-11-09 지시) */
+.home .product-scroll__tile-bg {
+  object-fit: cover;
+  object-position: center;
+}
+
+.home .product-scroll__tile-content {
+  padding: 10px 14px 12px;
+  gap: 4px;
+}
+
+.home .product-scroll__tile-title {
+  min-height: 0;
+  line-height: 1.25;
+}
+
+@media (min-width: 901px) {
+  .home .product-scroll__tile-title {
+    font-size: clamp(15px, 7cqw, 23px);
+  }
+
+  .home .product-scroll__tile-label {
+    font-size: clamp(12px, 5.2cqw, 17px);
+  }
+}

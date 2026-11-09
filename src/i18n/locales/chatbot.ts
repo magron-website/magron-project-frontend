@@ -79,11 +79,11 @@ const chatbot = {
     quickTitle: "📋 바로 문의하기",
     quickSub: "제품을 누르면 문의서가 바로 열립니다",
     quickName: {
-      "ff-semi": "씰용", "ff-other": "그 외 용도", "magnet": "자석", "feedthrough": "피드스루",
+      "ff-semi": "반도체 장비용", "ff-other": "그 외 용도", "magnet": "자석", "feedthrough": "피드스루",
       "magoil": "Mag Oil", "kit": "디스플레이", "ink": "피에조·전도성 잉크",
     },
     quickDesc: {
-      "ff-semi": "반도체·진공·가스·분진", "ff-other": "연구·기타 산업·유통", "magnet": "네오디뮴·SmCo·알니코·페라이트",
+      "ff-semi": "진공·가스·분진 씰", "ff-other": "연구·기타 산업·유통", "magnet": "네오디뮴·SmCo·알니코·페라이트",
       "feedthrough": "진공 회전 씰 설계 의뢰", "magoil": "낚시 릴 자석 실 정비용", "kit": "키트·전시·수업·작품",
       "ink": "압저항·압전·전도성",
     },
@@ -115,7 +115,7 @@ const chatbot = {
     inquiryOpen: {
       "magnet": "📋 자석 문의서 작성하기",
       "feedthrough": "📋 피드스루 설계 의뢰서 작성하기",
-      "ff-semi": "📋 자성유체(씰용) 문의서 작성하기",
+      "ff-semi": "📋 자성유체(반도체 장비용) 문의서 작성하기",
       "ff-other": "📋 자성유체 문의서 작성하기",
       "kit": "📋 키트·디스플레이 문의서 작성하기",
       "magoil": "📋 Mag Oil 문의서 작성하기",
@@ -204,11 +204,11 @@ const chatbot = {
     quickTitle: "📋 Inquire now",
     quickSub: "Click a product to open its inquiry form",
     quickName: {
-      "ff-semi": "Sealing", "ff-other": "Other uses", "magnet": "Magnet", "feedthrough": "Feedthrough",
+      "ff-semi": "Semiconductor equipment", "ff-other": "Other uses", "magnet": "Magnet", "feedthrough": "Feedthrough",
       "magoil": "Mag Oil", "kit": "Display", "ink": "Piezo & Conductive Ink",
     },
     quickDesc: {
-      "ff-semi": "Semiconductor · vacuum · gas · dust", "ff-other": "Research · other industries · resale",
+      "ff-semi": "Vacuum · gas · dust seals", "ff-other": "Research · other industries · resale",
       "magnet": "NdFeB · SmCo · AlNiCo · Ferrite", "feedthrough": "Vacuum rotary seal design request",
       "magoil": "Fishing reel magnetic seal care", "kit": "Kits · exhibits · classes · art",
       "ink": "Piezoresistive · piezoelectric · conductive",
@@ -241,7 +241,7 @@ const chatbot = {
     inquiryOpen: {
       "magnet": "📋 Fill in the magnet form",
       "feedthrough": "📋 Fill in the feedthrough design request",
-      "ff-semi": "📋 Fill in the ferrofluid (sealing) form",
+      "ff-semi": "📋 Fill in the ferrofluid (semiconductor equipment) form",
       "ff-other": "📋 Fill in the ferrofluid form",
       "kit": "📋 Fill in the kit / display form",
       "magoil": "📋 Fill in the Mag Oil form",
@@ -329,11 +329,11 @@ const chatbot = {
     quickTitle: "📋 立即咨询",
     quickSub: "点击产品即可打开咨询表",
     quickName: {
-      "ff-semi": "密封用", "ff-other": "其他用途", "magnet": "磁铁", "feedthrough": "真空馈通",
+      "ff-semi": "半导体设备用", "ff-other": "其他用途", "magnet": "磁铁", "feedthrough": "真空馈通",
       "magoil": "Mag Oil", "kit": "展示", "ink": "压电·导电油墨",
     },
     quickDesc: {
-      "ff-semi": "半导体·真空·气体·粉尘", "ff-other": "研究·其他行业·经销", "magnet": "钕铁硼·钐钴·铝镍钴·铁氧体",
+      "ff-semi": "真空·气体·粉尘密封", "ff-other": "研究·其他行业·经销", "magnet": "钕铁硼·钐钴·铝镍钴·铁氧体",
       "feedthrough": "真空旋转密封设计委托", "magoil": "钓鱼轮磁性密封保养", "kit": "套件·展览·教学·作品",
       "ink": "压阻·压电·导电",
     },
@@ -365,7 +365,7 @@ const chatbot = {
     inquiryOpen: {
       "magnet": "📋 填写磁铁咨询表",
       "feedthrough": "📋 填写磁流体密封传动装置设计委托表",
-      "ff-semi": "📋 填写磁流体（密封用）咨询表",
+      "ff-semi": "📋 填写磁流体（半导体设备用）咨询表",
       "ff-other": "📋 填写磁流体咨询表",
       "kit": "📋 填写套件·展示品咨询表",
       "magoil": "📋 填写 Mag Oil 咨询表",
