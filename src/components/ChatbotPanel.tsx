@@ -442,39 +442,37 @@ const PICKER_LAYOUT: (string | { group: string; ids: string[] })[] = [
   'ink',
 ]
 
-/** 챗봇 인사말 아래 고정 문의서 목록 — 번호 순서는 PICKER_LAYOUT 과 같다. 문의서 데이터는 누를 때 불러온다. */
+/**
+ * 챗봇 인사말 아래 작은 "문의서 바로 열기" 버튼들(2열). 번호 순서는 PICKER_LAYOUT 과 같다.
+ * 목록이 크면 방문자가 "이걸 꼭 눌러야 하나?" 싶어 질문을 안 해서(2026-11-09) 한 줄짜리 버튼으로 줄이고,
+ * 설명은 마우스를 올리면(title) 보이게 했다. 아래 한 줄로 "질문은 입력창에" 를 안내한다.
+ */
 function QuickInquiryList({ onPick }: { onPick: (id: string) => void }) {
   const { t } = useTranslation('chatbot')
-  const button = (id: string, label: string) => (
-    <button key={id} type="button" className="chat-quick__item" onClick={() => onPick(id)}>
-      <b>{label}</b>
-      <small>{t(`quickDesc.${id}`)}</small>
-    </button>
+  const items = PICKER_LAYOUT.flatMap((entry, i) =>
+    typeof entry === 'string'
+      ? [{ id: entry, n: i + 1, label: t(`quickName.${entry}`) }]
+      : entry.ids.map((id) => ({ id, n: i + 1, label: `${t('inquiryPickFerrofluid')} · ${t(`quickName.${id}`)}` })),
   )
   return (
     <div className="chat-quick">
       <p className="chat-quick__title">{t('quickTitle')}</p>
+      <ul className="chat-quick__list">
+        {items.map((item) => (
+          <li key={item.id}>
+            <button
+              type="button"
+              className="chat-quick__item"
+              title={t(`quickDesc.${item.id}`)}
+              onClick={() => onPick(item.id)}
+            >
+              <span className="chat-quick__num">{item.n}</span>
+              <span className="chat-quick__label">{item.label}</span>
+            </button>
+          </li>
+        ))}
+      </ul>
       <p className="chat-quick__sub">{t('quickSub')}</p>
-      <ol className="chat-quick__list">
-        {PICKER_LAYOUT.map((entry, i) =>
-          typeof entry === 'string' ? (
-            <li key={entry} className="chat-quick__row">
-              <span className="chat-quick__num">{i + 1}</span>
-              {button(entry, t(`quickName.${entry}`))}
-            </li>
-          ) : (
-            <li key={entry.group} className="chat-quick__row chat-quick__row--group">
-              <span className="chat-quick__num">{i + 1}</span>
-              <div className="chat-quick__group">
-                <span className="chat-quick__group-name">{t('inquiryPickFerrofluid')}</span>
-                <div className="chat-quick__pair">
-                  {entry.ids.map((id) => button(id, t(`quickName.${id}`)))}
-                </div>
-              </div>
-            </li>
-          ),
-        )}
-      </ol>
     </div>
   )
 }

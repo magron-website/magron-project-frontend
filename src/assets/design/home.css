@@ -1068,7 +1068,7 @@
   }
 
   .home .product-scroll__tile-label {
-    font-size: clamp(13px, 5.6cqw, 17px);
+    font-size: clamp(16px, 7.4cqw, 21px); /* 파란 "제품 | …" 줄 — 너무 작다는 지적(2026-11-09) */
   }
 }
 
