@@ -338,3 +338,54 @@ html[lang='en'] body {
     max-width: 900px;
   }
 }
+
+/* ==========================================================================
+   PC: 챗봇이 오른쪽 1/3 을 차지할 때(html.chat-split, ChatbotFloater 가 붙임)
+   본문·푸터를 왼쪽 2/3 로 민다. --chat-dock-w = 챗봇 폭(CSS px, zoom 보정됨).
+   2026-11-09 사용자: "화면 1/3 이 챗봇 화면이 떠 있게, 왼쪽에 정보들 몰아줘"
+   ========================================================================== */
+html.chat-split .home__content,
+html.chat-split .home-footer {
+  box-sizing: border-box;
+  padding-right: var(--chat-dock-w, 0px);
+}
+
+/* 챗봇이 1/3 을 차지하면 본문 폭이 2/3 라, 제품 상세(1.6배)·문서형(1.32배) 확대를 같은 비율로 낮춰
+   표·카드가 좁아진 본문 안에 들어가게 한다. */
+@media (min-width: 1025px) {
+  html.chat-split body .ff-page,
+  html.chat-split body .ft-page,
+  html.chat-split body .mg-page,
+  html.chat-split body .mn-page,
+  html.chat-split body .ed-page,
+  html.chat-split body .dp-page,
+  html.chat-split body .pi-page {
+    zoom: 1.05;
+  }
+
+  html.chat-split body .cp-page,
+  html.chat-split body .tech-page {
+    zoom: 1;
+  }
+
+  /* 제목은 위 1-3) 처럼 확대분을 되돌리던 값(0.825)을 함께 맞춘다 */
+  html.chat-split body .ff-hero__title,
+  html.chat-split body .ft-hero__title,
+  html.chat-split body .mg-hero__title,
+  html.chat-split body .mn-hero__title,
+  html.chat-split body .ed-hero__title,
+  html.chat-split body .dp-hero__title,
+  html.chat-split body .pi-hero__title {
+    zoom: 1;
+  }
+}
+
+/* 홈 히어로는 absolute·100% 라 본문 padding 이 안 먹는다 — 챗봇 폭만큼 직접 줄인다 */
+html.chat-split .home-visual {
+  width: calc(100% - var(--chat-dock-w, 0px));
+}
+
+/* 홈 본문은 가운데 1920px 상자라, 챗봇 몫을 빼면 왼쪽이 비고 본문이 좁아졌다 — 분할 모드에선 상자 제한을 푼다 */
+html.chat-split .home__content {
+  max-width: none;
+}

@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
 import { BookCover } from 'book-cover-3d'
 import { homeImages } from '@/assets/images/homeImages'
 import HeroCarousel from '@/components/HeroCarousel'
@@ -15,14 +14,13 @@ import { useInView } from '@/hooks/useInView'
 import { ProductSection } from '@/pages/products'
 import { useBooks } from '@/hooks/useBooks'
 import { openPdfInNewTab, toDownloadUrl } from '@/lib/openPdf'
-import { useLangPath } from '@/i18n/routing'
 import { useTechDocuments } from '@/hooks/useTechDocuments'
 import '@/assets/design/animation.css'
 import '@/assets/design/tech.css'
 
 const catalogSortOrders = [1, 2, 3, 4, 5, 6] as const
 
-/** The home teaser shows a fixed six; the rest live behind "View More" on /tech. */
+/** 홈에는 6개만 한 줄로 — View More 버튼은 2026-11-09 지시로 뺐다(전체 목록은 상단 메뉴 "기술정보"). */
 const HOME_TECH_LIMIT = 6
 
 const catalogBookProps = {
@@ -146,7 +144,6 @@ function HomeCatalog() {
 
 function HomeTech() {
   const { t } = useTranslation('tech')
-  const lp = useLangPath()
   const { documents, error } = useTechDocuments()
   const { ref, inView } = useInView<HTMLElement>({ threshold: 0.08, once: false })
 
@@ -185,9 +182,6 @@ function HomeTech() {
             />
           ))}
         </div>
-        <Link className="home-tech__more" to={lp('/tech')} aria-label={t('viewMoreAria')}>
-          {t('viewMore')}
-        </Link>
       </div>
     </section>
   )

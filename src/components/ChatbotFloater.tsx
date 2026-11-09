@@ -55,14 +55,48 @@ const DOCK_GAP = 16
 const DOCK_MIN_WIDTH = 280 // 이보다 여백이 좁으면(노트북 등) 이 폭을 지키고 본문 끝을 조금 덮는다
 const DOCK_MAX_WIDTH = 380
 const DOCK_MAX_HEIGHT = 720
+/** 이 폭(화면 픽셀) 이상이면 챗봇이 오른쪽 1/3 을 차지하고 본문을 왼쪽 2/3 로 민다 */
+const SPLIT_MIN_WIDTH = 1100
 
 function useDockStyle(active: boolean, pathname: string): CSSProperties | undefined {
   const [style, setStyle] = useState<CSSProperties>()
 
   useLayoutEffect(() => {
-    if (!active) return
+    const root = document.documentElement
+    const clearSplit = () => {
+      root.classList.remove('chat-split')
+      root.style.removeProperty('--chat-dock-w')
+    }
+    if (!active) {
+      clearSplit()
+      return
+    }
     const update = () => {
       const zoom = parseFloat(getComputedStyle(document.documentElement).zoom) || 1
+      const viewportW = document.documentElement.clientWidth
+      /*
+       * 2026-11-09 사용자: "컴퓨터 화면에서 화면 1/3 이 챗봇 화면이 떠 있게, 왼쪽에 정보들 몰아줘".
+       * 넓은 화면(1100px↑)은 오른쪽 1/3 을 챗봇이 통째로 쓰고(헤더 아래부터 바닥까지),
+       * 본문은 html.chat-split + --chat-dock-w 로 그만큼 왼쪽으로 좁힌다(index.css).
+       */
+      if (viewportW >= SPLIT_MIN_WIDTH) {
+        const header = document.querySelector('.home-header')
+        const top = header?.getBoundingClientRect().bottom ?? 0
+        const width = Math.round(viewportW / 3)
+        root.classList.add('chat-split')
+        root.style.setProperty('--chat-dock-w', `${width / zoom}px`)
+        setStyle({
+          top: top / zoom,
+          right: 0,
+          width: width / zoom,
+          maxWidth: 'none',
+          height: (window.innerHeight - top) / zoom,
+          borderRadius: 0,
+          boxShadow: '-6px 0 24px rgba(0, 0, 0, 0.12)',
+        })
+        return
+      }
+      clearSplit()
       const gap = DOCK_GAP * zoom
       const content = document.querySelector('.home__content')
       const header = document.querySelector('.home-header')
@@ -90,6 +124,7 @@ function useDockStyle(active: boolean, pathname: string): CSSProperties | undefi
     return () => {
       window.removeEventListener('resize', update)
       observer?.disconnect()
+      clearSplit()
     }
   }, [active, pathname])
 

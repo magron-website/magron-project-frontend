@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type CSSProperties } from 'react'
+import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
@@ -228,9 +228,9 @@ export default function ChatbotPanel({
             ) : (
             <>
             <div className="chat-panel__messages" ref={listRef}>
-              {messages.map((message) => (
+              {messages.map((message, index) => (
+                <Fragment key={message.id}>
                 <div
-                  key={message.id}
                   className={`chat-message chat-message--${message.role}`}
                 >
                   <div className="chat-message__bubble">
@@ -261,6 +261,9 @@ export default function ChatbotPanel({
                     )}
                   </div>
                 </div>
+                {/* 인사말 바로 아래 문의서 목록 — 챗봇을 열면 바로 제품을 눌러 문의서로 간다(2026-11-09 지시) */}
+                {index === 0 && <QuickInquiryList onPick={openForm} />}
+                </Fragment>
               ))}
 
               {isLoading && (
@@ -438,6 +441,43 @@ const PICKER_LAYOUT: (string | { group: string; ids: string[] })[] = [
   'kit',
   'ink',
 ]
+
+/** 챗봇 인사말 아래 고정 문의서 목록 — 번호 순서는 PICKER_LAYOUT 과 같다. 문의서 데이터는 누를 때 불러온다. */
+function QuickInquiryList({ onPick }: { onPick: (id: string) => void }) {
+  const { t } = useTranslation('chatbot')
+  const button = (id: string, label: string) => (
+    <button key={id} type="button" className="chat-quick__item" onClick={() => onPick(id)}>
+      <b>{label}</b>
+      <small>{t(`quickDesc.${id}`)}</small>
+    </button>
+  )
+  return (
+    <div className="chat-quick">
+      <p className="chat-quick__title">{t('quickTitle')}</p>
+      <p className="chat-quick__sub">{t('quickSub')}</p>
+      <ol className="chat-quick__list">
+        {PICKER_LAYOUT.map((entry, i) =>
+          typeof entry === 'string' ? (
+            <li key={entry} className="chat-quick__row">
+              <span className="chat-quick__num">{i + 1}</span>
+              {button(entry, t(`quickName.${entry}`))}
+            </li>
+          ) : (
+            <li key={entry.group} className="chat-quick__row chat-quick__row--group">
+              <span className="chat-quick__num">{i + 1}</span>
+              <div className="chat-quick__group">
+                <span className="chat-quick__group-name">{t('inquiryPickFerrofluid')}</span>
+                <div className="chat-quick__pair">
+                  {entry.ids.map((id) => button(id, t(`quickName.${id}`)))}
+                </div>
+              </div>
+            </li>
+          ),
+        )}
+      </ol>
+    </div>
+  )
+}
 
 function InquiryPicker({
   forms,
