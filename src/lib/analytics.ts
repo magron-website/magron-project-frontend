@@ -72,6 +72,15 @@ export function initAnalytics(): void {
     },
     { capture: true },
   )
+
+  // 메일 주소를 복사해 자기 메일 프로그램에서 보내는 해외 B2B 고객이 많다(2026-11-09 확인:
+  // 11/2~8 실제 해외 문의 4건이 모두 GA4·Ads 에 흔적 없음). 링크 클릭만 세면 이들이 빠지므로
+  // 복사(Ctrl+C·우클릭 복사·휴대폰 길게 눌러 복사)도 따로 센다. 챗봇 답변 속 주소도 해당.
+  document.addEventListener('copy', () => {
+    const text = window.getSelection()?.toString() ?? ''
+    const match = text.match(/[\w.+-]+@magron\.co\.kr/i)
+    if (match) trackEvent('contact_email_copy', { email: match[0].toLowerCase() })
+  })
 }
 
 /** title 은 useSeoMeta 가 바꾼 뒤의 값을 읽어야 하므로 Layout 에서 그 다음에 부른다. */
