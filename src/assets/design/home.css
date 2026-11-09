@@ -1102,3 +1102,25 @@
 .home .product-scroll__tile[href$='/piezo-ink'] .product-scroll__tile-bg {
   object-fit: cover;
 }
+
+/* 파란 히어로의 작은 글자(부제·설명·버튼)를 키운다(2026-11-09 지시) — 글자 칸도 넓혀 줄이 덜 늘어나게 */
+@media (min-width: 901px) {
+  .home .roll__content {
+    max-width: 680px;
+  }
+
+  .home .roll__subtitle {
+    font-size: clamp(20px, 1.9vw, 28px);
+  }
+
+  .home .roll__description {
+    font-size: 21px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+  }
+
+  .home .roll__button {
+    padding: 13px 30px;
+    font-size: 17px;
+  }
+}
