@@ -1047,7 +1047,8 @@
 
 /* 제품 카드: 사진을 칸에 꽉 채우고(여백 없이) 글자 칸 아래 빈 공간을 줄인다(2026-11-09 지시) */
 .home .product-scroll__tile-bg {
-  object-fit: cover;
+  /* cover 는 가로로 긴 사진(공정도·자석) 양옆이 잘렸다 — 사진 전체가 보이게 contain */
+  object-fit: contain;
   object-position: center;
 }
 
@@ -1071,10 +1072,10 @@
   }
 }
 
-/* 제품 카드 사진 칸을 조금 더 세로로(4:3 → 6:5) */
+/* 제품 카드 사진 칸을 세로로(4:3 → 6:5 → 11:10) */
 @media (min-width: 901px) {
   .home .product-scroll__tile-bg {
-    aspect-ratio: 6 / 5;
+    aspect-ratio: 11 / 10;
   }
 }
 
