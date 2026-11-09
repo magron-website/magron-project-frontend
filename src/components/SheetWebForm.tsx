@@ -22,7 +22,8 @@ type Sheet = { product: string; lang: string; blocks: Block[] }
 
 const loaders = import.meta.glob<{ default: Sheet }>('../data/inquiry-sheets/*.json')
 const FILE: Record<string, string> = { magnet: 'magnet', feedthrough: 'feedthrough', 'ff-semi': 'ferrofluid' }
-const MAX_TOTAL_BYTES = 2.5 * 1024 * 1024
+// 메일 한 통 4MB(Graph) 안에 채운 시트 1~2장(최대 약 1.1MB)이 같이 붙으므로 고객 첨부는 1.5MB·3개까지
+const MAX_TOTAL_BYTES = 1.5 * 1024 * 1024
 
 const textOf = (tokens: Token[]) =>
   tokens
@@ -159,8 +160,27 @@ export default function SheetWebForm({
     const missing = fields.filter((f) => f.label.includes('◎') && !answerOf(f)).map((f) => f.label.slice(0, 80))
     setError(null)
     setIsSending(true)
+    // 11/9 "메일이 인콰이어리 시트로 딱 들어오게": 채운 값을 실제 Word 시트에 써 넣어 첨부한다.
+    // 영어·중국어로 썼으면 같은 값을 한국어 시트에도 채워 함께(칸 배치가 같은 시트만 — 피드스루 영문판은 제외).
+    const sheetFiles: File[] = []
+    try {
+      const { fillSheetDocx, mapValues } = await import('@/lib/fillSheetDocx')
+      const base = `${import.meta.env.BASE_URL}inquiry-sheets/${FILE[formId]}-`
+      const who = (contact.company || emailMatch[0]).replace(/[\\/:*?"<>|]/g, '').slice(0, 40)
+      const titleOf = (s: Sheet) => textOf((s.blocks.find((b) => b.type === 'p' && b.strong) as { tokens: Token[] } | undefined)?.tokens ?? [])
+      if (lang !== 'ko') {
+        const ko = (await loaders[`../data/inquiry-sheets/${FILE[formId]}-ko.json`]()).default
+        const mapped = mapValues(sheet, ko, values)
+        if (mapped) sheetFiles.push(new File([await fillSheetDocx(`${base}ko.docx`, ko, mapped)], `${who} - ${titleOf(ko)} (한국어판).docx`))
+      }
+      const own = await fillSheetDocx(`${base}${lang}.docx`, sheet, values)
+      const langTag = lang === 'en' ? ' (English)' : lang === 'zh' ? ' (中文)' : ''
+      sheetFiles.push(new File([own], `${who} - ${titleOf(sheet)}${langTag}.docx`))
+    } catch {
+      // Word 를 못 만들어도 항목별 답은 메일 본문으로 간다
+    }
     const encoded = await Promise.all(
-      files.map(
+      [...sheetFiles, ...files].slice(0, 5).map(
         (file) =>
           new Promise<InquiryFile>((resolve, reject) => {
             const reader = new FileReader()
@@ -301,7 +321,7 @@ export default function SheetWebForm({
           type="file"
           multiple
           onChange={(event) => {
-            const picked = event.target.files ? Array.from(event.target.files).slice(0, 5) : []
+            const picked = event.target.files ? Array.from(event.target.files).slice(0, 3) : []
             if (picked.reduce((sum, f) => sum + f.size, 0) > MAX_TOTAL_BYTES) return setError(t('inquiryFileLimit'))
             setError(null)
             setFiles(picked)

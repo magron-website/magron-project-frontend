@@ -426,11 +426,16 @@ function ContactForm({
   )
 }
 
-/** 제품 고르기 — 자성유체는 용도별 문의서 4개를 한 묶음으로 보여 준다(2026-10-30 진입 흐름). */
+/**
+ * 제품 고르기 순서(2026-11-09 사용자 지시): 1 자성유체 → 2 자석 → 3 피드스루 → 4 Mag Oil → 5 디스플레이(키트)
+ * → 6 피에조·전도성 잉크. 자성유체는 씰용(반도체·진공)을 먼저, 그 외 용도를 바로 아래에 둔다.
+ */
 const PICKER_LAYOUT: (string | { group: string; ids: string[] })[] = [
+  { group: 'ferrofluid', ids: ['ff-semi', 'ff-other'] },
   'magnet',
   'feedthrough',
-  { group: 'ferrofluid', ids: ['ff-semi', 'magoil', 'kit', 'ff-other'] },
+  'magoil',
+  'kit',
   'ink',
 ]
 
@@ -447,12 +452,15 @@ function InquiryPicker({
 }) {
   const { t } = useTranslation('chatbot')
   if (!forms || !tr) return <p className="chat-panel__notice">{t('inquiryLoading')}</p>
-  const item = (id: string) => {
+  const item = (id: string, n?: number) => {
     const form = forms.find((f) => f.id === id)
     if (!form) return null
     return (
       <button key={id} type="button" className="inq-picker__item" onClick={() => onPick(id)}>
-        <b>{tr(form.tab)}</b>
+        <b>
+          {n ? `${n}. ` : ''}
+          {id === 'ink' ? t('inquiryPickInk') : tr(form.tab)}
+        </b>
         <small>{tr(form.title)}</small>
       </button>
     )
@@ -461,13 +469,15 @@ function InquiryPicker({
     <div className="inq-picker">
       <p className="inq-picker__title">{t('inquiryPickTitle')}</p>
       <div className="inq-picker__list">
-        {PICKER_LAYOUT.map((entry) =>
+        {PICKER_LAYOUT.map((entry, i) =>
           typeof entry === 'string' ? (
-            item(entry)
+            item(entry, i + 1)
           ) : (
             <div key={entry.group} style={{ display: 'contents' }}>
-              <p className="inq-picker__group">{t('inquiryPickFerrofluid')}</p>
-              {entry.ids.map(item)}
+              <p className="inq-picker__group">
+                {i + 1}. {t('inquiryPickFerrofluid')}
+              </p>
+              {entry.ids.map((id) => item(id))}
             </div>
           ),
         )}

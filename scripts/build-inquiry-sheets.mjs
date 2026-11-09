@@ -27,6 +27,8 @@ const decode = (s) =>
 function parseXml(xml) {
   const root = { name: '#root', attrs: '', children: [] }
   const stack = [root]
+  // 요소 이름별 등장 순번 — 웹에서 채운 값을 Word 에 다시 써 넣을 때 위치로 쓴다(src/lib/fillSheetDocx.ts)
+  const counts = {}
   const re = /<(\/?)([\w:.-]+)([^>]*?)(\/?)>|([^<]+)/g
   let m
   while ((m = re.exec(xml))) {
@@ -40,7 +42,7 @@ function parseXml(xml) {
       while (stack.length > 1 && stack.pop().name !== name);
       continue
     }
-    const el = { name, attrs, children: [] }
+    const el = { name, attrs, children: [], ord: (counts[name] = (counts[name] ?? -1) + 1) }
     stack[stack.length - 1].children.push(el)
     if (!self) stack.push(el)
   }
@@ -62,19 +64,20 @@ function tokens(el, rels, ctx, out = []) {
   for (const c of el.children || []) {
     if (c.text !== undefined) continue
     if (c.name === 'w:sdt' && find(c, 'w14:checkbox')) {
-      out.push({ t: 'check' })
+      out.push({ t: 'check', sdt: c.ord })
       continue
     }
     if (c.name === 'w:t') {
       const v = decode(c.children.map((x) => x.text ?? '').join(''))
-      if (v) out.push({ t: 'text', v })
+      // seg: 이 글자가 문서의 몇 번째 <w:t> 에서 왔는지(빈칸 위치를 Word 로 되돌릴 때 씀)
+      if (v) out.push({ t: 'text', v, segs: [{ wt: c.ord, at: 0, len: v.length }] })
       continue
     }
     if (c.name === 'w:sym' && /2610|2612|2611/i.test(attr(c, 'w:char') || '')) {
       out.push({ t: 'check' })
       continue
     }
-    if (c.name === 'w:tab') { out.push({ t: 'text', v: ' ' }); continue }
+    if (c.name === 'w:tab') { out.push({ t: 'text', v: ' ', segs: [{ wt: null, at: 0, len: 1 }] }); continue }
     if (c.name === 'w:br') { out.push({ t: 'br' }); continue }
     if (c.name === 'a:blip') {
       const id = attr(c, 'r:embed')
@@ -97,28 +100,54 @@ function normalize(list) {
   const merged = []
   for (const tk of list) {
     const last = merged[merged.length - 1]
-    if (tk.t === 'text' && last?.t === 'text') last.v += tk.v
-    else merged.push({ ...tk })
+    if (tk.t === 'text' && last?.t === 'text') {
+      for (const s of tk.segs) last.segs.push({ ...s, at: s.at + last.v.length })
+      last.v += tk.v
+    } else merged.push(tk.t === 'text' ? { ...tk, segs: tk.segs.map((s) => ({ ...s })) } : { ...tk })
+  }
+  // 합친 글자 안 위치 → Word 의 <w:t> 순번·그 안 글자 위치
+  const locate = (segs, pos, end) => {
+    const seg = segs.find((s) => s.wt !== null && pos >= s.at && pos < s.at + s.len) ?? segs.find((s) => s.wt !== null && s.at >= pos)
+    if (!seg) return null
+    const from = Math.max(pos, seg.at)
+    return { wt: seg.wt, off: from - seg.at, len: Math.max(0, Math.min(end, seg.at + seg.len) - from) }
   }
   // 빈칸 표시: 밑줄 "____"(자석 시트), 콜론·Ø·괄호 뒤 공백, 4칸 이상 공백(피드스루·자성유체 시트)
-  const BLANK = '\u0000'
+  const SP = '[ \\u00a0]'
   const out = []
   for (const tk of merged) {
     if (tk.t !== 'text') { out.push(tk); continue }
-    const marked = tk.v
-      .replace(/_{3,}/g, (m) => BLANK + m.length + BLANK)
-      .replace(/([:：Ø(（])[  ]{2,}/g, (_, p, i, s) => p + BLANK + 8 + BLANK)
-      .replace(/[  ]{4,}/g, (m) => BLANK + Math.max(m.length, 6) + BLANK)
-    marked.split(new RegExp(`(${BLANK}\\d+${BLANK})`)).forEach((part) => {
-      const m = part.match(new RegExp(`^${BLANK}(\\d+)${BLANK}$`))
-      if (m) out.push({ t: 'blank', w: Math.min(+m[1], 32) })
-      else if (part) out.push({ t: 'text', v: part })
-    })
+    const spans = []
+    const free = (s, e) => !spans.some((x) => s < x.e && e > x.s)
+    for (const m of tk.v.matchAll(/_{3,}/g)) spans.push({ s: m.index, e: m.index + m[0].length, w: m[0].length })
+    for (const m of tk.v.matchAll(new RegExp(`([:：Ø(（])(${SP}{2,})`, 'g'))) {
+      const s = m.index + 1, e = s + m[2].length
+      if (free(s, e)) spans.push({ s, e, w: 8 })
+    }
+    for (const m of tk.v.matchAll(new RegExp(`${SP}{4,}`, 'g'))) {
+      const s = m.index, e = s + m[0].length
+      if (free(s, e)) spans.push({ s, e, w: Math.max(m[0].length, 6) })
+    }
+    spans.sort((a, b) => a.s - b.s)
+    let cur = 0
+    for (const sp of spans) {
+      if (sp.s > cur) out.push({ t: 'text', v: tk.v.slice(cur, sp.s), end: sp.s, segs: tk.segs })
+      out.push({ t: 'blank', w: Math.min(sp.w, 32), at: locate(tk.segs, sp.s, sp.e) })
+      cur = sp.e
+    }
+    if (cur < tk.v.length) out.push({ t: 'text', v: tk.v.slice(cur), end: tk.v.length, segs: tk.segs })
   }
   while (out.length && out[out.length - 1].t === 'br') out.pop()
-  // "값:" 처럼 콜론으로 끝나면 그 뒤가 입력칸
+  // "값:" 처럼 콜론으로 끝나면 그 뒤가 입력칸 — Word 에선 그 글자 바로 뒤에 써 넣는다
   const tail = out[out.length - 1]
-  if (tail?.t === 'text' && /[:：]\s*$/.test(tail.v)) out.push({ t: 'blank', w: 12 })
+  if (tail?.t === 'text' && /[:：]\s*$/.test(tail.v)) {
+    const p = locate(tail.segs, tail.end - 1, tail.end)
+    out.push({ t: 'blank', w: 12, at: p && { wt: p.wt, off: p.off + p.len, len: 0 } })
+  }
+  for (const tk of out) {
+    delete tk.segs
+    delete tk.end
+  }
   // 체크박스 → 다음 글자까지를 선택지 이름으로(☐ 소결 NdFeB ☐ SmCo …)
   const res = []
   for (let i = 0; i < out.length; i++) {
@@ -130,10 +159,10 @@ function normalize(list) {
         const m = next.v.match(/^(\s*\S(?:.*?\S)?)(\s{2,}.*|$)/s)
         const label = (m ? m[1] : next.v).trim()
         const rest = m ? m[2] : ''
-        res.push({ t: 'check', label })
+        res.push({ t: 'check', label, sdt: tk.sdt })
         if (rest && rest.trim()) res.push({ t: 'text', v: rest })
         i++
-      } else res.push({ t: 'check', label: '' })
+      } else res.push({ t: 'check', label: '', sdt: tk.sdt })
     } else res.push(tk)
   }
   return res
@@ -183,7 +212,14 @@ function buildSheet(file, product, lang) {
           const tk = normalize(tokens(tc, rels, ctx))
           const kind = !tk.length ? 'input' : darkFill(fill) ? 'head' : lightFill(fill) ? 'label' : 'content'
           const vMerge = pr && find(pr, 'w:vMerge')
-          return { span, kind, tokens: tk, ...(vMerge && !attr(vMerge, 'w:val') ? { merged: true } : {}) }
+          return {
+            span,
+            kind,
+            tokens: tk,
+            // 빈 칸은 문서의 몇 번째 <w:tc> 인지 — 채운 값을 그 칸 첫 문단에 써 넣는다
+            ...(kind === 'input' ? { tc: tc.ord } : {}),
+            ...(vMerge && !attr(vMerge, 'w:val') ? { merged: true } : {}),
+          }
         }),
       )
       blocks.push({ type: 'table', cols, rows })
