@@ -875,8 +875,10 @@
   justify-content: flex-start;
   min-height: 0;
   background: #fff;
-  border: 1px solid #e3e6ee;
-  box-shadow: 0 2px 10px rgba(15, 23, 42, 0.06);
+  /* 카드끼리 또렷하게 나뉘도록 테두리·그림자를 진하게(2026-11-09 지시) */
+  border: 1.5px solid #c3cad8;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.1);
 }
 
 .home .product-scroll__tile-bg {
@@ -902,12 +904,14 @@
 
 .home .product-scroll__tile:hover,
 .home .product-scroll__tile:focus-visible {
-  box-shadow: 0 10px 28px rgba(15, 23, 42, 0.14);
+  border-color: #1a4fd6;
+  box-shadow: 0 10px 28px rgba(26, 79, 214, 0.18);
 }
 
 .home .product-scroll__tile-content {
   flex: 1;
-  border-top: 1px solid #eef0f4;
+  border-top: 1.5px solid #dfe3ec;
+  background: #f6f8fc;
 }
 
 .home .product-scroll__tile-label {
@@ -920,8 +924,53 @@
   text-shadow: none;
 }
 
+@media (min-width: 901px) {
+  .home .product-scroll__grid {
+    gap: 20px;
+  }
+}
+
 @media (max-width: 900px) {
   .home .product-scroll__tile-content {
     padding: 12px 14px 14px;
+  }
+}
+
+/* 휴대폰: 사진 왼쪽·글자 오른쪽 가로 카드로 세로 길이를 줄인다 */
+@media (max-width: 560px) {
+  .home .product-scroll__grid {
+    gap: 10px;
+    padding: 0 14px;
+    box-sizing: border-box;
+  }
+
+  .home .product-scroll__tile {
+    flex-direction: row;
+    align-items: stretch;
+    min-height: 0;
+  }
+
+  .home .product-scroll__tile-bg {
+    flex: 0 0 40%;
+    width: 40%;
+    aspect-ratio: 4 / 3;
+    align-self: center;
+  }
+
+  .home .product-scroll__tile-content {
+    justify-content: center;
+    padding: 10px 12px;
+    gap: 4px;
+    border-top: 0;
+    border-left: 1.5px solid #dfe3ec;
+  }
+
+  .home .product-scroll__tile-label {
+    font-size: 12px;
+  }
+
+  .home .product-scroll__tile-title {
+    min-height: 0;
+    font-size: 15px;
   }
 }
