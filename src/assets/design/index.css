@@ -389,3 +389,18 @@ html.chat-split .home-visual {
 html.chat-split .home__content {
   max-width: none;
 }
+
+/* 챗봇이 열리면 본문이 화면 왼쪽 끝·챗봇 창에 딱 붙었다 — 양옆에 여백(2026-11-09 지시) */
+html.chat-split {
+  --chat-split-gutter: 40px;
+}
+
+html.chat-split .home__content {
+  padding-left: var(--chat-split-gutter);
+  padding-right: calc(var(--chat-dock-w, 0px) + var(--chat-split-gutter));
+}
+
+html.chat-split .home-visual {
+  left: var(--chat-split-gutter);
+  width: calc(100% - var(--chat-dock-w, 0px) - 2 * var(--chat-split-gutter));
+}
