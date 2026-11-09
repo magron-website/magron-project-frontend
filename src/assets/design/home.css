@@ -1096,3 +1096,9 @@
     min-height: 66px;
   }
 }
+
+/* 자석·피에조 잉크 사진은 가로로 길어 contain 이면 작게 보인다 — 이 둘만 칸에 꽉 채운다(2026-11-09 지시) */
+.home .product-scroll__tile[href$='/magnet'] .product-scroll__tile-bg,
+.home .product-scroll__tile[href$='/piezo-ink'] .product-scroll__tile-bg {
+  object-fit: cover;
+}
