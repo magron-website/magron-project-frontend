@@ -32,7 +32,7 @@ export const SHEET_PRODUCTS: Record<string, { file: string; name: string; mailTa
   magnet: { file: 'magnet', name: 'Magnet', mailTag: { ko: '[자석 문의]', en: '[Magnet inquiry]', zh: '[磁铁询价]' } },
   feedthrough: {
     file: 'feedthrough',
-    name: 'Ferrofluid Feedthrough',
+    name: 'Feedthrough',
     mailTag: { ko: '[피드스루 문의]', en: '[Feedthrough inquiry]', zh: '[磁流体真空馈通询价]' },
   },
   'ff-semi': {
