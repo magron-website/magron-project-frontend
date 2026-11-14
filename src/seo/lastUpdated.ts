@@ -12,7 +12,7 @@ export const LAST_UPDATED: Record<string, string> = {
   '/company': '2026-10-19',
   '/ferrofluid': '2026-10-19',
   '/feedthrough': '2026-10-19',
-  '/piezo-ink': '2026-10-19',
+  '/piezo-ink': '2026-11-14',
   '/tech': '2026-10-19',
   '/seal-comparison': '2026-10-19',
   '/tech-data': '2026-10-19',

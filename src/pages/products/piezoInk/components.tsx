@@ -1,29 +1,14 @@
-import type { InkProduct, SpecRow } from '@/pages/products/piezoInk/content'
-
-export function SpecTableView({ rows }: { rows: SpecRow[] }) {
-  return (
-    <div className="pi-table-wrap">
-      <table className="pi-table">
-        <tbody>
-          {rows.map((row) => (
-            <tr key={row.label}>
-              <th scope="row">{row.label}</th>
-              <td>{row.value}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
-}
+import type { InkProduct } from '@/pages/products/piezoInk/content'
+import { trackEvent } from '@/lib/analytics'
 
 type ProductCardProps = {
   product: InkProduct
-  noDatasheetLabel: string
   substratesLabel: string
+  /** "상세표 보기" — opens the ink's TDS PDF (11/14: spec tables moved to the PDFs) */
+  tdsLabel: string
 }
 
-export function ProductCard({ product, noDatasheetLabel, substratesLabel }: ProductCardProps) {
+export function ProductCard({ product, substratesLabel, tdsLabel }: ProductCardProps) {
   return (
     <article id={product.id} className="pi-product">
       <header className="pi-product__header">
@@ -50,13 +35,15 @@ export function ProductCard({ product, noDatasheetLabel, substratesLabel }: Prod
         </p>
       ) : null}
 
-      {product.hasDatasheet && product.spec ? (
-        <SpecTableView rows={product.spec} />
-      ) : (
-        <p className="pi-product__no-datasheet">{noDatasheetLabel}</p>
-      )}
-
-      {product.processNote ? <p className="pi-product__process-note">{product.processNote}</p> : null}
+      <a
+        className="pi-product__tds"
+        href={product.tdsUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={() => trackEvent('ink_tds_open', { product: product.id })}
+      >
+        {tdsLabel}
+      </a>
     </article>
   )
 }

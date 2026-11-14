@@ -189,10 +189,21 @@
 }
 
 .pi-category__products {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  /* 11/14 사양표를 PDF로 옮겨 카드가 짧아짐 — 넓은 화면에선 2열 */
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr));
   gap: 24px;
   margin-top: 32px;
+}
+
+.pi-product {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 카드 높이가 달라도 상세표 버튼은 맨 아래에 맞춘다 */
+.pi-product > :nth-last-child(2) {
+  margin-bottom: 18px;
 }
 
 /* Product card -------------------------------------------------------------- */
@@ -283,69 +294,33 @@
   letter-spacing: 0.03em;
 }
 
-.pi-product__no-datasheet {
-  margin: 18px 0 0;
-  padding: 12px 16px;
-  border: 1px dashed var(--pi-border);
-  border-radius: 8px;
-  background: var(--pi-bg);
-  color: var(--pi-muted);
-  font-size: 13.5px;
-}
-
-.pi-product__process-note {
-  margin: 16px 0 0;
-  padding: 14px 16px;
-  border-left: 3px solid var(--pi-violet);
-  background: #faf5ff;
-  color: var(--pi-navy);
-  font-size: 13.5px;
-  line-height: 1.7;
-}
-
-/* Spec table ------------------------------------------------------------- */
-
-.pi-table-wrap {
-  width: 100%;
-  overflow-x: auto;
-  margin-top: 18px;
-  border: 1px solid var(--pi-border);
+/* 상세표 보기 — 잉크별 TDS PDF 열기 (11/14: 사양표는 PDF로 옮김) */
+.pi-product__tds {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  align-self: flex-start;
+  margin-top: auto;
+  padding: 9px 18px;
+  border: 1.5px solid var(--pi-violet);
   border-radius: 8px;
   background: #fff;
-}
-
-.pi-table {
-  width: 100%;
-  min-width: 380px;
-  border-collapse: collapse;
-  font-size: 13.5px;
-}
-
-.pi-table th,
-.pi-table td {
-  padding: 9px 14px;
-  border-bottom: 1px solid var(--pi-border);
-  text-align: left;
-  vertical-align: top;
-  line-height: 1.5;
-}
-
-.pi-table th[scope='row'] {
-  width: 220px;
-  background: #f6f2fb;
-  color: var(--pi-navy);
+  color: var(--pi-violet);
+  font-size: 14px;
   font-weight: 700;
-  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s;
 }
 
-.pi-table td {
-  font-variant-numeric: tabular-nums;
-  color: var(--pi-text);
+.pi-product__tds::after {
+  content: '↗';
+  font-size: 13px;
 }
 
-.pi-table tr:last-child th,
-.pi-table tr:last-child td {
-  border-bottom: none;
+.pi-product__tds:hover,
+.pi-product__tds:focus-visible {
+  background: var(--pi-violet);
+  color: #fff;
 }
 
 /* Sections (In-Mold Electronics) ------------------------------------------ */

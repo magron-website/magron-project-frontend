@@ -7,7 +7,7 @@ const piezoInk = {
       heading: '압전·전도성 잉크 (Conductive Piezo Ink)',
       lead: [
         'In-Mold Electronics, 웨어러블 센서, 인쇄 전자, 스마트 텍스타일 등 다양한 분야에 적용할 수 있습니다.',
-        '압력에 반응해 전기 신호를 발생시키는 압전(Piezoelectric) 잉크, 인쇄 회로를 구현하는 전도성(Conductive) 잉크, 압력 변화를 저항 변화로 감지하는 압저항(Piezoresistive) 잉크까지 — 인쇄 공정 하나로 기능성 회로와 센서를 구현하는 잉크 라인업입니다.',
+        '압력에 반응해 전기 신호를 내는 압전(Piezoelectric) 잉크, 인쇄 회로를 만드는 전도성(Conductive) 잉크, 압력 변화를 저항 변화로 감지하는 압저항(Piezoresistive) 잉크, 자성 패턴과 자기 센서를 만드는 자성(Magnetic) 잉크까지 — 인쇄 공정 하나로 기능성 회로와 센서를 구현하는 잉크 라인업입니다.',
       ],
       heroAlt: 'Conductive & Piezo Ink 제품군',
     },
@@ -21,53 +21,77 @@ const piezoInk = {
     categories: {
       conductive: {
         titleKr: '전도성 잉크',
-        intro: '스크린 프린팅 방식으로 각종 소재 위에 전도성 회로를 직접 인쇄하는 잉크 라인업입니다. 대부분 In-Mold Electronics(사출성형 전자소자) 공정에도 바로 적용할 수 있습니다.',
+        intro: '스크린 프린팅으로 각종 소재 위에 전도성 회로를 직접 인쇄하는 실버·구리·카본 잉크입니다. 벤더블·인몰드용부터 투명·신축용까지 있습니다.',
       },
       piezo: {
         titleKr: '압전 · 압저항 잉크',
-        intro: '압력·충격·변형을 전기 신호로 변환하는 기능성 잉크입니다. 압전(Piezoelectric) 방식과 압저항(Piezoresistive) 방식으로 나뉘며, 인쇄 공정만으로 센서를 직접 구현할 수 있습니다.',
+        intro: '압력·충격·변형을 전기 신호로 바꾸는 기능성 잉크입니다. 압전(Piezoelectric) 방식과 압저항(Piezoresistive) 방식으로 나뉘며, 인쇄만으로 센서를 만들 수 있습니다.',
+      },
+      magnetic: {
+        titleKr: '자성 잉크',
+        intro: '강자성·초상자성 입자를 분산한 잉크로, 인쇄만으로 자성 패턴과 자기 센서를 만들 수 있습니다.',
       },
     },
     products: {
       'bendable-silver': {
         titleKr: '벤더블 전도성 실버 잉크',
-        description: '스크린 프린팅용 실버 전도성 잉크로, 열성형(thermoforming) 전후 성능이 안정적으로 유지되어 In-Mold Electronics에 적합합니다. PVC, PET, TPU, 폴리카보네이트, 아크릴레이트, 폴리우레탄 등 다양한 소재에 인쇄할 수 있습니다.',
+        description: '스크린 프린팅용 실버 전도성 잉크로, 열성형 전후 성능이 일정해 In-Mold Electronics에 쓰입니다. 면저항 30 mΩ/sq 미만(열성형 후 120 mΩ/sq 미만).',
       },
       copper: {
-        titleKr: '전도성 코퍼(구리) 잉크',
-        description: '저온 경화가 가능한 스크린 프린팅 구리 전도성 잉크로, 벤더블 특성 덕분에 In-Mold Electronics에도 활용할 수 있습니다.',
+        titleKr: '인몰드용 전도성 구리 잉크',
+        description: 'In-Mold Electronics에 쓸 수 있는 스크린 프린팅 구리 전도성 잉크입니다. 면저항 3 Ω/sq 미만, 체적저항 3 mΩ·cm 미만.',
       },
       'transparent-silver': {
         titleKr: '투명 전도성 실버 잉크',
-        description: '박막 태양전지, 디스플레이, 센서 등 투명 전극이 필요한 인쇄전자 응용에 사용하는 수성 투명 전도성 실버 잉크입니다. 90% 이상의 투명도와 낮은 면저항을 동시에 확보했습니다.',
+        description: '박막 태양전지, 디스플레이, 센서 등 인쇄전자용 투명 전도성 실버 잉크입니다. 투과율 94% 이상(600 nm), 면저항 100 Ω/sq 미만(140 ℃ 경화).',
       },
       'stretchable-silver': {
         titleKr: '스트레처블 전도성 실버 잉크',
-        description: '신축성을 갖춘 스크린 프린팅 실버 페이스트로, 웨어러블 전자기기·스마트 텍스타일·의료기기 등에 활용됩니다. 원단(fabric), TPU, PET, 폴리이미드, 엘라스토머, 유리 등 다양한 소재에 인쇄할 수 있습니다.',
+        description: '신축성을 갖춘 스크린 프린팅 실버 페이스트로, 웨어러블 전자기기·센서·의료기기에 쓰입니다. 체적저항 72 µΩ·cm 미만(120 ℃ 경화).',
       },
       'water-based-carbon': {
-        titleKr: '수성 카본 전도성 잉크',
-        description: '높은 신축성을 갖춘 수성 카본 페이스트로, 웨어러블 전자기기·센서·의료기기 등에 활용됩니다. 텍스타일, 엘라스토머, PET, 폴리이미드, 유리 등에 인쇄할 수 있습니다.',
+        titleKr: '스트레처블 수성 카본 전도성 잉크',
+        description: '신축성을 갖춘 수성 카본 페이스트로, 웨어러블 전자기기·센서·의료기기에 쓰입니다. 물·아세톤으로 세척할 수 있습니다.',
+      },
+      carbon: {
+        titleKr: '카본 전도성 잉크',
+        description: '표면 처리된 PET·PI·PC·PVC 기재 위 회로 연결용 스크린 프린팅 카본 페이스트입니다. 유연하거나 고르지 않은 표면에서도 전도성과 접착력이 일정합니다.',
+      },
+      'carbon-in-mold': {
+        titleKr: '인몰드용 카본 전도성 잉크',
+        description: '벤더블 특성으로 In-Mold Electronics에도 쓸 수 있는 스크린 프린팅 카본 전도성 잉크입니다.',
       },
       piezoelectric: {
         titleKr: '압전 잉크',
-        description: 'PVDF-TrFe 기반의 스크린 프린팅 압전 잉크로, 압력·충격·가속도·변형을 감지할 수 있습니다. 인쇄 후 어닐링과 폴링(poling) 공정을 거쳐야 압전 특성이 활성화됩니다. 친환경 용제를 사용한 그린 버전 GPEInk01NP®도 있습니다.',
+        description: 'PVDF-TrFe 기반 압전 잉크로 압력·충격·가속도·변형을 감지합니다(d33 18–23 pC/N). 인쇄 후 어닐링과 폴링을 거쳐야 기능이 활성화됩니다. 친환경 용제를 쓴 GPEInk01NP®도 있습니다.',
       },
       'piezoresistive-general': {
-        titleKr: '압저항 잉크 (일반형)',
-        description: '다양한 용제에 쉽게 녹아 별도의 고가 후처리 공정 없이 압저항 특성을 낼 수 있는 카본 기반 잉크입니다.',
+        titleKr: '압저항 잉크 (힘·압력 감지)',
+        description: '기계적 변형에 따라 전기저항이 크게 변해, 단단하거나 유연한 기재 위에 힘·응력 센서를 만들 수 있습니다. 여러 용제에 쉽게 녹고 별도 후처리가 필요 없습니다.',
       },
-      'piezoresistive-solvent-free': {
-        titleKr: '무용제형 압저항 잉크',
-        description: '무용제·저온 경화가 가능한 카본 기반 압저항 잉크로, 인쇄전자용 압력 센서에 활용됩니다.',
+      'piezoresistive-hard': {
+        titleKr: '열가소성 압저항 잉크 (하드)',
+        description: '저온 경화형 열가소성 압저항 잉크로, 인쇄전자용 압력·힘 센서에 쓰입니다. MELINEX·PET·Mylar·폴리카보네이트·아크릴·PVC 등 플라스틱에 접착력이 뛰어납니다.',
       },
       'piezoresistive-textile': {
         titleKr: '섬유용 압저항 잉크',
-        description: '섬유 기재에 직접 인쇄할 수 있는 카본 기반 압저항 잉크로, 우수한 신축성과 부드러운 촉감을 갖춰 웨어러블 압력 센서에 적합합니다.',
+        description: '섬유에 직접 인쇄하는 카본 기반 압저항 잉크로, 신축성과 부드러운 촉감을 갖춰 웨어러블 압력 센서에 적합합니다.',
+      },
+      ferromagnetic: {
+        titleKr: '강자성 잉크',
+        description: '자기 응답이 큰 스크린 프린팅 강자성 잉크입니다. 입자 크기 35–45 nm, 보자력 2,500 Oe이며 60 ℃에서 10분 경화합니다.',
+      },
+      'ferromagnetic-stretchable': {
+        titleKr: '수성 스트레처블 자성 잉크',
+        description: '자석 효과를 내는 수성 스크린 프린팅 자성 잉크로, 알맞은 기재 위에서 늘어나며 섬유에도 인쇄할 수 있습니다.',
+      },
+      superparamagnetic: {
+        titleKr: '초상자성 잉크',
+        description: '여러 용제에 쉽게 녹는 스크린 프린팅 초상자성 잉크입니다. 단단하거나 유연한 기재 위에 자기 센서를 저비용으로 만들 수 있습니다.',
       },
     },
     substratesLabel: 'Substrates',
-    noDatasheet: '상세 스펙은 문의 시 안내해드립니다.',
+    tdsButton: '상세표 보기 (PDF)',
     inMold: {
       title: 'In-Mold Electronics 적용',
       intro: '인쇄된 회로 그래픽과 기능성 잉크를 열성형 후 사출성형까지 그대로 유지할 수 있어, 플라스틱 부품 안에 센서·LED·커넥터·배선을 통째로 내장하는 In-Mold Electronics 공정에 활용됩니다.',
@@ -102,7 +126,7 @@ const piezoInk = {
       heading: 'Conductive & Piezo Ink',
       lead: [
         'Applicable to In-Mold Electronics, wearable sensors, printed electronics, smart textiles, and more.',
-        'From piezoelectric ink that generates an electrical signal under pressure, to conductive ink that prints circuits, to piezoresistive ink that senses pressure as a change in resistance — a single printing process builds functional circuits and sensors.',
+        'Piezoelectric ink that turns pressure into an electrical signal, conductive ink that prints circuits, piezoresistive ink that senses pressure as a change in resistance, and magnetic ink for magnetic patterns and sensors — a single printing process builds functional circuits and sensors.',
       ],
       heroAlt: 'Conductive & Piezo Ink product family',
     },
@@ -116,53 +140,77 @@ const piezoInk = {
     categories: {
       conductive: {
         titleKr: 'Conductive Ink',
-        intro: 'A lineup of inks that print conductive circuits directly onto a variety of substrates via screen printing. Most are ready for In-Mold Electronics processes.',
+        intro: 'Silver, copper, and carbon inks that print conductive circuits directly onto a wide range of substrates by screen printing — from bendable and in-mold grades to transparent and stretchable ones.',
       },
       piezo: {
         titleKr: 'Piezo Ink',
         intro: 'Functional inks that convert pressure, impact, and deformation into electrical signals — split into piezoelectric and piezoresistive types, both realized purely through printing.',
       },
+      magnetic: {
+        titleKr: 'Magnetic Ink',
+        intro: 'Inks with dispersed ferromagnetic or superparamagnetic particles that print magnetic patterns and magnetic sensors.',
+      },
     },
     products: {
       'bendable-silver': {
         titleKr: 'Bendable Conductive Silver Ink',
-        description: 'A screen-printing silver conductive ink with consistent performance before and after thermoforming, well suited to In-Mold Electronics. Printable on PVC, PET, TPU, polycarbonate, acrylates, and polyurethane.',
+        description: 'A screen-printing silver conductive ink that behaves consistently before and after thermoforming, used for In-Mold Electronics. Sheet resistance below 30 mΩ/sq (below 120 mΩ/sq after thermoforming).',
       },
       copper: {
-        titleKr: 'Conductive Copper Ink',
-        description: 'A low-temperature-curing screen-printing copper conductive ink. Its bendable properties make it suitable for In-Mold Electronics as well.',
+        titleKr: 'Conductive Copper Ink for In-Mold Electronics',
+        description: 'A screen-printing copper conductive ink for In-Mold Electronics. Sheet resistance below 3 Ω/sq, volume resistivity below 3 mΩ·cm.',
       },
       'transparent-silver': {
         titleKr: 'Transparent Silver Conductive Ink',
-        description: 'A water-based transparent conductive silver ink for printed-electronics applications that need a transparent electrode — thin-film PV, displays, sensors. Combines over 90% transparency with low sheet resistance.',
+        description: 'A transparent conductive silver ink for thin-film PV, displays, sensors, and general printed electronics. Transparency above 94% (600 nm), sheet resistivity below 100 Ω/sq (cured at 140 °C).',
       },
       'stretchable-silver': {
         titleKr: 'Stretchable Silver Conductive Ink',
-        description: 'A stretchable screen-printing silver paste used in wearable electronics, smart textiles, and medical devices. Printable on fabric, TPU, PET, polyimide, elastomers, and glass.',
+        description: 'A stretchable screen-printing silver paste for wearable electronics, sensors, and medical devices. Volume resistivity below 72 µΩ·cm (cured at 120 °C).',
       },
       'water-based-carbon': {
-        titleKr: 'Water-based Carbon Conductive Ink',
-        description: 'A highly stretchable water-based carbon paste for wearable electronics, sensors, and medical devices. Printable on textiles, elastomers, PET, polyimide, and glass.',
+        titleKr: 'Stretchable Water-Based Carbon Conductive Ink',
+        description: 'A stretchable water-based carbon paste for wearable electronics, sensors, and medical devices. Cleans up with water or acetone.',
+      },
+      carbon: {
+        titleKr: 'Carbon Conductive Ink',
+        description: 'A screen-printable carbon paste for circuit interconnection on treated PET, PI, PC, and PVC, with consistent conductivity and strong adhesion even on flexible or irregular surfaces.',
+      },
+      'carbon-in-mold': {
+        titleKr: 'Conductive Carbon Ink for In-Mold Electronics',
+        description: 'A screen-printing carbon conductive ink that can also be used for In-Mold Electronics thanks to its bendable properties.',
       },
       piezoelectric: {
         titleKr: 'Piezoelectric Ink',
-        description: 'A PVDF-TrFe-based screen-printing piezoelectric ink that senses pressure, impact, acceleration, and deformation. Requires annealing and poling after printing to activate its piezoelectric properties. A green-solvent version, GPEInk01NP®, is also available.',
+        description: 'A PVDF-TrFe-based piezoelectric ink that detects pressure, impact, acceleration, and deformation (d33 18–23 pC/N). Requires annealing and poling after printing. A green-solvent version, GPEInk01NP®, is also available.',
       },
       'piezoresistive-general': {
-        titleKr: 'Piezoresistive Ink — General',
-        description: 'A carbon-based ink that dissolves easily in a range of solvents and exhibits piezoresistive behavior without any special, costly post-treatment.',
+        titleKr: 'Piezoresistive Ink — Force & Pressure Sensing',
+        description: 'Its electrical resistance changes strongly under mechanical deformation, enabling force and stress sensors on rigid or flexible substrates. Easily solubilized in various solvents, with no post-treatment needed.',
       },
-      'piezoresistive-solvent-free': {
-        titleKr: 'Solvent-free Piezoresistive Ink',
-        description: 'A solvent-free, low-temperature-curing carbon-based piezoresistive ink used for pressure sensors in printed-electronics applications.',
+      'piezoresistive-hard': {
+        titleKr: 'Piezoresistive Ink — Thermoplastic (Hard)',
+        description: 'A low-temperature-curable thermoplastic piezoresistive ink for pressure and force sensors in printed electronics, with excellent adhesion to MELINEX, PET, Mylar, polycarbonate, acrylates, and PVC.',
       },
       'piezoresistive-textile': {
         titleKr: 'Piezoresistive Ink for Textiles',
-        description: 'A carbon-based piezoresistive ink for direct printing onto textiles, with excellent elasticity and a soft, velvety touch — suited to wearable pressure sensors.',
+        description: 'A carbon-based piezoresistive ink for direct printing onto textiles, with high elasticity and a soft, velvety touch — suited to wearable pressure sensors.',
+      },
+      ferromagnetic: {
+        titleKr: 'Ferromagnetic Ink',
+        description: 'A screen-printable ferromagnetic ink with a high magnetic response. Particle size 35–45 nm, coercive field 2,500 Oe, cured at 60 °C for 10 minutes.',
+      },
+      'ferromagnetic-stretchable': {
+        titleKr: 'Magnetic Ink — Water-based, Stretchable',
+        description: 'A water-based screen-printing magnetic ink with a magnet effect. Stretchable on an appropriate substrate and printable on textiles.',
+      },
+      superparamagnetic: {
+        titleKr: 'Superparamagnetic Ink',
+        description: 'A screen-printable superparamagnetic ink, easily solubilized in various solvents — a low-cost way to build magnetic sensors on rigid or flexible substrates.',
       },
     },
     substratesLabel: 'Substrates',
-    noDatasheet: 'Detailed specs available on request.',
+    tdsButton: 'View datasheet (PDF)',
     inMold: {
       title: 'In-Mold Electronics',
       intro: 'Printed circuit graphics and functional inks survive thermoforming and injection molding intact, enabling In-Mold Electronics processes that embed sensors, LEDs, connectors, and wiring directly inside a plastic part.',
@@ -197,7 +245,7 @@ const piezoInk = {
       heading: '压电·导电油墨 (Conductive Piezo Ink)',
       lead: [
         '可应用于 In-Mold Electronics、可穿戴传感器、印刷电子、智能纺织品等多种领域。',
-        '从受压产生电信号的压电（Piezoelectric）油墨、可印刷电路的导电（Conductive）油墨，到将压力变化转换为电阻变化的压阻（Piezoresistive）油墨——仅通过印刷工艺即可实现功能电路与传感器。',
+        '从受压产生电信号的压电（Piezoelectric）油墨、可印刷电路的导电（Conductive）油墨、将压力变化转换为电阻变化的压阻（Piezoresistive）油墨，到可印制磁性图案与磁传感器的磁性（Magnetic）油墨——仅通过印刷工艺即可实现功能电路与传感器。',
       ],
       heroAlt: 'Conductive & Piezo Ink 产品系列',
     },
@@ -211,53 +259,77 @@ const piezoInk = {
     categories: {
       conductive: {
         titleKr: '导电油墨',
-        intro: '通过丝网印刷将导电电路直接印制在各种基材上的油墨系列。大部分产品可直接应用于 In-Mold Electronics 工艺。',
+        intro: '通过丝网印刷将导电电路直接印制在各种基材上的银、铜、碳系油墨，涵盖可弯曲、模内电子用及透明、可拉伸等类型。',
       },
       piezo: {
         titleKr: '压电·压阻油墨',
         intro: '将压力、冲击、形变转换为电信号的功能性油墨，分为压电与压阻两种类型，均可仅通过印刷工艺实现。',
       },
+      magnetic: {
+        titleKr: '磁性油墨',
+        intro: '分散有铁磁性或超顺磁性颗粒的油墨，仅通过印刷即可制作磁性图案与磁传感器。',
+      },
     },
     products: {
       'bendable-silver': {
-        titleKr: '可弯曲导电银浆',
-        description: '一种丝网印刷银导电油墨，在热成型前后性能保持稳定，适用于 In-Mold Electronics。可印刷于 PVC、PET、TPU、聚碳酸酯、丙烯酸酯及聚氨酯等多种基材。',
+        titleKr: '可弯曲导电银油墨',
+        description: '一种丝网印刷银导电油墨，热成型前后性能一致，用于 In-Mold Electronics。方阻低于 30 mΩ/sq（热成型后低于 120 mΩ/sq）。',
       },
       copper: {
-        titleKr: '导电铜油墨',
-        description: '一种可低温固化的丝网印刷铜导电油墨，凭借可弯曲特性也可用于 In-Mold Electronics。',
+        titleKr: '模内电子用导电铜油墨',
+        description: '可用于 In-Mold Electronics 的丝网印刷铜导电油墨。方阻低于 3 Ω/sq，体积电阻率低于 3 mΩ·cm。',
       },
       'transparent-silver': {
         titleKr: '透明导电银油墨',
-        description: '一种水性透明导电银油墨，适用于需要透明电极的印刷电子应用，如薄膜光伏、显示器、传感器等。透明度超过 90%，同时具备低方阻。',
+        description: '用于薄膜光伏、显示器、传感器等印刷电子的透明导电银油墨。透光率 94% 以上（600 nm），方阻低于 100 Ω/sq（140 °C 固化）。',
       },
       'stretchable-silver': {
         titleKr: '可拉伸导电银油墨',
-        description: '一种可拉伸的丝网印刷银浆，用于可穿戴电子、智能纺织品及医疗设备。可印刷于织物、TPU、PET、聚酰亚胺、弹性体及玻璃等材料。',
+        description: '具有拉伸性的丝网印刷银浆，用于可穿戴电子、传感器及医疗设备。体积电阻率低于 72 µΩ·cm（120 °C 固化）。',
       },
       'water-based-carbon': {
-        titleKr: '水性碳导电油墨',
-        description: '一种高拉伸性的水性碳浆，用于可穿戴电子、传感器及医疗设备。可印刷于纺织品、弹性体、PET、聚酰亚胺及玻璃。',
+        titleKr: '可拉伸水性碳导电油墨',
+        description: '具有拉伸性的水性碳浆，用于可穿戴电子、传感器及医疗设备。可用水或丙酮清洗。',
+      },
+      carbon: {
+        titleKr: '碳导电油墨',
+        description: '用于经表面处理的 PET、PI、PC、PVC 基材上电路连接的丝网印刷碳浆，即使在柔性或不规则表面上也能保持稳定的导电性与附着力。',
+      },
+      'carbon-in-mold': {
+        titleKr: '模内电子用碳导电油墨',
+        description: '凭借可弯曲特性也可用于 In-Mold Electronics 的丝网印刷碳导电油墨。',
       },
       piezoelectric: {
         titleKr: '压电油墨',
-        description: '一种基于 PVDF-TrFe 的丝网印刷压电油墨，可感应压力、冲击、加速度与形变。印刷后需经退火与极化处理以激活压电特性。另提供采用环保溶剂的绿色版本 GPEInk01NP®。',
+        description: '基于 PVDF-TrFe 的压电油墨，可检测压力、冲击、加速度与形变（d33 18–23 pC/N）。印刷后需经退火与极化处理才能发挥功能。另有采用环保溶剂的 GPEInk01NP®。',
       },
       'piezoresistive-general': {
-        titleKr: '压阻油墨（通用型）',
-        description: '一种可轻松溶于多种溶剂的碳基油墨，无需特殊昂贵的后处理工艺即可呈现压阻特性。',
+        titleKr: '压阻油墨（力·压力感应）',
+        description: '电阻随机械形变大幅变化，可在刚性或柔性基材上制作力与应力传感器。易溶于多种溶剂，无需后处理。',
       },
-      'piezoresistive-solvent-free': {
-        titleKr: '无溶剂型压阻油墨',
-        description: '一种无溶剂、可低温固化的碳基压阻油墨，用于印刷电子应用中的压力传感器。',
+      'piezoresistive-hard': {
+        titleKr: '热塑性压阻油墨（硬质）',
+        description: '可低温固化的热塑性压阻油墨，用于印刷电子中的压力与力传感器，对 MELINEX、PET、Mylar、聚碳酸酯、丙烯酸及 PVC 等塑料附着力优异。',
       },
       'piezoresistive-textile': {
         titleKr: '纺织品用压阻油墨',
-        description: '一种可直接印刷于纺织品的碳基压阻油墨，具有优异的弹性与柔软触感，适用于可穿戴压力传感器。',
+        description: '可直接印刷于纺织品的碳基压阻油墨，具有高弹性与柔软触感，适用于可穿戴压力传感器。',
+      },
+      ferromagnetic: {
+        titleKr: '铁磁性油墨',
+        description: '磁响应高的丝网印刷铁磁性油墨。粒径 35–45 nm，矫顽力 2,500 Oe，60 °C 固化 10 分钟。',
+      },
+      'ferromagnetic-stretchable': {
+        titleKr: '水性可拉伸磁性油墨',
+        description: '具有磁铁效果的水性丝网印刷磁性油墨，在合适的基材上可拉伸，也可印刷于纺织品。',
+      },
+      superparamagnetic: {
+        titleKr: '超顺磁性油墨',
+        description: '易溶于多种溶剂的丝网印刷超顺磁性油墨，可在刚性或柔性基材上低成本制作磁传感器。',
       },
     },
     substratesLabel: 'Substrates',
-    noDatasheet: '详细规格可通过咨询获取。',
+    tdsButton: '查看规格表 (PDF)',
     inMold: {
       title: 'In-Mold Electronics 应用',
       intro: '印刷的电路图案与功能性油墨可在热成型及注塑成型后依然保持完整，可用于将传感器、LED、连接器与线路直接嵌入塑料部件的 In-Mold Electronics 工艺。',

@@ -121,9 +121,9 @@ export const ROUTE_META: Record<string, RouteMeta> = {
       zh: `PIEZO Ink · 压电/导电油墨 | ${BRAND.zh}`,
     },
     description: {
-      ko: '압력에 반응해 전기 신호를 발생시키는 압전(Piezo) 잉크와 인쇄 회로용 전도성(Conductive) 잉크입니다. 인쇄 전자, 웨어러블 센서 등에 적용됩니다.',
-      en: 'Piezoelectric ink that turns pressure into an electrical signal, plus conductive ink for printed circuits — for printed electronics and wearable sensors.',
-      zh: '受压时产生电信号的压电油墨与用于印刷电路的导电油墨，应用于印刷电子、可穿戴传感器等领域。',
+      ko: '압력에 반응해 전기 신호를 내는 압전·압저항 잉크, 인쇄 회로용 전도성 잉크(실버·구리·카본), 자성 잉크 14종입니다. 제품별 TDS(PDF)를 바로 볼 수 있습니다.',
+      en: '14 functional inks — piezoelectric and piezoresistive inks that turn pressure into a signal, silver, copper and carbon conductive inks for printed circuits, and magnetic inks. Each has a TDS (PDF).',
+      zh: '共14款功能性油墨：受压产生电信号的压电·压阻油墨、用于印刷电路的银·铜·碳导电油墨及磁性油墨，均提供 TDS（PDF）。',
     },
   },
   '/display': {

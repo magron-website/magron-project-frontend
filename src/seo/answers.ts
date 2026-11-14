@@ -651,9 +651,9 @@ export const PAGE_ANSWERS: Record<string, PageAnswers> = {
         zh: 'PIEZO Ink 是什么油墨？',
       },
       answer: {
-        ko: '압력·충격·변형을 전기 신호로 감지하는 압전/압저항 잉크와, 스크린 프린팅으로 회로를 구현하는 전도성 잉크입니다. 열성형·사출성형 공정과 결합해 플라스틱 부품에 회로를 그대로 내장하는 In-Mold Electronics에 적용할 수 있습니다.',
-        en: 'A piezoelectric and piezoresistive ink that senses pressure, impact, and deformation as an electrical signal, together with a conductive ink that forms circuits by screen printing. Combined with thermoforming and injection molding, it enables In-Mold Electronics that embed circuitry directly into plastic parts.',
-        zh: '包含将压力、冲击与形变转换为电信号的压电/压阻油墨，以及通过丝网印刷实现电路的导电油墨。可与热成型、注塑工艺结合，实现将电路直接内嵌于塑料部件的 In-Mold Electronics。',
+        ko: '압력·충격·변형을 전기 신호로 감지하는 압전/압저항 잉크, 스크린 프린팅으로 회로를 구현하는 전도성 잉크(실버·구리·카본), 자성 패턴과 자기 센서용 자성 잉크입니다. 제품별 상세 사양은 각 TDS(PDF)로 제공합니다. 열성형·사출성형 공정과 결합해 플라스틱 부품에 회로를 그대로 내장하는 In-Mold Electronics에 적용할 수 있습니다.',
+        en: 'Piezoelectric and piezoresistive inks that sense pressure, impact, and deformation as an electrical signal, conductive inks (silver, copper, carbon) that form circuits by screen printing, and magnetic inks for magnetic patterns and sensors. Each ink has its own TDS (PDF). Combined with thermoforming and injection molding, it enables In-Mold Electronics that embed circuitry directly into plastic parts.',
+        zh: '包含将压力、冲击与形变转换为电信号的压电/压阻油墨、通过丝网印刷实现电路的导电油墨（银、铜、碳系），以及用于磁性图案与磁传感器的磁性油墨。各产品均提供 TDS（PDF）。可与热成型、注塑工艺结合，实现将电路直接内嵌于塑料部件的 In-Mold Electronics。',
       },
     },
     faqs: [

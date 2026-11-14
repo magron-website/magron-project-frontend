@@ -12,11 +12,11 @@ export default function PiezoInk() {
   const heroLead = t('hero.lead', opts) as unknown as string[]
   const heroCards = t('heroCards', opts) as unknown as Card[]
   const inquiryItems = t('inquiryItems', opts) as unknown as string[]
-  const noDatasheetLabel = t('noDatasheet', { ns: 'piezoInk' })
+  const tdsLabel = t('tdsButton', { ns: 'piezoInk' })
   const substratesLabel = t('substratesLabel', { ns: 'piezoInk' })
 
   // Merge translated prose into the catalogue data, same pattern as Feedthrough:
-  // spec tables (numeric/technical) stay as-is, titleKr/description come from i18n.
+  // codes/tags/TDS links stay as-is, titleKr/description come from i18n.
   const categories = CATEGORIES.map((cat) => ({
     ...cat,
     titleKr: t(`categories.${cat.id}.titleKr`, { ns: 'piezoInk', defaultValue: cat.titleKr }),
@@ -99,8 +99,7 @@ export default function PiezoInk() {
           ))}
         </nav>
 
-        {/* 2–6. Product catalogue by category, in order: Bendable Silver, Copper,
-            Transparent Silver, Piezoelectric, Piezoresistive */}
+        {/* Product catalogue by category — Conductive 7 · Piezo 4 · Magnetic 3 (TDS 2026-11-14) */}
         {categories.map((cat) => (
           <section key={cat.id} id={cat.id} className="pi-category">
             <header className="pi-category__header">
@@ -113,8 +112,8 @@ export default function PiezoInk() {
                 <ProductCard
                   key={product.id}
                   product={product}
-                  noDatasheetLabel={noDatasheetLabel}
                   substratesLabel={substratesLabel}
+                  tdsLabel={tdsLabel}
                 />
               ))}
             </div>
