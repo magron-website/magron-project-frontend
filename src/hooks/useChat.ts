@@ -187,6 +187,7 @@ export function useChat() {
           answers: payload.answers,
           missing: payload.missing,
           files: payload.files,
+          view: payload.view,
           consent: true,
           session_id: sessionIdRef.current,
           lang: i18n.language,

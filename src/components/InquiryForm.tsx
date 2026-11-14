@@ -11,6 +11,22 @@ import '@/assets/design/inquiry-form.css'
 
 export type InquiryContact = { company: string; name: string; email: string; place: string; tel: string }
 export type InquiryFile = { name: string; type: string; data: string }
+/**
+ * 담당자 메일에 문의서를 '작성 화면 모양 그대로' 그리기 위한 구조(11/14 이사님: 텍스트만 뽑지 말고 폼 형태로).
+ * HTML 을 보내지 않고 구조만 보낸다 — 메일 HTML 은 서버가 글자를 이스케이프해서 만든다.
+ */
+export type InquiryViewField = {
+  kind: 'one' | 'many' | 'text' | 'picture' | 'file'
+  label?: string
+  opts?: string[]
+  picked?: string[]
+  text?: string
+  /** 그림 선택지에서 고른 그림 코드(public/inquiry/ko/{code}.png) */
+  img?: string
+}
+export type InquiryViewItem = { num: string; q: string; req: boolean; fields: InquiryViewField[] }
+export type InquiryViewSection = { title: string; note?: string; items: InquiryViewItem[]; skipped?: number }
+
 export type InquiryPayload = {
   formId: string
   formTitle: string
@@ -18,6 +34,7 @@ export type InquiryPayload = {
   answers: { q: string; a: string }[]
   missing: string[]
   files: InquiryFile[]
+  view?: InquiryViewSection[]
 }
 export type InquiryResult = { ok: true } | { ok: false; message: string }
 
@@ -108,6 +125,52 @@ export default function InquiryForm({
     return parts.join(' · ')
   }
 
+  /** 질문 하나를 메일용 '폼 모양' 구조로 — 선택지는 전부 싣고 고른 것만 표시한다(한국어 원문) */
+  const viewOf = (sectionId: string, qi: number, q: InquiryQuestion, num: string): InquiryViewItem => ({
+    num,
+    q: q.q,
+    req: q.req,
+    fields: q.fields.map((fd, fi): InquiryViewField => {
+      const id = fieldId(sectionId, qi, fi)
+      const raw = values[id]
+      const label = fd.label
+      switch (fd.k) {
+        case 'r':
+        case 'c':
+          return { kind: fd.k === 'r' ? 'one' : 'many', label, opts: fd.opts, picked: raw ? (Array.isArray(raw) ? raw : [raw]) : [] }
+        case 'p': {
+          const pick = fd.opts.find((o) => o.label === raw)
+          return { kind: 'picture', label, opts: fd.opts.map((o) => o.label), picked: pick ? [pick.label] : [], img: pick?.code }
+        }
+        case 'f':
+          return { kind: 'file', label: label ?? '파일 첨부', picked: (files[id] ?? []).map((file) => file.name) }
+        default:
+          return { kind: 'text', label, text: typeof raw === 'string' ? raw.trim() : '' }
+      }
+    }),
+  })
+
+  const buildView = (): InquiryViewSection[] => {
+    const view: InquiryViewSection[] = [{ title: '기본 질문', items: form.req.map((q, qi) => viewOf('req', qi, q, `Q${qi + 1}`)) }]
+    if (activeGroup) {
+      view.push({
+        title: activeGroup.key,
+        note: activeGroup.note,
+        items: activeGroup.qs.map((q, qi) => viewOf(`g-${activeGroup.key}`, qi, q, `${qi + 1}`)),
+      })
+    }
+    // 추가 질문은 접혀 있는 선택 항목이라 고객이 답한 것만 싣는다(전부 실으면 메일이 너무 길어짐)
+    const extra = form.opt.map((q, qi) => ({ q, qi })).filter(({ q, qi }) => answerOf('opt', qi, q))
+    if (form.opt.length) {
+      view.push({
+        title: '추가 질문',
+        items: extra.map(({ q, qi }) => viewOf('opt', qi, q, `+${qi + 1}`)),
+        skipped: form.opt.length - extra.length,
+      })
+    }
+    return view
+  }
+
   const handleSubmit = async (event: FormEvent) => {
     event.preventDefault()
     if (isSending) return
@@ -191,6 +254,7 @@ export default function InquiryForm({
       answers,
       missing,
       files: encoded,
+      view: buildView(),
     })
     setIsSending(false)
     if (!result.ok) setError(result.message)
