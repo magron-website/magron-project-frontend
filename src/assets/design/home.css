@@ -1173,3 +1173,50 @@
     height: 72px;
   }
 }
+
+/* 11/14: 홈 기술정보·카탈로그 줄에서 제목이 2~4줄로 달라 책이 위아래로 어긋났다 —
+   같은 줄 칸은 높이가 같으니(그리드 stretch) 제목 칸이 남는 높이를 채우게 해 책 위치를 맞춘다 */
+@media (min-width: 901px) {
+  .home .home-tech .tech-doc-grid,
+  .home .home-catalog__grid {
+    align-items: stretch;
+  }
+
+  .home .home-tech .tech-doc__title,
+  .home .home-catalog__item-title {
+    flex: 1 0 auto;
+    align-items: flex-end;
+  }
+}
+
+/* 11/14: 기술정보 제목도 카탈로그처럼 칸 폭에 맞춰 줄인다 — 좁은 칸에서 4~5줄로 꺾이고 "?"만 떨어지던 것 */
+@media (min-width: 901px) {
+  .home .home-tech .tech-doc {
+    container-type: inline-size;
+  }
+
+  .home .home-tech .tech-doc__title-text {
+    word-break: keep-all;
+    overflow-wrap: normal;
+  }
+}
+
+@media (min-width: 901px) and (max-width: 1024px) {
+  .home .home-tech .tech-doc__title {
+    font-size: clamp(11px, 8.6cqw, 22px);
+  }
+
+  .home .home-tech .tech-doc__title-bracket {
+    font-size: clamp(15px, 11cqw, 32px);
+  }
+}
+
+@media (min-width: 1025px) {
+  .home .home-tech .tech-doc__title {
+    font-size: clamp(12px, 8.6cqw, 17.8px);
+  }
+
+  .home .home-tech .tech-doc__title-bracket {
+    font-size: clamp(15px, 11cqw, 26px);
+  }
+}
