@@ -5,8 +5,10 @@ import '@/i18n'
 import App from './App'
 import { registerServiceWorker } from '@/pwa/registerServiceWorker'
 import { initAnalytics } from '@/lib/analytics'
+import { startPageFit } from '@/lib/pageFit'
 
 initAnalytics()
+startPageFit()
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

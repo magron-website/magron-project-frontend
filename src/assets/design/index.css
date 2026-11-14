@@ -417,3 +417,27 @@ html.chat-split .home-visual {
     overflow-wrap: normal;
   }
 }
+
+/* ==========================================================================
+   2026-11-14 "너무 작다, 좌우 여백 줄여서 크게": 페이지 배율을 본문이 쓸 수 있는 폭(--avail,
+   화면 px, src/lib/pageFit.ts)에 맞춘다. 배율 = 사용 폭 × 0.92 ÷ (0.75 × 페이지 설계 폭).
+   설계 폭은 각 페이지 본문 상자 실측값.
+   - 제품 상세 7종: 챗봇이 열렸을 때만(예전엔 일괄 1.05 → 큰 화면에서 글자 11~12px·양옆 빔). 닫힘은 예전 1.6 그대로.
+   - 문서형(기술정보·회사소개·기술자료·씰 비교·문의·처리방침): 닫힘도 예전 값을 최소로 두고 넓으면 더 키운다.
+   ========================================================================== */
+@media (min-width: 1025px) {
+  html.chat-split body .ff-page { zoom: clamp(1.05, calc(var(--avail, 1220) * 1.2267 / 1185), 1.6); }
+  html.chat-split body .ft-page { zoom: clamp(1.05, calc(var(--avail, 1220) * 1.2267 / 1290), 1.6); }
+  html.chat-split body .mn-page { zoom: clamp(1.05, calc(var(--avail, 1220) * 1.2267 / 1240), 1.6); }
+  html.chat-split body .mg-page { zoom: clamp(1.05, calc(var(--avail, 1220) * 1.2267 / 1130), 1.6); }
+  html.chat-split body .pi-page { zoom: clamp(1.05, calc(var(--avail, 1220) * 1.2267 / 1130), 1.6); }
+  html.chat-split body .dp-page { zoom: clamp(1.05, calc(var(--avail, 1220) * 1.2267 / 1150), 1.6); }
+  html.chat-split body .ed-page { zoom: clamp(1.05, calc(var(--avail, 1220) * 1.2267 / 1130), 1.6); }
+
+  body .tech-page { zoom: clamp(1.32, calc(var(--avail, 1890) * 1.2267 / 1131), 1.6); }
+  html.chat-split body .tech-page { zoom: clamp(1, calc(var(--avail, 1220) * 1.2267 / 1131), 1.6); }
+  body .cp-page { zoom: clamp(1.32, calc(var(--avail, 1890) * 1.2267 / 1200), 1.6); }
+  html.chat-split body .cp-page { zoom: clamp(1, calc(var(--avail, 1220) * 1.2267 / 1200), 1.6); }
+  /* 기술자료·씰 비교·문의·처리방침(lg-page)은 배율이 없어 1920px 화면에서도 75% 크기(글자 12px)였다 */
+  body .lg-page, html.chat-split body .lg-page { zoom: clamp(1, calc(var(--avail, 1890) * 1.2267 / 1200), 1.4); }
+}
