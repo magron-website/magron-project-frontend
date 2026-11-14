@@ -35,19 +35,19 @@ const piezoInk = {
     products: {
       'bendable-silver': {
         titleKr: '벤더블 전도성 실버 잉크',
-        description: '스크린 프린팅용 실버 전도성 잉크로, 열성형 전후 성능이 일정해 In-Mold Electronics에 쓰입니다. 면저항 30 mΩ/sq 미만(열성형 후 120 mΩ/sq 미만).',
+        description: '스크린 프린팅용 실버 전도성 잉크로, 열성형 전후 성능이 일정해 In-Mold Electronics에 쓰입니다.',
       },
       copper: {
         titleKr: '인몰드용 전도성 구리 잉크',
-        description: 'In-Mold Electronics에 쓸 수 있는 스크린 프린팅 구리 전도성 잉크입니다. 면저항 3 Ω/sq 미만, 체적저항 3 mΩ·cm 미만.',
+        description: 'In-Mold Electronics에 쓸 수 있는 스크린 프린팅 구리 전도성 잉크입니다.',
       },
       'transparent-silver': {
         titleKr: '투명 전도성 실버 잉크',
-        description: '박막 태양전지, 디스플레이, 센서 등 인쇄전자용 투명 전도성 실버 잉크입니다. 투과율 94% 이상(600 nm), 면저항 100 Ω/sq 미만(140 ℃ 경화).',
+        description: '박막 태양전지, 디스플레이, 센서 등 인쇄전자용 투명 전도성 실버 잉크로, 투과율 94% 이상의 투명 전극을 인쇄할 수 있습니다.',
       },
       'stretchable-silver': {
         titleKr: '스트레처블 전도성 실버 잉크',
-        description: '신축성을 갖춘 스크린 프린팅 실버 페이스트로, 웨어러블 전자기기·센서·의료기기에 쓰입니다. 체적저항 72 µΩ·cm 미만(120 ℃ 경화).',
+        description: '신축성을 갖춘 스크린 프린팅 실버 페이스트로, 웨어러블 전자기기·센서·의료기기에 쓰입니다.',
       },
       'water-based-carbon': {
         titleKr: '스트레처블 수성 카본 전도성 잉크',
@@ -63,7 +63,7 @@ const piezoInk = {
       },
       piezoelectric: {
         titleKr: '압전 잉크',
-        description: 'PVDF-TrFe 기반 압전 잉크로 압력·충격·가속도·변형을 감지합니다(d33 18–23 pC/N). 인쇄 후 어닐링과 폴링을 거쳐야 기능이 활성화됩니다. 친환경 용제를 쓴 GPEInk01NP®도 있습니다.',
+        description: 'PVDF-TrFe 기반 압전 잉크로 압력·충격·가속도·변형을 감지합니다. 인쇄 후 어닐링과 폴링을 거쳐야 기능이 활성화됩니다. 친환경 용제를 쓴 GPEInk01NP®도 있습니다.',
       },
       'piezoresistive-general': {
         titleKr: '압저항 잉크 (힘·압력 감지)',
@@ -79,7 +79,7 @@ const piezoInk = {
       },
       ferromagnetic: {
         titleKr: '강자성 잉크',
-        description: '자기 응답이 큰 스크린 프린팅 강자성 잉크입니다. 입자 크기 35–45 nm, 보자력 2,500 Oe이며 60 ℃에서 10분 경화합니다.',
+        description: '자기 응답이 큰 스크린 프린팅 강자성 잉크로, 분산성과 등방성이 높고 유연합니다.',
       },
       'ferromagnetic-stretchable': {
         titleKr: '수성 스트레처블 자성 잉크',
@@ -154,19 +154,19 @@ const piezoInk = {
     products: {
       'bendable-silver': {
         titleKr: 'Bendable Conductive Silver Ink',
-        description: 'A screen-printing silver conductive ink that behaves consistently before and after thermoforming, used for In-Mold Electronics. Sheet resistance below 30 mΩ/sq (below 120 mΩ/sq after thermoforming).',
+        description: 'A screen-printing silver conductive ink that behaves consistently before and after thermoforming, used for In-Mold Electronics.',
       },
       copper: {
         titleKr: 'Conductive Copper Ink for In-Mold Electronics',
-        description: 'A screen-printing copper conductive ink for In-Mold Electronics. Sheet resistance below 3 Ω/sq, volume resistivity below 3 mΩ·cm.',
+        description: 'A screen-printing copper conductive ink for In-Mold Electronics.',
       },
       'transparent-silver': {
         titleKr: 'Transparent Silver Conductive Ink',
-        description: 'A transparent conductive silver ink for thin-film PV, displays, sensors, and general printed electronics. Transparency above 94% (600 nm), sheet resistivity below 100 Ω/sq (cured at 140 °C).',
+        description: 'A transparent conductive silver ink for thin-film PV, displays, sensors, and general printed electronics, printing transparent electrodes with over 94% transparency.',
       },
       'stretchable-silver': {
         titleKr: 'Stretchable Silver Conductive Ink',
-        description: 'A stretchable screen-printing silver paste for wearable electronics, sensors, and medical devices. Volume resistivity below 72 µΩ·cm (cured at 120 °C).',
+        description: 'A stretchable screen-printing silver paste for wearable electronics, sensors, and medical devices.',
       },
       'water-based-carbon': {
         titleKr: 'Stretchable Water-Based Carbon Conductive Ink',
@@ -182,7 +182,7 @@ const piezoInk = {
       },
       piezoelectric: {
         titleKr: 'Piezoelectric Ink',
-        description: 'A PVDF-TrFe-based piezoelectric ink that detects pressure, impact, acceleration, and deformation (d33 18–23 pC/N). Requires annealing and poling after printing. A green-solvent version, GPEInk01NP®, is also available.',
+        description: 'A PVDF-TrFe-based piezoelectric ink that detects pressure, impact, acceleration, and deformation. Requires annealing and poling after printing. A green-solvent version, GPEInk01NP®, is also available.',
       },
       'piezoresistive-general': {
         titleKr: 'Piezoresistive Ink — Force & Pressure Sensing',
@@ -198,7 +198,7 @@ const piezoInk = {
       },
       ferromagnetic: {
         titleKr: 'Ferromagnetic Ink',
-        description: 'A screen-printable ferromagnetic ink with a high magnetic response. Particle size 35–45 nm, coercive field 2,500 Oe, cured at 60 °C for 10 minutes.',
+        description: 'A screen-printable ferromagnetic ink with a high magnetic response, high dispersion and isotropy, and great flexibility.',
       },
       'ferromagnetic-stretchable': {
         titleKr: 'Magnetic Ink — Water-based, Stretchable',
@@ -273,19 +273,19 @@ const piezoInk = {
     products: {
       'bendable-silver': {
         titleKr: '可弯曲导电银油墨',
-        description: '一种丝网印刷银导电油墨，热成型前后性能一致，用于 In-Mold Electronics。方阻低于 30 mΩ/sq（热成型后低于 120 mΩ/sq）。',
+        description: '一种丝网印刷银导电油墨，热成型前后性能一致，用于 In-Mold Electronics。',
       },
       copper: {
         titleKr: '模内电子用导电铜油墨',
-        description: '可用于 In-Mold Electronics 的丝网印刷铜导电油墨。方阻低于 3 Ω/sq，体积电阻率低于 3 mΩ·cm。',
+        description: '可用于 In-Mold Electronics 的丝网印刷铜导电油墨。',
       },
       'transparent-silver': {
         titleKr: '透明导电银油墨',
-        description: '用于薄膜光伏、显示器、传感器等印刷电子的透明导电银油墨。透光率 94% 以上（600 nm），方阻低于 100 Ω/sq（140 °C 固化）。',
+        description: '用于薄膜光伏、显示器、传感器等印刷电子的透明导电银油墨，可印刷透光率 94% 以上的透明电极。',
       },
       'stretchable-silver': {
         titleKr: '可拉伸导电银油墨',
-        description: '具有拉伸性的丝网印刷银浆，用于可穿戴电子、传感器及医疗设备。体积电阻率低于 72 µΩ·cm（120 °C 固化）。',
+        description: '具有拉伸性的丝网印刷银浆，用于可穿戴电子、传感器及医疗设备。',
       },
       'water-based-carbon': {
         titleKr: '可拉伸水性碳导电油墨',
@@ -301,7 +301,7 @@ const piezoInk = {
       },
       piezoelectric: {
         titleKr: '压电油墨',
-        description: '基于 PVDF-TrFe 的压电油墨，可检测压力、冲击、加速度与形变（d33 18–23 pC/N）。印刷后需经退火与极化处理才能发挥功能。另有采用环保溶剂的 GPEInk01NP®。',
+        description: '基于 PVDF-TrFe 的压电油墨，可检测压力、冲击、加速度与形变。印刷后需经退火与极化处理才能发挥功能。另有采用环保溶剂的 GPEInk01NP®。',
       },
       'piezoresistive-general': {
         titleKr: '压阻油墨（力·压力感应）',
@@ -317,7 +317,7 @@ const piezoInk = {
       },
       ferromagnetic: {
         titleKr: '铁磁性油墨',
-        description: '磁响应高的丝网印刷铁磁性油墨。粒径 35–45 nm，矫顽力 2,500 Oe，60 °C 固化 10 分钟。',
+        description: '磁响应高的丝网印刷铁磁性油墨，分散性与各向同性高，柔韧性好。',
       },
       'ferromagnetic-stretchable': {
         titleKr: '水性可拉伸磁性油墨',

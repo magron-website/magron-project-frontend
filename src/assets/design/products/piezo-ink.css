@@ -189,22 +189,13 @@
 }
 
 .pi-category__products {
-  display: grid;
-  /* 11/14 사양표를 PDF로 옮겨 카드가 짧아짐 — 넓은 화면에선 2열 */
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 460px), 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 24px;
   margin-top: 32px;
 }
 
-.pi-product {
-  display: flex;
-  flex-direction: column;
-}
 
-/* 카드 높이가 달라도 상세표 버튼은 맨 아래에 맞춘다 */
-.pi-product > :nth-last-child(2) {
-  margin-bottom: 18px;
-}
 
 /* Product card -------------------------------------------------------------- */
 
@@ -300,7 +291,7 @@
   align-items: center;
   gap: 6px;
   align-self: flex-start;
-  margin-top: auto;
+  margin-top: 18px;
   padding: 9px 18px;
   border: 1.5px solid var(--pi-violet);
   border-radius: 8px;
@@ -625,4 +616,77 @@
   .pi-btn {
     width: 100%;
   }
+}
+
+/* 11/14: 한 줄에 카드 하나 — 왼쪽 설명, 오른쪽 간단 사양표 */
+.pi-product {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 28px 40px;
+  align-items: start;
+}
+
+.pi-product__main {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.pi-product__main .pi-product__tags {
+  justify-content: flex-start;
+  max-width: none;
+  margin-top: 12px;
+}
+
+.pi-product__spec .pi-table-wrap {
+  margin-top: 0;
+}
+
+@media (max-width: 900px) {
+  .pi-product {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Spec table ------------------------------------------------------------- */
+
+.pi-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  margin-top: 18px;
+  border: 1px solid var(--pi-border);
+  border-radius: 8px;
+  background: #fff;
+}
+
+.pi-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13.5px;
+}
+
+.pi-table th,
+.pi-table td {
+  padding: 9px 14px;
+  border-bottom: 1px solid var(--pi-border);
+  text-align: left;
+  vertical-align: top;
+  line-height: 1.5;
+}
+
+.pi-table th[scope='row'] {
+  width: 46%;
+  background: #f6f2fb;
+  color: var(--pi-navy);
+  font-weight: 700;
+}
+
+.pi-table td {
+  font-variant-numeric: tabular-nums;
+  color: var(--pi-text);
+}
+
+.pi-table tr:last-child th,
+.pi-table tr:last-child td {
+  border-bottom: none;
 }
