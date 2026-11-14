@@ -2,6 +2,9 @@ import activeGasTgaData from './active-gas-tga-data.webp'
 import inertGasTgaData from './inert-gas-tga-data.webp'
 import koptriVaporPressureReport from './koptri-vapor-pressure-report.webp'
 import mffMOverview from './mff-m-overview.webp'
+import oledRobotSealGuideEn from './oled-robot-seal-training-guide-en.webp'
+import oledRobotSealGuideKr from './oled-robot-seal-training-guide-kr.webp'
+import oledRobotSealGuideZh from './oled-robot-seal-training-guide-zh.webp'
 import productBrochure from './product-brochure.webp'
 import vaporPressureNote from './vapor-pressure-note.webp'
 import whatIsFerrofluidEn from './what-is-ferrofluid-en.webp'
@@ -22,6 +25,9 @@ const techCovers: Record<string, string> = {
   'inert-gas-tga-data': inertGasTgaData,
   'koptri-vapor-pressure-report': koptriVaporPressureReport,
   'mff-m-overview': mffMOverview,
+  'oled-robot-seal-training-guide-kr': oledRobotSealGuideKr,
+  'oled-robot-seal-training-guide-en': oledRobotSealGuideEn,
+  'oled-robot-seal-training-guide-zh': oledRobotSealGuideZh,
   'product-brochure': productBrochure,
   'vapor-pressure-note': vaporPressureNote,
   'what-is-ferrofluid-kr': whatIsFerrofluidKr,

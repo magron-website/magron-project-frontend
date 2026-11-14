@@ -18,7 +18,7 @@ import { useTechDocuments } from '@/hooks/useTechDocuments'
 import '@/assets/design/animation.css'
 import '@/assets/design/tech.css'
 
-const catalogSortOrders = [1, 2, 3, 4, 5, 6] as const
+const catalogSortOrders = [1, 2, 3, 4, 5, 6, 7] as const
 
 
 const catalogBookProps = {

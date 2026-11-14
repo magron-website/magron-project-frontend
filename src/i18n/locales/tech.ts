@@ -34,6 +34,10 @@ const tech = {
         title: 'What is Ferrofluid?',
         description: '자성유체(Ferrofluid)가 무엇인지 원리와 특성을 쉽게 설명한 소개 자료',
       },
+      8: {
+        title: 'OLED 증착로봇\n자성유체 씰 교육자료',
+        description: 'OLED 증착 이송 로봇에 쓰이는 고온 자성유체 씰의 사용처·작동 원리와 핵심 소재 MFS-6022를 설명한 제품 교육자료',
+      },
     },
     heading: '기술정보',
     lead: '시험기관 측정 데이터와 기술노트를 확인하실 수 있습니다.',
@@ -77,6 +81,10 @@ const tech = {
         title: 'What is Ferrofluid?',
         description: 'An introductory guide to the principles and properties of ferrofluid.',
       },
+      8: {
+        title: 'OLED Robot\nFerrofluid Seal Guide',
+        description: 'Training guide on high-temperature ferrofluid seals in OLED evaporation transfer robots and the core material MFS-6022.',
+      },
     },
     heading: 'Technical Info',
     lead: 'Technical notes and data verified by accredited testing institutes.',
@@ -119,6 +127,10 @@ const tech = {
       7: {
         title: '什么是磁性流体?',
         description: '以图解方式介绍磁性流体（Ferrofluid）原理与特性的入门资料。',
+      },
+      8: {
+        title: 'OLED 蒸镀机器人\n磁流体密封件培训资料',
+        description: '介绍高温磁流体密封件在 OLED 蒸镀传输机器人中的应用、工作原理及核心材料 MFS-6022 的产品培训资料。',
       },
     },
     heading: '技术信息',

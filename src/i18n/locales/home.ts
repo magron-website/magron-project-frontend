@@ -15,6 +15,7 @@ const home = {
         4: 'Magnet',
         5: 'Conductive Ink',
         6: 'For display kit',
+        7: 'OLED Robot Seal',
       },
     },
     contact: {
@@ -39,6 +40,7 @@ const home = {
         4: 'Magnet',
         5: 'Conductive Ink',
         6: 'For display kit',
+        7: 'OLED Robot Seal',
       },
     },
     contact: {
@@ -64,6 +66,7 @@ const home = {
         4: '磁铁',
         5: '导电油墨',
         6: '展示套件',
+        7: 'OLED 机器人密封',
       },
     },
     contact: {

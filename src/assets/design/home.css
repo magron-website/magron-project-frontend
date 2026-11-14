@@ -705,9 +705,14 @@
     padding: 64px 0 40px;
   }
 
+  /* 11/14 OLED 카탈로그가 7번째로 들어와 한 줄 7칸 — 표지는 6칸일 때보다 작게(챗봇 1/3 화면에서도 칸 안에) */
+  .home .home-catalog {
+    --cat-scale: calc(var(--book-scale) * 0.78);
+  }
+
   .home .home-catalog__grid {
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    gap: 32px 20px;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 32px 16px;
   }
 
   .home .home-catalog__item,
@@ -744,7 +749,8 @@
   }
 
   .home .home-catalog__book {
-    height: calc(330px * var(--book-scale));
+    width: calc(230px * var(--cat-scale));
+    height: calc(330px * var(--cat-scale));
   }
 
   .home .home-tech .tech-doc__book {
@@ -755,6 +761,10 @@
   .home .home-tech .tech-doc__book > * {
     transform: scale(var(--book-scale));
     transform-origin: top left;
+  }
+
+  .home .home-catalog__book > * {
+    transform: scale(var(--cat-scale));
   }
 
   .home .home-catalog__book-hint,
