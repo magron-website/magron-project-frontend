@@ -1220,3 +1220,15 @@
     font-size: clamp(15px, 11cqw, 26px);
   }
 }
+
+/* 11/14 "글자 크기 똑같게": 제목 폰트(조선일보명조)는 보통 굵기 파일뿐이라 700 을 주면 브라우저가 굵게를 흉내 내
+   한글만 두껍고 커 보였다 — 굵기를 보통으로, 부제목도 제목과 같은 크기로 맞춘다 */
+.home .home-tech .tech-doc__title {
+  font-weight: 400;
+}
+
+.home .home-tech .tech-doc__title-sub {
+  margin-top: 0;
+  font-size: 1em;
+  color: inherit;
+}
