@@ -30,4 +30,6 @@ export type ChatMessage = {
   sources?: ChatSource[]
   /** 질문에 제품 이름이 있을 때 권하는 문의서 id('picker' = 제품 고르기) */
   inquiryTarget?: string
+  /** 문의서 안내를 띄운 질문의 언어 — 안내 문구·문의서를 이 언어로 연다 */
+  lang?: string
 }

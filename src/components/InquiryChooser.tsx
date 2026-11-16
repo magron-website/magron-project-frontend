@@ -251,6 +251,7 @@ function QuickInquiry({
     const result = await onSubmit({
       formId: `${formId}-quick`,
       formTitle: `${formTitle} · 간단 문의`,
+      lang: i18n.language,
       // 서버가 회사·이름·국가를 필수로 받는다 — 간단 문의는 적지 않으니 표시만 해 둔다
       contact: { company: '(미기재)', name: '(미기재)', email: email.trim(), place: '(미기재)', tel: '' },
       answers: [{ q: '문의 내용', a: message.trim() }],
@@ -317,7 +318,7 @@ function SheetUpload({
   onBack: () => void
   onSubmit: (payload: InquiryPayload) => Promise<InquiryResult>
 }) {
-  const { t } = useTranslation('chatbot')
+  const { t, i18n } = useTranslation('chatbot')
   const [contact, setContact] = useState<InquiryContact>({ company: '', name: '', email: '', place: '', tel: '' })
   const [files, setFiles] = useState<File[]>([])
   const [memo, setMemo] = useState(model ? `${t('sheetModelPrefix')} ${model}` : '')
@@ -363,6 +364,7 @@ function SheetUpload({
     const result = await onSubmit({
       formId: `${formId}-sheet`,
       formTitle: `${formTitle} · 인콰이어리 시트`,
+      lang: i18n.language,
       contact: Object.fromEntries(Object.entries(contact).map(([k, v]) => [k, v.trim()])) as InquiryContact,
       answers,
       missing: [],

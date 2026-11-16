@@ -194,6 +194,7 @@ export default function SheetWebForm({
     const result = await onSubmit({
       formId: `${formId}-websheet`,
       formTitle: `${formTitle} · 인콰이어리 시트(웹 작성)`,
+      lang: i18n.language,
       contact: {
         company: contact.company || '(미기재)',
         name: contact.name || '(미기재)',

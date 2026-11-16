@@ -35,6 +35,8 @@ export type InquiryPayload = {
   missing: string[]
   files: InquiryFile[]
   view?: InquiryViewSection[]
+  /** 문의서를 연 언어(화면 언어와 다를 수 있음) */
+  lang?: string
 }
 export type InquiryResult = { ok: true } | { ok: false; message: string }
 
@@ -250,6 +252,7 @@ export default function InquiryForm({
     const result = await onSubmit({
       formId: form.id,
       formTitle: form.title,
+      lang: i18n.language,
       contact: Object.fromEntries(Object.entries(contact).map(([k, v]) => [k, v.trim()])) as InquiryContact,
       answers,
       missing,

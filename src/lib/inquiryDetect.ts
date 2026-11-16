@@ -20,6 +20,17 @@ const FERROFLUID = /자성\s?유체|페로\s?플루이드|ferro\s?fluid|magnetic
 // PFPE(MFF-M)는 반도체 씰용 제품이라 용도를 안 써도 씰용 문의서로 보낸다.
 const SEAL_USE = /반도체|진공|씰|실링|밀봉|cvd|ald|에칭|식각|스퍼터|semiconductor|vacuum|seal|etch|sputter|半导体|真空|密封|刻蚀|\bpfpe\b|\bmff-?m/i
 
+/**
+ * 질문을 쓴 언어(2026-11-16): 한국어 화면에서 영어로 물으면 답은 영어로 오는데 문의서 안내·문의서는
+ * 화면 언어(한국어)로 떠서 섞였다. 한글이 있으면 ko, 한자만 있으면 zh, 영문자만 있으면 en, 아니면 화면 언어.
+ */
+export function detectMessageLang(text: string, fallback: string): 'ko' | 'en' | 'zh' {
+  if (/[가-힣]/.test(text)) return 'ko'
+  if (/[一-鿿]/.test(text)) return 'zh'
+  if (/[a-z]{2,}/i.test(text)) return 'en'
+  return fallback === 'en' || fallback === 'zh' ? fallback : 'ko'
+}
+
 export function detectInquiryTarget(text: string): InquiryTarget | null {
   for (const [pattern, target] of RULES) {
     if (pattern.test(text)) return target

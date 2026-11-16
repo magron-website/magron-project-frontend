@@ -1,5 +1,5 @@
-import { Fragment, useEffect, useRef, useState, type CSSProperties } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Fragment, useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
+import { I18nextProvider, useTranslation } from 'react-i18next'
 import { AnimatePresence, motion } from 'framer-motion'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
@@ -52,7 +52,18 @@ export default function ChatbotPanel({
   // 'form' = 문의서 작성. choose·form 은 창이 크게 펼쳐진다.
   const [inquiryMode, setInquiryMode] = useState<'off' | 'picker' | 'choose' | 'form'>('off')
   const [formId, setFormId] = useState<string | null>(null)
-  const inquiry = useInquiryData(inquiryMode !== 'off', i18n.language)
+  /*
+   * 문의서를 열 언어(2026-11-16): 한국어 화면에서 영어로 물으면 문의서 안내가 한국어로 떠 섞였다.
+   * 질문 언어로 띄운 안내(message.lang)에서 열면 그 언어로, 그 밖(빠른 목록·제품 페이지 버튼)은 화면 언어로 연다.
+   * 문의서 쪽만 언어를 바꾼 i18n 복제본을 내려 준다 — 사이트 화면 언어는 그대로.
+   */
+  const [formLang, setFormLang] = useState<string | null>(null)
+  const inquiryLang = formLang ?? i18n.language
+  const inquiryI18n = useMemo(
+    () => (inquiryLang === i18n.language ? i18n : i18n.cloneInstance({ lng: inquiryLang })),
+    [i18n, inquiryLang],
+  )
+  const inquiry = useInquiryData(inquiryMode !== 'off', inquiryLang)
   const isExpanded = inquiryMode === 'form' || inquiryMode === 'choose'
 
   // 시트가 있는 제품(자석·피드스루·자성유체 씰용)은 먼저 방법을 고르게 하고, 나머지는 문의서로 바로
@@ -65,6 +76,11 @@ export default function ChatbotPanel({
   useEffect(() => {
     if (!isOpen) setInquiryMode('off')
   }, [isOpen])
+
+  // 문의 화면을 닫으면 다음 문의서는 다시 화면 언어로
+  useEffect(() => {
+    if (inquiryMode === 'off') setFormLang(null)
+  }, [inquiryMode])
 
   useEffect(() => {
     if (!inquiryRequest) return
@@ -194,7 +210,8 @@ export default function ChatbotPanel({
             </header>
 
             {isExpanded ? (
-              inquiryMode === 'choose' && formId ? (
+              <I18nextProvider i18n={inquiryI18n}>
+              {inquiryMode === 'choose' && formId ? (
                 <InquiryChooser
                   key={`${formId}-${inquiryRequest?.nonce ?? 0}`}
                   formId={formId}
@@ -224,7 +241,8 @@ export default function ChatbotPanel({
                 />
               ) : (
                 <p className="chat-panel__notice">{t('inquiryLoading')}</p>
-              )
+              )}
+              </I18nextProvider>
             ) : (
             <>
             <div className="chat-panel__messages" ref={listRef}>
@@ -245,6 +263,7 @@ export default function ChatbotPanel({
                             className="chat-message__inquiry"
                             onClick={() => {
                               const target = message.inquiryTarget!
+                              setFormLang(message.lang ?? null)
                               if (target === 'picker') {
                                 setInquiryMode('picker')
                               } else {
@@ -252,7 +271,7 @@ export default function ChatbotPanel({
                               }
                             }}
                           >
-                            {t(`inquiryOpen.${message.inquiryTarget}`)}
+                            {t(`inquiryOpen.${message.inquiryTarget}`, { lng: message.lang })}
                           </button>
                         )}
                       </div>
@@ -278,12 +297,14 @@ export default function ChatbotPanel({
             </div>
 
             {inquiryMode === 'picker' ? (
+              <I18nextProvider i18n={inquiryI18n}>
               <InquiryPicker
                 forms={inquiry.forms}
                 tr={inquiry.tr}
                 onPick={(id) => openForm(id)}
                 onCancel={() => setInquiryMode('off')}
               />
+              </I18nextProvider>
             ) : isContactOpen ? (
               <ContactForm
                 onCancel={() => setIsContactOpen(false)}

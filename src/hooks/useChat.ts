@@ -3,7 +3,7 @@ import i18n from '@/i18n'
 import type { ChatMessage, ChatResponse } from '@/types/chat'
 import { trackEvent } from '@/lib/analytics'
 import type { InquiryPayload, InquiryResult } from '@/components/InquiryForm'
-import { detectInquiryTarget } from '@/lib/inquiryDetect'
+import { detectInquiryTarget, detectMessageLang } from '@/lib/inquiryDetect'
 
 /**
  * The deployed chatbot backend. `.env` is gitignored, so a host that forgets to
@@ -64,7 +64,10 @@ export function useChat() {
     const target = detectInquiryTarget(text)
     const suggest =
       target && !suggestedRef.current.has(target)
-        ? [{ id: createId(), role: 'bot' as const, text: i18n.t('chatbot:inquirySuggest'), inquiryTarget: target }]
+        ? (() => {
+            const lng = detectMessageLang(text, i18n.language)
+            return [{ id: createId(), role: 'bot' as const, text: i18n.t('chatbot:inquirySuggest', { lng }), inquiryTarget: target, lang: lng }]
+          })()
         : []
     if (target) suggestedRef.current.add(target)
 
@@ -190,7 +193,8 @@ export function useChat() {
           view: payload.view,
           consent: true,
           session_id: sessionIdRef.current,
-          lang: i18n.language,
+          // 문의서를 질문 언어로 열었으면 그 언어(메일 번역 기준)
+          lang: payload.lang ?? i18n.language,
           page: window.location.pathname,
         }),
       })
