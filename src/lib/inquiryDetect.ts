@@ -22,12 +22,15 @@ const SEAL_USE = /반도체|진공|씰|실링|밀봉|cvd|ald|에칭|식각|스�
 
 /**
  * 질문을 쓴 언어(2026-11-16): 한국어 화면에서 영어로 물으면 답은 영어로 오는데 문의서 안내·문의서는
- * 화면 언어(한국어)로 떠서 섞였다. 한글이 있으면 ko, 한자만 있으면 zh, 영문자만 있으면 en, 아니면 화면 언어.
+ * 화면 언어(한국어)로 떠서 섞였다. 사용자 방침(서버 _reply_lang 과 같은 규칙): 한국어→ko, 중국어→zh,
+ * 그 밖의 언어는 전부 en — 일본어(가나가 섞이면 한자가 있어도), 러시아어·베트남어·태국어·아랍어 등.
+ * 숫자·기호뿐이라 언어를 알 수 없을 때만 화면 언어.
  */
 export function detectMessageLang(text: string, fallback: string): 'ko' | 'en' | 'zh' {
   if (/[가-힣]/.test(text)) return 'ko'
+  if (/[぀-ヿ]/.test(text)) return 'en'
   if (/[一-鿿]/.test(text)) return 'zh'
-  if (/[a-z]{2,}/i.test(text)) return 'en'
+  if (/\p{L}/u.test(text)) return 'en'
   return fallback === 'en' || fallback === 'zh' ? fallback : 'ko'
 }
 
