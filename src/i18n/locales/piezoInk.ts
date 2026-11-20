@@ -7,7 +7,7 @@ const piezoInk = {
       heading: '압전·전도성 잉크 (Conductive Piezo Ink)',
       lead: [
         'In-Mold Electronics, 웨어러블 센서, 인쇄 전자, 스마트 텍스타일 등 다양한 분야에 적용할 수 있습니다.',
-        '압력에 반응해 전기 신호를 내는 압전(Piezoelectric) 잉크, 인쇄 회로를 만드는 전도성(Conductive) 잉크, 압력 변화를 저항 변화로 감지하는 압저항(Piezoresistive) 잉크, 자성 패턴과 자기 센서를 만드는 자성(Magnetic) 잉크까지 — 인쇄 공정 하나로 기능성 회로와 센서를 구현하는 잉크 라인업입니다.',
+        '압력에 반응해 전기 신호를 내는 압전(Piezoelectric) 잉크, 압력 변화를 저항 변화로 감지하는 압저항(Piezoresistive) 잉크, 인쇄 회로를 만드는 전도성(Conductive) 잉크, 자성 패턴과 자기 센서를 만드는 자성(Magnetic) 잉크까지 — 인쇄 공정 하나로 기능성 회로와 센서를 구현하는 잉크 라인업입니다.',
       ],
       heroAlt: 'Conductive & Piezo Ink 제품군',
     },
@@ -126,7 +126,7 @@ const piezoInk = {
       heading: 'Conductive & Piezo Ink',
       lead: [
         'Applicable to In-Mold Electronics, wearable sensors, printed electronics, smart textiles, and more.',
-        'Piezoelectric ink that turns pressure into an electrical signal, conductive ink that prints circuits, piezoresistive ink that senses pressure as a change in resistance, and magnetic ink for magnetic patterns and sensors — a single printing process builds functional circuits and sensors.',
+        'Piezoelectric ink that turns pressure into an electrical signal, piezoresistive ink that senses pressure as a change in resistance, conductive ink that prints circuits, and magnetic ink for magnetic patterns and sensors — a single printing process builds functional circuits and sensors.',
       ],
       heroAlt: 'Conductive & Piezo Ink product family',
     },
@@ -245,7 +245,7 @@ const piezoInk = {
       heading: '压电·导电油墨 (Conductive Piezo Ink)',
       lead: [
         '可应用于 In-Mold Electronics、可穿戴传感器、印刷电子、智能纺织品等多种领域。',
-        '从受压产生电信号的压电（Piezoelectric）油墨、可印刷电路的导电（Conductive）油墨、将压力变化转换为电阻变化的压阻（Piezoresistive）油墨，到可印制磁性图案与磁传感器的磁性（Magnetic）油墨——仅通过印刷工艺即可实现功能电路与传感器。',
+        '从受压产生电信号的压电（Piezoelectric）油墨、将压力变化转换为电阻变化的压阻（Piezoresistive）油墨、可印刷电路的导电（Conductive）油墨，到可印制磁性图案与磁传感器的磁性（Magnetic）油墨——仅通过印刷工艺即可实现功能电路与传感器。',
       ],
       heroAlt: 'Conductive & Piezo Ink 产品系列',
     },

@@ -99,7 +99,7 @@ export default function PiezoInk() {
           ))}
         </nav>
 
-        {/* Product catalogue by category — Conductive 7 · Piezo 4 · Magnetic 3 (TDS 2026-11-14) */}
+        {/* Product catalogue by category — Piezo 4 · Conductive 7 · Magnetic 3 (order: user 11/21) (TDS 2026-11-14) */}
         {categories.map((cat) => (
           <section key={cat.id} id={cat.id} className="pi-category">
             <header className="pi-category__header">

@@ -338,20 +338,20 @@ const superparamagnetic: InkProduct = {
 
 export const CATEGORIES: Category[] = [
   {
-    id: 'conductive',
-    title: 'Conductive Ink',
-    titleKr: '전도성 잉크',
-    intro:
-      '스크린 프린팅으로 각종 소재 위에 전도성 회로를 직접 인쇄하는 실버·구리·카본 잉크입니다. 벤더블·인몰드용부터 투명·신축용까지 있습니다.',
-    products: [bendableSilver, copperInk, transparentSilver, stretchableSilver, waterBasedCarbon, carbon, carbonInMold],
-  },
-  {
     id: 'piezo',
     title: 'Piezo Ink',
     titleKr: '압전 · 압저항 잉크',
     intro:
       '압력·충격·변형을 전기 신호로 바꾸는 기능성 잉크입니다. 압전(Piezoelectric) 방식과 압저항(Piezoresistive) 방식으로 나뉘며, 인쇄만으로 센서를 만들 수 있습니다.',
     products: [piezoelectric, piezoresistiveGeneral, piezoresistiveHard, piezoresistiveTextile],
+  },
+  {
+    id: 'conductive',
+    title: 'Conductive Ink',
+    titleKr: '전도성 잉크',
+    intro:
+      '스크린 프린팅으로 각종 소재 위에 전도성 회로를 직접 인쇄하는 실버·구리·카본 잉크입니다. 벤더블·인몰드용부터 투명·신축용까지 있습니다.',
+    products: [bendableSilver, copperInk, transparentSilver, stretchableSilver, waterBasedCarbon, carbon, carbonInMold],
   },
   {
     id: 'magnetic',
