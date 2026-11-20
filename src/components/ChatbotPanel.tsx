@@ -48,6 +48,12 @@ export default function ChatbotPanel({
   const { messages, isLoading, sendMessage, submitContact, submitInquiry } = useChat()
   const [input, setInput] = useState('')
   const [isContactOpen, setIsContactOpen] = useState(false)
+  // 연락처를 한 번 받았으면 답변 밑 이메일 칸은 더 띄우지 않는다
+  const [contactSent, setContactSent] = useState(false)
+  // 이메일 칸은 조건에 맞는 가장 최근 답변 하나에만
+  const askContactId = contactSent
+    ? null
+    : ([...messages].reverse().find((m) => m.askContact)?.id ?? null)
   // 문의서: 'picker' = 제품 고르기, 'choose' = 문의 방법 고르기(웹 문의서·인콰이어리 시트·메일),
   // 'form' = 문의서 작성. choose·form 은 창이 크게 펼쳐진다.
   const [inquiryMode, setInquiryMode] = useState<'off' | 'picker' | 'choose' | 'form'>('off')
@@ -280,6 +286,16 @@ export default function ChatbotPanel({
                     )}
                   </div>
                 </div>
+                {message.id === askContactId && !isContactOpen && (
+                  <QuickContact
+                    lang={message.lang}
+                    onSubmit={async (email) => {
+                      const result = await submitContact({ email, name: '', lang: message.lang, source: 'inline' })
+                      if (result.ok) setContactSent(true)
+                      return result
+                    }}
+                  />
+                )}
                 {/* 인사말 바로 아래 문의서 목록 — 챗봇을 열면 바로 제품을 눌러 문의서로 간다(2026-11-09 지시) */}
                 {index === 0 && <QuickInquiryList onPick={openForm} />}
                 </Fragment>
@@ -310,7 +326,10 @@ export default function ChatbotPanel({
                 onCancel={() => setIsContactOpen(false)}
                 onSubmit={async (contact) => {
                   const result = await submitContact(contact)
-                  if (result.ok) setIsContactOpen(false)
+                  if (result.ok) {
+                    setIsContactOpen(false)
+                    setContactSent(true)
+                  }
                   return result
                 }}
               />
@@ -371,6 +390,59 @@ export default function ChatbotPanel({
 }
 
 type ContactResult = { ok: true } | { ok: false; message: string }
+
+/**
+ * 답변 바로 밑 이메일 한 칸(2026-11-21 사용자 지시 "이메일만 입력해주시면 빠르게 답장준다고").
+ * 가격·수량·납기를 묻거나 챗봇이 담당자 확인으로 넘긴 답변에만 뜬다. 보내면 '담당자에게 답변 받기'와
+ * 같은 경로(/api/contact)로 대화 전체가 회사 메일로 가고 답장 주소가 이 이메일로 잡힌다.
+ */
+function QuickContact({
+  lang,
+  onSubmit,
+}: {
+  lang?: string
+  onSubmit: (email: string) => Promise<ContactResult>
+}) {
+  const { t } = useTranslation('chatbot')
+  const lng = lang ? { lng: lang } : undefined
+  const [email, setEmail] = useState('')
+  const [isSending, setIsSending] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const isEmailValid = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email.trim())
+
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault()
+    if (!isEmailValid || isSending) return
+    setIsSending(true)
+    setErrorMessage(null)
+    const result = await onSubmit(email)
+    setIsSending(false)
+    if (!result.ok) setErrorMessage(result.message)
+  }
+
+  return (
+    <form className="chat-quick-contact" onSubmit={handleSubmit}>
+      <p className="chat-quick-contact__title">{t('quickContactTitle', lng)}</p>
+      <div className="chat-quick-contact__row">
+        <input
+          className="chat-quick-contact__input"
+          type="email"
+          required
+          autoComplete="email"
+          placeholder={t('quickContactEmail', lng)}
+          aria-label={t('quickContactEmail', lng)}
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+        />
+        <button type="submit" className="chat-quick-contact__send" disabled={!isEmailValid || isSending}>
+          {isSending ? t('contactSending', lng) : t('quickContactSend', lng)}
+        </button>
+      </div>
+      <p className="chat-quick-contact__note">{t('quickContactNote', lng)}</p>
+      {errorMessage && <p className="chat-contact__error">{errorMessage}</p>}
+    </form>
+  )
+}
 
 /**
  * "담당자에게 답변 받기" 입력칸. 이메일(필수)·이름/회사(선택)·개인정보 동의(필수, 보유 1년).

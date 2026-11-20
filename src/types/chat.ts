@@ -32,4 +32,6 @@ export type ChatMessage = {
   inquiryTarget?: string
   /** 문의서 안내를 띄운 질문의 언어 — 안내 문구·문의서를 이 언어로 연다 */
   lang?: string
+  /** 이 답변 밑에 이메일 한 칸을 띄운다(살 마음이 보이는 질문·담당자 확인으로 넘긴 답변) */
+  askContact?: boolean
 }

@@ -3,7 +3,7 @@ import i18n from '@/i18n'
 import type { ChatMessage, ChatResponse } from '@/types/chat'
 import { trackEvent } from '@/lib/analytics'
 import type { InquiryPayload, InquiryResult } from '@/components/InquiryForm'
-import { detectInquiryTarget, detectMessageLang } from '@/lib/inquiryDetect'
+import { detectInquiryTarget, detectMessageLang, needsContact } from '@/lib/inquiryDetect'
 
 /**
  * The deployed chatbot backend. `.env` is gitignored, so a host that forgets to
@@ -106,6 +106,9 @@ export function useChat() {
         role: 'bot',
         text: data.reply ?? i18n.t('messages:chatNoReply'),
         sources: data.sources,
+        // 이메일 칸은 질문 언어로 띄운다
+        lang: detectMessageLang(text, i18n.language),
+        askContact: Boolean(data.reply) && needsContact(text, data.reply),
       }
 
       setMessages((prev) => [...prev, botMessage])
@@ -136,7 +139,14 @@ export function useChat() {
   messagesRef.current = messages
 
   const submitContact = useCallback(
-    async (contact: { email: string; name: string }): Promise<{ ok: true } | { ok: false; message: string }> => {
+    async (contact: {
+      email: string
+      name: string
+      /** 답변 밑 이메일 칸에서 보낸 것이면 그 칸의 언어(질문 언어) */
+      lang?: string
+      source?: 'form' | 'inline'
+    }): Promise<{ ok: true } | { ok: false; message: string }> => {
+      const lng = contact.lang ?? i18n.language
       const transcript = messagesRef.current
         .filter((m) => m.id !== 'welcome')
         .map((m) => ({ role: m.role, text: m.text.slice(0, 6000) }))
@@ -150,7 +160,7 @@ export function useChat() {
             name: contact.name.trim() || null,
             consent: true,
             session_id: sessionIdRef.current,
-            lang: i18n.language,
+            lang: lng,
             page: window.location.pathname,
             transcript,
           }),
@@ -158,17 +168,17 @@ export function useChat() {
         if (!response.ok) {
           // 서버 오류 문구는 한국어뿐이라 화면 언어로 바꿔 보여준다.
           const key = response.status === 429 ? 'chatbot:contactLimit' : 'chatbot:contactFailed'
-          return { ok: false, message: i18n.t(key) }
+          return { ok: false, message: i18n.t(key, { lng }) }
         }
         // 연락처는 GA 로 보내지 않는다. 접수 건수만 센다.
-        trackEvent('chat_contact_submit')
+        trackEvent('chat_contact_submit', { source: contact.source ?? 'form' })
         setMessages((prev) => [
           ...prev,
-          { id: createId(), role: 'bot', text: i18n.t('chatbot:contactDone', { email: contact.email.trim() }) },
+          { id: createId(), role: 'bot', text: i18n.t('chatbot:contactDone', { email: contact.email.trim(), lng }) },
         ])
         return { ok: true }
       } catch {
-        return { ok: false, message: i18n.t('chatbot:contactFailed') }
+        return { ok: false, message: i18n.t('chatbot:contactFailed', { lng }) }
       }
     },
     [],

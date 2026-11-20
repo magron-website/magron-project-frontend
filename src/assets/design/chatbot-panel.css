@@ -647,3 +647,75 @@ html.chat-split .chat-panel__notice { font-size: 16px; }
 html.chat-split .chat-panel__input { font-size: 20px; }
 html.chat-split .chat-panel__title { font-size: 21px; }
 html.chat-split .chat-panel__subtitle { font-size: 15px; }
+
+/* 답변 밑 이메일 한 칸(2026-11-21) — 살 마음이 보이는 질문·담당자 확인 답변에만 뜬다 */
+.chat-quick-contact {
+  margin: 4px 0 10px;
+  padding: 10px 12px;
+  border: 1px solid #c9d6f5;
+  border-radius: 10px;
+  background: #f3f6fd;
+}
+
+.chat-quick-contact__title {
+  margin: 0 0 8px;
+  color: #1f2a44;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.chat-quick-contact__row {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-quick-contact__input {
+  flex: 1;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid #d6dae3;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.chat-quick-contact__input:focus {
+  outline: 2px solid #1a4fd6;
+  outline-offset: -1px;
+}
+
+.chat-quick-contact__send {
+  flex: none;
+  padding: 8px 14px;
+  border: 0;
+  border-radius: 8px;
+  background: #1a4fd6;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chat-quick-contact__send:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.chat-quick-contact__note {
+  margin: 6px 0 0;
+  color: #6b7280;
+  font-size: 11.5px;
+  line-height: 1.4;
+}
+
+.chat-panel--docked .chat-quick-contact__title,
+.chat-panel--docked .chat-quick-contact__input,
+.chat-panel--docked .chat-quick-contact__send {
+  font-size: 16px;
+}
+
+.chat-panel--docked .chat-quick-contact__note {
+  font-size: 13px;
+}

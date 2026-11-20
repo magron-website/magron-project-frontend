@@ -34,6 +34,21 @@ export function detectMessageLang(text: string, fallback: string): 'ko' | 'en' |
   return fallback === 'en' || fallback === 'zh' ? fallback : 'ko'
 }
 
+/*
+ * 답변 밑에 이메일 한 칸을 띄울지(2026-11-21). 살 마음이 보이는 질문(가격·수량·납기·구매·샘플)이거나
+ * 챗봇이 "담당자가 확인"으로 넘긴 답변이면 띄운다. 그동안 이런 방문자가 연락처 없이 나가
+ * 회신할 길이 없었다(11/1 네오디뮴 30×30×30 견적, 피에조 잉크 MOQ, 11/20 N40UH 등).
+ * 답변 끝 꼬리 문구('담당자에게 답변 받기')는 매번 붙으므로 그 표현은 보지 않는다.
+ */
+const BUYING_INTENT =
+  /가격|단가|견적|얼마|비용|최소\s*(?:주문|구매|수량)|moq|수량|납기|배송|구매|주문|발주|샘플|사고\s*싶|살\s*수|\bprices?\b|\bcosts?\b|quot(?:e|ation)|how\s+much|minimum\s+order|lead\s*time|delivery|\bbuy\b|purchas|\border\b|\bsamples?\b|\bwe\s+need\b|\bi\s+need\b|looking\s+for|suppl(?:y|ier)|\bpcs\b|价格|價格|报价|報價|多少钱|起订|最小|交期|交货|购买|購買|订购|訂購|样品|樣品|采购/i
+const HANDOFF =
+  /담당자가\s*(?:정확히\s*)?확인|확인해서\s*메일|team\s+(?:will|can)\s+(?:check|confirm|get)|get\s+you\s+the\s+details|工作人员.{0,8}确认|团队.{0,8}确认/i
+
+export function needsContact(question: string, reply: string): boolean {
+  return BUYING_INTENT.test(question) || HANDOFF.test(reply)
+}
+
 export function detectInquiryTarget(text: string): InquiryTarget | null {
   for (const [pattern, target] of RULES) {
     if (pattern.test(text)) return target
