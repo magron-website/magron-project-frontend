@@ -122,7 +122,7 @@ export const ROUTE_META: Record<string, RouteMeta> = {
     },
     description: {
       ko: '압력에 반응해 전기 신호를 내는 압전·압저항 잉크, 인쇄 회로용 전도성 잉크(실버·구리·카본), 자성 잉크 14종입니다. 제품별 TDS(PDF)를 바로 볼 수 있습니다.',
-      en: '14 functional inks — piezoelectric and piezoresistive inks that turn pressure into a signal, silver, copper and carbon conductive inks for printed circuits, and magnetic inks. Each has a TDS (PDF).',
+      en: '14 functional inks: piezoelectric and piezoresistive pressure-sensing inks, silver, copper and carbon conductive inks, and magnetic inks, each with a TDS.',
       zh: '共14款功能性油墨：受压产生电信号的压电·压阻油墨、用于印刷电路的银·铜·碳导电油墨及磁性油墨，均提供 TDS（PDF）。',
     },
   },
